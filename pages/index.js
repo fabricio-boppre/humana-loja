@@ -9,16 +9,16 @@ export default function Home() {
         <title>Humana</title>
       </Head>
 
-      <p>Humana - em construção.</p>
+      <p>Em construção.</p>
     </>
   )
 }
 
-export async function getStaticProps() {
-  const books = await client.fetch(`*[_type == "book"]`);
-  return {
-    props: {
-      books
-    }
-  }
-}
+// export async function getStaticProps() {
+//   const books = await client.fetch(`*[_type == "book"]`)
+//   return {
+//     props: {
+//       books
+//     }
+//   }
+// }
