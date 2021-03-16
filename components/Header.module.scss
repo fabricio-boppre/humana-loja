@@ -4,10 +4,10 @@
 
 @use '../styles/assets';
 
-/* ---------------------------------------------
+/* ------------------------------------------------------------------------------
 	HEADER:
 	- ":global" wrapped around IDs prevents them from being changed by CSS Modules.
-  ---------------------------------------------- */
+  ------------------------------------------------------------------------------- */
 
 #header {
 	position: fixed;
@@ -17,14 +17,12 @@
 	min-width: assets.$min-width;
 	background-color: white;
 	height: assets.$header-height;
-	line-height: assets.$header-height;
 	z-index: 9999;
 	border-bottom: 1px solid darken(assets.$gray-bg, 10%);
 	:global(#header-content) {
 		@include assets.flexbox();
 		@include assets.justify-content(space-between);
 		height: inherit;
-		line-height: inherit;
 		max-width: assets.$max-width;
 		padding: 0 assets.$lateral-margin;
 		margin: 0 auto;
@@ -36,6 +34,7 @@
 									linear-gradient(transparent, transparent);
 			background-repeat: no-repeat;
 			background-position: left center;
+			height: inherit;
 			width: 320px;	// Logo [large version] width.		
 		}		
 		
@@ -106,9 +105,9 @@
 	}
 }
 
-/* -------------------------------------------------
+/* --------------------------------------------------------------------------
 	Fallbacks for browsers that don't support flexbox and/or svg as img source:
-  -------------------------------------------------- */
+  --------------------------------------------------------------------------- */
 
 :global(.no-svgasimg),
 :global(.no-flexbox) {
@@ -117,6 +116,7 @@
 
 			// Logo:
 			:global(#header-logotipo) {
+				display: block;
 				width: 100%;
 				background-position: center;		
 			}		
