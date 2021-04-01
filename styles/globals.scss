@@ -22,9 +22,52 @@ body {
 
 #main {
 	background-color: assets.$gray-bg;
+	
 	#content {
 		max-width: assets.$max-width;
-		padding: 0 assets.$lateral-margin;
-		margin: assets.$header-height auto 0;
+		padding: 40px assets.$lateral-margin;
+		margin: 0 auto;
+	}		
+}
+
+// ----------
+// PROVISÓRIO:
+#main {
+	text-align: center;
+	#content {
+		#checkout-items-count-price {
+		  display: flex;
+			flex-direction: column;
+		  align-items: center;
+		  justify-content: center;
+			padding-bottom: 30px;
+			button {
+				font-size: 1.1rem;
+				margin-bottom: 5px;
+			}
+		}
+		ul {
+			li {
+				padding: 10px;
+				font-size: 1.5rem;
+			}
+		}
+		#livro {
+		  display: flex;
+			flex-direction: column;
+		  align-items: center;
+		  justify-content: center;
+			h1 {
+				font-size: 1.5rem;
+				padding-bottom: 10px;
+			}
+			button {
+				margin: 15px 0;
+				font-size: 1.4rem;
+				background-color: orange;
+			}
+		}
 	}
 }
+// (fim)
+// ----------

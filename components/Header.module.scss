@@ -10,14 +10,10 @@
   ------------------------------------------------------------------------------- */
 
 #header {
-	position: fixed;
-	top: 0;
-  bottom: 0;
 	width: 100%;
 	min-width: assets.$min-width;
 	background-color: white;
-	height: assets.$header-height;
-	z-index: 9999;
+	height: 60px; // It's the logo height.
 	border-bottom: 1px solid darken(assets.$gray-bg, 10%);
 	:global(#header-content) {
 		@include assets.flexbox();
