@@ -42,6 +42,7 @@ export default async function contentChange(req, res) {
     // - It's enough to get the first element of the changed documents array because we are dealing with changes in one document at a time:
     const docId = req.body.ids.all[0]
     const frontPageURL = process.env.FRONT_PAGE_URL
+
     // console.log(req.body)
 
     // If the action was an update:
