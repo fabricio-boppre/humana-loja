@@ -31,6 +31,9 @@ export default function Book({book}) {
             data-item-id={book.id}
             data-item-price={book.price}
             data-item-weight={book.weight}
+            data-item-width={book.width}
+            data-item-length={book.length}
+            data-item-height={book.height}
             data-item-url={`/livro/${book.id}`}
             data-item-description={book.description}
             data-item-image={book.mainImageUrl}
@@ -65,7 +68,10 @@ const singleBookQuery = `*[_type == "book" && _id == $id] {
                             title,
                             description, 
                             price, 
-                            weight, 
+                            weight,
+														width,
+														length,
+														height,
                             "mainImageUrl": main_image.asset->url
                          }[0]`;
 

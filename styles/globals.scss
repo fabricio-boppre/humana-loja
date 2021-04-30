@@ -18,6 +18,13 @@ body {
 		max-width: 100%;
 		height: auto;						
 	}		
+  // Making sure that elements with the hidden attribute won't be shown:
+  // - https://html.spec.whatwg.org/multipage/interaction.html#the-hidden-attribute
+  [hidden], area, base, basefont, datalist, head, link, meta, noembed,
+  noframes, param, rp, script, source, style, template, track, title {
+    display: none;
+  }
+
 }
 
 #main {
