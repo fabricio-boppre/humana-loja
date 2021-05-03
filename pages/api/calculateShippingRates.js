@@ -118,24 +118,28 @@ export default async function calculateShippingRates(req, res) {
 		// - If there wasn't errors in the Correios response, then we add it to our shipping methods array;
 		// - We have to convert the brazilian decimal representation standard (1.000,00) to the Snipcart one (1,000.00).
 		const correiosSEDEXResponse = await getCorreiosShippingResponse('04014', totalWeight, totalHeight, largestWidth, largestLength, postalCodeDestiny, postalCodeOrigin)
-		if (correiosSEDEXResponse.Servicos.cServico.Erro == '0') {
-			rates["rates"].push({
-				"description": "SEDEX à vista (prazo de entrega: " + correiosSEDEXResponse.Servicos.cServico.PrazoEntrega + " dia(s))",
-				"cost": correiosSEDEXResponse.Servicos.cServico.Valor.replace('.', '').replace(',', '.')
-			})
+		if (typeof correiosSEDEXResponse.Servicos.cServico.Erro !== 'undefined') {
+			if (correiosSEDEXResponse.Servicos.cServico.Erro == '0') {
+				rates["rates"].push({
+					"description": "SEDEX à vista (prazo de entrega: " + correiosSEDEXResponse.Servicos.cServico.PrazoEntrega + " dia(s))",
+					"cost": correiosSEDEXResponse.Servicos.cServico.Valor.replace('.', '').replace(',', '.')
+				})
+			}
 		}
-
+		
 		// Calculate "PAC à vista (04510)" shipping method:
 		// - If there wasn't errors in the Correios response, then we add it to our shipping methods array;
 		// - We have to convert the brazilian decimal representation standard (1.000,00) to the Snipcart one (1,000.00).
 		const correiosPACResponse = await getCorreiosShippingResponse('04510', totalWeight, totalHeight, largestWidth, largestLength, postalCodeDestiny, postalCodeOrigin)
-		if (correiosPACResponse.Servicos.cServico.Erro == '0') {
-			rates["rates"].push({
-				"description": "PAC à vista (prazo de entrega: " + correiosPACResponse.Servicos.cServico.PrazoEntrega + " dia(s))",
-				"cost": correiosPACResponse.Servicos.cServico.Valor.replace('.', '').replace(',', '.')
-			})
+		if (typeof correiosPACResponse.Servicos.cServico.Erro !== 'undefined') {
+			if (correiosPACResponse.Servicos.cServico.Erro == '0') {
+				rates["rates"].push({
+					"description": "PAC à vista (prazo de entrega: " + correiosPACResponse.Servicos.cServico.PrazoEntrega + " dia(s))",
+					"cost": correiosPACResponse.Servicos.cServico.Valor.replace('.', '').replace(',', '.')
+				})
+			}
 		}
-
+		
 		// Calculate "Registro Módico" shipping method:
 		// - Only for packages under 2 Kg;
 		// - We also check the zip code, to check if it is within the brazilian territory (01000-000 to 99999-99)
@@ -190,11 +194,11 @@ export default async function calculateShippingRates(req, res) {
 				registroModicoValor = 16.90
 			}
 			rates["rates"].push({
-				"description": "Registro módico",
+				"description": "Registro módico (prazo de entrega: até 12 dias úteis)",
 				"cost": (registroModicoValor + registroModicoTaxa).toFixed(2)
 			})
 		}
-
+		
 		// If we have some rates, then we send them back to Snipcart:
 		if (rates["rates"].length > 0) {
 	    res.status(200).json(rates)
