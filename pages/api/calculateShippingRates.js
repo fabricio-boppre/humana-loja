@@ -25,18 +25,49 @@ async function getPreDefinedDimensions(id) {
 	return dimensions
 }
 
+// Timeout wrapper for promises:
+// - More info: https://stackoverflow.com/questions/46946380/fetch-api-request-timeout
+function timeout(ms, promise) {
+  return new Promise((resolve, reject) => {
+    const timer = setTimeout(() => {
+      reject(new Error('TIMEOUT'))
+    }, ms)
+    promise
+      .then(value => {
+        clearTimeout(timer)
+        resolve(value)
+      })
+      .catch(reason => {
+        clearTimeout(timer)
+        reject(reason)
+      })
+  })
+}
+
 // Function to calculate Correios (mail service in Brazil) shipping prices:
+// - We use the timeout function to prevent fetches taking longer than the "Serverless Function Execution Timeout" limit at our host (10 seconds);
+// - More info: https://vercel.com/docs/platform/limits#serverless-function-execution-timeout
 async function getCorreiosShippingResponse(serviceCode, totalWeight, totalHeight, largestWidth, largestLength, postalCodeDestiny, postalCodeOrigin) {
 	// First, we need to convert the weight to kilos (it comes in grams from Snipcart): 
 	const totalWeightKg = totalWeight/1000
+	// Now let's create the URL to make the fetch:
+	const url = 'http://ws.correios.com.br/calculador/CalcPrecoPrazo.aspx?nCdEmpresa=&sDsSenha=&sCepOrigem='+postalCodeOrigin+'&sCepDestino='+postalCodeDestiny+'&nVlPeso='+totalWeightKg+'&nCdFormato=1&nVlComprimento='+largestLength+'&nVlAltura='+totalHeight+'&nVlLargura='+largestWidth+'&sCdMaoPropria=n&nVlValorDeclarado=0&sCdAvisoRecebimento=n&nCdServico='+serviceCode+'&nVlDiametro=0&StrRetorno=xml&nIndicaCalculo=3'
 	// Then we fetch the shipping data from Correios:
-	const ShippingXMLResponse = await fetch('http://ws.correios.com.br/calculador/CalcPrecoPrazo.aspx?nCdEmpresa=&sDsSenha=&sCepOrigem='+postalCodeOrigin+'&sCepDestino='+postalCodeDestiny+'&nVlPeso='+totalWeightKg+'&nCdFormato=1&nVlComprimento='+largestLength+'&nVlAltura='+totalHeight+'&nVlLargura='+largestWidth+'&sCdMaoPropria=n&nVlValorDeclarado=0&sCdAvisoRecebimento=n&nCdServico='+serviceCode+'&nVlDiametro=0&StrRetorno=xml&nIndicaCalculo=3')
-  .then(response => response.text())
-	// Our response is a XML; let's convert it to JSON: 
-	var x2js = require("x2js")
-	var converter = new x2js()
-	var ShippingJSONResponse = converter.xml2js(ShippingXMLResponse)
-	return ShippingJSONResponse
+	// - As a precaution, we use a timeout limit of 8 seconds:
+	const ShippingResponse = await timeout(8000, fetch(url))
+	  .then(response => response.text())
+		// Our response come as XML; let's convert it to JSON: 
+		.then(response => {
+			var x2js = require("x2js")
+			var converter = new x2js()
+			var ShippingJSONResponse = converter.xml2js(response)
+			return ShippingJSONResponse
+		})
+		// In case of time out, we just send a message back:
+	  .catch(error => {
+			return 'No response.'
+		})
+	return ShippingResponse
 }
 
 export default async function calculateShippingRates(req, res) {
@@ -106,11 +137,6 @@ export default async function calculateShippingRates(req, res) {
 			}
 		}
 
-		// console.log('totalWeight: ' + totalWeight)
-		// console.log('totalHeight: ' + totalHeight)
-		// console.log('largestWidth: ' + largestWidth)
-		// console.log('largestLength: ' + largestLength)
-	
 		// Now we start the array with the shipping methods and their prices:
 		let rates = { "rates": [] }
 		
@@ -118,7 +144,7 @@ export default async function calculateShippingRates(req, res) {
 		// - If there wasn't errors in the Correios response, then we add it to our shipping methods array;
 		// - We have to convert the brazilian decimal representation standard (1.000,00) to the Snipcart one (1,000.00).
 		const correiosSEDEXResponse = await getCorreiosShippingResponse('04014', totalWeight, totalHeight, largestWidth, largestLength, postalCodeDestiny, postalCodeOrigin)
-		if (typeof correiosSEDEXResponse.Servicos.cServico.Erro !== 'undefined') {
+		if (typeof correiosSEDEXResponse.Servicos !== 'undefined') {
 			if (correiosSEDEXResponse.Servicos.cServico.Erro == '0') {
 				rates["rates"].push({
 					"description": "SEDEX à vista (prazo de entrega: " + correiosSEDEXResponse.Servicos.cServico.PrazoEntrega + " dia(s))",
@@ -131,7 +157,7 @@ export default async function calculateShippingRates(req, res) {
 		// - If there wasn't errors in the Correios response, then we add it to our shipping methods array;
 		// - We have to convert the brazilian decimal representation standard (1.000,00) to the Snipcart one (1,000.00).
 		const correiosPACResponse = await getCorreiosShippingResponse('04510', totalWeight, totalHeight, largestWidth, largestLength, postalCodeDestiny, postalCodeOrigin)
-		if (typeof correiosPACResponse.Servicos.cServico.Erro !== 'undefined') {
+		if (typeof correiosPACResponse.Servicos !== 'undefined') {
 			if (correiosPACResponse.Servicos.cServico.Erro == '0') {
 				rates["rates"].push({
 					"description": "PAC à vista (prazo de entrega: " + correiosPACResponse.Servicos.cServico.PrazoEntrega + " dia(s))",
@@ -206,7 +232,7 @@ export default async function calculateShippingRates(req, res) {
 		} else {
 	    res.status(200).json({"errors": [{
 			    "key": "invalid_postal_code",
-			    "message": "Aparentemente, não há nenhum método de envio disponível para o seu endereço. Confirme, por gentileza, se você digitou seu CEP corretamente. Se o erro persistir, entre em contato conosco."
+			    "message": "Aparentemente, não há nenhum método de envio disponível para o seu endereço. Confirme, por gentileza, se você digitou seu CEP corretamente e tente novamente. Se o erro persistir, entre em contato conosco."
 			    }]
 			})
 		}
