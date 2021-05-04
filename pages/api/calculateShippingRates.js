@@ -139,11 +139,16 @@ export default async function calculateShippingRates(req, res) {
 
 		// Now we start the array with the shipping methods and their prices:
 		let rates = { "rates": [] }
-		
-		// Calculate "SEDEX à vista (04014)" shipping method:
-		// - If there wasn't errors in the Correios response, then we add it to our shipping methods array;
-		// - We have to convert the brazilian decimal representation standard (1.000,00) to the Snipcart one (1,000.00).
-		const correiosSEDEXResponse = await getCorreiosShippingResponse('04014', totalWeight, totalHeight, largestWidth, largestLength, postalCodeDestiny, postalCodeOrigin)
+
+		// Calculate "SEDEX à vista (04014)" & "PAC à vista (04510)" shipping method:
+		// - We run them at the same time using Promise.all(), so that we stay within the "Serverless Function Execution Timeout" limit at our host;
+		// - More info: https://stackoverflow.com/questions/35612428/call-async-await-functions-in-parallel
+		let [correiosSEDEXResponse, correiosPACResponse] = await Promise.all([
+			getCorreiosShippingResponse('04014', totalWeight, totalHeight, largestWidth, largestLength, postalCodeDestiny, postalCodeOrigin),
+			getCorreiosShippingResponse('04510', totalWeight, totalHeight, largestWidth, largestLength, postalCodeDestiny, postalCodeOrigin)			
+		]);	
+		// If there wasn't errors in the Correios responses, then we add then to our shipping methods array:
+		// - We have to convert the Brazilian decimal representation standard (1.000,00) to the Snipcart one (1,000.00, which will be readapted to the Brazilian standard in the frontend due to our settings in the Dashboard).
 		if (typeof correiosSEDEXResponse.Servicos !== 'undefined') {
 			if (correiosSEDEXResponse.Servicos.cServico.Erro == '0') {
 				rates["rates"].push({
@@ -152,11 +157,6 @@ export default async function calculateShippingRates(req, res) {
 				})
 			}
 		}
-		
-		// Calculate "PAC à vista (04510)" shipping method:
-		// - If there wasn't errors in the Correios response, then we add it to our shipping methods array;
-		// - We have to convert the brazilian decimal representation standard (1.000,00) to the Snipcart one (1,000.00).
-		const correiosPACResponse = await getCorreiosShippingResponse('04510', totalWeight, totalHeight, largestWidth, largestLength, postalCodeDestiny, postalCodeOrigin)
 		if (typeof correiosPACResponse.Servicos !== 'undefined') {
 			if (correiosPACResponse.Servicos.cServico.Erro == '0') {
 				rates["rates"].push({
@@ -168,7 +168,7 @@ export default async function calculateShippingRates(req, res) {
 		
 		// Calculate "Registro Módico" shipping method:
 		// - Only for packages under 2 Kg;
-		// - We also check the zip code, to check if it is within the brazilian territory (01000-000 to 99999-99)
+		// - We also check the zip code, to check if it is within the Brazilian territory (01000-000 to 99999-99)
 		if ((totalWeight <= 2000) && 
 		    (parseInt(postalCodeDestiny) >= '01000000') && 
 				(parseInt(postalCodeDestiny) <= '99999999')) {
