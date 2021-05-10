@@ -35,7 +35,7 @@ export default class Humana extends App {
           <div id="content">
 
             <div id="checkout-items-count-price">
-              <button className="snipcart-checkout">Click here to checkout</button>
+              <button className="snipcart-checkout">Carrinho</button>
               <div>
                 <span className="snipcart-items-count"></span> livro(s) | <span className="snipcart-total-price"></span>
               </div>
@@ -59,7 +59,7 @@ export default class Humana extends App {
 					</div>
 
           <script async src="https://cdn.snipcart.com/themes/v3.0.31/default/snipcart.js"></script>
-                    
+
         </div>
       
       </>

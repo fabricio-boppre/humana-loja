@@ -1,8 +1,23 @@
+import { useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import styles from './Header.module.css'
 
 export default function Header() {
+
+	// We take the opportunity to change some labels with the JavaScript SDK (https://docs.snipcart.com/v3/sdk/basics):
+	// - Snipcart offers a JavaScript SDK that lets you configure, customize and manage the cart programmatically. After the snipcart.js file has loaded and its content is done executing, a "Snipcart" object is attached to the "window" object (https://developer.mozilla.org/en-US/docs/Web/API/Window). From there, you can directly interact with the SDK;
+	// - Because the "window" object is present only at client-side, we use the Effect Hook (https://reactjs.org/docs/hooks-effect.html), which allow us to run some additional code after React has updated the DOM and the "window" object is available;
+	// - English language file for the labels (it works as a baseline): https://github.com/snipcart/snipcart-l10n/blob/master/locales/en.json
+  useEffect(() => {
+    document.addEventListener('snipcart.ready', function() {
+        Snipcart.api.session.setLanguage('pt-BR', {
+            cart: {
+              view_detailed_cart: "Ver carrinho completo"
+            }
+        })
+    });
+  }, [])
 
   return <div id={styles.header}>
           
