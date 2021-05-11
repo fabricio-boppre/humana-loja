@@ -231,7 +231,7 @@ export default async function calculateShippingRates(req, res) {
 		// If not, then we send a error message:
 		} else {
 	    res.status(200).json({"errors": [{
-			    "key": "invalid_postal_code",
+			    "key": "no_rates",
 			    "message": "Aparentemente, não há nenhum método de envio disponível para o seu endereço. Confirme, por gentileza, se você digitou seu CEP corretamente e tente novamente. Se o erro persistir, entre em contato conosco."
 			    }]
 			})

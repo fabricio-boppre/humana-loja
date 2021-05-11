@@ -14,7 +14,10 @@ export default function Header() {
         Snipcart.api.session.setLanguage('pt-BR', {
             cart: {
               view_detailed_cart: "Ver carrinho completo"
-            }
+            },
+						address_form: {
+							country: "País"
+						}
         })
     });
   }, [])

@@ -29,7 +29,7 @@ body noframes, body param, body rp, body script, body source, body style, body t
   margin: 0 auto;
 }
 
-#main {
+#main #content {
   text-align: center;
 }
 #main #content #checkout-items-count-price {
