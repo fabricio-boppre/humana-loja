@@ -13,7 +13,6 @@ export default function CheckoutButtonAndInfo() {
 		document.addEventListener('snipcart.ready', function() {
 			Snipcart.store.subscribe(() => {
 			  const itensCount = Snipcart.store.getState().cart.items.count
-			  console.log(itensCount)
 				if (itensCount > 0) {
 					div.style.display = "block"
 				} else {
