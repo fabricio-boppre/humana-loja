@@ -11,14 +11,14 @@ export default function Header() {
 	// - English language file for the labels (it works as a baseline): https://github.com/snipcart/snipcart-l10n/blob/master/locales/en.json
   useEffect(() => {
     document.addEventListener('snipcart.ready', function() {
-        Snipcart.api.session.setLanguage('pt-BR', {
-            cart: {
-              view_detailed_cart: "Ver carrinho completo"
-            },
-						address_form: {
-							country: "País"
-						}
-        })
+      Snipcart.api.session.setLanguage('pt-BR', {
+          cart: {
+            view_detailed_cart: "Ver carrinho completo"
+          },
+					address_form: {
+						country: "País"
+					}
+      })
     });
   }, [])
 

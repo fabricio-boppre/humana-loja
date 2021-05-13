@@ -2,7 +2,8 @@ import 'react-app-polyfill/ie9'
 import 'react-app-polyfill/stable'
 import App from 'next/app'
 import Head from 'next/head'
-import Header from '../components/Header.js';
+import Header from '../components/Header.js'
+import CheckoutButtonAndInfo from '../components/CheckoutButtonAndInfo.js'
 import '../styles/reset-min.css' // First let's reset some CSS definitions...
 import '../styles/globals.css' // And then apply our globals.
 
@@ -34,16 +35,13 @@ export default class Humana extends App {
 
           <div id="content">
 
-            <div id="checkout-items-count-price">
-              <button className="snipcart-checkout">Carrinho</button>
-              <div>
-                <span className="snipcart-items-count"></span> livro(s) | <span className="snipcart-total-price"></span>
-              </div>
-            </div>
-
+						<CheckoutButtonAndInfo />
+						
             <Component {...pageProps} />
 
           </div>
+
+          <script async src="https://cdn.snipcart.com/themes/v3.0.31/default/snipcart.js"></script>
 
           <div hidden id="snipcart" data-api-key="OGEyNjNlZGYtZmYyNi00MGM0LWI2ZjktYjI0YWM0MTM0MDBjNjM3NTA4MDU0NTE2ODU3Njcz" data-config-modal-style="side">
 
@@ -57,8 +55,6 @@ export default class Humana extends App {
 						</billing>
 
 					</div>
-
-          <script async src="https://cdn.snipcart.com/themes/v3.0.31/default/snipcart.js"></script>
 
         </div>
       

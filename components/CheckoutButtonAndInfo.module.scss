@@ -1,0 +1,39 @@
+/* ---------------------------------------------
+	MIXINS, VARIABLES & EXTENDS
+  ---------------------------------------------- */
+
+@use '../styles/assets';
+
+/* ------------------------------------------------------------------------------
+	HEADER:
+	- ":global" wrapped around IDs prevents them from being changed by CSS Modules.
+  ------------------------------------------------------------------------------- */
+
+	#checkout_button_and_info {
+		:global(button.snipcart-checkout) {
+			background-color: inherit;
+			border: none;
+			cursor: pointer;
+			margin: 0 0 5px;
+			padding: 0;
+			width: 48px; // Same width of the shopping cart image.
+			height: 48px; // Same height of the shopping cart image.
+		}
+	}
+
+
+/* --------------------------------------------------------------------------
+	Fallbacks for browsers that don't support flexbox and/or svg as img source:
+  --------------------------------------------------------------------------- */
+
+:global(.no-svgasimg),
+:global(.no-flexbox) {
+		#checkout_button_and_info {
+			:global(button.snipcart-checkout) {
+				background: url("../public/img/layout/shopping-cart.png"); // Fallback for browsers that don't support SVG as CSS background-image (credit: https://css-tricks.com/a-complete-guide-to-svg-fallbacks/).
+				background-repeat: no-repeat;
+				background-position: center center;
+			}
+		}		
+
+}
