@@ -19,7 +19,7 @@ const Books = ({ books }) => {
                 </a>
               </Link>
 							<br />
-							<span class="format">({book.format})</span>
+							<span className="format">({book.format})</span>
             </li>
           ))}
         </ul>
