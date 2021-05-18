@@ -12,7 +12,6 @@ export default function Book({book}) {
   if (router.isFallback) {
     return <div>Carregando...</div>
   }
-  
   return (
     <>
       <Head>
@@ -27,17 +26,19 @@ export default function Book({book}) {
           width={150}
           height={217}
         />
+				<div className="format">[{book.format}]</div>
         <button className="snipcart-add-item"
             data-item-id={book.id}
+	          data-item-name={book.title}
             data-item-price={book.price}
-            data-item-weight={book.weight}
-            data-item-width={book.width}
-            data-item-length={book.length}
-            data-item-height={book.height}
             data-item-url={`/livro/${book.id}`}
             data-item-description={book.description}
             data-item-image={book.mainImageUrl}
-            data-item-name={book.title}>
+						data-item-file-guid={book.file_guid}
+            data-item-weight={book.weight}
+            data-item-width={book.width}
+            data-item-length={book.length}
+            data-item-height={book.height}>
             comprar
         </button>
         
@@ -69,6 +70,8 @@ const singleBookQuery = `*[_type == "book" && _id == $id] {
                             description, 
                             price, 
                             weight,
+														format,
+														file_guid,
 														width,
 														length,
 														height,

@@ -18,6 +18,8 @@ const Books = ({ books }) => {
                   {book.title}
                 </a>
               </Link>
+							<br />
+							<span class="format">({book.format})</span>
             </li>
           ))}
         </ul>
@@ -30,7 +32,8 @@ const booksQuery = `*[_type == "book"]{
                       title,
                       description, 
                       price, 
-                      weight, 
+                      weight,
+											format, 
                       "mainImageUrl": main_image.asset->url
                     }`;
 

@@ -147,7 +147,7 @@ export default async function calculateShippingRates(req, res) {
 			getCorreiosShippingResponse('04014', totalWeight, totalHeight, largestWidth, largestLength, postalCodeDestiny, postalCodeOrigin),
 			getCorreiosShippingResponse('04510', totalWeight, totalHeight, largestWidth, largestLength, postalCodeDestiny, postalCodeOrigin)			
 		]);	
-		// If there wasn't errors in the Correios responses, then we add then to our shipping methods array:
+		// If there wasn't errors in the Correios responses, then we add them to our shipping methods array:
 		// - We have to convert the Brazilian decimal representation standard (1.000,00) to the Snipcart one (1,000.00, which will be readapted to the Brazilian standard in the frontend due to our settings in the Dashboard).
 		if (typeof correiosSEDEXResponse.Servicos !== 'undefined') {
 			if (correiosSEDEXResponse.Servicos.cServico.Erro == '0') {

@@ -46,6 +46,10 @@ body noframes, body param, body rp, body script, body source, body style, body t
   padding: 10px;
   font-size: 1.5rem;
 }
+#main #content ul li span.format {
+  font-size: 1.1rem;
+  color: gray;
+}
 #main #content #livro {
   margin-top: 20px;
   display: flex;
@@ -61,6 +65,11 @@ body noframes, body param, body rp, body script, body source, body style, body t
   margin: 15px 0;
   font-size: 1.4rem;
   background-color: orange;
+}
+#main #content #livro .format {
+  margin-top: 15px;
+  font-size: 1.3rem;
+  font-weight: bold;
 }
 
 /*# sourceMappingURL=globals.css.map */
