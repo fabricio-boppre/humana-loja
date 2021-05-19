@@ -18,7 +18,7 @@ async function getPreDefinedDimensions(id) {
 	// Small book:
 	} else if (perfil == 'pequeno') {
 		dimensions = {width: 11, height: 1, length: 18}
-	// Medium book (or profile not chosen):
+	// Fallback (medium book):
 	} else {
 		dimensions = {width: 16, height: 2, length: 23}
 	}
@@ -92,7 +92,7 @@ export default async function calculateShippingRates(req, res) {
 		// - Total height [in centimeters] (sum of all heights considering each item quantity):
 		var totalHeight = 0
 		for (var i in books) {
-			// If the book has specific dimensions (they prevail over any pre-defined dimensions):
+			// If the book has specific dimensions:
 			if (books[i].hasDimensions) {
 				totalHeight += (books[i].height * books[i].quantity)
 			// Else, if the book has pre-defined dimensions:
@@ -106,7 +106,7 @@ export default async function calculateShippingRates(req, res) {
 		var largestWidth = 0
 		var newWidth
 		for (var i in books) {
-			// If the book has specific dimensions (they prevail over any pre-defined dimensions):
+			// If the book has specific dimensions:
 			if (books[i].hasDimensions) {
 				newWidth = books[i].width
 			// Else, if the book has pre-defined dimensions:
@@ -123,7 +123,7 @@ export default async function calculateShippingRates(req, res) {
 		var largestLength = 0
 		var newLength
 		for (var i in books) {
-			// If the book has specific dimensions (they prevail over any pre-defined dimensions):
+			// If the book has specific dimensions:
 			if (books[i].hasDimensions) {
 				newLength = books[i].length
 			// Else, if the book has pre-defined dimensions:
