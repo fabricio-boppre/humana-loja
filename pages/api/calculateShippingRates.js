@@ -168,7 +168,7 @@ export default async function calculateShippingRates(req, res) {
 		
 		// Calculate "Registro Módico" shipping method:
 		// - Only for packages under 2 Kg;
-		// - We also check the zip code, to check if it is within the Brazilian territory (01000-000 to 99999-99)
+		// - We also check the zip code, to check if it is within the Brazilian territory (01000-000 to 99999-999)
 		if ((totalWeight <= 2000) && 
 		    (parseInt(postalCodeDestiny) >= '01000000') && 
 				(parseInt(postalCodeDestiny) <= '99999999')) {
