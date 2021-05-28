@@ -2,9 +2,10 @@ import 'react-app-polyfill/ie9'
 import 'react-app-polyfill/stable'
 import App from 'next/app'
 import Head from 'next/head'
-import Header from '../components/Header.js'
+import Masthead from '../components/Masthead.js'
+import SearchForm from '../components/SearchForm.js'
 import CheckoutButtonAndInfo from '../components/CheckoutButtonAndInfo.js'
-import '../styles/reset-min.css' // First let's reset some CSS definitions...
+import '../styles/reset.css' // First let's reset some CSS definitions...
 import '../styles/globals.css' // And then apply our globals.
 
 // Custom App: https://nextjs.org/docs/advanced-features/custom-app
@@ -17,47 +18,45 @@ export default class Humana extends App {
     const { Component, pageProps } = this.props;
 
     return (
-
       <>
-
         <Head>
           <link rel="icon" href="/favicon.ico" />
  	        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,700;1,300;1,700&display=swap" />
           <link rel="preconnect" href="https://app.snipcart.com" />
           <link rel="preconnect" href="https://cdn.snipcart.com" />
           <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.2.0/default/snipcart.css" />
-          <script src="/js/modernizr-custom.js"></script>
         </Head>
 
-        <div id="main">
-        
-          <Header />
+        <Masthead />
 
-          <div id="content">
+        <div id="incompatible-browser">
+					<p>Infelizmente o nosso site não funciona neste browser. Por favor, atualize-o para uma versão mais recente.</p>
+				</div>
+				
+				<div id="principal">
 
-						<CheckoutButtonAndInfo />
-						
-            <Component {...pageProps} />
+					<SearchForm />
 
-          </div>
-
-          <script async src="https://cdn.snipcart.com/themes/v3.2.0/default/snipcart.js"></script>
-
-          <div hidden id="snipcart" data-api-key="OGEyNjNlZGYtZmYyNi00MGM0LWI2ZjktYjI0YWM0MTM0MDBjNjM3NTA4MDU0NTE2ODU3Njcz" data-config-modal-style="side">
-
-						<billing section="top">
-							<fieldset>
-								<div>
-									<snipcart-label for="cpf">CPF</snipcart-label>
-									<snipcart-input name="cpf" required></snipcart-input>
-								</div>
-							</fieldset>
-						</billing>
-
-					</div>
+					<CheckoutButtonAndInfo />
+					
+          <Component {...pageProps} />
 
         </div>
-      
+
+        <script async src="https://cdn.snipcart.com/themes/v3.2.0/default/snipcart.js"></script>
+
+        <div hidden id="snipcart" data-api-key="OGEyNjNlZGYtZmYyNi00MGM0LWI2ZjktYjI0YWM0MTM0MDBjNjM3NTA4MDU0NTE2ODU3Njcz" data-config-modal-style="side">
+
+					<billing section="top">
+						<fieldset>
+							<div>
+								<snipcart-label for="cpf">CPF</snipcart-label>
+								<snipcart-input name="cpf" required></snipcart-input>
+							</div>
+						</fieldset>
+					</billing>
+
+				</div>
       </>
    );
   }

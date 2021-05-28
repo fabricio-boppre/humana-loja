@@ -5,19 +5,21 @@
 @use 'assets';
 
 /* ---------------------------------------------
-	BASIC LAYOUT & GLOBAL DEFINITIONS:
+	BASIC LAYOUT & TYPOGRAPHY:
   ---------------------------------------------- */
 
 body {
 	-webkit-font-smoothing: antialiased;
 	font-family: 'Open Sans', sans-serif;
-	font-size: 16px !important;	
+	font-size: 16px;	
 	font-weight: 300;
-	background-color: black;
+	background-color: assets.$gray-bg;
+	min-width: assets.$body-min-width;
 	img {
 		max-width: 100%;
 		height: auto;						
 	}		
+
   // Making sure that elements with the hidden attribute won't be shown:
   // - https://html.spec.whatwg.org/multipage/interaction.html#the-hidden-attribute
   [hidden], area, base, basefont, datalist, head, link, meta, noembed,
@@ -25,17 +27,44 @@ body {
     display: none;
   }
 
-}
-
-#main {
-	background-color: assets.$gray-bg;
+	// Message for incompatible browser: it starts hidden and is shown if an effect in the Masthead component detects IE as the browser:
+	#incompatible-browser {
+		display: none;
+	}
 	
-	#content {
-		max-width: assets.$max-width;
+	#incompatible-browser,
+	#principal {
+		max-width: assets.$principal-max-width;
 		padding: 40px assets.$lateral-margin;
 		margin: 0 auto;
+	}
+	
+	#principal {
+		@include assets.flexbox();
+		@include assets.flex-wrap(wrap);
+		@include assets.justify-content(space-between);
+		@include assets.align-items(center);
 		
+		.content {
+			@include assets.flex-basis(100%);
+			margin-top: 40px;
+		}
 	}		
+
+	// Responsiveness rules:
+	@media screen and (max-width: assets.$smartphone-width) {
+		#incompatible-browser,
+		#principal {
+			padding-top: 20px;
+		}
+		#principal {
+			@include assets.justify-content(flex-start);
+			.content {
+				@include assets.order(3);
+			}
+		}
+	}
+
 }
 
 /* ---------------------------------------------
@@ -50,40 +79,25 @@ body {
 
 // ----------
 // PROVISÓRIO:
-#main {
-	#content {
-		text-align: center;
-		ul {
-			margin-top: 20px;
-			li {
-				padding: 10px;
-				font-size: 1.5rem;
-				span.format {
-					font-size: 1.1rem;
-					color: gray;
-				}
-			}
+#content {
+	#livro {
+	  display: flex;
+		flex-direction: column;
+	  align-items: center;
+	  justify-content: center;
+		h1 {
+			font-size: 1.5rem;
+			padding-bottom: 10px;
 		}
-		#livro {
-			margin-top: 20px;
-		  display: flex;
-			flex-direction: column;
-		  align-items: center;
-		  justify-content: center;
-			h1 {
-				font-size: 1.5rem;
-				padding-bottom: 10px;
-			}
-			button {
-				margin: 15px 0;
-				font-size: 1.4rem;
-				background-color: orange;
-			}
-			.format {
-				margin-top: 15px;
-				font-size: 1.3rem;
-				font-weight: bold;
-			}
+		button {
+			margin: 15px 0;
+			font-size: 1.4rem;
+			background-color: orange;
+		}
+		.format {
+			margin-top: 15px;
+			font-size: 1.3rem;
+			font-weight: bold;
 		}
 	}
 }

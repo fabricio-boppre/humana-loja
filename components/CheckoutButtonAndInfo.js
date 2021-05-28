@@ -1,22 +1,23 @@
-import Image from 'next/image'
 import { useEffect } from 'react'
+import Image from 'next/image'
 import styles from './CheckoutButtonAndInfo.module.css'
 
 export default function CheckoutButtonAndInfo() {
 
-	// Let's create an effect that show the info only if there is at least on item in the cart:
-	// - The info div starts as display:none and the adding or removing itens toggles this value;
-	// - See the explanation of why we use useEffect in the Header.js component.
-  var itensCount = 0
+	// Effects:
+	// - See the explanation of why we use Effect Hook in the Masthead.js component.
 	useEffect(() => {
-    const div = document.getElementById('snipcart-items-count-and-price');
+		// Let's create an effect that show the info only if there is at least on item in the cart:
+		// - The info div starts as display:none and the adding or removing itens toggles this value.
 		document.addEventListener('snipcart.ready', function() {
+	  	var itensCount = 0
+	    const divSnipcartItemsCountAndPrice = document.getElementById('snipcart-items-count-and-price');
 			Snipcart.store.subscribe(() => {
 			  const itensCount = Snipcart.store.getState().cart.items.count
 				if (itensCount > 0) {
-					div.style.display = "block"
+					divSnipcartItemsCountAndPrice.style.display = "block"
 				} else {
-					div.style.display = "none"
+					divSnipcartItemsCountAndPrice.style.display = "none"
 				}
 			});
     });
@@ -35,7 +36,8 @@ export default function CheckoutButtonAndInfo() {
 						</button>
 
             <div id="snipcart-items-count-and-price" style={{display:'none'}}>
-							<span className="snipcart-items-count"></span> item(s) | <span className="snipcart-total-price"></span>
+							<div><span className="snipcart-items-count"></span> item(s)</div> 
+							<div className="snipcart-total-price"></div>
             </div>
 
          </div>

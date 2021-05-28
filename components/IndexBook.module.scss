@@ -1,0 +1,58 @@
+/* ---------------------------------------------
+	MIXINS, VARIABLES & EXTENDS
+  ---------------------------------------------- */
+
+@use '../styles/assets';
+
+/* ------------------------------------------------------------------------------
+	INDEX BOOK:
+	- Books as seen in the indexes;
+	- ":global" wrapped around IDs prevents them from being changed by CSS Modules.
+  ------------------------------------------------------------------------------- */
+
+li.index_book {
+	@include assets.flex-basis(180px);
+	@include assets.box-shadow(1px 1px 2px gray);
+	margin: 0 0 60px 130px;
+	background-color: white;
+	
+	img {
+		display: block;
+	}
+	
+	:global(.index_book_text) {
+		text-align: center;
+		padding: 0 10px 10px 10px;
+		font-size: assets.$typo-small-size;
+		line-height: assets.$line-height-small-size;
+		> div {
+			margin-bottom: 5px;
+		}
+		a {
+			text-decoration: none;
+			color: inherit;
+		}
+		:global(.index-book-text-format-ebook),
+		:global(.index-book-text-format-livro) {
+			@include assets.border-radius(0 0 8px 8px);
+			color: white;
+			font-weight: 700;
+			display: inline-block;
+			padding: 1px 8px;
+		}
+		:global(.index-book-text-format-livro) {
+			background-color: #ebd697;
+		}
+		:global(.index-book-text-format-ebook) {
+			background-color: #b5cceb;
+		}
+		:global(.index_book_text_title) {
+			font-weight: 700;
+		}
+	}
+
+	// Responsiveness rules:
+	@media screen and (max-width: assets.$principal-max-width-plus-lateral-margins) {
+		margin: 0 40px 60px 40px;
+	}
+}

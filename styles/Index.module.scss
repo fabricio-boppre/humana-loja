@@ -1,0 +1,79 @@
+/* ---------------------------------------------
+	MIXINS, VARIABLES & EXTENDS
+  ---------------------------------------------- */
+
+@use 'assets';
+
+/* ---------------------------------------------
+	INDEX:
+	- ":global" wrapped around IDs prevents them from being changed by CSS Modules.
+  ---------------------------------------------- */
+
+#index {
+	@include assets.flexbox();
+	@include assets.flex-wrap(wrap);
+	
+	// Index options:
+	:global(#index-options) {
+		@include assets.flex(1 0 100%);
+		padding-bottom: 30px;
+		text-align: right;
+		:global(#index-options-filters) {
+			display: none; // The filter options starts hidden because they are in the sidebar; when the sidebar gets hidden, we show them here (see responsiveness rules below). 
+		}
+
+	}
+
+	// Index filters:
+	:global(#index-filters) {
+		@include assets.flex(0 0 190px);
+	}
+	
+	// Index:
+	:global(main#index) {
+		@include assets.flex(0 0 1250px);
+		ul {
+			@include assets.flexbox();
+			@include assets.flex-wrap(wrap);
+			@include assets.justify-content(flex-end);
+			@include assets.align-items(flex-start)
+		}	
+	}
+
+	// Responsiveness rules:
+	@media screen and (max-width: assets.$principal-max-width-plus-lateral-margins) {
+		:global(#index-filters) {
+			@include assets.flex(0 0 20%);
+		}
+		:global(main#index) {
+			@include assets.flex(0 0 80%);
+			ul {
+				@include assets.justify-content(space-around);
+				-webkit-justify-content: space-evenly !important;
+			}	
+		}
+	}
+	@media screen and (max-width: assets.$tablet-width) {
+		:global(#index-options) {
+			text-align: center;
+			padding-bottom: 0;
+			:global(#index-options-filters) {
+				display: inline-block; 
+			}
+		}
+		:global(#index-filters) {
+			display: none;
+			&:global(.horizontal-active) {
+				@include assets.flex(0 0 100%);
+				padding-top: 10px;
+				display: block;
+ 		    text-align: center;
+			}
+		}
+		:global(main#index) {
+			@include assets.flex(0 0 100%);
+			padding-top: 30px;
+		}
+	}	
+
+}

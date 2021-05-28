@@ -5,29 +5,31 @@
 @use '../styles/assets';
 
 /* ------------------------------------------------------------------------------
-	CHECKOUT BUTTON & INFO:
+	SEARCH FORM:
 	- ":global" wrapped around IDs prevents them from being changed by CSS Modules.
   ------------------------------------------------------------------------------- */
 
-#checkout_button_and_info {
-	text-align: right;
-	:global(button.snipcart-checkout) {
-		background-color: inherit;
-		border: none;
-		cursor: pointer;
-		margin: 0;
-		padding: 0;
-		width: 48px; // Same width of the shopping cart image.
-		height: 48px; // Same height of the shopping cart image.
-	}
-	:global(#snipcart-items-count-and-price) {
-		margin-top: 5px;
+#search_form {
+	$form-size: 320px;
+	@include assets.flex-basis($form-size);
+
+	form {
+		@include assets.flexbox();
+		input[type=text] {
+			@include assets.flex-basis(100%);		
+		}
 	}
 
 	// Responsiveness rules:
 	@media screen and (max-width: assets.$smartphone-width) {
-		@include assets.order(1);
-		margin-left: auto;
+		@include assets.flex-basis(100%);
+		@include assets.order(2);
+		margin-top: 20px;
+		
+		form {
+		  width: assets.$principal-min-width;
+			margin: 0 auto;
+		}
 	}
 
 }

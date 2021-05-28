@@ -5,27 +5,25 @@
 @use '../styles/assets';
 
 /* ------------------------------------------------------------------------------
-	HEADER:
+	MASTHEAD:
 	- ":global" wrapped around IDs prevents them from being changed by CSS Modules.
   ------------------------------------------------------------------------------- */
 
-#header {
+#masthead {
 	width: 100%;
-	min-width: assets.$min-width;
 	background-color: white;
 	height: 60px; // It's the logo height.
 	border-bottom: 1px solid darken(assets.$gray-bg, 10%);
-	:global(#header-content) {
+	:global(#masthead-principal) {
 		@include assets.flexbox();
 		@include assets.justify-content(space-between);
 		height: inherit;
-		max-width: assets.$max-width;
+		max-width: assets.$principal-max-width;
 		padding: 0 assets.$lateral-margin;
 		margin: 0 auto;
 
 		// Logo:
-		:global(#header-logotipo) {
-			background: url("../public/img/layout/logo-preto-faixa-grande.png"); // Fallback for browsers that don't support SVG as CSS background-image (credit: https://css-tricks.com/a-complete-guide-to-svg-fallbacks/).
+		:global(#masthead-logotipo) {
 			background: url("../public/img/layout/logo-preto-faixa-grande.svg"),
 									linear-gradient(transparent, transparent);
 			background-repeat: no-repeat;
@@ -35,7 +33,7 @@
 		}		
 		
 		// Services icons:
-		:global(#header-services) {
+		:global(#masthead-services) {
 			height: inherit;
 			text-align: right;
 			ul {
@@ -58,11 +56,10 @@
 
 	// Responsiveness rules:
 	@media screen and (max-width: assets.$tablet-width) {
-		:global(#header-content) {
+		:global(#masthead-principal) {
 			
 			// Logo:
-			:global(#header-logotipo) {
-				background: url("../public/img/layout/logo-preto-faixa-pequena.png");
+			:global(#masthead-logotipo) {
 				background: url("../public/img/layout/logo-preto-faixa-pequena.svg"),
 										linear-gradient(transparent, transparent);
 				background-repeat: no-repeat;
@@ -71,7 +68,7 @@
 			}		
 
 			// Services icons:
-			:global(#header-services) {
+			:global(#masthead-services) {
 				ul {
 					li {
 						&:not(:first-child) {
@@ -84,41 +81,16 @@
 		}
 	}
 	@media screen and (max-width: assets.$smartphone-width) {
-		:global(#header-content) {
+		:global(#masthead-principal) {
 
 			// Logo:
-			:global(#header-logotipo) {
+			:global(#masthead-logotipo) {
 				width: 100%;
 				background-position: center;		
 			}		
 
 			// Services icons:
-			:global(#header-services) {
-				display: none;
-			}
-
-		}
-	}
-}
-
-/* --------------------------------------------------------------------------
-	Fallbacks for browsers that don't support flexbox and/or svg as img source:
-  --------------------------------------------------------------------------- */
-
-:global(.no-svgasimg),
-:global(.no-flexbox) {
-  #header {
-		:global(#header-content) {
-
-			// Logo:
-			:global(#header-logotipo) {
-				display: block;
-				width: 100%;
-				background-position: center;		
-			}		
-
-			// Services icons:
-			:global(#header-services) {
+			:global(#masthead-services) {
 				display: none;
 			}
 

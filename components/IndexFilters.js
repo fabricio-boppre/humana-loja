@@ -1,0 +1,13 @@
+import Image from 'next/image'
+import Link from 'next/link'
+
+export default function IndexFilters(props) {
+	return <div id="index-filters" className={props.filtersHorizontalActive ? "horizontal-active" : ""}>
+					<span>filtros [em construção]:</span>
+					<ul>
+						<li>categorias</li>
+						<li>formato</li>
+						<li>estado</li>
+					</ul>								
+  			 </div>
+}

@@ -1,44 +1,66 @@
+import { useState } from 'react'
+import { readCMS } from '../lib/sanity'
 import Head from 'next/head'
 import Link from 'next/link'
-import { readCMS } from '../lib/sanity'
-// import styles from '../styles/Home.module.css'
+import IndexBook from '../components/IndexBook.js'
+import IndexOptions from '../components/IndexOptions.js'
+import IndexFilters from '../components/IndexFilters.js'
+import styles from '../styles/Index.module.css'
 
-const Books = ({ books }) => {
+export default function Index({books}) {
+	
+	// States declaration:
+	// - We use the State Hook (https://reactjs.org/docs/hooks-state.html) to add some local state to this function component. React will preserve this state between re-renders;
+	// - useState returns a pair: the current state value and a function that lets you update it;
+	// - After a state update, React will re-render the component, passing the new state value to it (and to any associated components that receive it as a prop);
+	// - Array destructuring: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment#array_destructuring
+	const [filtersHorizontalActive, toggleFiltersHorizontalActive] = useState(false);
+  
+	// Function to handle the click on the filter options in the IndexOptions component:
+	// - Responsiveness rules determines whether these options are visible or not; 
+	// - The click calls the function that updates the filtersHorizontalActive state (in this case, it means inverting its value) and re-render the component.
+	const clickFiltersHorizontal = () => {
+    toggleFiltersHorizontalActive(!filtersHorizontalActive);
+  }
+			
   return (
-      <>
-        <Head>
-          <title>Humana | Livros</title>
-        </Head>
+			<div className="content" id={styles.index}>
 
-        <ul>
-          {books.map(book => (
-            <li key={book.id} className="list__item">
-              <Link href={`/livro/${book.id}`}>
-                <a>
-                  {book.title}
-                </a>
-              </Link>
-							<br />
-							<span className="format">({book.format})</span>
-            </li>
-          ))}
-        </ul>
-      </>
+	      <Head>
+	        <title>Humana | Livros</title>
+	      </Head>
+
+				<IndexOptions filtersHorizontalActive={filtersHorizontalActive} 
+										  clickFiltersHorizontal={clickFiltersHorizontal} />
+				
+				<IndexFilters filtersHorizontalActive={filtersHorizontalActive} />
+				
+	      <main id="index">
+					<ul>
+	          {books.map(book => <IndexBook book={book} key={book.id} />)}
+	        </ul>
+				</main>
+			
+			</div>
   )
 }
-                    
-const booksQuery = `*[_type == "book"]{
-                      "id": _id, 
-                      title,
-                      description, 
-                      price, 
-                      weight,
-											format, 
-                      "mainImageUrl": main_image.asset->url
-                    }`;
 
 // This function gets called at build time on server-side and also after requests:
 export async function getStaticProps() {
+	const booksQuery = `*[_type == "book"]{
+	                      "id": _id, 
+	                      title,
+												"authors": authors[]->{name},
+	                      description, 
+	                      price, 
+	                      weight,
+												format, 
+												file_guid,
+												width,
+												length,
+												height,
+	                      "mainImageUrl": main_image.asset->url
+	                    }`;
   const books = await readCMS.fetch(booksQuery)
   return {
     props: {
@@ -49,5 +71,3 @@ export async function getStaticProps() {
     revalidate: 1,
   }
 }
-
-export default Books;
