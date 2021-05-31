@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
+import priceFormat from '../../lib/utils'
 import { readCMS } from '../../lib/sanity'
 // import styles from '../../styles/Book.module.css'
 
@@ -13,10 +14,9 @@ export default function Book({book}) {
     return <div>Carregando...</div>
   }
 
-	if (book.price_discount != undefined) {
+	if (book.price_discount !== undefined) {
 		var discount = true
 		var active_price = book.price_discount
-		var inactive_price = <span className='index_book_text_inactive_price'>R$ {book.price}</span>
 	} else {
 		var discount = false
 		var active_price = book.price
@@ -39,7 +39,7 @@ export default function Book({book}) {
         <br />
 				<div className="format">[{book.format}]</div>
         <br />
-				{active_price}
+				{priceFormat(active_price)}
         <br />
         <br />
         <button className="snipcart-add-item"

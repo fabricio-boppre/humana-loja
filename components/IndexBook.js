@@ -1,14 +1,15 @@
 import Link from 'next/link'
+import priceFormat from '../lib/utils'
 import BookAuthors from '../components/BookAuthors.js'
 import styles from './IndexBook.module.css'
 
 export default function IndexBook(props) {
 
 	const book = props.book
-	if (book.price_discount != undefined) {
+	if (book.price_discount !== undefined) {
 		var discount = true
 		var active_price = book.price_discount
-		var inactive_price = <span className='index_book_text_inactive_price'>R$ {book.price}</span>
+		var inactive_price_span = <span className='index_book_text_inactive_price'>{priceFormat(book.price)}</span>
 	} else {
 		var discount = false
 		var active_price = book.price
@@ -34,8 +35,8 @@ export default function IndexBook(props) {
 							</div>
 							<BookAuthors authors={book.authors} />
 							<div className="index_book_text_price">
-								{discount ? inactive_price : ""}
-								R$ {active_price}
+								{discount ? inactive_price_span : ""}
+								{priceFormat(active_price)}
 							</div>
 			        <button className="snipcart-add-item"
 			            data-item-id={book.id}
