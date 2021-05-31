@@ -49,6 +49,13 @@ li.index_book {
 		:global(.index_book_text_title) {
 			font-weight: 700;
 		}
+		:global(.index_book_text_price) {
+			:global(.index_book_text_inactive_price) {
+				padding-right: 5px;
+				color: lighten(black,70%);
+				text-decoration: line-through;
+			}
+		}
 	}
 
 	// Responsiveness rules:

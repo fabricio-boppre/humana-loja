@@ -53,6 +53,7 @@ export async function getStaticProps() {
 												"authors": authors[]->{name},
 	                      description, 
 	                      price, 
+												price_discount,
 	                      weight,
 												format, 
 												file_guid,

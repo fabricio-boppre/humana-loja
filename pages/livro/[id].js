@@ -5,12 +5,22 @@ import { readCMS } from '../../lib/sanity'
 // import styles from '../../styles/Book.module.css'
 
 export default function Book({book}) {
+
   const router = useRouter()
 
   // If the page is not yet generated, this will be displayed initially until getStaticProps() finishes running:
   if (router.isFallback) {
     return <div>Carregando...</div>
   }
+
+	if (book.price_discount != undefined) {
+		var discount = true
+		var active_price = book.price_discount
+		var inactive_price = <span className='index_book_text_inactive_price'>R$ {book.price}</span>
+	} else {
+		var discount = false
+		var active_price = book.price
+	}
 	
   return (
     <>
@@ -29,10 +39,13 @@ export default function Book({book}) {
         <br />
 				<div className="format">[{book.format}]</div>
         <br />
+				{active_price}
+        <br />
+        <br />
         <button className="snipcart-add-item"
             data-item-id={book.id}
 	          data-item-name={book.title}
-            data-item-price={book.price}
+            data-item-price={active_price}
             data-item-url={`/livro/${book.id}`}
             data-item-description={book.description}
             data-item-image={book.mainImageUrl}
@@ -74,7 +87,8 @@ export const getStaticProps = async ({ params }) => {
 	                            "id": _id, 
 	                            title,
 	                            description, 
-	                            price, 
+	                            price,
+															price_discount, 
 	                            weight,
 															format,
 															file_guid,
