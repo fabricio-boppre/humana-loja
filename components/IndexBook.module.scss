@@ -25,6 +25,7 @@ li.index_book {
 		padding: 0 10px 12px 10px;
 		font-size: assets.$typo-small-size;
 		line-height: assets.$line-height-small-size;
+		font-family: inherit;
 		a {
 			text-decoration: none;
 			color: inherit;
@@ -42,7 +43,10 @@ li.index_book {
 			padding: 6px 20px;
 			color: white;
 			text-transform: uppercase;
-			font-weight: 700;
+			font-weight: 400;
+			font-family: inherit;
+			font-size: inherit;
+			line-height: inherit; 
 		}
 		:global(button.snipcart-add-item) {
 			border: none;
@@ -56,7 +60,7 @@ li.index_book {
 		:global(.index-book-text-format-livro) {
 			@include assets.border-radius(0 0 8px 8px);
 			color: white;
-			font-weight: 700;
+			font-weight: 400;
 			display: inline-block;
 			padding: 1px 8px;
 		}
@@ -67,7 +71,7 @@ li.index_book {
 			background-color: #b5cceb;
 		}
 		:global(.index_book_text_title) {
-			font-weight: 700;
+			font-weight: 400;
 		}
 		:global(.index_book_text_price) {
 			font-size: 120%;
