@@ -1,5 +1,3 @@
-import 'react-app-polyfill/ie9'
-import 'react-app-polyfill/stable'
 import App from 'next/app'
 import Head from 'next/head'
 import Masthead from '../components/Masthead.js'
@@ -25,6 +23,7 @@ export default class Humana extends App {
           <link rel="preconnect" href="https://app.snipcart.com" />
           <link rel="preconnect" href="https://cdn.snipcart.com" />
           <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.2.0/default/snipcart.css" />
+          <script src="/js/modernizr-custom.js"></script>
         </Head>
 
         <Masthead />

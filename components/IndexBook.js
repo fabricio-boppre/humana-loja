@@ -6,6 +6,7 @@ import styles from './IndexBook.module.css'
 export default function IndexBook(props) {
 
 	const book = props.book
+	const width = 180 // This value must be kept in accordance with the li.index_book flex-basis (IndexBook.module.scss).
 	if (book.price_discount !== undefined) {
 		var discount = true
 		var active_price = book.price_discount
@@ -15,11 +16,11 @@ export default function IndexBook(props) {
 		var active_price = book.price
 	}
 
-	return <li className={styles.index_book}>
+	return <li className={styles.index_book + (book.stock_situation == "esgotado_visivel" ? " unavailable" : "")}>
 
 				    <Link href={`/livro/${book.id}`}>
 				      <a>
-				        <img src={book.mainImageUrl + '?w=180'}
+				        <img src={book.mainImageUrl + '?w=' + width}
 				          	 alt={book.title}
 										 title={book.title}
 				        />
@@ -38,6 +39,7 @@ export default function IndexBook(props) {
 								{discount ? inactive_price_span : ""}
 								{priceFormat(active_price)}
 							</div>
+							<div className="index_book_text_unavailable">esgotado</div>
 			        <button className="snipcart-add-item"
 			            data-item-id={book.id}
 				          data-item-name={book.title}

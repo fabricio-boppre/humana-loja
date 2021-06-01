@@ -47,9 +47,13 @@ export default function Index({books}) {
 
 // This function gets called at build time on server-side and also after requests:
 export async function getStaticProps() {
-	const booksQuery = `*[_type == "book"]{
+	const booksQuery = `*[_type == "book" &&
+											  (stock_situation[0] == "disponivel" ||
+											   stock_situation[0] == "esgotado_visivel")
+											 ]{
 	                      "id": _id, 
 	                      title,
+												"stock_situation": stock_situation[0],
 												"authors": authors[]->{name},
 	                      description, 
 	                      price, 

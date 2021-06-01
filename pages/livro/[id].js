@@ -28,7 +28,7 @@ export default function Book({book}) {
         <title>Humana | {book.title}</title>
       </Head>
 
-      <main className="content" id="livro">
+      <main className={"content" + (book.stock_situation == "esgotado_visivel" ? " unavailable" : "")} id="livro">
         <h1>{book.title}</h1>
         <br />
         <img src={book.mainImageUrl + '?w=180'}
@@ -86,6 +86,7 @@ export const getStaticProps = async ({ params }) => {
 	const singleBookQuery = `*[_type == "book" && _id == $id] {
 	                            "id": _id, 
 	                            title,
+															"stock_situation": stock_situation[0],
 	                            description, 
 	                            price,
 															price_discount, 

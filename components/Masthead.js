@@ -11,16 +11,18 @@ export default function Masthead() {
 	// - Effects are declared inside the component so they have access to its props and state. By default, React runs the effects after every render, including the first render;
 	// - If you want to run an effect and clean it up only once (on mount and unmount), you can pass an empty array ([]) as a second argument. This tells React that your effect doesn’t depend on any values from props or state, so it never needs to re-run.
   useEffect(() => {
-		// Let's check if the browser is Internet Explorer: if it is, we hide the store and show just an "Incompatible browser" message because Snipcart doesn't work well with IE:
-		function isIE() {
+		// Let's check if the browser is Internet Explorer 11: if it is, we hide the store and show just an "Incompatible browser" message because Snipcart doesn't work well with IE:
+		// - Below IE11 we already took care via no-flexbox fallback.
+		function isIE11() {
 			const ua = window.navigator.userAgent; // Check the userAgent property of the window.navigator object;
-			const msie = ua.indexOf('MSIE '); // IE 10 or older;
 			const trident = ua.indexOf('Trident/'); // IE 11.
-			return (msie > 0 || trident > 0);
+			return (trident > 0);
 		}
-		if (isIE()) {
+		if (isIE11()) {
+			const divMastheadPrincipal = document.getElementById(styles.masthead);		
 			const divPrincipal = document.getElementById('principal');		
 			const divIncompatibleBrowser = document.getElementById('incompatible-browser');		
+			divMastheadPrincipal.style.display = "none"
 			divPrincipal.style.display = "none"
 			divIncompatibleBrowser.style.display = "block"
 		}

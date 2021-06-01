@@ -77,29 +77,44 @@ body {
 	}
 }
 
+/* -------------------------------------------------
+	FALLBACK FOR BROWSERS INCOMPATIBLE WITH FLEXBOX:
+  -------------------------------------------------- */
+
+.no-flexbox {
+	header,
+	#principal {
+		display: none !important; // We hide the store for these extremelly old browsers...
+	}
+	#incompatible-browser {
+		display: block !important; // ... and show the "Incompatible browser" message.
+	}
+}
+
 // ----------
 // PROVISÓRIO:
-#content {
-	#livro {
-	  display: flex;
-		flex-direction: column;
-	  align-items: center;
-	  justify-content: center;
-		h1 {
-			font-size: 1.5rem;
-			padding-bottom: 10px;
-		}
+.content#livro {
+	text-align: center;
+	h1 {
+		font-size: 1.5rem;
+		padding-bottom: 10px;
+	}
+	button {
+		margin: 15px 0;
+		font-size: 1.4rem;
+		background-color: orange;
+	}
+	.format {
+		margin-top: 15px;
+		font-size: 1.3rem;
+		font-weight: bold;
+	}
+	&.unavailable {
 		button {
-			margin: 15px 0;
-			font-size: 1.4rem;
-			background-color: orange;
-		}
-		.format {
-			margin-top: 15px;
-			font-size: 1.3rem;
-			font-weight: bold;
+			display: none;
 		}
 	}
+
 }
 // (fim)
 // ----------
