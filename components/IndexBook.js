@@ -18,7 +18,7 @@ export default function IndexBook(props) {
 
 	return <li className={styles.index_book + (book.stock_situation == "esgotado_visivel" ? " unavailable" : "")}>
 
-				    <Link href={`/livro/${book.id}`}>
+				    <Link href={`/livro/${book.slug}`}>
 				      <a>
 				        <img src={book.mainImageUrl + '?w=' + width}
 				          	 alt={book.title}

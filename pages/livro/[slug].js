@@ -68,24 +68,22 @@ export default function Book({book}) {
   )
 }
 
-const booksIdsQuery = `*[_type == "book"]{
-                          "id": _id
-                        }`;
-
+// Get the paths (the books slugs) we want to pre-render:
 export const getStaticPaths = async () => {
-  // Get the paths (the books IDs) we want to pre-render:
-  const booksIds = await readCMS.fetch(booksIdsQuery)
-  const paths = booksIds.map(book => ({
-    params: { id: book.id }
+	const booksSlugsQuery = `*[_type == "book"]{slug}`
+  const booksSlugs = await readCMS.fetch(booksSlugsQuery)
+  const paths = booksSlugs.map(book => ({
+    params: { slug: book.slug }
   }));
   return { paths, fallback: true };
 };
 
 // This function gets called at build time on server-side and also after requests:
 export const getStaticProps = async ({ params }) => {
-	const singleBookQuery = `*[_type == "book" && _id == $id] {
+	const singleBookQuery = `*[_type == "book" && slug == $slug] {
 	                            "id": _id, 
 	                            title,
+															slug,
 															"stock_situation": stock_situation[0],
 	                            description, 
 	                            price,
@@ -98,7 +96,7 @@ export const getStaticProps = async ({ params }) => {
 															height,
 	                            "mainImageUrl": main_image.asset->url
 	                         }[0]`;
-  const book = await readCMS.fetch(singleBookQuery, { id: params.id })
+  const book = await readCMS.fetch(singleBookQuery, { slug: params.slug })
   return { 
     props: { book },
     // Next.js will attempt to re-generate the page:

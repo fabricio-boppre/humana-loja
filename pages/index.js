@@ -53,6 +53,7 @@ export async function getStaticProps() {
 											 ]{
 	                      "id": _id, 
 	                      title,
+												slug,
 												"stock_situation": stock_situation[0],
 												"authors": authors[]->{name},
 	                      description, 
