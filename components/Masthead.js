@@ -32,6 +32,9 @@ export default function Masthead() {
 		// - English language file for the labels (it works as a baseline): https://github.com/snipcart/snipcart-l10n/blob/master/locales/en.json
     document.addEventListener('snipcart.ready', function() {
       Snipcart.api.session.setLanguage('pt-BR', {
+          actions: {
+            back_to_store: "Voltar à loja"
+          },
           cart: {
             view_detailed_cart: "Ver carrinho completo"
           },
