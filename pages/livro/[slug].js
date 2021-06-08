@@ -3,7 +3,6 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import priceFormat from '../../lib/utils'
 import { readCMS } from '../../lib/sanity'
-// import styles from '../../styles/Book.module.css'
 
 export default function Book({book}) {
 
@@ -29,19 +28,18 @@ export default function Book({book}) {
       </Head>
 
       <main className={"content" + (book.stock_situation == "esgotado_visivel" ? " unavailable" : "")} id="livro">
+
         <h1>{book.title}</h1>
-        <br />
+
         <img src={book.mainImageUrl + '?w=180'}
           	 alt={book.title}
 						 title={book.title}
         />
-        <br />
-        <br />
-				<div className="format">[{book.format}]</div>
-        <br />
-				{priceFormat(active_price)}
-        <br />
-        <br />
+
+				<div id="format">[{book.format}]</div>
+
+				<div id="price">{priceFormat(active_price)}</div>
+
         <button className="snipcart-add-item"
             data-item-id={book.id}
 	          data-item-name={book.title}
@@ -57,11 +55,8 @@ export default function Book({book}) {
             data-item-height={book.height}>
             comprar
         </button>
-        <br />
-        <br />
-        <Link href="/">
-          <a>voltar</a>
-        </Link>
+
+        <div><Link href="/"><a>voltar</a></Link></div>
 
       </main>
     </>

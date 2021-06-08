@@ -1,8 +1,8 @@
 import App from 'next/app'
 import Head from 'next/head'
-import Masthead from '../components/Masthead.js'
-import SearchForm from '../components/SearchForm.js'
-import CheckoutButtonAndInfo from '../components/CheckoutButtonAndInfo.js'
+import Masthead from '../components/Masthead'
+import SearchForm from '../components/SearchForm'
+import CheckoutButtonAndInfo from '../components/CheckoutButtonAndInfo'
 import '../styles/reset.css' // First let's reset some CSS definitions...
 import '../styles/globals.css' // And then apply our globals.
 

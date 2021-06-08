@@ -1,0 +1,82 @@
+/* ---------------------------------------------
+	MIXINS, VARIABLES & EXTENDS
+  ---------------------------------------------- */
+
+@use '../styles/assets';
+
+/* ------------------------------------------------------------------------------
+	SHOWCASE BOOK:
+	- Books as seen in the showcase;
+	- ":global" wrapped around IDs prevents them from being changed by CSS Modules.
+  ------------------------------------------------------------------------------- */
+
+li.showcase_book {
+	@include assets.flex-basis(180px); // This value must be kept in accordance with the crop value appended to the image base-url (ShowcaseBook component).
+	@include assets.box-shadow(1px 1px 2px gray);
+	margin: 0 0 60px 130px;
+	background-color: white;
+	
+	img {
+		display: block;
+	}
+	
+	:global(.showcase_book_text) {
+		text-align: center;
+		padding: 0 10px 12px 10px;
+		font-size: assets.$typo-small-size;
+		line-height: assets.$line-height-small-size;
+		a {
+			text-decoration: none;
+			color: inherit;
+		}
+		:global(.showcase-book-text-format-ebook),
+		:global(.showcase-book-text-format-livro),
+		:global(.showcase_book_text_title),
+		:global(.showcase_book_text_author),
+		:global(.showcase_book_text_price) {
+			margin-bottom: 10px;
+		}
+		:global(button.snipcart-add-item),
+		:global(.showcase_book_text_unavailable) {
+			@include assets.generic-button;
+		}
+		:global(button.snipcart-add-item) {
+			@include assets.buy-button;
+			@include assets.buy-button-hover;
+		}
+		:global(.showcase_book_text_unavailable) {
+			@include assets.unavailable-button;
+		}
+		:global(.showcase-book-text-format-ebook),
+		:global(.showcase-book-text-format-livro) {
+			@include assets.border-radius(0 0 8px 8px);
+			color: white;
+			display: inline-block;
+			padding: 1px 8px;
+		}
+		:global(.showcase-book-text-format-livro) {
+			background-color: #ebd697;
+		}
+		:global(.showcase-book-text-format-ebook) {
+			background-color: #b5cceb;
+		}
+		:global(.showcase_book_text_title) {
+		}
+		:global(.showcase_book_text_author) {
+			font-weight: 300;
+		}
+		:global(.showcase_book_text_price) {
+			font-weight: 700;
+			:global(.showcase_book_text_inactive_price) {
+				padding-right: 5px;
+				color: lighten(black,70%);
+				text-decoration: line-through;
+			}
+		}
+	}
+
+	// Responsiveness rules:
+	@media screen and (max-width: assets.$principal-max-width-plus-lateral-margins) {
+		margin: 0 40px 60px 40px;
+	}
+}

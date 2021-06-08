@@ -396,6 +396,13 @@
 
 /* --- MISCELLANEOUS MIXINS: ---*/
 
+@mixin transition($args...) {
+  -webkit-transition: $args;
+  	 -moz-transition: $args;
+      -ms-transition: $args;
+       -o-transition: $args;
+          transition: $args;
+}
 @mixin box-shadow($shadow...) {
   -webkit-box-shadow: $shadow;
   -moz-box-shadow: $shadow;
@@ -429,7 +436,7 @@ $box-border: 1px solid darken($gray-bg, 10%);
 /* --- TYPOGRAPHY: ---*/
 
 // -- Small:
-$typo-small-size: 0.9em;
+$typo-small-size: 0.9rem;
 $line-height-small-size: 20px;
 // -- Normal:
 $typo-normal-size: 1.2rem;
@@ -440,3 +447,31 @@ $line-height-big-size: 32px;
 // -- Large:
 $typo-large-size: 1.6rem;
 $line-height-large-size: 34px;
+
+/* --- BUY BUTTON / UNAVAILABLE SIGN: ---*/
+
+@mixin generic-button {
+	@include border-radius(8px);
+	padding: 6px 20px;
+	color: white;
+	text-transform: uppercase;
+	font-weight: 400;
+	font-size: $typo-small-size;
+	line-height: $line-height-small-size;
+	font-family: inherit;
+}
+@mixin buy-button {
+	border: none;
+	cursor: pointer;	
+	background-color: $orange-button;
+	@include transition(background-color 0.3s linear);
+}
+@mixin buy-button-hover {
+  &:hover {
+    background-color: darken($orange-button,10%);
+  }
+}
+@mixin unavailable-button {
+	background-color: #fc6a67;
+	display: inline-block;
+}

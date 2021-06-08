@@ -13,24 +13,23 @@
 	@include assets.flexbox();
 	@include assets.flex-wrap(wrap);
 	
-	// Index options:
-	:global(#index-options) {
+	// Showcase options:
+	:global(#showcase-options) {
 		@include assets.flex(1 0 100%);
 		padding-bottom: 30px;
 		text-align: right;
-		:global(#index-options-filters) {
+		:global(#showcase-options-filters) {
 			display: none; // The filter options starts hidden because they are in the sidebar; when the sidebar gets hidden, we show them here (see responsiveness rules below). 
 		}
-
 	}
 
-	// Index filters:
-	:global(#index-filters) {
+	// Showcase filters:
+	:global(#showcase-filters) {
 		@include assets.flex(0 0 190px);
 	}
 	
-	// Index:
-	:global(main#index) {
+	// Showcase:
+	:global(main#showcase) {
 		@include assets.flex(0 0 1250px);
 		ul {
 			@include assets.flexbox();
@@ -42,10 +41,10 @@
 
 	// Responsiveness rules:
 	@media screen and (max-width: assets.$principal-max-width-plus-lateral-margins) {
-		:global(#index-filters) {
+		:global(#showcase-filters) {
 			@include assets.flex(0 0 20%);
 		}
-		:global(main#index) {
+		:global(main#showcase) {
 			@include assets.flex(0 0 80%);
 			ul {
 				@include assets.justify-content(space-around);
@@ -54,14 +53,14 @@
 		}
 	}
 	@media screen and (max-width: assets.$tablet-width) {
-		:global(#index-options) {
+		:global(#showcase-options) {
 			text-align: center;
 			padding-bottom: 0;
-			:global(#index-options-filters) {
+			:global(#showcase-options-filters) {
 				display: inline-block; 
 			}
 		}
-		:global(#index-filters) {
+		:global(#showcase-filters) {
 			display: none;
 			&:global(.horizontal-active) {
 				@include assets.flex(0 0 100%);
@@ -70,7 +69,7 @@
  		    text-align: center;
 			}
 		}
-		:global(main#index) {
+		:global(main#showcase) {
 			@include assets.flex(0 0 100%);
 			padding-top: 30px;
 		}

@@ -61,30 +61,33 @@ export default async function contentChange(req, res) {
         // console.log('fetch do livro updated: ' + getRequestResult)
         
         // We also have to regenerate the front page, sending a GET request to its URL:
-        var getRequestResult = await sendGetRequest(frontPageURL)
+				// - Disabled because we are now using Server-side Rendering for the front page.
+        // var getRequestResult = await sendGetRequest(frontPageURL)
         // console.log('fetch da front page after update: ' + getRequestResult)
       }    
     
     // If the action was a create:
-    } else if (req.body.ids.created.length > 0) {
+    // - Disabled because we are now using Server-side Rendering for the front page.
+		// } else if (req.body.ids.created.length > 0) {
 
       // First, let's discover the type of the created document: 
-      var docType = await discoverDocType(docId)
+      // var docType = await discoverDocType(docId)
       // console.log('created doc: '+docType)
   
       // If the document is a book (or it's null -- for the cases when Sanity weirdly gives me null...):
-      if ((docType == 'book') || (docType === null)) {
+      // if ((docType == 'book') || (docType === null)) {
         
         // We have to regenerate the front page, sending a GET request to its URL:
-        var getRequestResult = await sendGetRequest(frontPageURL)
+        // var getRequestResult = await sendGetRequest(frontPageURL)
         // console.log('fetch da front page after new book created: ' + getRequestResult)
-      }    
+      // }    
 
     // Finally, if the action was a delete:
-    } else if (req.body.ids.deleted.length > 0) {
+    // - Disabled because we are now using Server-side Rendering for the front page.
+		// } else if (req.body.ids.deleted.length > 0) {
 
       // As we can't know the type of the document (because it doesn't exist anymore on the CMS), then, just to be sure, we regenerate the front page, sending a GET request to its URL:
-      var getRequestResult = await sendGetRequest(frontPageURL)
+      // var getRequestResult = await sendGetRequest(frontPageURL)
       // console.log('fetch da front page after some deletion: ' + getRequestResult)
 
     } 

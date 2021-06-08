@@ -1,0 +1,70 @@
+/* ---------------------------------------------
+	MIXINS, VARIABLES & EXTENDS
+  ---------------------------------------------- */
+
+@use '../styles/assets';
+
+/* ------------------------------------------------------------------------------
+	SHOWCASE PAGINATION:
+	- Pagination links for the showcase;
+	- ":global" wrapped around IDs prevents them from being changed by CSS Modules.
+  ------------------------------------------------------------------------------- */
+
+.showcase_pagination {
+	$button-height: 30px;
+	@include assets.flexbox();
+	@include assets.justify-content(space-around);
+	:global(a#previous-page),
+	:global(a#next-page) {
+		text-decoration: none;
+		color: white;
+		&:global(.inactive) {
+			display: none;
+		}
+		@include assets.flexbox();
+		:global(.text) {
+			line-height: $button-height;
+			min-height: $button-height;
+			background-color: assets.$orange-button;
+			font-weight: 400;
+			font-size: assets.$typo-small-size;
+		}	
+		:global(.arrow-left),
+		:global(.arrow-right) {
+		  width: 0; 
+		  height: 0;
+		}
+	}
+	:global(a#previous-page) {
+		:global(.text) {
+			@include assets.border-radius(0 8px 8px 0);
+			padding: 0 10px 0 5px;
+		}
+		:global(.arrow-left) {
+		  border-top: ($button-height/2) solid transparent;
+		  border-bottom: ($button-height/2) solid transparent; 
+		  border-right: ($button-height/2) solid assets.$orange-button; 
+		}
+	}
+	:global(a#next-page) {
+		:global(.text) {
+			@include assets.border-radius(8px 0 0 8px);
+			padding: 0 5px 0 10px;
+		}
+		:global(.arrow-right) {
+		  border-top: ($button-height/2) solid transparent;
+		  border-bottom: ($button-height/2) solid transparent;
+		  border-left: ($button-height/2) solid assets.$orange-button;
+		}
+	}	
+
+	// Responsiveness rules:
+	@media screen and (max-width: assets.$smartphone-width) {
+		:global(a#previous-page),
+		:global(a#next-page) {
+			:global(.text) {
+				display: none;
+			}		
+		}
+	}
+}
