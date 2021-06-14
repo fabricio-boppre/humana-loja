@@ -13,7 +13,7 @@
 li.showcase_book {
 	@include assets.flex-basis(180px); // This value must be kept in accordance with the crop value appended to the image base-url (ShowcaseBook component).
 	@include assets.box-shadow(1px 1px 2px gray);
-	margin: 0 0 60px 130px;
+	margin: 0 40px 60px 40px;
 	background-color: white;
 	
 	img {
@@ -73,10 +73,5 @@ li.showcase_book {
 				text-decoration: line-through;
 			}
 		}
-	}
-
-	// Responsiveness rules:
-	@media screen and (max-width: assets.$principal-max-width-plus-lateral-margins) {
-		margin: 0 40px 60px 40px;
 	}
 }

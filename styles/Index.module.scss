@@ -25,36 +25,77 @@
 
 	// Showcase filters:
 	:global(#showcase-filters) {
-		@include assets.flex(0 0 190px);
+		@include assets.flex(0 0 20%);
+		> ul {
+			font-size: assets.$typo-small-size;
+			line-height: assets.$line-height-small-size;
+			> li {
+				margin-bottom: 20px;
+				:global(span.filter-title) {
+					color: assets.$gray-typo;
+					font-weight: 700;
+					height: 25px;
+					line-height: 25px;
+					&:global(.active) {
+						background-image: url("../public/img/layout/filter-button-clean.svg"),
+												linear-gradient(transparent, transparent);
+					 padding-left: 20px;
+					 color: black;
+					 background-repeat: no-repeat;
+					 background-position: center left;
+					 cursor: pointer !important;
+					}
+				}
+				> ul {
+					> li {
+						background-image: url("../public/img/layout/checkbox-unchecked.svg"),
+												linear-gradient(transparent, transparent);
+						background-repeat: no-repeat;
+						background-position: center left;
+						padding-left: 20px;
+						height: 25px;
+						line-height: 25px;
+						cursor: pointer !important;
+						font-weight: 300;
+						&:global(.active) {
+							background-image: url("../public/img/layout/checkbox-checked.svg"),
+													linear-gradient(transparent, transparent);
+						 font-weight: 700;	
+						}
+					}
+				}
+			}
+		}
 	}
 	
 	// Showcase:
 	:global(main#showcase) {
-		@include assets.flex(0 0 1250px);
-		ul {
+		@include assets.flex(0 0 80%);
+	  opacity: 1;
+		:global(ul#showcase-books-list) {
 			@include assets.flexbox();
 			@include assets.flex-wrap(wrap);
-			@include assets.justify-content(flex-end);
+			@include assets.justify-content(space-around);
+			-webkit-justify-content: space-evenly !important;
 			@include assets.align-items(flex-start)
-		}	
+		}
+		:global(#empty-showcase) {
+			font-size: assets.$typo-normal-size;
+			line-height: assets.$line-height-normal-size;
+			font-weight: 300;
+		}
+		&:global(.loading) {
+			> * {	
+				transition: opacity 0.05s linear;
+				opacity: 0.3;
+			}
+		}
 	}
 
 	// Responsiveness rules:
-	@media screen and (max-width: assets.$principal-max-width-plus-lateral-margins) {
-		:global(#showcase-filters) {
-			@include assets.flex(0 0 20%);
-		}
-		:global(main#showcase) {
-			@include assets.flex(0 0 80%);
-			ul {
-				@include assets.justify-content(space-around);
-				-webkit-justify-content: space-evenly !important;
-			}	
-		}
-	}
 	@media screen and (max-width: assets.$tablet-width) {
 		:global(#showcase-options) {
-			text-align: center;
+			text-align: left;
 			padding-bottom: 0;
 			:global(#showcase-options-filters) {
 				display: inline-block; 
@@ -66,7 +107,6 @@
 				@include assets.flex(0 0 100%);
 				padding-top: 10px;
 				display: block;
- 		    text-align: center;
 			}
 		}
 		:global(main#showcase) {

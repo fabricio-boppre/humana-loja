@@ -7,9 +7,7 @@ export default function ShowcaseOptions(props) {
 							{props.filtersHorizontalActive ? "fechar filtros" : "exibir filtros"}|
 						</span>
 
-						<span id="showcase-options-order">ordenação|</span>
-
-						<span id="showcase-options-layout">layout</span>
+						<span id="showcase-options-order">ordenar por preço ($ > $$ / $$ > $) ou título (A > Z / Z > A)</span>
 
 				 </div>
 }

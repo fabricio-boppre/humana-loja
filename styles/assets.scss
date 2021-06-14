@@ -429,7 +429,7 @@ $smartphone-width: 480px;
 /* --- BASIC COLORS: ---*/
 
 $gray-bg: #f1f1f1;
-$gray-typo: #c3c5c5;
+$gray-typo: #b7b7b7;
 $orange-button: #da9a21;
 $box-border: 1px solid darken($gray-bg, 10%);
 
@@ -464,7 +464,7 @@ $line-height-large-size: 34px;
 	border: none;
 	cursor: pointer;	
 	background-color: $orange-button;
-	@include transition(background-color 0.3s linear);
+	@include transition(background-color 0.2s linear);
 }
 @mixin buy-button-hover {
   &:hover {

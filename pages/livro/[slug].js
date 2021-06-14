@@ -56,8 +56,6 @@ export default function Book({book}) {
             comprar
         </button>
 
-        <div><Link href="/"><a>voltar</a></Link></div>
-
       </main>
     </>
   )

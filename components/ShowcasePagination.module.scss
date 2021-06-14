@@ -13,58 +13,80 @@
 .showcase_pagination {
 	$button-height: 30px;
 	@include assets.flexbox();
-	@include assets.justify-content(space-around);
-	:global(a#previous-page),
-	:global(a#next-page) {
-		text-decoration: none;
-		color: white;
-		&:global(.inactive) {
-			display: none;
-		}
-		@include assets.flexbox();
-		:global(.text) {
-			line-height: $button-height;
-			min-height: $button-height;
-			background-color: assets.$orange-button;
-			font-weight: 400;
-			font-size: assets.$typo-small-size;
-		}	
-		:global(.arrow-left),
-		:global(.arrow-right) {
-		  width: 0; 
-		  height: 0;
-		}
+	@include assets.align-items(center);
+	:global(#information) {
+		@include assets.flex-basis(60%);
+		color: assets.$orange-button;
+		text-align: center;	
+		font-weight: 400;
+		font-size: assets.$typo-small-size;
 	}
-	:global(a#previous-page) {
-		:global(.text) {
-			@include assets.border-radius(0 8px 8px 0);
-			padding: 0 10px 0 5px;
+	:global(#previous-page),
+	:global(#next-page) {
+		@include assets.flex-basis(40%);	
+		:global(#previous-page-button) {
+			float: right;
 		}
-		:global(.arrow-left) {
-		  border-top: ($button-height/2) solid transparent;
-		  border-bottom: ($button-height/2) solid transparent; 
-		  border-right: ($button-height/2) solid assets.$orange-button; 
+		:global(#previous-page-button),
+		:global(#next-page-button) {
+			@include assets.flexbox();
+			text-decoration: none;
+			color: white;
+			cursor: pointer;
+			&:global(.inactive) {
+				display: none;
+			}
+			:global(.text) {
+				line-height: $button-height;
+				min-height: $button-height;
+				background-color: assets.$orange-button;
+				font-weight: 400;
+				font-size: assets.$typo-small-size;
+			}	
+			:global(.arrow-left),
+			:global(.arrow-right) {
+			  width: 0; 
+			  height: 0;
+			}
 		}
-	}
-	:global(a#next-page) {
-		:global(.text) {
-			@include assets.border-radius(8px 0 0 8px);
-			padding: 0 5px 0 10px;
+		:global(#previous-page-button) {
+			:global(.text) {
+				@include assets.border-radius(0 8px 8px 0);
+				padding: 0 10px 0 5px;
+			}
+			:global(.arrow-left) {
+			  border-top: ($button-height/2) solid transparent;
+			  border-bottom: ($button-height/2) solid transparent; 
+			  border-right: ($button-height/2) solid assets.$orange-button; 
+			}
 		}
-		:global(.arrow-right) {
-		  border-top: ($button-height/2) solid transparent;
-		  border-bottom: ($button-height/2) solid transparent;
-		  border-left: ($button-height/2) solid assets.$orange-button;
+		:global(#next-page-button) {
+			:global(.text) {
+				@include assets.border-radius(8px 0 0 8px);
+				padding: 0 5px 0 10px;
+			}
+			:global(.arrow-right) {
+			  border-top: ($button-height/2) solid transparent;
+			  border-bottom: ($button-height/2) solid transparent;
+			  border-left: ($button-height/2) solid assets.$orange-button;
+			}
 		}
 	}	
 
 	// Responsiveness rules:
-	@media screen and (max-width: assets.$smartphone-width) {
-		:global(a#previous-page),
-		:global(a#next-page) {
-			:global(.text) {
-				display: none;
-			}		
+	@media screen and (max-width: assets.$tablet-width) {
+		:global(#information) {
+			@include assets.flex-basis(90%);
+		}
+		:global(#previous-page),
+		:global(#next-page) {
+			@include assets.flex-basis(10%);
+			:global(#previous-page-button),
+			:global(#next-page-button) {
+				:global(.text) {
+					display: none;
+				}		
+			}
 		}
 	}
 }

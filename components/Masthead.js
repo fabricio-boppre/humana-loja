@@ -1,6 +1,5 @@
 import { useEffect } from 'react'
 import Image from 'next/image'
-import Link from 'next/link'
 import styles from './Masthead.module.css'
 
 export default function Masthead() {
@@ -49,10 +48,7 @@ export default function Masthead() {
           
           <div id="masthead-principal">
 
-            <Link href="/">
-              <a id="masthead-logotipo">
-              </a>
-            </Link>
+						<a id="masthead-logotipo" href="/"></a>
             
             <div id="masthead-services">
               <ul>
