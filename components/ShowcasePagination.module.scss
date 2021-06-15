@@ -16,10 +16,12 @@
 	@include assets.align-items(center);
 	:global(#information) {
 		@include assets.flex-basis(60%);
+		margin: 0 10px;
 		color: assets.$orange-button;
 		text-align: center;	
 		font-weight: 400;
 		font-size: assets.$typo-small-size;
+		line-height: assets.$line-height-small-size;
 	}
 	:global(#previous-page),
 	:global(#next-page) {

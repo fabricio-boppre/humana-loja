@@ -13,36 +13,33 @@
 	@include assets.flexbox();
 	@include assets.flex-wrap(wrap);
 	
-	// Showcase options:
-	:global(#showcase-options) {
-		@include assets.flex(1 0 100%);
-		padding-bottom: 30px;
-		text-align: right;
-		:global(#showcase-options-filters) {
-			display: none; // The filter options starts hidden because they are in the sidebar; when the sidebar gets hidden, we show them here (see responsiveness rules below). 
-		}
-	}
-
 	// Showcase filters:
-	:global(#showcase-filters) {
+	:global(#showcase-filters-order) {
+		$block-space: 10px;
+		$list-line-height: 17px;
 		@include assets.flex(0 0 20%);
+		font-size: assets.$typo-small-size;
+		:global(.order-header),
+		:global(.filters-header) {
+			margin-bottom: $block-space; 
+		}
 		> ul {
-			font-size: assets.$typo-small-size;
-			line-height: assets.$line-height-small-size;
 			> li {
-				margin-bottom: 20px;
-				:global(span.filter-title) {
+				margin-bottom: $block-space;
+				:global(.filter-title) {
 					color: assets.$gray-typo;
 					font-weight: 700;
-					height: 25px;
-					line-height: 25px;
+					padding-bottom: 10px;
+					min-height: $list-line-height;
+					line-height: $list-line-height;
 					&:global(.active) {
 						background-image: url("../public/img/layout/filter-button-clean.svg"),
 												linear-gradient(transparent, transparent);
 					 padding-left: 20px;
 					 color: black;
 					 background-repeat: no-repeat;
-					 background-position: center left;
+					 background-position-y: 1px; // 1px to a perfect alignment with the text.
+					 background-position-x: left;
 					 cursor: pointer !important;
 					}
 				}
@@ -51,11 +48,13 @@
 						background-image: url("../public/img/layout/checkbox-unchecked.svg"),
 												linear-gradient(transparent, transparent);
 						background-repeat: no-repeat;
-						background-position: center left;
-						padding-left: 20px;
-						height: 25px;
-						line-height: 25px;
+						background-position-y: 1px; // 1px to a perfect alignment with the text.
+						background-position-x: left;
+						padding: 0 0 10px 20px;
+						min-height: $list-line-height;
+						line-height: $list-line-height;
 						cursor: pointer !important;
+						text-transform: lowercase;
 						font-weight: 300;
 						&:global(.active) {
 							background-image: url("../public/img/layout/checkbox-checked.svg"),
@@ -83,6 +82,8 @@
 			font-size: assets.$typo-normal-size;
 			line-height: assets.$line-height-normal-size;
 			font-weight: 300;
+			text-align: center;
+			padding: 0 20px;
 		}
 		&:global(.loading) {
 			> * {	
@@ -94,23 +95,28 @@
 
 	// Responsiveness rules:
 	@media screen and (max-width: assets.$tablet-width) {
-		:global(#showcase-options) {
-			text-align: left;
-			padding-bottom: 0;
-			:global(#showcase-options-filters) {
-				display: inline-block; 
-			}
+		:global(#showcase-filters-order),
+		:global(main#showcase) {
+			@include assets.flex(0 0 100%);
 		}
-		:global(#showcase-filters) {
-			display: none;
-			&:global(.horizontal-active) {
-				@include assets.flex(0 0 100%);
-				padding-top: 10px;
-				display: block;
+		:global(#showcase-filters-order) {
+			text-align: center;
+			> ul {
+				> li {
+					:global(.filter-title) {
+						display: table;
+						margin: 0 auto;
+					}
+					> ul {
+						> li {
+							display: table;
+							margin: 0 auto;
+						}
+					}
+				}
 			}
 		}
 		:global(main#showcase) {
-			@include assets.flex(0 0 100%);
 			padding-top: 30px;
 		}
 	}	

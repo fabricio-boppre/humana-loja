@@ -4,17 +4,17 @@ import { useState } from 'react'
 import { useRouter } from 'next/router'
 import Head from 'next/head'
 import Link from 'next/link'
-import {getBooks} from '../lib/books'
+import {getBooks,getBookCategories} from '../lib/books'
 import ShowcaseBook from '../components/ShowcaseBook'
-import ShowcaseOptions from '../components/ShowcaseOptions'
-import ShowcaseFilters from '../components/ShowcaseFilters'
+import ShowcaseFiltersAndOrder from '../components/ShowcaseFiltersAndOrder'
 import ShowcasePagination from '../components/ShowcasePagination'
 import styles from '../styles/Index.module.css'
 
 export default function Index(props) {
 
 	// Constants:
-	// - Book formats and books conditions don't change, so we can manually organize it.
+	// - Book formats and books conditions don't change, so we can manually organize it;
+	// - Book categories come from the CMS.
 	const bookFormats = {
 		id: 'format', 
 		title: 'formato',
@@ -31,6 +31,11 @@ export default function Index(props) {
 		conditionUsadoId: 'usado', 
 		conditionUsadoTitle: 'usado'
 	}
+	const bookCategories = {
+		id: 'category',
+		title: 'categoria',
+		categories: props.bookCategories
+	}
 	
 	// Router:
 	// - Next.js has a file-system based router built on the concept of pages. When a file is added to the pages directory it's automatically available as a route. To access the router object we use the useRouter:
@@ -42,12 +47,12 @@ export default function Index(props) {
 	// - useState returns a pair: the current state value and a function that lets you update it;
 	// - After a state update, React will re-render the component, passing the new state value to it (and to any associated components that receive it as a prop);
 	// - Array destructuring: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment#array_destructuring
-	// - Horizontal layout filters state:
-	const [filtersHorizontalActive, toggleFiltersHorizontalActive] = useState(false);
 	// - Formats to filter state:
 	const [formatsToFilter, setFormatToFilter] = useState(props.formatsToFilterArray);
 	// - Conditions to filter state:
 	const [conditionsToFilter, setConditionToFilter] = useState(props.conditionsToFilterArray);
+	// - Categories to filter state:
+	const [categoriesToFilter, setCategoryToFilter] = useState(props.categoriesToFilterArray);
 	// - Page state:
 	const [page, setPage] = useState(props.page);
 	// - This state is just to help us re-render the component after removing filters (see explanation below in clickFilter function):
@@ -61,25 +66,30 @@ export default function Index(props) {
 		// - First, we prepare the query string based on our current state:  
 		var formatsQueryString = ''
 		var conditionsQueryString = ''
+		var categoriesQueryString = ''
 		var pageQueryString = ''
 		if (formatsToFilter.length > 0) {
-			formatsQueryString = '?format=' + formatsToFilter.join(',')	
+			formatsQueryString = '?' + bookFormats.id + '=' + formatsToFilter.join(',')	
 		}
 		if (conditionsToFilter.length > 0) {
-			conditionsQueryString = ((formatsQueryString !== '') ? "&" : "?") + 'condition=' + conditionsToFilter.join(',')		
+			conditionsQueryString = ((formatsQueryString !== '') ? "&" : "?") + bookConditions.id + '=' + conditionsToFilter.join(',')		
+		}
+		if (categoriesToFilter.length > 0) {
+			categoriesQueryString = (((formatsQueryString !== '') || (conditionsQueryString !== '')) ? "&" : "?") + bookCategories.id + '=' + categoriesToFilter.join(',')		
 		}
 		if (page > 1) {
 			pageQueryString = (((formatsQueryString !== '') || (conditionsQueryString !== '')) ? "&" : "?") + 'page=' + page		
 		}
 		// - Then, we proceed the client-side transition:
-		if ((formatsQueryString + conditionsQueryString + pageQueryString) == '') {
+		if ((formatsQueryString + conditionsQueryString + categoriesQueryString + pageQueryString) == '') {
 			router.push('/')	
 		} else {
-			router.push(formatsQueryString + conditionsQueryString + pageQueryString)
+			router.push(formatsQueryString + conditionsQueryString + categoriesQueryString + pageQueryString)
     }
 	}, [page
 		 ,formatsToFilter
 		 ,conditionsToFilter
+		 ,categoriesToFilter
 		 ,removedFilter])
   useEffect(() => {
 		// Visual effect on the showcase while its being loaded:
@@ -114,10 +124,12 @@ export default function Index(props) {
 	// Function that check if there is at least one of a specific filter type active:
 	const isFilterTypeActive = (filterType) => {
 		var filterArray
-		if (filterType == 'format') {
+		if (filterType == bookFormats.id) {
 		 	filterArray = formatsToFilter
-		} else if (filterType == 'condition') {	
+		} else if (filterType == bookConditions.id) {	
 		 	filterArray = conditionsToFilter
+		} else if (filterType == bookCategories.id) {	
+		 	filterArray = categoriesToFilter
 		}	
 		if (filterArray.length > 0) {
 			return true
@@ -129,28 +141,31 @@ export default function Index(props) {
 	const isFilterActive = (filter, filterType) => {
 		// First we copy the current state (of the requested type) into an array:
 	  var filterArray
-		if (filterType == 'format') {
+		if (filterType == bookFormats.id) {
 		 	filterArray = formatsToFilter
-		} else if (filterType == 'condition') {	
+		} else if (filterType == bookConditions.id) {	
 		 	filterArray = conditionsToFilter
+		} else if (filterType == bookCategories.id) {	
+		 	filterArray = categoriesToFilter
 		}	
 		// Now we check if the format is in the list:
 		var index = filterArray.indexOf(filter)
 		if (index !== -1) {
 			return true
-		} else {
-			return false
 		}
+		return false
 	}
 
 	// Function to handle the click on the title of a filters list:
-	// - It should cancel the active filters of this type, cleaning the correspondent state:
+	// - It should cancel all the active filters of this type, cleaning the correspondent state:
 	const clickFilterType = (filterType) => {
 		// We check which is the type of filter and then clean its state:
-		if (filterType == 'format') {
+		if (filterType == bookFormats.id) {
 			setFormatToFilter([])
-		} else if (filterType == 'condition') {	
+		} else if (filterType == bookConditions.id) {	
 		 	setConditionToFilter([])
+		} else if (filterType == bookCategories.id) {	
+		 	setCategoryToFilter([])
 		}	
 		// We also set the page to the first one, because changing the filters must renew the showcase:
 		setPage(1)
@@ -165,6 +180,8 @@ export default function Index(props) {
 		 	filterArray = formatsToFilter
 		} else if (filterType == bookConditions.id) {	
 		 	filterArray = conditionsToFilter
+		} else if (filterType == bookCategories.id) {	
+		 	filterArray = categoriesToFilter
 		}	
 		// Now we check if the clicked format is in the list:
 		var index = filterArray.indexOf(clickedFilter)
@@ -175,6 +192,8 @@ export default function Index(props) {
 			 	setFormatToFilter([...formatsToFilter, clickedFilter])
 			} else if (filterType == bookConditions.id) {	
 			 	setConditionToFilter([...conditionsToFilter, clickedFilter])
+			} else if (filterType == bookCategories.id) {	
+			 	setCategoryToFilter([...categoriesToFilter, clickedFilter])
 			}	
 		// If it is, then we remove it from the array and update the state (of the requested type) with this new array:
 		// - After updating the state, we need to force a re-render because in some situations removing an item from a state doesn't trigger the re-ender immediately:
@@ -186,6 +205,8 @@ export default function Index(props) {
 				setFormatToFilter(filterArray)
 			} else if (filterType == bookConditions.id) {	
 			 	setConditionToFilter(filterArray)
+			} else if (filterType == bookCategories.id) {	
+			 	setCategoryToFilter(filterArray)
 			}
 			forceUpdate() 
 		}
@@ -193,13 +214,6 @@ export default function Index(props) {
 		setPage(1)
   }
 
-	// Function to handle the click on the "show filters" option in the ShowcaseOptions component:
-	// - Responsiveness rules determines whether these options are visible or not; 
-	// - The click calls the function that updates the filtersHorizontalActive state (in this case, it means inverting its value) and re-render the component.
-	const clickFiltersHorizontal = () => {
-    toggleFiltersHorizontalActive(!filtersHorizontalActive);
-  }
-	
 	// Create the showcase with the books and the pagination component, or an error message in case of no books:
 	var showcase
 	if (props.books) {
@@ -226,16 +240,13 @@ export default function Index(props) {
 	        <title>Humana | Livros</title>
 	      </Head>
 
-				<ShowcaseOptions filtersHorizontalActive={filtersHorizontalActive} 
-									       clickFiltersHorizontal={clickFiltersHorizontal} />
-			
-				<ShowcaseFilters filtersHorizontalActive={filtersHorizontalActive}
-												 clickFilterType={clickFilterType}
-												 clickFilter={clickFilter}
-												 isFilterActive={isFilterActive}
-												 isFilterTypeActive={isFilterTypeActive}
-												 bookConditions={bookConditions}
-												 bookFormats={bookFormats} />
+				<ShowcaseFiltersAndOrder clickFilterType={clickFilterType}
+												 				 clickFilter={clickFilter}
+												 				 isFilterActive={isFilterActive}
+												 				 isFilterTypeActive={isFilterTypeActive}
+												 				 bookConditions={bookConditions}
+												 				 bookFormats={bookFormats}
+												 				 bookCategories={bookCategories} />
 				
 	      <main id="showcase">
 					{showcase}
@@ -264,15 +275,33 @@ export async function getServerSideProps(context) {
 		const conditionsToFilterQueryString = (context.query.condition)
 		conditionsToFilterArray = conditionsToFilterQueryString.split(",")
 	}
+
+	// The requested categories:
+	var categoriesToFilterArray = []
+	if (context.query.category) {
+		const categoriesToFilterQueryString = (context.query.category)
+		categoriesToFilterArray = categoriesToFilterQueryString.split(",")
+	}
 	
 	// The max number of itens per page:
 	// - Preferably a number divisible by all the possible number of columns in our layout (currently: 4).
 	const totalItensPerPage = 24
 
+	// Let's get the book categories to build the filter list:
+	const bookCategories = await getBookCategories()
+
 	// Finally, we get the requested books and the number of pages needed to show them:
-	const {books, pagesTotal, booksTotal} = await getBooks(page, totalItensPerPage, formatsToFilterArray, conditionsToFilterArray)
+	const {books, pagesTotal, booksTotal} = await getBooks(page, totalItensPerPage, formatsToFilterArray, conditionsToFilterArray, categoriesToFilterArray)
 
   return {
-    props: {books, pagesTotal, booksTotal, page, totalItensPerPage, formatsToFilterArray, conditionsToFilterArray}
+    props: {books
+					 ,bookCategories
+					 ,pagesTotal
+					 ,booksTotal
+					 ,page
+					 ,totalItensPerPage
+					 ,formatsToFilterArray
+					 ,conditionsToFilterArray
+					 ,categoriesToFilterArray}
   }
 }
