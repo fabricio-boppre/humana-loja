@@ -12,8 +12,8 @@ import styles from '../styles/Index.module.css'
 
 export default function Index(props) {
 
-	// Constants:
-	// - Book formats and books conditions don't change, so we can manually organize it;
+	// Constants for filters:
+	// - Book formats, price ranges and conditions don't change, so we can manually organize it;
 	// - Book categories come from the CMS.
 	const bookFormats = {
 		id: 'format', 
@@ -36,6 +36,18 @@ export default function Index(props) {
 		title: 'categoria',
 		categories: props.bookCategories
 	}
+	const bookPriceRanges = {
+		id: 'priceRange', 
+		title: 'faixa de preço',
+		priceRangeUpTo30Id: 'ate30',
+		priceRangeUpTo30Title: 'Até 30 reais',
+		priceRange31to60Id: '31a60',
+		priceRange31to60Title: 'Entre 31 e 60 reais',
+		priceRange61to90Id: '61a90',
+		priceRange61to90Title: 'Entre 61 e 90 reais',
+		priceRange91onwardsId: 'maisde90',
+		priceRange91onwardsTitle: 'Mais de 90',
+	}
 	
 	// Router:
 	// - Next.js has a file-system based router built on the concept of pages. When a file is added to the pages directory it's automatically available as a route. To access the router object we use the useRouter:
@@ -53,20 +65,23 @@ export default function Index(props) {
 	const [conditionsToFilter, setConditionToFilter] = useState(props.conditionsToFilterArray);
 	// - Categories to filter state:
 	const [categoriesToFilter, setCategoryToFilter] = useState(props.categoriesToFilterArray);
+	// - Price ranges to filter state:
+	const [priceRangesToFilter, setPriceRangeToFilter] = useState(props.priceRangesToFilterArray);
 	// - Page state:
 	const [page, setPage] = useState(props.page);
 	// - This state is just to help us re-render the component after removing filters (see explanation below in clickFilter function):
 	const [removedFilter, forceUpdate] = useReducer(x => x + 1, 0);
 	
 	// Effects:
-	// - See the explanation of why we use Effect Hook in the Masthead.js component;
+	// - See the explanation of why we use Effect Hook in the Masthead.js component.
+	// - After updating the filters or page states, we have to re-route the app:
+	// - To have the useEffect hook called only when state updates, we include the relevant states in the dependency array (the second argument passed to useEffect).
 	useEffect(() => {
-		// After updating the filters or page states, we have to re-route the app:
-		// - To have the useEffect hook called only when state updates, we include the relevant states in the dependency array (the second argument passed to useEffect).
 		// - First, we prepare the query string based on our current state:  
 		var formatsQueryString = ''
 		var conditionsQueryString = ''
 		var categoriesQueryString = ''
+		var priceRangesQueryString = ''
 		var pageQueryString = ''
 		if (formatsToFilter.length > 0) {
 			formatsQueryString = '?' + bookFormats.id + '=' + formatsToFilter.join(',')	
@@ -77,24 +92,28 @@ export default function Index(props) {
 		if (categoriesToFilter.length > 0) {
 			categoriesQueryString = (((formatsQueryString !== '') || (conditionsQueryString !== '')) ? "&" : "?") + bookCategories.id + '=' + categoriesToFilter.join(',')		
 		}
+		if (priceRangesToFilter.length > 0) {
+			priceRangesQueryString = (((formatsQueryString !== '') || (conditionsQueryString !== '') || (categoriesQueryString !== '')) ? "&" : "?") + bookPriceRanges.id + '=' + priceRangesToFilter.join(',')		
+		}
 		if (page > 1) {
-			pageQueryString = (((formatsQueryString !== '') || (conditionsQueryString !== '')) ? "&" : "?") + 'page=' + page		
+			pageQueryString = (((formatsQueryString !== '') || (conditionsQueryString !== '') || (categoriesQueryString !== '') || (priceRangesQueryString !== '')) ? "&" : "?") + 'page=' + page		
 		}
 		// - Then, we proceed the client-side transition:
-		if ((formatsQueryString + conditionsQueryString + categoriesQueryString + pageQueryString) == '') {
+		if ((formatsQueryString + conditionsQueryString + categoriesQueryString + priceRangesQueryString + pageQueryString) == '') {
 			router.push('/')	
 		} else {
-			router.push(formatsQueryString + conditionsQueryString + categoriesQueryString + pageQueryString)
+			router.push(formatsQueryString + conditionsQueryString + categoriesQueryString + priceRangesQueryString + pageQueryString)
     }
 	}, [page
 		 ,formatsToFilter
 		 ,conditionsToFilter
 		 ,categoriesToFilter
+		 ,priceRangesToFilter
 		 ,removedFilter])
+	// - Visual effect on the showcase while its being loaded:
+	// - We listen to different events happening inside the Next.js Router to make changes on the styles;
+	// - More info: https://nextjs.org/docs/api-reference/next/router#routerevents.
   useEffect(() => {
-		// Visual effect on the showcase while its being loaded:
-		// - We listen to different events happening inside the Next.js Router to make changes on the styles;
-		// - More info: https://nextjs.org/docs/api-reference/next/router#routerevents.
 		const mainShowcase = document.getElementById("showcase")
     const handleRouteChangeStart = (url, { shallow }) => {
 			mainShowcase.classList.add("loading")
@@ -130,6 +149,8 @@ export default function Index(props) {
 		 	filterArray = conditionsToFilter
 		} else if (filterType == bookCategories.id) {	
 		 	filterArray = categoriesToFilter
+		} else if (filterType == bookPriceRanges.id) {	
+		 	filterArray = priceRangesToFilter
 		}	
 		if (filterArray.length > 0) {
 			return true
@@ -147,6 +168,8 @@ export default function Index(props) {
 		 	filterArray = conditionsToFilter
 		} else if (filterType == bookCategories.id) {	
 		 	filterArray = categoriesToFilter
+		} else if (filterType == bookPriceRanges.id) {	
+		 	filterArray = priceRangesToFilter
 		}	
 		// Now we check if the format is in the list:
 		var index = filterArray.indexOf(filter)
@@ -166,6 +189,8 @@ export default function Index(props) {
 		 	setConditionToFilter([])
 		} else if (filterType == bookCategories.id) {	
 		 	setCategoryToFilter([])
+		} else if (filterType == bookPriceRanges.id) {	
+		 	setPriceRangeToFilter([])
 		}	
 		// We also set the page to the first one, because changing the filters must renew the showcase:
 		setPage(1)
@@ -182,10 +207,12 @@ export default function Index(props) {
 		 	filterArray = conditionsToFilter
 		} else if (filterType == bookCategories.id) {	
 		 	filterArray = categoriesToFilter
+		} else if (filterType == bookPriceRanges.id) {	
+		 	filterArray = priceRangesToFilter
 		}	
-		// Now we check if the clicked format is in the list:
+		// Now we check if the clicked option is in the list:
 		var index = filterArray.indexOf(clickedFilter)
-	  // If not, then we add it to the state (of the requested type) with the previous formats:
+	  // If not, then we add it to the state (of the requested type) with the previous options:
 		// - After updating the state, the component is immediately re-rendered (the re-route happens in the Effect Hook).
 		if (index == -1) {
 			if (filterType == bookFormats.id) {
@@ -194,6 +221,8 @@ export default function Index(props) {
 			 	setConditionToFilter([...conditionsToFilter, clickedFilter])
 			} else if (filterType == bookCategories.id) {	
 			 	setCategoryToFilter([...categoriesToFilter, clickedFilter])
+			} else if (filterType == bookPriceRanges.id) {	
+			 	setPriceRangeToFilter([...priceRangesToFilter, clickedFilter])
 			}	
 		// If it is, then we remove it from the array and update the state (of the requested type) with this new array:
 		// - After updating the state, we need to force a re-render because in some situations removing an item from a state doesn't trigger the re-ender immediately:
@@ -207,6 +236,8 @@ export default function Index(props) {
 			 	setConditionToFilter(filterArray)
 			} else if (filterType == bookCategories.id) {	
 			 	setCategoryToFilter(filterArray)
+			} else if (filterType == bookPriceRanges.id) {	
+			 	setPriceRangeToFilter(filterArray)
 			}
 			forceUpdate() 
 		}
@@ -246,7 +277,8 @@ export default function Index(props) {
 												 				 isFilterTypeActive={isFilterTypeActive}
 												 				 bookConditions={bookConditions}
 												 				 bookFormats={bookFormats}
-												 				 bookCategories={bookCategories} />
+												 				 bookCategories={bookCategories} 
+																 bookPriceRanges={bookPriceRanges} />
 				
 	      <main id="showcase">
 					{showcase}
@@ -282,6 +314,13 @@ export async function getServerSideProps(context) {
 		const categoriesToFilterQueryString = (context.query.category)
 		categoriesToFilterArray = categoriesToFilterQueryString.split(",")
 	}
+
+	// The requested price ranges:
+	var priceRangesToFilterArray = []
+	if (context.query.priceRange) {
+		const priceRangesToFilterQueryString = (context.query.priceRange)
+		priceRangesToFilterArray = priceRangesToFilterQueryString.split(",")
+	}
 	
 	// The max number of itens per page:
 	// - Preferably a number divisible by all the possible number of columns in our layout (currently: 4).
@@ -291,17 +330,20 @@ export async function getServerSideProps(context) {
 	const bookCategories = await getBookCategories()
 
 	// Finally, we get the requested books and the number of pages needed to show them:
-	const {books, pagesTotal, booksTotal} = await getBooks(page, totalItensPerPage, formatsToFilterArray, conditionsToFilterArray, categoriesToFilterArray)
+	const {books, pagesTotal, booksTotal} = await getBooks(page, totalItensPerPage, formatsToFilterArray, conditionsToFilterArray, categoriesToFilterArray, priceRangesToFilterArray)
 
   return {
-    props: {books
-					 ,bookCategories
-					 ,pagesTotal
-					 ,booksTotal
-					 ,page
-					 ,totalItensPerPage
-					 ,formatsToFilterArray
-					 ,conditionsToFilterArray
-					 ,categoriesToFilterArray}
+    props: {
+			books,
+			bookCategories,
+			pagesTotal,
+			booksTotal,
+			page,
+			totalItensPerPage,
+			formatsToFilterArray,
+			conditionsToFilterArray,
+			categoriesToFilterArray,
+			priceRangesToFilterArray
+		}
   }
 }

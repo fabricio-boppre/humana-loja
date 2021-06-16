@@ -44,6 +44,30 @@ export default function ShowcaseFiltersAndOrder(props) {
 								</ul>
 							</li>
 							<li>
+								<div onClick={() => {props.clickFilterType(props.bookPriceRanges.id)}}
+										 className={"filter-title " + (props.isFilterTypeActive(props.bookPriceRanges.id) ? "active" : "")}>
+										 {props.bookPriceRanges.title}:
+								</div>
+								<ul>
+									<li onClick={() => {props.clickFilter(props.bookPriceRanges.priceRangeUpTo30Id,props.bookPriceRanges.id)}} 
+										  className={props.isFilterActive(props.bookPriceRanges.priceRangeUpTo30Id,props.bookPriceRanges.id) ? "active" : ""}>
+											{props.bookPriceRanges.priceRangeUpTo30Title}
+									</li>
+									<li onClick={() => {props.clickFilter(props.bookPriceRanges.priceRange31to60Id,props.bookPriceRanges.id)}} 
+										  className={props.isFilterActive(props.bookPriceRanges.priceRange31to60Id,props.bookPriceRanges.id) ? "active" : ""}>
+											{props.bookPriceRanges.priceRange31to60Title}
+									</li>
+									<li onClick={() => {props.clickFilter(props.bookPriceRanges.priceRange61to90Id,props.bookPriceRanges.id)}} 
+										  className={props.isFilterActive(props.bookPriceRanges.priceRange61to90Id,props.bookPriceRanges.id) ? "active" : ""}>
+											{props.bookPriceRanges.priceRange61to90Title}
+									</li>
+									<li onClick={() => {props.clickFilter(props.bookPriceRanges.priceRange91onwardsId,props.bookPriceRanges.id)}} 
+										  className={props.isFilterActive(props.bookPriceRanges.priceRange91onwardsId,props.bookPriceRanges.id) ? "active" : ""}>
+											{props.bookPriceRanges.priceRange91onwardsTitle}
+									</li>
+								</ul>
+							</li>
+							<li>
 								<div onClick={() => {props.clickFilterType(props.bookCategories.id)}}
 										 className={"filter-title " + (props.isFilterTypeActive(props.bookCategories.id) ? "active" : "")}>
 										 {props.bookCategories.title}:
