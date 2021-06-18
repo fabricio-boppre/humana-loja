@@ -76,7 +76,7 @@
 	}	
 
 	// Responsiveness rules:
-	@media screen and (max-width: assets.$tablet-width) {
+	@media screen and (max-width: assets.$large-device-width) {
 		:global(#information) {
 			@include assets.flex-basis(90%);
 		}

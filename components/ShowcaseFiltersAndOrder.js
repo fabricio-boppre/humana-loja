@@ -1,19 +1,81 @@
+import { useState } from 'react'
+import { useEffect } from 'react'
 import Link from 'next/link'
 
 export default function ShowcaseFiltersAndOrder(props) {
+
+	// States:
+	// - See the explanation of why we use State Hook in the /index.js page.
+	// - Visibility of order options:
+	const [orderOptionsVisible, setOrderOptionsVisibility] = useState(false);
+	// - Visibility of filter options:
+	const [filterOptionsVisible, setFilterOptionsVisibility] = useState(false);
+
+	// Effects:
+	// - See the explanation of why we use Effect Hook in the Masthead.js component.
+	// - If the body is bigger than our $tablet-width (see the /styles/assets.scss file), then we start with our order and filter options visible.
+	useEffect(() => {
+		if (document.body.clientWidth > 768) {
+			setOrderOptionsVisibility(true)
+			setFilterOptionsVisibility(true)
+		}
+	}, [])
+	
+	// Functions to handle the click on the visibility option of the order and filter options:
+	const clickOrderOptionsVisibility = () => {
+		setOrderOptionsVisibility(!orderOptionsVisible)
+	}
+	const clickFilterOptionsVisibility = () => {
+		setFilterOptionsVisibility(!filterOptionsVisible)
+	}
 	
 	return <div id="showcase-filters-order">
 
-						<div className="order-header">exibir/ocultar opções de ordenação:</div>
-						<ul>
-							<li>[em construção]</li>
+						<div className="order-header"
+						     onClick={() => {clickOrderOptionsVisibility()}}>
+							{orderOptionsVisible ? "ocultar opções de ordenação ↑" : "exibir opções de ordenação ↓"}
+						</div>
+						<ul className={orderOptionsVisible ? "visible" : "invisible"} >
+							<li>
+								<div className="title">
+										 {props.bookPublicationYear.title}:
+								</div>
+								<ul>
+									<li onClick={() => {props.clickOrder(props.bookPublicationYear.publicationYearDescId)}} 
+										  className={props.isOrderActive(props.bookPublicationYear.publicationYearDescId) ? "active" : ""}>
+											{props.bookPublicationYear.publicationYearDescTitle}
+									</li>
+									<li onClick={() => {props.clickOrder(props.bookPublicationYear.publicationYearAscId)}}
+										  className={props.isOrderActive(props.bookPublicationYear.publicationYearAscId) ? "active" : ""}>
+											{props.bookPublicationYear.publicationYearAscTitle}
+									</li>
+								</ul>
+							</li>
+							<li>
+								<div className="title">
+										 {props.bookPrices.title}:
+								</div>
+								<ul>
+									<li onClick={() => {props.clickOrder(props.bookPrices.priceDescId)}} 
+										  className={props.isOrderActive(props.bookPrices.priceDescId) ? "active" : ""}>
+											{props.bookPrices.priceDescTitle}
+									</li>
+									<li onClick={() => {props.clickOrder(props.bookPrices.priceAscId)}}
+										  className={props.isOrderActive(props.bookPrices.priceAscId) ? "active" : ""}>
+											{props.bookPrices.priceAscTitle}
+									</li>
+								</ul>
+							</li>
 						</ul>
 
-						<div className="filters-header">exibir/ocultar opções de filtro:</div>
-						<ul>
+						<div className="filter-header"
+						     onClick={() => {clickFilterOptionsVisibility()}}>
+							{filterOptionsVisible ? "ocultar opções de filtro ↑" : "exibir opções de filtro ↓"}
+						</div>
+						<ul className={filterOptionsVisible ? "visible" : "invisible"} >
 							<li>
 								<div onClick={() => {props.clickFilterType(props.bookFormats.id)}}
-										 className={"filter-title " + (props.isFilterTypeActive(props.bookFormats.id) ? "active" : "")}>
+										 className={"title " + (props.isFilterTypeActive(props.bookFormats.id) ? "active" : "")}>
 										 {props.bookFormats.title}:
 								</div>
 								<ul>
@@ -29,7 +91,7 @@ export default function ShowcaseFiltersAndOrder(props) {
 							</li>
 							<li>
 								<div onClick={() => {props.clickFilterType(props.bookConditions.id)}}
-										 className={"filter-title " + (props.isFilterTypeActive(props.bookConditions.id) ? "active" : "")}>
+										 className={"title " + (props.isFilterTypeActive(props.bookConditions.id) ? "active" : "")}>
 										 {props.bookConditions.title}:
 								</div>
 								<ul>
@@ -45,7 +107,7 @@ export default function ShowcaseFiltersAndOrder(props) {
 							</li>
 							<li>
 								<div onClick={() => {props.clickFilterType(props.bookPriceRanges.id)}}
-										 className={"filter-title " + (props.isFilterTypeActive(props.bookPriceRanges.id) ? "active" : "")}>
+										 className={"title " + (props.isFilterTypeActive(props.bookPriceRanges.id) ? "active" : "")}>
 										 {props.bookPriceRanges.title}:
 								</div>
 								<ul>
@@ -69,7 +131,7 @@ export default function ShowcaseFiltersAndOrder(props) {
 							</li>
 							<li>
 								<div onClick={() => {props.clickFilterType(props.bookCategories.id)}}
-										 className={"filter-title " + (props.isFilterTypeActive(props.bookCategories.id) ? "active" : "")}>
+										 className={"title " + (props.isFilterTypeActive(props.bookCategories.id) ? "active" : "")}>
 										 {props.bookCategories.title}:
 								</div>
 								<ul>

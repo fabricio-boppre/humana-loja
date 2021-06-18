@@ -17,16 +17,24 @@
 	:global(#showcase-filters-order) {
 		$block-space: 10px;
 		$list-line-height: 17px;
-		@include assets.flex(0 0 20%);
+		@include assets.flex(0 0 250px);
 		font-size: assets.$typo-small-size;
 		:global(.order-header),
-		:global(.filters-header) {
-			margin-bottom: $block-space; 
+		:global(.filter-header) {
+			border-top: assets.$box-border;
+			padding: 10px 0 20px 0;
+			cursor: pointer;
+			font-weight: 700;
+			line-height: assets.$line-height-small-size;
 		}
 		> ul {
+			padding-left: 10px;
+			&:global(.invisible) {
+				display: none !important;
+			}
 			> li {
 				margin-bottom: $block-space;
-				:global(.filter-title) {
+				:global(.title) {
 					color: assets.$gray-typo;
 					font-weight: 700;
 					padding-bottom: 10px;
@@ -69,7 +77,7 @@
 	
 	// Showcase:
 	:global(main#showcase) {
-		@include assets.flex(0 0 80%);
+		@include assets.flex(1);
 	  opacity: 1;
 		:global(ul#showcase-books-list) {
 			@include assets.flexbox();
@@ -99,18 +107,24 @@
 		:global(main#showcase) {
 			@include assets.flex(0 0 100%);
 		}
+		:global(main#showcase) {
+			border-top: assets.$box-border;
+		}
 		:global(#showcase-filters-order) {
 			text-align: center;
 			> ul {
+				padding-left: 0;
 				> li {
-					:global(.filter-title) {
+					:global(.title) {
 						display: table;
 						margin: 0 auto;
+						padding-bottom: 20px;
 					}
 					> ul {
 						> li {
 							display: table;
 							margin: 0 auto;
+							padding-bottom: 20px;
 						}
 					}
 				}

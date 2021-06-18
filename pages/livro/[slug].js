@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import priceFormat from '../../lib/utils'
+import { priceFormat } from '../../lib/utils'
 import { readCMS } from '../../lib/sanity'
 
 export default function Book({book}) {
@@ -13,14 +13,6 @@ export default function Book({book}) {
     return <div>Carregando...</div>
   }
 
-	if (book.price_discount !== undefined) {
-		var discount = true
-		var active_price = book.price_discount
-	} else {
-		var discount = false
-		var active_price = book.price
-	}
-	
   return (
     <>
       <Head>
@@ -38,12 +30,12 @@ export default function Book({book}) {
 
 				<div id="format">[{book.format}]</div>
 
-				<div id="price">{priceFormat(active_price)}</div>
+				<div id="price">{priceFormat(book.price)}</div>
 
         <button className="snipcart-add-item"
             data-item-id={book.id}
 	          data-item-name={book.title}
-            data-item-price={active_price}
+            data-item-price={book.price}
             data-item-url={`/livro/${book.id}`}
             data-item-description={book.description}
             data-item-image={book.mainImageUrl}

@@ -67,11 +67,21 @@ li.showcase_book {
 		}
 		:global(.showcase_book_text_price) {
 			font-weight: 700;
-			:global(.showcase_book_text_inactive_price) {
+			:global(.showcase_book_text_original_price) {
 				padding-right: 5px;
 				color: lighten(black,70%);
 				text-decoration: line-through;
 			}
 		}
 	}
+
+	// Responsiveness rules:
+	@media screen and (max-width: assets.$large-device-width) {
+		margin: 0 25px 40px 25px;
+	}
+	@media screen and (max-width: assets.$tablet-width) {
+		margin: 0 30px 40px 30px;
+	}
+
 }
+

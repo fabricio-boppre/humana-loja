@@ -4,50 +4,17 @@ import { useState } from 'react'
 import { useRouter } from 'next/router'
 import Head from 'next/head'
 import Link from 'next/link'
-import {getBooks,getBookCategories} from '../lib/books'
+import { bookPublicationYear,bookPrices,bookFormats,bookConditions,bookPriceRanges,bookCategories } from '../lib/utils'
+import { getBooks,getBookCategories } from '../lib/books'
 import ShowcaseBook from '../components/ShowcaseBook'
 import ShowcaseFiltersAndOrder from '../components/ShowcaseFiltersAndOrder'
 import ShowcasePagination from '../components/ShowcasePagination'
 import styles from '../styles/Index.module.css'
-
+	
 export default function Index(props) {
-
-	// Constants for filters:
-	// - Book formats, price ranges and conditions don't change, so we can manually organize it;
-	// - Book categories come from the CMS.
-	const bookFormats = {
-		id: 'format', 
-		title: 'formato',
-		formatLivroId: 'livro',
-		formatLivroTitle: 'livro',
-		formatEbookId: 'ebook',
-		formatEbookTitle: 'ebook'
-	}
-	const bookConditions = {
-		id: 'condition',
-		title: 'estado',
-		conditionNovoId: 'novo', 
-		conditionNovoTitle: 'novo',
-		conditionUsadoId: 'usado', 
-		conditionUsadoTitle: 'usado'
-	}
-	const bookCategories = {
-		id: 'category',
-		title: 'categoria',
-		categories: props.bookCategories
-	}
-	const bookPriceRanges = {
-		id: 'priceRange', 
-		title: 'faixa de preço',
-		priceRangeUpTo30Id: 'ate30',
-		priceRangeUpTo30Title: 'Até 30 reais',
-		priceRange31to60Id: '31a60',
-		priceRange31to60Title: 'Entre 31 e 60 reais',
-		priceRange61to90Id: '61a90',
-		priceRange61to90Title: 'Entre 61 e 90 reais',
-		priceRange91onwardsId: 'maisde90',
-		priceRange91onwardsTitle: 'Mais de 90',
-	}
+	
+	// Let's add to our bookCategories constant the fetched categories:
+	bookCategories.categories = props.bookCategories
 	
 	// Router:
 	// - Next.js has a file-system based router built on the concept of pages. When a file is added to the pages directory it's automatically available as a route. To access the router object we use the useRouter:
@@ -67,6 +34,8 @@ export default function Index(props) {
 	const [categoriesToFilter, setCategoryToFilter] = useState(props.categoriesToFilterArray);
 	// - Price ranges to filter state:
 	const [priceRangesToFilter, setPriceRangeToFilter] = useState(props.priceRangesToFilterArray);
+	// - Order state:
+	const [order, setOrder] = useState(props.order);
 	// - Page state:
 	const [page, setPage] = useState(props.page);
 	// - This state is just to help us re-render the component after removing filters (see explanation below in clickFilter function):
@@ -82,6 +51,7 @@ export default function Index(props) {
 		var conditionsQueryString = ''
 		var categoriesQueryString = ''
 		var priceRangesQueryString = ''
+		var orderQueryString = ''
 		var pageQueryString = ''
 		if (formatsToFilter.length > 0) {
 			formatsQueryString = '?' + bookFormats.id + '=' + formatsToFilter.join(',')	
@@ -95,16 +65,20 @@ export default function Index(props) {
 		if (priceRangesToFilter.length > 0) {
 			priceRangesQueryString = (((formatsQueryString !== '') || (conditionsQueryString !== '') || (categoriesQueryString !== '')) ? "&" : "?") + bookPriceRanges.id + '=' + priceRangesToFilter.join(',')		
 		}
+		if (order !== bookPublicationYear.publicationYearDescId) {
+			orderQueryString = (((formatsQueryString !== '') || (conditionsQueryString !== '') || (categoriesQueryString !== '')  || (priceRangesQueryString !== '')) ? "&" : "?") + 'order=' + order		
+		}
 		if (page > 1) {
-			pageQueryString = (((formatsQueryString !== '') || (conditionsQueryString !== '') || (categoriesQueryString !== '') || (priceRangesQueryString !== '')) ? "&" : "?") + 'page=' + page		
+			pageQueryString = (((formatsQueryString !== '') || (conditionsQueryString !== '') || (categoriesQueryString !== '') || (priceRangesQueryString !== '') || (orderQueryString !== '')) ? "&" : "?") + 'page=' + page		
 		}
 		// - Then, we proceed the client-side transition:
-		if ((formatsQueryString + conditionsQueryString + categoriesQueryString + priceRangesQueryString + pageQueryString) == '') {
+		if ((formatsQueryString + conditionsQueryString + categoriesQueryString + priceRangesQueryString + orderQueryString + pageQueryString) == '') {
 			router.push('/')	
 		} else {
-			router.push(formatsQueryString + conditionsQueryString + categoriesQueryString + priceRangesQueryString + pageQueryString)
+			router.push(formatsQueryString + conditionsQueryString + categoriesQueryString + priceRangesQueryString + orderQueryString + pageQueryString)
     }
 	}, [page
+		 ,order
 		 ,formatsToFilter
 		 ,conditionsToFilter
 		 ,categoriesToFilter
@@ -245,6 +219,22 @@ export default function Index(props) {
 		setPage(1)
   }
 
+	// Function that check if a specific order is active:
+	const isOrderActive = (orderToCheck) => {
+		if (orderToCheck === order) {
+			return true
+		}
+		return false
+	}
+
+	// Function to handle the click on an option of the order lists:
+	// - The click calls the function that updates the order state, setting the clicked option.
+	const clickOrder = (clickedOrder) => {
+	 	setOrder(clickedOrder)
+		// We also set the page to the first one, because changing the order must renew the showcase:
+		setPage(1)
+  }
+	
 	// Create the showcase with the books and the pagination component, or an error message in case of no books:
 	var showcase
 	if (props.books) {
@@ -273,12 +263,16 @@ export default function Index(props) {
 
 				<ShowcaseFiltersAndOrder clickFilterType={clickFilterType}
 												 				 clickFilter={clickFilter}
+																 clickOrder={clickOrder}
 												 				 isFilterActive={isFilterActive}
 												 				 isFilterTypeActive={isFilterTypeActive}
+																 isOrderActive={isOrderActive}
 												 				 bookConditions={bookConditions}
 												 				 bookFormats={bookFormats}
 												 				 bookCategories={bookCategories} 
-																 bookPriceRanges={bookPriceRanges} />
+																 bookPriceRanges={bookPriceRanges}
+																 bookPublicationYear={bookPublicationYear}
+																 bookPrices={bookPrices} />
 				
 	      <main id="showcase">
 					{showcase}
@@ -293,6 +287,9 @@ export async function getServerSideProps(context) {
 
 	// The requested page (if none, then it's the first one):
 	const page = (context.query.page) ? context.query.page : 1
+
+	// The order (if none, then it's the publication year [desc]):
+	const order = (context.query.order) ? context.query.order : bookPublicationYear.publicationYearDescId
 	
 	// The requested formats:
 	var formatsToFilterArray = []
@@ -330,7 +327,7 @@ export async function getServerSideProps(context) {
 	const bookCategories = await getBookCategories()
 
 	// Finally, we get the requested books and the number of pages needed to show them:
-	const {books, pagesTotal, booksTotal} = await getBooks(page, totalItensPerPage, formatsToFilterArray, conditionsToFilterArray, categoriesToFilterArray, priceRangesToFilterArray)
+	const {books, pagesTotal, booksTotal} = await getBooks(page, totalItensPerPage, formatsToFilterArray, conditionsToFilterArray, categoriesToFilterArray, priceRangesToFilterArray, order)
 
   return {
     props: {
@@ -343,7 +340,8 @@ export async function getServerSideProps(context) {
 			formatsToFilterArray,
 			conditionsToFilterArray,
 			categoriesToFilterArray,
-			priceRangesToFilterArray
+			priceRangesToFilterArray,
+			order
 		}
   }
 }
