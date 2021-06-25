@@ -1,32 +1,31 @@
-import Image from 'next/image'
+import Link from 'next/link'
 import { useEffect } from 'react'
+import { useRouter } from 'next/router'
 import styles from './SearchForm.module.css'
 
-export default function SearchForm() {
+export default function SearchForm(props) {
 
-	// Let's create an effect that show the info only if there is at least on item in the cart:
-	// - The info div starts as display:none and the adding or removing itens toggles this value;
-	// - See the explanation of why we use useEffect in the Masthead.js component.
-  var itensCount = 0
+	// Router:
+	// - See the explanation of why we use Effect Hook in the index.js page.
+  const router = useRouter()
+
+	// Effects:
+	// - See the explanation of why we use Effect Hook in the Masthead.js component.
+	// - If the URI has a search query string but our searchCount is still 0, it means the user is opening the website with a search query string already in its URI (instead of submitting it via search form);
+	// - Our index will take care of fetching the data for the search, but we have to manually put this string in the form search after the first render, for layout consistency. We do this by calling a method that updates the formSearchString state with the query string:
 	useEffect(() => {
-    const divSnipcartItemsCountAndPrice = document.getElementById('snipcart-items-count-and-price');
-		document.addEventListener('snipcart.ready', function() {
-			Snipcart.store.subscribe(() => {
-			  const itensCount = Snipcart.store.getState().cart.items.count
-				if (itensCount > 0) {
-					divSnipcartItemsCountAndPrice.style.display = "block"
-				} else {
-					divSnipcartItemsCountAndPrice.style.display = "none"
-				}
-			});
-    });
-  }, [])
-
+		if ((router.query.search) && (props.searchCount == 0)) {
+			props.setFormSearchStringFromURI(router.query.search)
+		}
+	}, [])
+	
   return <div id={styles.search_form}>
 					
 					<form>
-						<input type="text" name="searchString" defaultValue="[em construção]"/>
-						<input type="submit" value="pesquisar" />
+						<input type="search" placeholder="título ou autor" value={props.formSearchString} onChange={props.setFormSearchString}/>
+        		<Link href={`/?search=${encodeURIComponent(props.formSearchString)}`} >
+							<button onClick={() => props.handleSearchButton()}>pesquisar</button>
+						</Link>
 					</form>
 
          </div>

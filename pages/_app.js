@@ -11,7 +11,24 @@ import '../styles/globals.css' // And then apply our globals.
 // - pageProps is an object with the initial props that were preloaded for your page by one of our data fetching methods, otherwise it's an empty object.
 export default class Humana extends App {
 
-  render() {
+  // States:
+	// - formSearchString is the content of the search form;
+	// - searchCount state helps us re-render the component, when the search button is clicked.
+	state = {formSearchString: '',
+					 searchCount: 0}
+
+	// Methods:
+	// - Arrow functions make .bind method calls in the constructor unnecessary;
+	// - (Because they lexically bind their context so this actually refers to the originating context; that’s called Lexical Scoping.)
+	// - https://www.taniarascia.com/es6-syntax-and-feature-overview/#arrow-functions
+	// - https://medium.com/@nikolalsvk/loosing-bind-this-in-react-8637ebf372cf
+  // - Methods that set a new search string on the form (via user typing or via user opening an URI with a search query string in it):
+	setFormSearchString = (e) => { this.setState({formSearchString: e.target.value}) }
+	setFormSearchStringFromURI = (formSearchStringFromURI) => { this.setState({formSearchString: formSearchStringFromURI}) }
+  // - Method that updates our searchCount, which triggers a new search:
+	handleSearchButton = () => { this.setState({ searchCount: this.state.searchCount + 1 }) }
+	
+	render() {
 
     const { Component, pageProps } = this.props;
 
@@ -35,11 +52,17 @@ export default class Humana extends App {
 				
 				<div id="principal">
 
-					<SearchForm />
+					<SearchForm formSearchString={this.state.formSearchString}
+											setFormSearchString={this.setFormSearchString}
+											setFormSearchStringFromURI={this.setFormSearchStringFromURI}
+											handleSearchButton={this.handleSearchButton}
+											searchCount={this.state.searchCount} />
 
-					<CheckoutButtonAndInfo />
+					<CheckoutButtonAndInfo  />
 					
-          <Component {...pageProps} />
+          <Component {...pageProps} 
+										 formSearchString={this.state.formSearchString}
+										 searchCount={this.state.searchCount} />
 
         </div>
 

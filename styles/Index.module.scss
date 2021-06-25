@@ -52,6 +52,7 @@
 					}
 				}
 				> ul {
+					padding-left: 10px;
 					> li {
 						background-image: url("../public/img/layout/checkbox-unchecked.svg"),
 												linear-gradient(transparent, transparent);
@@ -86,12 +87,10 @@
 			-webkit-justify-content: space-evenly !important;
 			@include assets.align-items(flex-start)
 		}
-		:global(#empty-showcase) {
-			font-size: assets.$typo-normal-size;
-			line-height: assets.$line-height-normal-size;
-			font-weight: 300;
+		:global(#empty-showcase),
+		h1 {
+			padding: 0 20px 50px 20px;
 			text-align: center;
-			padding: 0 20px;
 		}
 		&:global(.loading) {
 			> * {	
@@ -108,7 +107,11 @@
 			@include assets.flex(0 0 100%);
 		}
 		:global(main#showcase) {
+			padding-top: 30px;
 			border-top: assets.$box-border;
+			h1 {
+				padding-bottom: 40px;
+			}
 		}
 		:global(#showcase-filters-order) {
 			text-align: center;
@@ -121,6 +124,7 @@
 						padding-bottom: 20px;
 					}
 					> ul {
+						padding-left: 0;
 						> li {
 							display: table;
 							margin: 0 auto;
@@ -129,9 +133,6 @@
 					}
 				}
 			}
-		}
-		:global(main#showcase) {
-			padding-top: 30px;
 		}
 	}	
 

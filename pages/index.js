@@ -3,7 +3,6 @@ import { useEffect } from 'react'
 import { useState } from 'react'
 import { useRouter } from 'next/router'
 import Head from 'next/head'
-import Link from 'next/link'
 import { bookPublicationYear,bookPrices,bookFormats,bookConditions,bookPriceRanges,bookCategories } from '../lib/utils'
 import { getBooks,getBookCategories } from '../lib/books'
 import ShowcaseBook from '../components/ShowcaseBook'
@@ -27,56 +26,85 @@ export default function Index(props) {
 	// - After a state update, React will re-render the component, passing the new state value to it (and to any associated components that receive it as a prop);
 	// - Array destructuring: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment#array_destructuring
 	// - Formats to filter state:
-	const [formatsToFilter, setFormatToFilter] = useState(props.formatsToFilterArray);
+	const [formatsToFilter, setFormatToFilter] = useState(props.formatsToFilterArray)
 	// - Conditions to filter state:
-	const [conditionsToFilter, setConditionToFilter] = useState(props.conditionsToFilterArray);
+	const [conditionsToFilter, setConditionToFilter] = useState(props.conditionsToFilterArray)
 	// - Categories to filter state:
-	const [categoriesToFilter, setCategoryToFilter] = useState(props.categoriesToFilterArray);
+	const [categoriesToFilter, setCategoryToFilter] = useState(props.categoriesToFilterArray)
 	// - Price ranges to filter state:
-	const [priceRangesToFilter, setPriceRangeToFilter] = useState(props.priceRangesToFilterArray);
+	const [priceRangesToFilter, setPriceRangeToFilter] = useState(props.priceRangesToFilterArray)
 	// - Order state:
-	const [order, setOrder] = useState(props.order);
+	const [order, setOrder] = useState(props.order)
 	// - Page state:
-	const [page, setPage] = useState(props.page);
+	const [page, setPage] = useState(props.page)
 	// - This state is just to help us re-render the component after removing filters (see explanation below in clickFilter function):
-	const [removedFilter, forceUpdate] = useReducer(x => x + 1, 0);
-	
+	const [removedFilter, forceUpdate] = useReducer(x => x + 1, 0)
+	// - This state is just to help us avoid a new automatic render after the first one (see explanation below in the routing useEffect):
+	const [interactionStarted, setInteractionStarted] = useState(false)
+	// - Search string state:
+	const [currentSearchString,setCurrentSearchString] = useState(props.currentSearchString)
+		
 	// Effects:
 	// - See the explanation of why we use Effect Hook in the Masthead.js component.
-	// - After updating the filters or page states, we have to re-route the app:
-	// - To have the useEffect hook called only when state updates, we include the relevant states in the dependency array (the second argument passed to useEffect).
+	// - To have the useEffect hook called only when certain states or props are updated, we include them in the dependency array (the second argument passed to useEffect).
+	// - If we have a new search (the search button increments our searchCount prop), we have to clear the page state, filters states and order states and also set formSearchString as the new currentSearchString state;
+	// - This effect also triggers the effect below (by updating states), which runs the new route for the search:
 	useEffect(() => {
-		// - First, we prepare the query string based on our current state:  
-		var formatsQueryString = ''
-		var conditionsQueryString = ''
-		var categoriesQueryString = ''
-		var priceRangesQueryString = ''
-		var orderQueryString = ''
-		var pageQueryString = ''
-		if (formatsToFilter.length > 0) {
-			formatsQueryString = '?' + bookFormats.id + '=' + formatsToFilter.join(',')	
+		if (props.searchCount > 0) {
+			setFormatToFilter([])
+			setConditionToFilter([])
+			setCategoryToFilter([])
+			setPriceRangeToFilter([])
+			setOrder(bookPublicationYear.publicationYearDescId)
+			setPage(1)
+			setCurrentSearchString(props.formSearchString)
 		}
-		if (conditionsToFilter.length > 0) {
-			conditionsQueryString = ((formatsQueryString !== '') ? "&" : "?") + bookConditions.id + '=' + conditionsToFilter.join(',')		
+	}, [props.searchCount])
+	// - After updating the filters or order or page state, we have to re-route the app:
+	useEffect(() => {
+		// - We check if the user has already changed filter or page or order, or if he's making a search:
+		// -> If not, then it means we are in the first rendering of the page and we don't need to re-route;
+		// -> If yes, then we proceed.
+		if (interactionStarted || (props.searchCount > 0)) {
+			// First, we prepare the query strings based on our current states:
+			var formatsQueryString = ''
+			var conditionsQueryString = ''
+			var categoriesQueryString = ''
+			var priceRangesQueryString = ''
+			var orderQueryString = ''
+			var searchQueryString = ''
+			var pageQueryString = ''
+			var isFirstQuery = true
+			if (formatsToFilter.length > 0) {
+				formatsQueryString = '?' + bookFormats.id + '=' + formatsToFilter.join(',')
+				isFirstQuery = false
+			}
+			if (conditionsToFilter.length > 0) {
+				conditionsQueryString = (isFirstQuery ? "?" : "&") + bookConditions.id + '=' + conditionsToFilter.join(',')		
+				isFirstQuery = false
+			}
+			if (categoriesToFilter.length > 0) {
+				categoriesQueryString = (isFirstQuery ? "?" : "&") + bookCategories.id + '=' + categoriesToFilter.join(',')		
+				isFirstQuery = false
+			}
+			if (priceRangesToFilter.length > 0) {
+				priceRangesQueryString = (isFirstQuery ? "?" : "&") + bookPriceRanges.id + '=' + priceRangesToFilter.join(',')		
+				isFirstQuery = false
+			}
+			if (order !== bookPublicationYear.publicationYearDescId) {
+				orderQueryString = (isFirstQuery ? "?" : "&") + 'order=' + order		
+				isFirstQuery = false
+			}
+			if (currentSearchString !== '') {
+				searchQueryString = (isFirstQuery ? "?" : "&") + 'search=' + currentSearchString
+				isFirstQuery = false
+			}
+			if (page > 1) {
+				pageQueryString = (isFirstQuery ? "?" : "&") + 'page=' + page		
+			}
+			// Then we proceed the client-side transition with the requested queries:
+			router.push('/' + formatsQueryString + conditionsQueryString + categoriesQueryString + priceRangesQueryString + orderQueryString + searchQueryString + pageQueryString)
 		}
-		if (categoriesToFilter.length > 0) {
-			categoriesQueryString = (((formatsQueryString !== '') || (conditionsQueryString !== '')) ? "&" : "?") + bookCategories.id + '=' + categoriesToFilter.join(',')		
-		}
-		if (priceRangesToFilter.length > 0) {
-			priceRangesQueryString = (((formatsQueryString !== '') || (conditionsQueryString !== '') || (categoriesQueryString !== '')) ? "&" : "?") + bookPriceRanges.id + '=' + priceRangesToFilter.join(',')		
-		}
-		if (order !== bookPublicationYear.publicationYearDescId) {
-			orderQueryString = (((formatsQueryString !== '') || (conditionsQueryString !== '') || (categoriesQueryString !== '')  || (priceRangesQueryString !== '')) ? "&" : "?") + 'order=' + order		
-		}
-		if (page > 1) {
-			pageQueryString = (((formatsQueryString !== '') || (conditionsQueryString !== '') || (categoriesQueryString !== '') || (priceRangesQueryString !== '') || (orderQueryString !== '')) ? "&" : "?") + 'page=' + page		
-		}
-		// - Then, we proceed the client-side transition:
-		if ((formatsQueryString + conditionsQueryString + categoriesQueryString + priceRangesQueryString + orderQueryString + pageQueryString) == '') {
-			router.push('/')	
-		} else {
-			router.push(formatsQueryString + conditionsQueryString + categoriesQueryString + priceRangesQueryString + orderQueryString + pageQueryString)
-    }
 	}, [page
 		 ,order
 		 ,formatsToFilter
@@ -108,6 +136,7 @@ export default function Index(props) {
 	// - The click calls the function that updates the page state;
 	// - After updating the state, the component is immediately re-rendered (the re-route happens in the Effect Hook).
 	const clickNextPage = () => {
+		setInteractionStarted(true) // Set to true to allow the re-route in our route Hook Effect.
 		setPage(parseInt(page)+1)
 	}
 	const clickPreviousPage = () => {
@@ -173,6 +202,7 @@ export default function Index(props) {
 	// Function to handle the click on an option of the filters lists:
 	// - The click calls the function that updates the filter state, activating or deactivating the clicked option.
 	const clickFilter = (clickedFilter, filterType) => {
+		setInteractionStarted(true) // Set to true to allow the re-route in our route Hook Effect.
 		// First we copy the current state (of the requested type) into an array:
 	  var filterArray
 		if (filterType == bookFormats.id) {
@@ -230,6 +260,7 @@ export default function Index(props) {
 	// Function to handle the click on an option of the order lists:
 	// - The click calls the function that updates the order state, setting the clicked option.
 	const clickOrder = (clickedOrder) => {
+		setInteractionStarted(true) // Set to true to allow the re-route in our route Hook Effect.
 	 	setOrder(clickedOrder)
 		// We also set the page to the first one, because changing the order must renew the showcase:
 		setPage(1)
@@ -237,6 +268,10 @@ export default function Index(props) {
 	
 	// Create the showcase with the books and the pagination component, or an error message in case of no books:
 	var showcase
+	var showcaseTitle
+	if (currentSearchString) {
+		showcaseTitle = <h1>Resultado da pesquisa pelo termo <b>{currentSearchString}</b>:</h1>
+	}
 	if (props.books) {
 		showcase = (
 	      <>
@@ -256,7 +291,7 @@ export default function Index(props) {
 				
   return (
 			<div className="content" id={styles.index}>
-
+			
 	      <Head>
 	        <title>Humana | Livros</title>
 	      </Head>
@@ -275,6 +310,7 @@ export default function Index(props) {
 																 bookPrices={bookPrices} />
 				
 	      <main id="showcase">
+					{showcaseTitle ? showcaseTitle : ''}
 					{showcase}
 				</main>
 							
@@ -285,12 +321,15 @@ export default function Index(props) {
 // This gets called on every request, to provide the data:
 export async function getServerSideProps(context) {
 
+	// The requested search string (if none, then it's empty):
+	var currentSearchString = (context.query.search) ? context.query.search : ''
+
 	// The requested page (if none, then it's the first one):
-	const page = (context.query.page) ? context.query.page : 1
+	var page = (context.query.page) ? context.query.page : 1
 
 	// The order (if none, then it's the publication year [desc]):
-	const order = (context.query.order) ? context.query.order : bookPublicationYear.publicationYearDescId
-	
+	var order = (context.query.order) ? context.query.order : bookPublicationYear.publicationYearDescId
+
 	// The requested formats:
 	var formatsToFilterArray = []
 	if (context.query.format) {
@@ -321,13 +360,13 @@ export async function getServerSideProps(context) {
 	
 	// The max number of itens per page:
 	// - Preferably a number divisible by all the possible number of columns in our layout (currently: 4).
-	const totalItensPerPage = 24
+	const totalItensPerPage = 36
 
 	// Let's get the book categories to build the filter list:
 	const bookCategories = await getBookCategories()
 
 	// Finally, we get the requested books and the number of pages needed to show them:
-	const {books, pagesTotal, booksTotal} = await getBooks(page, totalItensPerPage, formatsToFilterArray, conditionsToFilterArray, categoriesToFilterArray, priceRangesToFilterArray, order)
+	const {books, pagesTotal, booksTotal} = await getBooks(page, totalItensPerPage, formatsToFilterArray, conditionsToFilterArray, categoriesToFilterArray, priceRangesToFilterArray, order, currentSearchString)
 
   return {
     props: {
@@ -341,7 +380,8 @@ export async function getServerSideProps(context) {
 			conditionsToFilterArray,
 			categoriesToFilterArray,
 			priceRangesToFilterArray,
-			order
+			order,
+			currentSearchString,
 		}
   }
 }

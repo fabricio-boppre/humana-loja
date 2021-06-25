@@ -10,25 +10,57 @@
   ------------------------------------------------------------------------------- */
 
 #search_form {
-	$form-size: 320px;
-	@include assets.flex-basis($form-size);
-
 	form {
 		@include assets.flexbox();
-		input[type=text] {
-			@include assets.flex-basis(100%);		
+		input[type=search] {
+			border-left: assets.$box-border;
+			border-top: assets.$box-border;
+			border-bottom: assets.$box-border;
+			border-right: none;
+			padding-left: 8px;
+			line-height: inherit;
+			font-family: inherit;
+			font-size: inherit;
+			font-weight: inherit;
+			width: 250px;
+		}
+		button {
+			border: none;
+			@include assets.border-top-right-radius(8px);
+			@include assets.border-bottom-right-radius(8px);
+			cursor: pointer;	
+			padding: 6px 20px;
+			color: white;
+			text-transform: uppercase;
+			font-weight: 400;
+			font-size: assets.$typo-small-size;
+			line-height: assets.$line-height-small-size;
+			font-family: inherit;
+			background-color: assets.$orange-button;
+			@include assets.transition(background-color 0.2s linear);
+		  &:hover {
+		    background-color: darken(assets.$orange-button,10%);
+		  }
 		}
 	}
 
 	// Responsiveness rules:
-	@media screen and (max-width: assets.$smartphone-width) {
+	@media screen and (max-width: assets.$tablet-width) {
 		@include assets.flex-basis(100%);
 		@include assets.order(2);
 		margin-top: 20px;
-		
 		form {
-		  width: assets.$principal-min-width;
-			margin: 0 auto;
+			justify-content: center;
+		}
+	}
+	@media screen and (max-width: assets.$smartphone-width) {
+		form {
+			input[type=search] {
+				width: 160px;
+			}
+			button {
+				padding: 6px 10px;
+			}
 		}
 	}
 

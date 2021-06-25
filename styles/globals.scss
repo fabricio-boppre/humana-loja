@@ -14,6 +14,7 @@ body {
 	font-size: 16px;	
 	background-color: assets.$gray-bg;
 	min-width: assets.$body-min-width;
+	
 	img {
 		max-width: 100%;
 		height: auto;						
@@ -44,6 +45,19 @@ body {
 		@include assets.justify-content(space-between);
 		@include assets.align-items(center);
 		
+		// Typography:
+		font-size: assets.$typo-normal-size;
+		line-height: assets.$line-height-normal-size;
+		font-weight: 300;
+		b {
+			font-weight: 700;
+		}
+		h1 {
+			font-size: assets.$typo-large-size;
+			line-height: assets.$line-height-large-size;
+			font-weight: 400;
+			padding-bottom: 20px;
+		}		
 		.content {
 			@include assets.flex-basis(100%);
 			margin-top: 40px;
@@ -53,7 +67,9 @@ body {
 	// Responsiveness rules:
 	@media screen and (max-width: assets.$tablet-width) {
 		#principal {
+			@include assets.justify-content(flex-start);
 			.content {
+				@include assets.order(3);
 				margin-top: 30px;
 			}		
 		}
@@ -64,10 +80,6 @@ body {
 			padding-top: 20px;
 		}
 		#principal {
-			@include assets.justify-content(flex-start);
-			.content {
-				@include assets.order(3);
-			}
 		}
 	}
 
