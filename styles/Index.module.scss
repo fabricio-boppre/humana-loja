@@ -21,11 +21,18 @@
 		font-size: assets.$typo-small-size;
 		:global(.order-header),
 		:global(.filter-header) {
+			$icon-height: 24px;
+			@include assets.flexbox();
+			@include assets.justify-content(space-between);
 			border-top: assets.$box-border;
 			padding: 10px 0 20px 0;
 			cursor: pointer;
 			font-weight: 700;
-			line-height: assets.$line-height-small-size;
+			height: $icon-height;
+			line-height: $icon-height;
+			span {
+				padding-right: 7px;		
+			}
 		}
 		> ul {
 			padding-left: 10px;
@@ -114,7 +121,10 @@
 			}
 		}
 		:global(#showcase-filters-order) {
-			text-align: center;
+			:global(.order-header),
+			:global(.filter-header) {
+				@include assets.justify-content(center);
+			}
 			> ul {
 				padding-left: 0;
 				> li {

@@ -28,12 +28,19 @@ export default function ShowcaseFiltersAndOrder(props) {
 	const clickFilterOptionsVisibility = () => {
 		setFilterOptionsVisibility(!filterOptionsVisible)
 	}
-	
+
+	const iconOpen = <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M8.12 9.29L12 13.17l3.88-3.88a.996.996 0 1 1 1.41 1.41l-4.59 4.59a.996.996 0 0 1-1.41 0L6.7 10.7a.996.996 0 0 1 0-1.41c.39-.38 1.03-.39 1.42 0z"></path></svg>
+	const iconClose = <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="m15.842432 15.325157-3.844941-3.914745-3.914745 3.844942a.99702056.99702056 0 1 1 -1.3972596-1.422627l4.6311026-4.5485257a.996.996 0 0 1 1.409943.012683l4.548526 4.6311024a.996.996 0 0 1 -.01268 1.409943c-.393403.376477-1.033467.380719-1.419943-.01277z"/></svg> 
+	const orderOpen = <><span>exibir opções de ordenação</span>{iconOpen}</>
+	const orderClose = <><span>ocultar opções de ordenação</span>{iconClose}</>
+	const filterOpen = <><span>exibir opções de filtro</span>{iconOpen}</>
+	const filterClose = <><span>ocultar opções de filtro</span>{iconClose}</>
+		
 	return <div id="showcase-filters-order">
 
 						<div className="order-header"
 						     onClick={() => {clickOrderOptionsVisibility()}}>
-							{orderOptionsVisible ? "ocultar opções de ordenação ↑" : "exibir opções de ordenação ↓"}
+							   {orderOptionsVisible ? orderClose: orderOpen }
 						</div>
 						<ul className={orderOptionsVisible ? "visible" : "invisible"} >
 							<li>
@@ -70,7 +77,7 @@ export default function ShowcaseFiltersAndOrder(props) {
 
 						<div className="filter-header"
 						     onClick={() => {clickFilterOptionsVisibility()}}>
-							{filterOptionsVisible ? "ocultar opções de filtro ↑" : "exibir opções de filtro ↓"}
+								 {filterOptionsVisible ? filterClose: filterOpen }
 						</div>
 						<ul className={filterOptionsVisible ? "visible" : "invisible"} >
 							<li>
