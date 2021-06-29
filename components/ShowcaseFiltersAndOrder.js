@@ -118,21 +118,21 @@ export default function ShowcaseFiltersAndOrder(props) {
 										 {props.bookPriceRanges.title}:
 								</div>
 								<ul>
-									<li onClick={() => {props.clickFilter(props.bookPriceRanges.priceRangeUpTo30Id,props.bookPriceRanges.id)}} 
+									<li onClick={() => {props.clickFilter(props.bookPriceRanges.priceRangeUpTo30Id,props.bookPriceRanges.id,true)}} 
 										  className={props.isFilterActive(props.bookPriceRanges.priceRangeUpTo30Id,props.bookPriceRanges.id) ? "active" : ""}>
 											{props.bookPriceRanges.priceRangeUpTo30Title}
 									</li>
-									<li onClick={() => {props.clickFilter(props.bookPriceRanges.priceRange31to60Id,props.bookPriceRanges.id)}} 
-										  className={props.isFilterActive(props.bookPriceRanges.priceRange31to60Id,props.bookPriceRanges.id) ? "active" : ""}>
-											{props.bookPriceRanges.priceRange31to60Title}
+									<li onClick={() => {props.clickFilter(props.bookPriceRanges.priceRangeUpTo60Id,props.bookPriceRanges.id,true)}} 
+										  className={props.isFilterActive(props.bookPriceRanges.priceRangeUpTo60Id,props.bookPriceRanges.id) ? "active" : ""}>
+											{props.bookPriceRanges.priceRangeUpTo60Title}
 									</li>
-									<li onClick={() => {props.clickFilter(props.bookPriceRanges.priceRange61to90Id,props.bookPriceRanges.id)}} 
-										  className={props.isFilterActive(props.bookPriceRanges.priceRange61to90Id,props.bookPriceRanges.id) ? "active" : ""}>
-											{props.bookPriceRanges.priceRange61to90Title}
+									<li onClick={() => {props.clickFilter(props.bookPriceRanges.priceRangeUpTo90Id,props.bookPriceRanges.id,true)}} 
+										  className={props.isFilterActive(props.bookPriceRanges.priceRangeUpTo90Id,props.bookPriceRanges.id) ? "active" : ""}>
+											{props.bookPriceRanges.priceRangeUpTo90Title}
 									</li>
-									<li onClick={() => {props.clickFilter(props.bookPriceRanges.priceRange91onwardsId,props.bookPriceRanges.id)}} 
-										  className={props.isFilterActive(props.bookPriceRanges.priceRange91onwardsId,props.bookPriceRanges.id) ? "active" : ""}>
-											{props.bookPriceRanges.priceRange91onwardsTitle}
+									<li onClick={() => {props.clickFilter(props.bookPriceRanges.priceRangeUpTo150Id,props.bookPriceRanges.id,true)}} 
+										  className={props.isFilterActive(props.bookPriceRanges.priceRangeUpTo150Id,props.bookPriceRanges.id) ? "active" : ""}>
+											{props.bookPriceRanges.priceRangeUpTo150Title}
 									</li>
 								</ul>
 							</li>

@@ -201,7 +201,7 @@ export default function Index(props) {
 	
 	// Function to handle the click on an option of the filters lists:
 	// - The click calls the function that updates the filter state, activating or deactivating the clicked option.
-	const clickFilter = (clickedFilter, filterType) => {
+	const clickFilter = (clickedFilter, filterType, maxOne) => {
 		setInteractionStarted(true) // Set to true to allow the re-route in our route Hook Effect.
 		// First we copy the current state (of the requested type) into an array:
 	  var filterArray
@@ -216,17 +216,19 @@ export default function Index(props) {
 		}	
 		// Now we check if the clicked option is in the list:
 		var index = filterArray.indexOf(clickedFilter)
-	  // If not, then we add it to the state (of the requested type) with the previous options:
+	  // If not, then we add it to the state (of the requested type):
+		// - If maxOne is true, then the clickedFilter must be activated and the the previous ones discarded;
+		// - If maxOne is false, then the clickedFilter must be added to the previous options;
 		// - After updating the state, the component is immediately re-rendered (the re-route happens in the Effect Hook).
 		if (index == -1) {
 			if (filterType == bookFormats.id) {
-			 	setFormatToFilter([...formatsToFilter, clickedFilter])
+			 	maxOne ? setFormatToFilter([clickedFilter]) : setFormatToFilter([...formatsToFilter, clickedFilter])
 			} else if (filterType == bookConditions.id) {	
-			 	setConditionToFilter([...conditionsToFilter, clickedFilter])
+			 	maxOne ? setConditionToFilter([clickedFilter]) : setConditionToFilter([...conditionsToFilter, clickedFilter])
 			} else if (filterType == bookCategories.id) {	
-			 	setCategoryToFilter([...categoriesToFilter, clickedFilter])
+			 	maxOne ? setCategoryToFilter([clickedFilter]) : setCategoryToFilter([...categoriesToFilter, clickedFilter])
 			} else if (filterType == bookPriceRanges.id) {	
-			 	setPriceRangeToFilter([...priceRangesToFilter, clickedFilter])
+			 	maxOne ? setPriceRangeToFilter([clickedFilter]) : setPriceRangeToFilter([...priceRangesToFilter, clickedFilter])
 			}	
 		// If it is, then we remove it from the array and update the state (of the requested type) with this new array:
 		// - After updating the state, we need to force a re-render because in some situations removing an item from a state doesn't trigger the re-ender immediately:
