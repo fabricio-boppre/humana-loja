@@ -48,13 +48,15 @@ export default function ShowcaseFiltersAndOrder(props) {
 										 {props.bookPublicationYear.title}:
 								</div>
 								<ul>
-									<li onClick={() => {props.clickOrder(props.bookPublicationYear.publicationYearDescId)}} 
-										  className={props.isOrderActive(props.bookPublicationYear.publicationYearDescId) ? "active" : ""}>
+									<li className={props.isOrderActive(props.bookPublicationYear.publicationYearDescId) ? "active" : ""}>
+										<div onClick={() => {props.clickOrder(props.bookPublicationYear.publicationYearDescId)}}>
 											{props.bookPublicationYear.publicationYearDescTitle}
+										</div>
 									</li>
-									<li onClick={() => {props.clickOrder(props.bookPublicationYear.publicationYearAscId)}}
-										  className={props.isOrderActive(props.bookPublicationYear.publicationYearAscId) ? "active" : ""}>
+									<li className={props.isOrderActive(props.bookPublicationYear.publicationYearAscId) ? "active" : ""}>
+										<div onClick={() => {props.clickOrder(props.bookPublicationYear.publicationYearAscId)}}>
 											{props.bookPublicationYear.publicationYearAscTitle}
+										</div>
 									</li>
 								</ul>
 							</li>
@@ -63,13 +65,15 @@ export default function ShowcaseFiltersAndOrder(props) {
 										 {props.bookPrices.title}:
 								</div>
 								<ul>
-									<li onClick={() => {props.clickOrder(props.bookPrices.priceDescId)}} 
-										  className={props.isOrderActive(props.bookPrices.priceDescId) ? "active" : ""}>
+									<li className={props.isOrderActive(props.bookPrices.priceDescId) ? "active" : ""}>
+										<div onClick={() => {props.clickOrder(props.bookPrices.priceDescId)}}>
 											{props.bookPrices.priceDescTitle}
+										</div>
 									</li>
-									<li onClick={() => {props.clickOrder(props.bookPrices.priceAscId)}}
-										  className={props.isOrderActive(props.bookPrices.priceAscId) ? "active" : ""}>
+									<li className={props.isOrderActive(props.bookPrices.priceAscId) ? "active" : ""}>
+										<div onClick={() => {props.clickOrder(props.bookPrices.priceAscId)}}>
 											{props.bookPrices.priceAscTitle}
+										</div>
 									</li>
 								</ul>
 							</li>
@@ -86,13 +90,15 @@ export default function ShowcaseFiltersAndOrder(props) {
 										 {props.bookFormats.title}:
 								</div>
 								<ul>
-									<li onClick={() => {props.clickFilter(props.bookFormats.formatLivroId,props.bookFormats.id)}} 
-										  className={props.isFilterActive(props.bookFormats.formatLivroId,props.bookFormats.id) ? "active" : ""}>
+									<li className={props.isFilterActiveOrPartial(props.bookFormats.formatLivroId,props.bookFormats.id)}>
+										<div onClick={() => {props.clickFilter(props.bookFormats.formatLivroId,props.bookFormats.id)}}>
 											{props.bookFormats.formatLivroTitle}
+										</div>
 									</li>
-									<li onClick={() => {props.clickFilter(props.bookFormats.formatEbookId,props.bookFormats.id)}} 
-										  className={props.isFilterActive(props.bookFormats.formatEbookId,props.bookFormats.id) ? "active" : ""}>
+									<li className={props.isFilterActiveOrPartial(props.bookFormats.formatEbookId,props.bookFormats.id)}>
+										<div onClick={() => {props.clickFilter(props.bookFormats.formatEbookId,props.bookFormats.id)}}>
 											{props.bookFormats.formatEbookTitle}
+										</div>
 									</li>
 								</ul>
 							</li>
@@ -102,13 +108,15 @@ export default function ShowcaseFiltersAndOrder(props) {
 										 {props.bookConditions.title}:
 								</div>
 								<ul>
-									<li onClick={() => {props.clickFilter(props.bookConditions.conditionNovoId,props.bookConditions.id)}} 
-										  className={props.isFilterActive(props.bookConditions.conditionNovoId,props.bookConditions.id) ? "active" : ""}>
+									<li className={props.isFilterActiveOrPartial(props.bookConditions.conditionNovoId,props.bookConditions.id)}>
+										<div onClick={() => {props.clickFilter(props.bookConditions.conditionNovoId,props.bookConditions.id)}}>
 											{props.bookConditions.conditionNovoTitle}
+										</div>
 									</li>
-									<li onClick={() => {props.clickFilter(props.bookConditions.conditionUsadoId,props.bookConditions.id)}} 
-										  className={props.isFilterActive(props.bookConditions.conditionUsadoId,props.bookConditions.id) ? "active" : ""}>
+									<li className={props.isFilterActiveOrPartial(props.bookConditions.conditionUsadoId,props.bookConditions.id)}>
+										<div onClick={() => {props.clickFilter(props.bookConditions.conditionUsadoId,props.bookConditions.id)}}>
 											{props.bookConditions.conditionUsadoTitle}
+										</div>
 									</li>
 								</ul>
 							</li>
@@ -118,21 +126,25 @@ export default function ShowcaseFiltersAndOrder(props) {
 										 {props.bookPriceRanges.title}:
 								</div>
 								<ul>
-									<li onClick={() => {props.clickFilter(props.bookPriceRanges.priceRangeUpTo30Id,props.bookPriceRanges.id,true)}} 
-										  className={props.isFilterActive(props.bookPriceRanges.priceRangeUpTo30Id,props.bookPriceRanges.id) ? "active" : ""}>
+									<li className={props.isFilterActiveOrPartial(props.bookPriceRanges.priceRangeUpTo30Id,props.bookPriceRanges.id)}>
+										<div onClick={() => {props.clickFilter(props.bookPriceRanges.priceRangeUpTo30Id,props.bookPriceRanges.id,true)}}>
 											{props.bookPriceRanges.priceRangeUpTo30Title}
+										</div>
 									</li>
-									<li onClick={() => {props.clickFilter(props.bookPriceRanges.priceRangeUpTo60Id,props.bookPriceRanges.id,true)}} 
-										  className={props.isFilterActive(props.bookPriceRanges.priceRangeUpTo60Id,props.bookPriceRanges.id) ? "active" : ""}>
+									<li className={props.isFilterActiveOrPartial(props.bookPriceRanges.priceRangeUpTo60Id,props.bookPriceRanges.id)}>
+										<div onClick={() => {props.clickFilter(props.bookPriceRanges.priceRangeUpTo60Id,props.bookPriceRanges.id,true)}}>
 											{props.bookPriceRanges.priceRangeUpTo60Title}
+										</div>
 									</li>
-									<li onClick={() => {props.clickFilter(props.bookPriceRanges.priceRangeUpTo90Id,props.bookPriceRanges.id,true)}} 
-										  className={props.isFilterActive(props.bookPriceRanges.priceRangeUpTo90Id,props.bookPriceRanges.id) ? "active" : ""}>
+									<li className={props.isFilterActiveOrPartial(props.bookPriceRanges.priceRangeUpTo90Id,props.bookPriceRanges.id)}>
+										<div onClick={() => {props.clickFilter(props.bookPriceRanges.priceRangeUpTo90Id,props.bookPriceRanges.id,true)}}>
 											{props.bookPriceRanges.priceRangeUpTo90Title}
+										</div>
 									</li>
-									<li onClick={() => {props.clickFilter(props.bookPriceRanges.priceRangeUpTo150Id,props.bookPriceRanges.id,true)}} 
-										  className={props.isFilterActive(props.bookPriceRanges.priceRangeUpTo150Id,props.bookPriceRanges.id) ? "active" : ""}>
+									<li className={props.isFilterActiveOrPartial(props.bookPriceRanges.priceRangeUpTo150Id,props.bookPriceRanges.id)}>
+										<div onClick={() => {props.clickFilter(props.bookPriceRanges.priceRangeUpTo150Id,props.bookPriceRanges.id,true)}}>
 											{props.bookPriceRanges.priceRangeUpTo150Title}
+										</div>
 									</li>
 								</ul>
 							</li>
@@ -143,10 +155,25 @@ export default function ShowcaseFiltersAndOrder(props) {
 								</div>
 								<ul>
 									{props.bookCategories.categories.map((category,index) => 
-										<li onClick={() => {props.clickFilter(category.slug,props.bookCategories.id)}} 
-											  key={index}
-												className={props.isFilterActive(category.slug,props.bookCategories.id) ? "active" : ""}>
-												{category.name}
+										<li key={index}
+												className={props.isFilterActiveOrPartial(category.slug,props.bookCategories.id)}>
+												<div onClick={() => {props.clickFilter(category.slug,props.bookCategories.id)}}>
+													{category.name}
+												</div>
+												<ul>
+													{category.subcategories.map((subcategory,index) => 
+														<li key={index}
+																className={props.isFilterActiveOrPartial(subcategory.slug,props.bookSubcategories.id)}>
+																<div onClick={() => {props.clickFilter(subcategory.slug
+																																		  ,props.bookSubcategories.id
+																																			,false
+																																			,category.slug
+																																		  ,props.bookCategories.id)}}>
+																	{subcategory.name}
+																</div>
+														</li>
+													)}
+											  </ul>
 										</li>
 									)}
 								</ul>
