@@ -111,7 +111,7 @@ export default function Index(props) {
 				pageQueryString = (isFirstQuery ? "?" : "&") + 'page=' + page		
 			}
 			// Then we proceed the client-side transition with the requested queries:
-			router.push('/' + formatsQueryString + conditionsQueryString + categoriesQueryString + subcategoriesQueryString + priceRangesQueryString + orderQueryString + searchQueryString + pageQueryString, undefined, {scroll: false})
+			router.push('/' + formatsQueryString + conditionsQueryString + categoriesQueryString + subcategoriesQueryString + priceRangesQueryString + orderQueryString + searchQueryString + pageQueryString)
 		}
 	}, [page
 		 ,order
