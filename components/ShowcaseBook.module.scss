@@ -16,6 +16,22 @@ li.showcase_book {
 	margin: 0 40px 60px 40px;
 	background-color: white;
 	
+	:global(.humana_indica) {
+		$label-height: 25px;
+		@include assets.border-radius(5px);
+		// @include assets.box-shadow(1px 1px 2px gray);
+		font-size: assets.$typo-small-size;
+		line-height: $label-height;
+		background-color: red;
+		margin: -$label-height/2 25px 0 25px;
+		height: $label-height;
+		width: 130px;
+		text-align: center;
+		color: white;
+		font-weight: 700;
+		position: absolute;
+	}
+	
 	img {
 		display: block;
 	}

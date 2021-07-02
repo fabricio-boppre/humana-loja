@@ -11,6 +11,9 @@ export default function ShowcaseBook(props) {
 	// - This value must be kept in accordance with the li.showcase_book flex-basis (ShowcaseBook.module.scss).
 	const width = 180
 
+	// Create the "Humana indica" label:
+	const humana_indica = <div className="humana_indica">Humana indica</div>
+	
 	// Prepare the buy button (or the unavailable sign) and the price tag:
 	// - If the book is available:
 	if (book.stock_situation == "disponivel") {
@@ -52,6 +55,10 @@ export default function ShowcaseBook(props) {
 	}
 
 	return <li className={styles.showcase_book}>
+						{((book.special_category !== undefined) && (book.special_category.includes("humana_indica"))) ?
+					  	humana_indica :
+							""
+						}
 				    <Link href={`/livro/${book.slug}`}>
 				      <a>
 				        <img src={book.mainImageUrl + '?w=' + width}

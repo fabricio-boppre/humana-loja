@@ -353,7 +353,7 @@ export default function Index(props) {
 	} else {
 		showcase = <p id="empty-showcase">Ops! Não temos nenhum livro para lhe oferecer neste momento.</p>
 	}
-				
+	
   return (
 			<div className="content" id={styles.index}>
 			
