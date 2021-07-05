@@ -12,7 +12,15 @@
 #search_form {
 	form {
 		@include assets.flexbox();
+		input {
+			-webkit-appearance: none;
+			-webkit-border-radius: 0px;
+		  border-radius: 0;
+		}
 		input[type=search] {
+			-webkit-appearance: none;
+			-webkit-border-radius: 0px;
+		  border-radius: 0;
 			border-left: assets.$box-border;
 			border-top: assets.$box-border;
 			border-bottom: assets.$box-border;
