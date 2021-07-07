@@ -22,7 +22,7 @@
 		margin: 0 auto;
 
 		:global(#book-image) {
-			@include assets.flex(0 0 260px);
+			@include assets.flex(0 0 260px); // This value must be kept in accordance with the crop value appended to the image base-url (Book page).
 			img {
 				display: block;
 			}

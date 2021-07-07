@@ -38,7 +38,11 @@ export default function Book({book}) {
 		    </>
   	)
 	}
-	
+
+	// Book image width:
+	// - This value must be kept in accordance with the #book-image flex-basis (Book.module.scss).
+	const width = 260
+		
 	// Create the "Humana indica" label:
 	const humana_indica = <div className="humana_indica">Humana indica</div>
 	
@@ -111,7 +115,7 @@ export default function Book({book}) {
 					  	humana_indica :
 							""
 						}
-		        <img src={book.mainImageUrl + '?w=260'}
+		        <img src={book.mainImageUrl + '?w=' + width}
 		          	 alt={book.title}
 								 title={book.title}
 		        />
