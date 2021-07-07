@@ -70,6 +70,10 @@ li.showcase_book {
 			display: inline-block;
 			padding: 1px 8px;
 		}
+		:global(.showcase-book-text-format-livro),
+		:global(.showcase-book-text-format-ebook) {
+			font-weight: 400;
+		}
 		:global(.showcase-book-text-format-livro) {
 			background-color: #ebd697;
 		}

@@ -35,7 +35,7 @@ body {
 	#incompatible-browser,
 	#principal {
 		max-width: assets.$principal-max-width;
-		padding: 40px assets.$lateral-margin;
+		padding: 50px assets.$lateral-margin;
 		margin: 0 auto;
 	}
 	
@@ -49,6 +49,9 @@ body {
 		font-size: assets.$typo-normal-size;
 		line-height: assets.$line-height-normal-size;
 		font-weight: 300;
+		a {
+			color: inherit;
+		}
 		b {
 			font-weight: 700;
 		}
@@ -56,11 +59,10 @@ body {
 			font-size: assets.$typo-large-size;
 			line-height: assets.$line-height-large-size;
 			font-weight: 400;
-			padding-bottom: 20px;
 		}		
 		.content {
 			@include assets.flex-basis(100%);
-			margin-top: 40px;
+			margin-top: 60px;
 		}
 	}		
 
@@ -68,9 +70,10 @@ body {
 	@media screen and (max-width: assets.$tablet-width) {
 		#principal {
 			@include assets.justify-content(flex-start);
+			padding-top: 30px;
 			.content {
 				@include assets.order(3);
-				margin-top: 30px;
+				margin-top: 50px;
 			}		
 		}
 	}
@@ -78,8 +81,6 @@ body {
 		#incompatible-browser,
 		#principal {
 			padding-top: 20px;
-		}
-		#principal {
 		}
 	}
 
@@ -102,43 +103,9 @@ body {
 .no-flexbox {
 	header,
 	#principal {
-		display: none !important; // We hide the store for these extremelly old browsers...
+		display: none !important; // We hide the store for these extremely old browsers...
 	}
 	#incompatible-browser {
 		display: block !important; // ... and show the "Incompatible browser" message.
 	}
 }
-
-// ----------
-// PROVISÓRIO:
-.content#livro {
-	text-align: center;
-	h1 {
-		font-size: 1.5rem;
-	}
-	h1,
-	img,
-	button.snipcart-add-item,
-	#price,
-	#format {
-		margin-bottom: 15px;
-	}
-	button.snipcart-add-item {
-		@include assets.generic-button;
-		@include assets.buy-button;
-		@include assets.buy-button-hover;
-	}
-	#format {
-		font-size: 1.3rem;
-		font-weight: bold;
-	}
-	&.unavailable {
-		#price,
-		button.snipcart-add-item {
-			display: none;
-		}
-	}
-
-}
-// (fim)
-// ----------

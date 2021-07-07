@@ -1,0 +1,133 @@
+/* ---------------------------------------------
+	MIXINS, VARIABLES & EXTENDS
+  ---------------------------------------------- */
+
+@use 'assets';
+
+/* ---------------------------------------------
+	BOOK:
+	- ":global" wrapped around IDs prevents them from being changed by CSS Modules.
+  ---------------------------------------------- */
+
+#book {
+	:global(#inexistent-book),
+	:global(#loading-book) {
+		text-align: center;
+	}
+	article {
+		@include assets.flexbox();
+		@include assets.flex-wrap(wrap);
+		@include assets.align-items(center);
+		width: assets.$large-device-width - (assets.$lateral-margin*2);
+		margin: 0 auto;
+
+		:global(#book-image) {
+			@include assets.flex(0 0 260px);
+			img {
+				display: block;
+			}
+			:global(.humana_indica) {
+				$label-height: 25px;
+				@include assets.border-radius(5px);
+				// @include assets.box-shadow(1px 1px 2px gray);
+				font-size: assets.$typo-small-size;
+				line-height: $label-height;
+				background-color: red;
+				margin: -$label-height/2 65px 0 65px;
+				height: $label-height;
+				width: 130px;
+				text-align: center;
+				color: white;
+				font-weight: 700;
+				position: absolute;
+			}
+		}
+
+	  :global(#book-info) {
+			@include assets.flex(1);
+			margin: 0 50px 0 30px;
+			header {
+				padding-bottom: 20px;
+				h1 {
+					font-weight: 600;
+				}
+			}
+			:global(.info-item) {
+				font-size: assets.$typo-small-size;
+				line-height: assets.$line-height-small-size;
+				padding-bottom: 5px;
+				:global(.title) {
+					font-weight: 700;
+				}
+			}
+		}
+
+		:global(#book-price-and-button) {
+			@include assets.flex(0 0 220px);
+			padding-left: 50px;
+			border-left: 2px solid assets.$gray-typo;
+			:global(.original_price) {
+				color: lighten(black,65%);
+				text-decoration: line-through;
+			}
+			:global(.price) {
+				font-size: assets.$typo-large-size;
+				line-height: assets.$line-height-large-size;
+				font-weight: 400;
+				padding-bottom: 10px;
+			}
+			:global(button.snipcart-add-item),
+			:global(.unavailable) {
+				@include assets.generic-button;
+			}
+			:global(button.snipcart-add-item) {
+				@include assets.buy-button;
+				@include assets.buy-button-hover;
+			}
+			:global(.unavailable) {
+				@include assets.unavailable-button;
+			}
+		}
+		
+		:global(#book-description) {
+			@include assets.flex(1 0 100%);
+			padding-top: 30px;
+		}
+		
+	}
+	
+	// Responsiveness rules:
+	@media screen and (max-width: assets.$large-device-width) {
+		article {
+			width: assets.$tablet-width - (assets.$lateral-margin*2);
+		  :global(#book-info) {
+				margin: 0 0 0 30px;
+			}
+			:global(#book-price-and-button) {
+				@include assets.flex(1 0 100%);
+				padding: 30px 0 0 0;
+				border-left: none;
+			}
+		}
+	}
+	@media screen and (max-width: assets.$tablet-width) {
+		article {
+			width: 100%;
+			@include assets.flex-direction(column);
+			:global(#book-image),
+		  :global(#book-info),
+			:global(#book-price-and-button) {
+				@include assets.flex(1 0 100%);
+			}
+			:global(#book-info) {
+				margin: 30px 0 0 0;
+			}
+			:global(#book-price-and-button) {
+				@include assets.flexbox();
+				@include assets.flex-direction(column);
+				@include assets.align-items(center);
+			}
+		}
+	}
+
+}
