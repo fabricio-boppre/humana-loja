@@ -44,7 +44,7 @@ export default function Book({book}) {
 	
 	// Prepare the subcategories:
 	var subcategories
-	if (book.subcategories.length > 0) {
+	if ((book.subcategories) && (book.subcategories.length > 0)) {
 		subcategories = (
 			<div className="info-item">
 				<span className="title">subcategoria(s)</span>&nbsp;
