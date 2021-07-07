@@ -79,7 +79,7 @@ export default function Book({book}) {
 	            data-item-id={book.id}
 		          data-item-name={book.title}
 	            data-item-price={book.price}
-	            data-item-url={`/livro/${book.id}`}
+	            data-item-url={`/livro/${book.slug}`}
 	            data-item-description={book.description}
 	            data-item-image={book.mainImageUrl}
 							data-item-file-guid={book.file_guid}
