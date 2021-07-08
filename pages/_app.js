@@ -1,6 +1,7 @@
 import App from 'next/app'
 import Head from 'next/head'
 import Masthead from '../components/Masthead'
+import Footer from '../components/Footer'
 import SearchForm from '../components/SearchForm'
 import CheckoutButtonAndInfo from '../components/CheckoutButtonAndInfo'
 import '../styles/reset.css' // First let's reset some CSS definitions...
@@ -65,6 +66,8 @@ export default class Humana extends App {
 										 searchCount={this.state.searchCount} />
 
         </div>
+				
+				<Footer />
 
         <script async src="https://cdn.snipcart.com/themes/v3.2.0/default/snipcart.js"></script>
 

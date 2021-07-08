@@ -18,11 +18,13 @@ export default function Masthead() {
 			return (trident > 0);
 		}
 		if (isIE11()) {
-			const divMastheadPrincipal = document.getElementById(styles.masthead);		
-			const divPrincipal = document.getElementById('principal');		
-			const divIncompatibleBrowser = document.getElementById('incompatible-browser');		
+			const divMastheadPrincipal = document.getElementById(styles.masthead)
+			const divPrincipal = document.getElementById('principal')
+			const divFooterContent = document.getElementById('footer-content')
+			const divIncompatibleBrowser = document.getElementById('incompatible-browser')
 			divMastheadPrincipal.style.display = "none"
 			divPrincipal.style.display = "none"
+			divFooterContent.style.display = "none"
 			divIncompatibleBrowser.style.display = "block"
 		}
   }, [])

@@ -1,0 +1,68 @@
+import { useEffect } from 'react'
+import Image from 'next/image'
+import styles from './Footer.module.css'
+
+export default function Footer() {
+
+  return (
+		<footer id={styles.footer}>
+
+			<div id="footer-content">
+				
+				<div id="f-contato">
+					<section>
+						<h1>Contato</h1>
+						<ul>
+							<li><a href="mailto:humanasebolivraria@gmail.com">humanasebolivraria@gmail.com</a></li>
+							<li>Telefone/WhatsApp: (49) 3316-4566 | (48) 9-9164-4879</li>
+						</ul>
+					</section>
+					<section>
+						<h1>Humana</h1>
+						<ul>
+							<li><a href="http://www.humanasebolivraria.com.br/agenda-cultural/" class="external-link">Agenda Cultural</a></li>
+							<li><a href="http://www.humanasebolivraria.com.br/galeria/" class="external-link">Galeria</a></li>
+							<li><a href="http://www.humanasebolivraria.com.br/editora/" class="external-link">Editora</a></li>
+							<li><a href="http://www.humanasebolivraria.com.br/sobre/" class="external-link">Sobre</a></li>
+						</ul>
+					</section>
+					<section id="social-networks">
+						<h1>Redes sociais</h1>
+            <ul>
+              <li><a href="https://www.facebook.com/pages/category/Bookstore/Humana-Sebo-e-Livraria-436455317131153/" class="external-link">facebook</a></li>
+              <li><a href="https://www.instagram.com/humanasebolivraria/" class="external-link">instagram</a></li>
+              <li><a href="https://www.youtube.com/channel/UC5bVFV4JYUDLPiJay49fM0w" class="external-link">youtube</a></li>
+            </ul>
+					</section>
+				</div>
+		
+				<div id="f-endereco">
+					<section>
+						<h1>Endereço</h1>
+						<p>Rua Marechal Bormann, 82 D, Sala 13</p>
+						<p>Centro, Chapecó-SC</p>
+						<p><a href="https://g.page/humanasebolivrariagaleria?share" class="external-link">[como chegar]</a></p>
+					</section>
+					<section>
+						<h1>Horário de atendimento</h1>
+						<p>Segunda a sexta-feira, das 8h30 às 18h30</p>
+						<p>Sábados, das 9 às 12h</p>
+					</section>
+				</div>
+	
+				<div id="f-logotipo">
+          <Image
+            src="/img/layout/logo-branco-redondo.svg"
+            alt="Humana"
+            title="Humana" 
+            width="150px"
+            height="150px"
+          />
+				</div>
+			
+			</div>
+
+    </footer>
+	)
+
+}

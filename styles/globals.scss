@@ -15,72 +15,80 @@ body {
 	background-color: assets.$gray-bg;
 	min-width: assets.$body-min-width;
 	
-	img {
-		max-width: 100%;
-		height: auto;						
-	}		
+	div#__next {
+	  @include assets.flexbox();
+		@include assets.flex-direction(column);
+	  min-height: 100vh;
 
-  // Making sure that elements with the hidden attribute won't be shown:
-  // - https://html.spec.whatwg.org/multipage/interaction.html#the-hidden-attribute
-  [hidden], area, base, basefont, datalist, head, link, meta, noembed,
-  noframes, param, rp, script, source, style, template, track, title {
-    display: none;
-  }
-
-	// Message for incompatible browser: it starts hidden and is shown if an effect in the Masthead component detects IE as the browser:
-	#incompatible-browser {
-		display: none;
-	}
-	
-	#incompatible-browser,
-	#principal {
-		max-width: assets.$principal-max-width;
-		padding: 50px assets.$lateral-margin;
-		margin: 0 auto;
-	}
-	
-	#principal {
-		@include assets.flexbox();
-		@include assets.flex-wrap(wrap);
-		@include assets.justify-content(space-between);
-		@include assets.align-items(center);
-		
-		// Typography:
-		font-size: assets.$typo-normal-size;
-		line-height: assets.$line-height-normal-size;
-		font-weight: 300;
-		a {
-			color: inherit;
-		}
-		b {
-			font-weight: 700;
-		}
-		h1 {
-			font-size: assets.$typo-large-size;
-			line-height: assets.$line-height-large-size;
-			font-weight: 400;
+		img {
+			max-width: 100%;
+			height: auto;						
 		}		
-		.content {
-			@include assets.flex-basis(100%);
-			margin-top: 60px;
+	
+	  // Making sure that elements with the hidden attribute won't be shown:
+	  // - https://html.spec.whatwg.org/multipage/interaction.html#the-hidden-attribute
+	  [hidden], area, base, basefont, datalist, head, link, meta, noembed,
+	  noframes, param, rp, script, source, style, template, track, title {
+	    display: none;
+	  }
+	
+		// Message for incompatible browser: it starts hidden and is shown if an effect in the Masthead component detects IE as the browser:
+		#incompatible-browser {
+			display: none;
 		}
-	}		
+		
+		#incompatible-browser,
+		#principal {
+			max-width: assets.$principal-max-width;
+			padding: 50px assets.$lateral-margin;
+			margin: 0 auto;
+			font-size: assets.$typo-normal-size;
+			line-height: assets.$line-height-normal-size;
+			font-weight: 300;
+		}
+		
+		#principal {
+			@include assets.flexbox();
+			@include assets.flex-wrap(wrap);
+			@include assets.justify-content(space-between);
+			@include assets.align-items(center);
+			a {
+				color: inherit;
+			}
+			b {
+				font-weight: 700;
+			}
+			h1 {
+				font-size: assets.$typo-large-size;
+				line-height: assets.$line-height-large-size;
+				font-weight: 400;
+			}		
+			.content {
+				@include assets.flex-basis(100%);
+				margin-top: 60px;
+			}
+		}		
+	}
 
 	// Responsiveness rules:
 	@media screen and (max-width: assets.$tablet-width) {
-		#principal {
-			@include assets.justify-content(flex-start);
-			padding-top: 30px;
-			.content {
-				@include assets.order(3);
-				margin-top: 50px;
-			}		
+		div#__next {
+			#principal {
+				@include assets.justify-content(flex-start);
+				padding-top: 30px;
+				.content {
+					@include assets.order(3);
+					margin-top: 50px;
+				}		
+			}
 		}
 	}
 	@media screen and (max-width: assets.$smartphone-width) {
-		#incompatible-browser,
-		#principal {
-			padding-top: 20px;
+		div#__next {
+			#incompatible-browser,
+			#principal {
+				padding-top: 20px;
+			}
 		}
 	}
 
@@ -101,11 +109,14 @@ body {
   -------------------------------------------------- */
 
 .no-flexbox {
-	header,
-	#principal {
-		display: none !important; // We hide the store for these extremely old browsers...
-	}
-	#incompatible-browser {
-		display: block !important; // ... and show the "Incompatible browser" message.
+	div#__next {
+		header,
+		#principal,
+		footer {
+			display: none !important; // We hide the store for these extremely old browsers...
+		}
+		#incompatible-browser {
+			display: block !important; // ... and show the "Incompatible browser" message.
+		}
 	}
 }

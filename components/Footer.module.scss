@@ -1,0 +1,98 @@
+/* ---------------------------------------------
+	MIXINS, VARIABLES & EXTENDS
+  ---------------------------------------------- */
+
+@use '../styles/assets';
+
+/* ------------------------------------------------------------------------------
+	FOOTER:
+	- ":global" wrapped around IDs prevents them from being changed by CSS Modules.
+  ------------------------------------------------------------------------------- */
+
+#footer {
+	@include assets.flex(1);
+	background-color: black;
+
+	:global(#footer-content) {
+		@include assets.flexbox();
+		@include assets.justify-content(space-between);
+		max-width: assets.$principal-max-width;
+		padding: 50px assets.$lateral-margin;
+		margin: 0 auto;
+		font-size: assets.$typo-small-size;
+		line-height: assets.$line-height-small-size;
+		color: white;
+		font-weight: 300;
+		section	{
+			padding-bottom: 15px;
+		}
+		h1 {
+			font-size: assets.$typo-normal-size;
+			line-height: assets.$line-height-normal-size;
+			font-weight: 400;
+		}	
+		h1,
+		ul li,
+		p {
+			padding-bottom: 5px;
+		}
+		a {
+			color: inherit;
+			&:global(.external-link) {
+				background-image: url("../public/img/layout/external-link.svg");
+				background-position: right;
+				background-repeat: no-repeat;
+				padding-right: 25px;
+			}
+		}
+		:global(#f-contato) {
+			:global(section#social-networks) {
+				display: none;
+			}
+		}
+		:global(#f-logotipo) {
+			@include assets.order(2); 
+			padding: 0 50px;
+		}
+		:global(#f-endereco) {
+			text-align: right;
+			@include assets.order(3); 
+		}
+	}
+	
+	// Responsiveness rules:
+	@media screen and (max-width: assets.$tablet-width) {
+		:global(#footer-content) {
+			@include assets.flex-direction(column);
+			:global(#f-contato) {
+				text-align: center;
+			}
+			:global(#f-logotipo) {
+				@include assets.order(3); 
+				text-align: center;
+				padding: 0;
+			}
+			:global(#f-endereco) {
+				text-align: center;
+				@include assets.order(2); 
+			}
+		}
+	}
+	@media screen and (max-width: assets.$smartphone-width) {
+		:global(#footer-content) {
+			section	{
+				padding-bottom: 25px;
+			}
+			h1,
+			ul li,
+			p {
+				padding-bottom: 15px;
+			}
+			:global(#f-contato) {
+				:global(section#social-networks) {
+					display: block;
+				}
+			}
+		}
+	}
+}
