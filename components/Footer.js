@@ -20,18 +20,18 @@ export default function Footer() {
 					<section>
 						<h1>Humana</h1>
 						<ul>
-							<li><a href="http://www.humanasebolivraria.com.br/agenda-cultural/" class="external-link">Agenda Cultural</a></li>
-							<li><a href="http://www.humanasebolivraria.com.br/galeria/" class="external-link">Galeria</a></li>
-							<li><a href="http://www.humanasebolivraria.com.br/editora/" class="external-link">Editora</a></li>
-							<li><a href="http://www.humanasebolivraria.com.br/sobre/" class="external-link">Sobre</a></li>
+							<li><a href="http://www.humanasebolivraria.com.br/agenda-cultural/" className="external-link">Agenda Cultural</a></li>
+							<li><a href="http://www.humanasebolivraria.com.br/galeria/" className="external-link">Galeria</a></li>
+							<li><a href="http://www.humanasebolivraria.com.br/editora/" className="external-link">Editora</a></li>
+							<li><a href="http://www.humanasebolivraria.com.br/sobre/" className="external-link">Sobre</a></li>
 						</ul>
 					</section>
 					<section id="social-networks">
 						<h1>Redes sociais</h1>
             <ul>
-              <li><a href="https://www.facebook.com/pages/category/Bookstore/Humana-Sebo-e-Livraria-436455317131153/" class="external-link">facebook</a></li>
-              <li><a href="https://www.instagram.com/humanasebolivraria/" class="external-link">instagram</a></li>
-              <li><a href="https://www.youtube.com/channel/UC5bVFV4JYUDLPiJay49fM0w" class="external-link">youtube</a></li>
+              <li><a href="https://www.facebook.com/pages/category/Bookstore/Humana-Sebo-e-Livraria-436455317131153/" className="external-link">facebook</a></li>
+              <li><a href="https://www.instagram.com/humanasebolivraria/" className="external-link">instagram</a></li>
+              <li><a href="https://www.youtube.com/channel/UC5bVFV4JYUDLPiJay49fM0w" className="external-link">youtube</a></li>
             </ul>
 					</section>
 				</div>
@@ -41,7 +41,7 @@ export default function Footer() {
 						<h1>Endereço</h1>
 						<p>Rua Marechal Bormann, 82 D, Sala 13</p>
 						<p>Centro, Chapecó-SC</p>
-						<p><a href="https://g.page/humanasebolivrariagaleria?share" class="external-link">[como chegar]</a></p>
+						<p><a href="https://g.page/humanasebolivrariagaleria?share" className="external-link">[como chegar]</a></p>
 					</section>
 					<section>
 						<h1>Horário de atendimento</h1>
