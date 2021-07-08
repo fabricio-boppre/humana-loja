@@ -11,35 +11,29 @@ export default function CheckoutButtonAndInfo() {
 		// - The info div starts as display:none and the adding or removing itens toggles this value.
 		document.addEventListener('snipcart.ready', function() {
 	  	var itensCount = 0
-	    const divSnipcartItemsCountAndPrice = document.getElementById('snipcart-items-count-and-price');
+			const divSnipcartItemsCount = document.getElementById('snipcart-items-count');
+	    const divSnipcartItemsPrice = document.getElementById('snipcart-total-price');
 			Snipcart.store.subscribe(() => {
 			  const itensCount = Snipcart.store.getState().cart.items.count
 				if (itensCount > 0) {
-					divSnipcartItemsCountAndPrice.style.display = "block"
+					divSnipcartItemsCount.style.display = "inline-block"
+					divSnipcartItemsPrice.style.display = "block"
 				} else {
-					divSnipcartItemsCountAndPrice.style.display = "none"
+					divSnipcartItemsCount.style.display = "none"
+					divSnipcartItemsPrice.style.display = "none"
 				}
 			});
     });
   }, [])
 
-  return <div id={styles.checkout_button_and_info}>
+  return (
+		<div id={styles.checkout_button_and_info}>
 
-            <button className="snipcart-checkout">
-              <Image
-                src="/img/layout/shopping-cart.svg"
-                alt="carrinho"
-                title="carrinho"
-                width="48"
-                height="48"
-              />
-						</button>
+      <button className="snipcart-checkout">
+				<div id="snipcart-items-count" className="snipcart-items-count" style={{display:'none'}}></div>
+			</button>
+			<div id="snipcart-total-price" className="snipcart-total-price" style={{display:'none'}}></div>
 
-            <div id="snipcart-items-count-and-price" style={{display:'none'}}>
-							<div><span className="snipcart-items-count"></span> item(s)</div> 
-							<div className="snipcart-total-price"></div>
-            </div>
-
-         </div>
-
+   </div>
+	)
 }
