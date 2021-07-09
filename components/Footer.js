@@ -41,7 +41,7 @@ export default function Footer() {
 						<h1>Endereço</h1>
 						<p>Rua Marechal Bormann, 82 D, Sala 13</p>
 						<p>Centro, Chapecó-SC</p>
-						<p><a href="https://g.page/humanasebolivrariagaleria?share" className="external-link">[como chegar]</a></p>
+						<p><a href="https://g.page/humanasebolivraria?share" className="external-link">[como chegar]</a></p>
 					</section>
 					<section>
 						<h1>Horário de atendimento</h1>
