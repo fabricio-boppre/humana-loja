@@ -48,7 +48,7 @@ export default function Masthead() {
 
   return <header id={styles.masthead}>
           
-          <div id="masthead-principal">
+          <div id="masthead-nucleus">
 
 						<a id="masthead-logotipo" href="/"></a>
             

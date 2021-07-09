@@ -52,19 +52,23 @@ export default class Humana extends App {
 				</div>
 				
 				<div id="principal">
+				
+					<div id="principal-nucleus">
 
-					<SearchForm formSearchString={this.state.formSearchString}
-											setFormSearchString={this.setFormSearchString}
-											setFormSearchStringFromURI={this.setFormSearchStringFromURI}
-											handleSearchButton={this.handleSearchButton}
-											searchCount={this.state.searchCount} />
+						<SearchForm formSearchString={this.state.formSearchString}
+												setFormSearchString={this.setFormSearchString}
+												setFormSearchStringFromURI={this.setFormSearchStringFromURI}
+												handleSearchButton={this.handleSearchButton}
+												searchCount={this.state.searchCount} />
+	
+						<CheckoutButtonAndInfo  />
+						
+	          <Component {...pageProps} 
+											 formSearchString={this.state.formSearchString}
+											 searchCount={this.state.searchCount} />
 
-					<CheckoutButtonAndInfo  />
+					</div>
 					
-          <Component {...pageProps} 
-										 formSearchString={this.state.formSearchString}
-										 searchCount={this.state.searchCount} />
-
         </div>
 				
 				<Footer />

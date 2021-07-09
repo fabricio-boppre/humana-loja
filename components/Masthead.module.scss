@@ -10,11 +10,11 @@
   ------------------------------------------------------------------------------- */
 
 #masthead {
-	width: 100%;
 	background-color: white;
 	height: 60px; // It's the logo height.
 	border-bottom: 1px solid darken(assets.$gray-bg, 10%);
-	:global(#masthead-principal) {
+
+	:global(#masthead-nucleus) {
 		@include assets.flexbox();
 		@include assets.justify-content(space-between);
 		height: inherit;
@@ -56,7 +56,7 @@
 
 	// Responsiveness rules:
 	@media screen and (max-width: assets.$tablet-width) {
-		:global(#masthead-principal) {
+		:global(#masthead-nucleus) {
 			
 			// Logo:
 			:global(#masthead-logotipo) {
@@ -81,7 +81,7 @@
 		}
 	}
 	@media screen and (max-width: assets.$smartphone-width) {
-		:global(#masthead-principal) {
+		:global(#masthead-nucleus) {
 
 			// Logo:
 			:global(#masthead-logotipo) {

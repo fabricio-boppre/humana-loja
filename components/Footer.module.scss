@@ -9,11 +9,10 @@
 	- ":global" wrapped around IDs prevents them from being changed by CSS Modules.
   ------------------------------------------------------------------------------- */
 
-#footer {
-	@include assets.flex(1);
+#footer {	
 	background-color: black;
 
-	:global(#footer-content) {
+	:global(#footer-nucleus) {
 		@include assets.flexbox();
 		@include assets.justify-content(space-between);
 		max-width: assets.$principal-max-width;
@@ -29,9 +28,8 @@
 		h1 {
 			font-size: assets.$typo-normal-size;
 			line-height: assets.$line-height-normal-size;
-			font-weight: 400;
+			font-weight: 700;
 		}	
-		h1,
 		ul li,
 		p {
 			padding-bottom: 5px;
@@ -62,8 +60,16 @@
 	
 	// Responsiveness rules:
 	@media screen and (max-width: assets.$tablet-width) {
-		:global(#footer-content) {
+		:global(#footer-nucleus) {
 			@include assets.flex-direction(column);
+			section	{
+				padding-bottom: 25px;
+			}
+			h1,
+			ul li,
+			p {
+				padding-bottom: 15px;
+			}
 			:global(#f-contato) {
 				text-align: center;
 			}
@@ -79,15 +85,7 @@
 		}
 	}
 	@media screen and (max-width: assets.$smartphone-width) {
-		:global(#footer-content) {
-			section	{
-				padding-bottom: 25px;
-			}
-			h1,
-			ul li,
-			p {
-				padding-bottom: 15px;
-			}
+		:global(#footer-nucleus) {
 			:global(#f-contato) {
 				:global(section#social-networks) {
 					display: block;

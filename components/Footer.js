@@ -7,7 +7,7 @@ export default function Footer() {
   return (
 		<footer id={styles.footer}>
 
-			<div id="footer-content">
+			<div id="footer-nucleus">
 				
 				<div id="f-contato">
 					<section>

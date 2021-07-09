@@ -10,6 +10,7 @@
   ---------------------------------------------- */
 
 #index {
+	@include assets.justify-content(space-between);
 	@include assets.flexbox();
 	@include assets.flex-wrap(wrap);
 	
