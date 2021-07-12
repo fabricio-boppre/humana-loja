@@ -1,30 +1,5 @@
 import { readCMS } from '../../lib/sanity'
 
-// Function to get the pre-defined dimensions of a book:
-async function getPreDefinedDimensions(id) {
-  const docQuery = '*[_id == "'+id+'"][0].measures[0]'
-  let perfil
-  await readCMS.fetch(docQuery)
-    .then(function(response) {
-      perfil = response
-    })
-    .catch(function(err) {
-      perfil = err
-    });
-	let dimensions
-	// Big book:
-	if (perfil == 'grande') {
-		dimensions = {width: 30, height: 7, length: 35}
-	// Small book:
-	} else if (perfil == 'pequeno') {
-		dimensions = {width: 11, height: 1, length: 18}
-	// Fallback (medium book):
-	} else {
-		dimensions = {width: 16, height: 2, length: 23}
-	}
-	return dimensions
-}
-
 // Timeout wrapper for promises:
 // - More info: https://stackoverflow.com/questions/46946380/fetch-api-request-timeout
 function timeout(ms, promise) {
@@ -79,6 +54,8 @@ export default async function calculateShippingRates(req, res) {
   // The HTTP method that we expect is POST, so we check this before starting processing it:
 	// (We also check if there's at least one item in the cart — otherwise, there's nothing to do here.)
   if (req.method === 'POST' && req.body.content.itemsCount > 0) {
+		
+		console.log(req.body.content)
 
 		// Let's prepare the information that we need to calculate the shipping rates:
 		// - Books:
@@ -92,28 +69,13 @@ export default async function calculateShippingRates(req, res) {
 		// - Total height [in centimeters] (sum of all heights considering each item quantity):
 		var totalHeight = 0
 		for (var i in books) {
-			// If the book has specific dimensions:
-			if (books[i].hasDimensions) {
-				totalHeight += (books[i].height * books[i].quantity)
-			// Else, if the book has pre-defined dimensions:
-	 		} else {
-				const PreDefinedDimensions = await getPreDefinedDimensions(books[i].id)
-				const PreDefinedHeight = PreDefinedDimensions.height
-				totalHeight += (PreDefinedHeight * books[i].quantity)
-			}
+			totalHeight += (books[i].height * books[i].quantity)
 		}
 		// - Width [in centimeters] (the largest one):
 		var largestWidth = 0
 		var newWidth
 		for (var i in books) {
-			// If the book has specific dimensions:
-			if (books[i].hasDimensions) {
-				newWidth = books[i].width
-			// Else, if the book has pre-defined dimensions:
-	 		} else {
-				const PreDefinedDimensions = await getPreDefinedDimensions(books[i].id)
-				newWidth = PreDefinedDimensions.width
-			}
+			newWidth = books[i].width
 			// Now we check if it is the largest:
 			if (newWidth > largestWidth) {
 				largestWidth = newWidth
@@ -123,14 +85,7 @@ export default async function calculateShippingRates(req, res) {
 		var largestLength = 0
 		var newLength
 		for (var i in books) {
-			// If the book has specific dimensions:
-			if (books[i].hasDimensions) {
-				newLength = books[i].length
-			// Else, if the book has pre-defined dimensions:
-	 		} else {
-				const PreDefinedDimensions = await getPreDefinedDimensions(books[i].id)
-				newLength = PreDefinedDimensions.length
-			}
+			newLength = books[i].length
 			// Now we check if it is the largest:
 			if (newLength > largestLength) {
 				largestLength = newLength
