@@ -55,8 +55,6 @@ export default async function calculateShippingRates(req, res) {
 	// (We also check if there's at least one item in the cart — otherwise, there's nothing to do here.)
   if (req.method === 'POST' && req.body.content.itemsCount > 0) {
 		
-		console.log(req.body.content)
-
 		// Let's prepare the information that we need to calculate the shipping rates:
 		// - Books:
     const books = req.body.content.items
