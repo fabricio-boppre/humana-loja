@@ -96,6 +96,11 @@ export default function Book({book}) {
 		var price_tag = null
 		var button = <div className="unavailable">esgotado</div>
 	}
+
+	// Parse Markdown code on description to HTML code:
+	// - Then, on the front-end, we decode the HTML code using dangerouslySetInnerHTML (https://reactjs.org/docs/dom-elements.html#dangerouslysetinnerhtml).
+	var md = require('markdown-it')();
+	var formattedDescription = md.render(book.description);
 	
   return (
     <>
@@ -153,7 +158,7 @@ export default function Book({book}) {
 						<header>
 							<h1>descrição</h1>
 						</header>
-						{book.description}
+						<div dangerouslySetInnerHTML={{ __html: formattedDescription }}></div>
 					</section>
 				
 				</article>

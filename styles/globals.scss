@@ -57,20 +57,44 @@ body {
 				line-height: assets.$line-height-normal-size;
 				font-weight: 300;
 	
-				a {
-					color: inherit;
-				}
-				b {
-					font-weight: 700;
-				}
-				h1 {
-					font-size: assets.$typo-large-size;
-					line-height: assets.$line-height-large-size;
-					font-weight: 400;
-				}		
 				.content {
 					@include assets.flex-basis(100%);
 					margin-top: 60px;
+					h2 {
+						font-size: assets.$typo-big-size;
+					}
+					a {
+						color: inherit;
+					}
+					strong {
+						font-weight: 700;
+					}
+					em,
+					blockquote {
+						font-style: italic;
+					}
+					h1 {
+						font-size: assets.$typo-large-size;
+						line-height: assets.$line-height-large-size;
+						font-weight: 400;
+					}
+					h2,	
+					p,
+					ul,
+					ol {
+						padding-bottom: 15px;
+					}	
+					ul,
+					ol {
+						list-style-position: inside;
+					}
+					ul {
+						list-style-type: disc;
+					}
+					ol {
+						list-style-type: decimal;
+					}
+
 				}
 			}		
 
