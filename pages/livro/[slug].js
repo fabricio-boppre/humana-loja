@@ -158,7 +158,7 @@ export default function Book({book}) {
 						<header>
 							<h1>descrição</h1>
 						</header>
-						<div dangerouslySetInnerHTML={{ __html: formattedDescription }}></div>
+						<div className="formatted-text" dangerouslySetInnerHTML={{ __html: formattedDescription }}></div>
 					</section>
 				
 				</article>

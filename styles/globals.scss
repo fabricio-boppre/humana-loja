@@ -60,41 +60,43 @@ body {
 				.content {
 					@include assets.flex-basis(100%);
 					margin-top: 60px;
-					h2 {
-						font-size: assets.$typo-big-size;
-					}
-					a {
-						color: inherit;
-					}
-					strong {
-						font-weight: 700;
-					}
-					em,
-					blockquote {
-						font-style: italic;
-					}
 					h1 {
 						font-size: assets.$typo-large-size;
 						line-height: assets.$line-height-large-size;
 						font-weight: 400;
 					}
-					h2,	
-					p,
-					ul,
-					ol {
-						padding-bottom: 15px;
-					}	
-					ul,
-					ol {
-						list-style-position: inside;
+					a {
+						color: inherit;
 					}
-					ul {
-						list-style-type: disc;
+					
+					.formatted-text {
+						h2 {
+							font-size: assets.$typo-big-size;
+						}
+						strong {
+							font-weight: 700;
+						}
+						em,
+						blockquote {
+							font-style: italic;
+						}
+						h2,	
+						p,
+						ul,
+						ol {
+							padding-bottom: 15px;
+						}	
+						ul,
+						ol {
+							list-style-position: inside;
+						}
+						ul {
+							list-style-type: disc;
+						}
+						ol {
+							list-style-type: decimal;
+						}
 					}
-					ol {
-						list-style-type: decimal;
-					}
-
 				}
 			}		
 
