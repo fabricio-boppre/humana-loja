@@ -65,21 +65,21 @@ body {
 						line-height: assets.$line-height-large-size;
 						font-weight: 400;
 					}
+					h2 {
+						font-size: assets.$typo-big-size;
+					}
 					a {
 						color: inherit;
 					}
+					strong {
+						font-weight: 700;
+					}
+					em,
+					blockquote {
+						font-style: italic;
+					}
 					
 					.formatted-text {
-						h2 {
-							font-size: assets.$typo-big-size;
-						}
-						strong {
-							font-weight: 700;
-						}
-						em,
-						blockquote {
-							font-style: italic;
-						}
 						h2,	
 						p,
 						ul,
