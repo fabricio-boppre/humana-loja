@@ -65,14 +65,14 @@ export default function ShowcaseFiltersAndOrder(props) {
 										 {props.bookPrices.title}:
 								</div>
 								<ul>
-									<li className={props.isOrderActive(props.bookPrices.priceDescId) ? "active" : ""}>
-										<div onClick={() => {props.clickOrder(props.bookPrices.priceDescId)}}>
-											{props.bookPrices.priceDescTitle}
-										</div>
-									</li>
 									<li className={props.isOrderActive(props.bookPrices.priceAscId) ? "active" : ""}>
 										<div onClick={() => {props.clickOrder(props.bookPrices.priceAscId)}}>
 											{props.bookPrices.priceAscTitle}
+										</div>
+									</li>
+									<li className={props.isOrderActive(props.bookPrices.priceDescId) ? "active" : ""}>
+										<div onClick={() => {props.clickOrder(props.bookPrices.priceDescId)}}>
+											{props.bookPrices.priceDescTitle}
 										</div>
 									</li>
 								</ul>

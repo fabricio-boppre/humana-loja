@@ -25,9 +25,10 @@ export default class Humana extends App {
 	// - https://medium.com/@nikolalsvk/loosing-bind-this-in-react-8637ebf372cf
   // - Methods that set a new search string on the form (via user typing or via user opening an URI with a search query string in it):
 	setFormSearchString = (e) => { this.setState({formSearchString: e.target.value}) }
-	setFormSearchStringFromURI = (formSearchStringFromURI) => { this.setState({formSearchString: formSearchStringFromURI}) }
-  // - Method that updates our searchCount, which triggers a new search:
+	setFormSearchStringWithValue = (value) => { this.setState({formSearchString: value}) }
+  // - Methods that update our searchCount, which triggers a new search:
 	handleSearchButton = () => { this.setState({ searchCount: this.state.searchCount + 1 }) }
+	zeroSearchCount = () => { this.setState({ searchCount: 0 }) }
 	
 	render() {
 
@@ -57,7 +58,7 @@ export default class Humana extends App {
 
 						<SearchForm formSearchString={this.state.formSearchString}
 												setFormSearchString={this.setFormSearchString}
-												setFormSearchStringFromURI={this.setFormSearchStringFromURI}
+												setFormSearchStringWithValue={this.setFormSearchStringWithValue}
 												handleSearchButton={this.handleSearchButton}
 												searchCount={this.state.searchCount} />
 	
@@ -65,6 +66,8 @@ export default class Humana extends App {
 						
 	          <Component {...pageProps} 
 											 formSearchString={this.state.formSearchString}
+											 setFormSearchStringWithValue={this.setFormSearchStringWithValue}
+											 zeroSearchCount={this.zeroSearchCount}
 											 searchCount={this.state.searchCount} />
 
 					</div>

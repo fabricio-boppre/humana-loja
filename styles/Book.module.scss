@@ -10,10 +10,18 @@
   ---------------------------------------------- */
 
 #book {
+  opacity: 1;
 	:global(#inexistent-book),
 	:global(#loading-book) {
 		text-align: center;
 	}
+	&:global(.loading) {
+		> * {	
+			transition: opacity 0.05s linear;
+			opacity: 0.3;
+		}
+	}
+
 	article {
 		@include assets.flexbox();
 		@include assets.flex-wrap(wrap);

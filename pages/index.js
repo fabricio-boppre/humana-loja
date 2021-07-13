@@ -1,6 +1,7 @@
 import { useReducer } from 'react'
 import { useEffect } from 'react'
 import { useState } from 'react'
+import { useRef } from 'react'
 import { useRouter } from 'next/router'
 import Head from 'next/head'
 import { bookPublicationYear,bookPrices,bookFormats,bookConditions,bookPriceRanges,bookCategories,bookSubcategories } from '../lib/utils'
@@ -41,10 +42,13 @@ export default function Index(props) {
 	const [page, setPage] = useState(props.page)
 	// - This state is just to help us re-render the component after removing filters (see explanation below in clickFilter function):
 	const [removedFilter, forceUpdate] = useReducer(x => x + 1, 0)
-	// - This state is just to help us avoid a new automatic render after the first one (see explanation below in the routing useEffect):
-	const [interactionStarted, setInteractionStarted] = useState(false)
 	// - Search string state:
 	const [currentSearchString,setCurrentSearchString] = useState(props.currentSearchString)
+
+	// - This ref object is just to help us avoid a new automatic render after the first one:
+	// - useRef Hook: https://reactjs.org/docs/hooks-reference.html#useref;
+	// - See logic explanation below in the routing useEffect:
+	const didMountRef = useRef(false);
 		
 	// Effects:
 	// - See the explanation of why we use Effect Hook in the Masthead.js component.
@@ -65,10 +69,9 @@ export default function Index(props) {
 	}, [props.searchCount])
 	// - After updating the filters or order or page state, we have to re-route the app:
 	useEffect(() => {
-		// - We check if the user has already changed filter or page or order, or if he's making a search:
-		// -> If not, then it means we are in the first rendering of the page and we don't need to re-route;
-		// -> If yes, then we proceed.
-		if (interactionStarted || (props.searchCount > 0)) {
+		// - But, before, we check if didMountRef is true:
+		// - If yes, it means we are not in the first rendering of the page and we indeed need to make the requested re-route:
+		if (didMountRef.current) {
 			// First, we prepare the query strings based on our current states:
 			var formatsQueryString = ''
 			var conditionsQueryString = ''
@@ -112,7 +115,11 @@ export default function Index(props) {
 			}
 			// Then we proceed the client-side transition with the requested queries:
 			router.push('/' + formatsQueryString + conditionsQueryString + categoriesQueryString + subcategoriesQueryString + priceRangesQueryString + orderQueryString + searchQueryString + pageQueryString)
+		// - If not, then it means we are in the first rendering of the page and we don't need to make any re-route (we only need to update the ref, so the next time the re-route will happen):
+		} else {
+      didMountRef.current = true;
 		}
+		
 	}, [page
 		 ,order
 		 ,formatsToFilter
@@ -121,7 +128,7 @@ export default function Index(props) {
 		 ,subcategoriesToFilter
 		 ,priceRangesToFilter
 		 ,removedFilter])
-	// - Visual effect on the showcase while its being loaded:
+	// - Visual effect on the showcase while route is on its way:
 	// - We listen to different events happening inside the Next.js Router to make changes on the styles;
 	// - More info: https://nextjs.org/docs/api-reference/next/router#routerevents.
   useEffect(() => {
@@ -145,7 +152,6 @@ export default function Index(props) {
 	// - The click calls the function that updates the page state;
 	// - After updating the state, the component is immediately re-rendered (the re-route happens in the Effect Hook).
 	const clickNextPage = () => {
-		setInteractionStarted(true) // Set to true to allow the re-route in our route Hook Effect.
 		setPage(parseInt(page)+1)
 	}
 	const clickPreviousPage = () => {
@@ -237,7 +243,6 @@ export default function Index(props) {
 	// Function to handle the click on an option of the filters lists:
 	// - The click calls the function that updates the filter state, activating or deactivating the clicked option.
 	const clickFilter = (clickedFilter, filterType, maxOne, filterToRemove, filterToRemoveType) => {
-		setInteractionStarted(true) // Set to true to allow the re-route in our route Hook Effect.
 		// First we copy the current state (of the requested type) into an array:
 	  var filterArray
 		if (filterType == bookFormats.id) {
@@ -325,7 +330,6 @@ export default function Index(props) {
 	// Function to handle the click on an option of the order lists:
 	// - The click calls the function that updates the order state, setting the clicked option.
 	const clickOrder = (clickedOrder) => {
-		setInteractionStarted(true) // Set to true to allow the re-route in our route Hook Effect.
 	 	setOrder(clickedOrder)
 		// We also set the page to the first one, because changing the order must renew the showcase:
 		setPage(1)
