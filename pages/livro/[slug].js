@@ -72,9 +72,6 @@ export default function Book(props) {
 	// - This value must be kept in accordance with the #book-image flex-basis (Book.module.scss).
 	const width = 260
 		
-	// Create the "Humana indica" label:
-	const humana_indica = <div className="humana_indica">Humana indica</div>
-	
 	// Prepare the subcategories:
 	var subcategories
 	if ((props.book.subcategories) && (props.book.subcategories.length > 0)) {
@@ -146,7 +143,7 @@ export default function Book(props) {
 							<h1>Capa</h1>
 						</header>
 						{((props.book.special_category !== undefined) && (props.book.special_category.includes("humana_indica"))) ?
-					  	humana_indica :
+					  	<div className="humana_indica">Humana indica</div> :
 							""
 						}
 		        <img src={props.book.mainImageUrl + '?w=' + width}
@@ -163,6 +160,10 @@ export default function Book(props) {
 							</div>
 						</header>
 						<div className="info-item"><span className="title">tipo</span> {props.book.format}</div>
+						{(props.book.cover_type !== undefined) ?
+					  	<div className="info-item"><span className="title">capa</span> {props.book.cover_type}</div> :
+							""
+						}
 						<div className="info-item"><span className="title">editora</span> {props.book.publishing_company.name}</div>
 						<div className="info-item"><span className="title">ano de publicação</span> {props.book.publication_year}</div>
 						<div className="info-item">
@@ -171,8 +172,14 @@ export default function Book(props) {
 						</div>
 						{props.book.subcategories ? subcategories : ""}
 						<div className="info-item"><span className="title">número de páginas</span> {props.book.pages_number}</div>
-						<div className="info-item"><span className="title">peso</span> {props.book.weight}g</div>
-						<div className="info-item"><span className="title">dimensões</span> C: {props.book.length}cm / L: {props.book.width}cm / A: {props.book.height}cm</div>
+						{(props.book.weight !== undefined) ?
+					  	<div className="info-item"><span className="title">peso</span> {props.book.weight}g</div> :
+							""
+						}
+						{((props.book.length !== undefined) && (props.book.width !== undefined) && (props.book.height !== undefined)) ?
+					  	<div className="info-item"><span className="title">dimensões</span> C: {props.book.length}cm / L: {props.book.width}cm / A: {props.book.height}cm</div> :
+							""
+						}
 					</section>
 	
 					<section id="book-price-and-button">
