@@ -39,7 +39,6 @@
 				display: none;
 			}
 			:global(.text) {
-				line-height: $button-height;
 				min-height: $button-height;
 				background-color: assets.$orange-button;
 				font-weight: 400;
