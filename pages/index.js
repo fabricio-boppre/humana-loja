@@ -24,7 +24,7 @@ export default function Index(props) {
 	// - This ref object is just to help us avoid a new automatic render after the first one:
 	// - useRef Hook: https://reactjs.org/docs/hooks-reference.html#useref;
 	// - See logic explanation below in the routing useEffect:
-	const didMountRef = useRef(false);
+	const didMountRef = useRef(false)
 
 	// States:
 	// - We use the State Hook (https://reactjs.org/docs/hooks-state.html) to add some local state to this function component. React will preserve this state between re-renders;
@@ -405,7 +405,7 @@ export default function Index(props) {
 				</>
 		)
 	} else {
-		showcase = <p id="empty-showcase">Infelizmente, não temos nenhum livro para lhe oferecer neste momento. Entre em contato conosco para avaliarmos se conseguimos encomendar o que você procura.</p>
+		showcase = <p id="empty-showcase">Infelizmente, não temos o que você procura no momento. Convidamos você a entrar em contato conosco para avaliarmos se conseguimos encomendar o que você deseja. Nosso telefone/WhatsApp é: 49 3316-4566. Nosso email: <a href="mailto:humanasebolivraria@gmail.com">humanasebolivraria@gmail.com</a>.</p>
 	}
 	
   return (

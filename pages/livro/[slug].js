@@ -117,12 +117,14 @@ export default function Book(props) {
 	            comprar
 	        </button>
 		)
-	// - If the book is not available, we show the the unavailable sign and no price tag: 
+	// - If the book is not available, we show the the unavailable sign and no price tag:
+	// - We also take the opportunity to create the message about unavailable books.
 	} else if (props.book.stock_situation == "esgotado_visivel") {
 		var price_tag = null
 		var button = <div className="unavailable">esgotado</div>
+		var sectionUnavailable = <section id="book-unavailable">Infelizmente, não temos este livro no momento. Convidamos você a entrar em contato conosco para avaliarmos se conseguimos encomendá-lo. Nosso telefone/WhatsApp é: 49 3316-4566. Nosso email: <a href="mailto:humanasebolivraria@gmail.com">humanasebolivraria@gmail.com</a>.</section>
 	}
-
+	
 	// Parse Markdown code on description to HTML code:
 	// - Then, on the front-end, we decode the HTML code using dangerouslySetInnerHTML (https://reactjs.org/docs/dom-elements.html#dangerouslysetinnerhtml).
 	var md = require('markdown-it')();
@@ -189,6 +191,8 @@ export default function Book(props) {
 						{price_tag}
 						{button}
 					</section>
+					
+					{props.book.stock_situation == "esgotado_visivel" ? sectionUnavailable : ""}
 
 					<section id="book-description">
 						<header>

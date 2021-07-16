@@ -96,10 +96,23 @@
 				@include assets.unavailable-button;
 			}
 		}
-		
+
+		:global(#book-unavailable),
 		:global(#book-description) {
 			@include assets.flex(1 0 100%);
-			padding-top: 30px;
+		}
+		
+		:global(#book-unavailable) {
+			@include assets.border-radius(8px);
+			margin-top: 30px;
+			background-color: #fc6a67;
+			color: white;
+			padding: 10px 15px;
+			font-weight: 400;
+		}
+
+		:global(#book-description) {
+			margin-top: 25px;
 			h1 {
 				padding-bottom: 15px;
 			}
@@ -116,7 +129,7 @@
 			}
 			:global(#book-price-and-button) {
 				@include assets.flex(1 0 100%);
-				padding: 30px 0 0 0;
+				padding: 20px 0 0 0;
 				border-left: none;
 			}
 		}
