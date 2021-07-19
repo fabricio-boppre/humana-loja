@@ -60,6 +60,10 @@ body {
 				.content {
 					@include assets.flex-basis(100%);
 					margin-top: 60px;
+
+					#inexistent-page {
+						text-align: center;
+					}
 					h1 {
 						font-size: assets.$typo-large-size;
 						line-height: assets.$line-height-large-size;
