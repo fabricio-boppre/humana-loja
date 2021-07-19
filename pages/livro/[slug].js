@@ -62,7 +62,7 @@ export default function Book(props) {
 						<title>Humana</title>
 		      </Head>
 		      <main className="content" id={styles.book}>
-						<p id="inexistent-book">Ops! Este livro não consta em nosso catálogo.</p>
+						<p id="inexistent-book">Este livro não consta em nosso catálogo. Convidamos você a entrar em contato conosco para avaliarmos se conseguimos encomendá-lo. Nosso telefone/WhatsApp é: 49 3316-4566. Nosso email: <a href="mailto:humanasebolivraria@gmail.com">humanasebolivraria@gmail.com</a>.</p>
 					</main>
 		    </>
   	)
