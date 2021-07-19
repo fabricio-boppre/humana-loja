@@ -13,12 +13,14 @@
 	@include assets.justify-content(space-between);
 	@include assets.flexbox();
 	@include assets.flex-wrap(wrap);
+	@include assets.align-items(flex-start);
 	
 	// Showcase filters:
 	:global(#showcase-filters-order) {
 		$block-space: 10px;
 		$list-line-height: 17px;
 		@include assets.flex(0 0 250px);
+		border-bottom: assets.$box-border;
 		font-size: assets.$typo-small-size;
 		:global(.order-header),
 		:global(.filter-header) {
@@ -26,7 +28,7 @@
 			@include assets.flexbox();
 			@include assets.justify-content(space-between);
 			border-top: assets.$box-border;
-			padding: 10px 0 20px 0;
+			padding: 15px 0;
 			cursor: pointer;
 			font-weight: 700;
 			min-height: $icon-height;
@@ -162,7 +164,6 @@
 		}
 		:global(main#showcase) {
 			padding-top: 30px;
-			border-top: assets.$box-border;
 			h1 {
 				padding-bottom: 40px;
 			}
