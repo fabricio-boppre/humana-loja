@@ -1,0 +1,25 @@
+/* ---------------------------------------------
+	MIXINS, VARIABLES & EXTENDS
+  ---------------------------------------------- */
+
+@use '../styles/assets';
+
+/* ------------------------------------------------------------------------------
+	ACCOUNT BUTTON:
+	- ":global" wrapped around IDs prevents them from being changed by CSS Modules.
+  ------------------------------------------------------------------------------- */
+
+	#account_button {
+		font-weight: 700;
+		border-right: 1px solid black;
+		margin-right: 20px;
+		padding-right: 20px;	
+		cursor: pointer;
+
+		// Responsiveness rules:
+		@media screen and (max-width: assets.$tablet-width) {
+			@include assets.order(1);
+		}
+
+	}
+

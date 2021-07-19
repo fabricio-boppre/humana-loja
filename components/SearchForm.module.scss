@@ -10,6 +10,7 @@
   ------------------------------------------------------------------------------- */
 
 #search_form {
+	@include assets.flex(1);
 	form {
 		@include assets.flexbox();
 		input {
@@ -55,7 +56,7 @@
 	// Responsiveness rules:
 	@media screen and (max-width: assets.$tablet-width) {
 		@include assets.flex-basis(100%);
-		@include assets.order(2);
+		@include assets.order(3);
 		margin-top: 20px;
 		form {
 			justify-content: center;

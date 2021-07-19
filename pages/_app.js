@@ -4,6 +4,7 @@ import Masthead from '../components/Masthead'
 import Footer from '../components/Footer'
 import SearchForm from '../components/SearchForm'
 import CheckoutButtonAndInfo from '../components/CheckoutButtonAndInfo'
+import AccountButton from '../components/AccountButton'
 import '../styles/reset.css' // First let's reset some CSS definitions...
 import '../styles/globals.css' // And then apply our globals.
 
@@ -29,7 +30,7 @@ export default class Humana extends App {
   // - Methods that update our searchCount, which triggers a new search:
 	handleSearchButton = () => { this.setState({ searchCount: this.state.searchCount + 1 }) }
 	zeroSearchCount = () => { this.setState({ searchCount: 0 }) }
-	
+
 	render() {
 
     const { Component, pageProps } = this.props;
@@ -61,6 +62,8 @@ export default class Humana extends App {
 												setFormSearchStringWithValue={this.setFormSearchStringWithValue}
 												handleSearchButton={this.handleSearchButton}
 												searchCount={this.state.searchCount} />
+												
+						<AccountButton />
 	
 						<CheckoutButtonAndInfo  />
 						

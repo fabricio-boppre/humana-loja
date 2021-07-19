@@ -56,7 +56,7 @@ body {
 				font-size: assets.$typo-normal-size;
 				line-height: assets.$line-height-normal-size;
 				font-weight: 300;
-	
+				
 				.content {
 					@include assets.flex-basis(100%);
 					margin-top: 60px;
@@ -111,8 +111,9 @@ body {
 		div#__next {
 			#principal {
 				#principal-nucleus {
-					@include assets.justify-content(flex-start);
+					@include assets.justify-content(center);
 					padding-top: 30px;
+
 					.content {
 						@include assets.order(3);
 						margin-top: 50px;

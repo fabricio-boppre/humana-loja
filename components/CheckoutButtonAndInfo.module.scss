@@ -46,8 +46,7 @@
 
 	// Responsiveness rules:
 	@media screen and (max-width: assets.$tablet-width) {
-		@include assets.order(1);
-		margin-left: auto;
+		@include assets.order(2);
 	}
 
 }

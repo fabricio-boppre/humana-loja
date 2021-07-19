@@ -34,14 +34,44 @@ export default function Masthead() {
     document.addEventListener('snipcart.ready', function() {
       Snipcart.api.session.setLanguage('pt-BR', {
           actions: {
-            back_to_store: "Voltar à loja"
-          },
-          cart: {
-            view_detailed_cart: "Ver carrinho completo"
+            back_to_store: "Voltar à loja",
+						save_changes: "Salvar alterações",
           },
 					address_form: {
 						country: "País"
-					}
+					},
+          cart: {
+            view_detailed_cart: "Ver carrinho completo"
+          },
+			    change_password_form: {
+			        title: "Alterar sua senha",
+			        current_password: "Senha atual",
+			        password: "Nova senha",
+			        confirmation_password: "Confirme sua nova senha",
+			        action: "Alterar sua senha",
+							back_to_orders: "Voltar aos pedidos",
+			    },
+			    customer: {
+			      information: "Informações do cliente"
+			    },
+ 				  customer_dashboard: {
+						my_account: "Sua conta",
+						show_more_orders: "Exibir mais pedidos |||| Exibir mais pedidos",
+						orders: "Pedidos",
+						view_invoice: "Ver nota fiscal",
+					},
+			    customer_details: {
+			        title: "Seu cadastro"
+			    },
+          register_form: {
+            requires_action: {
+							title: "Verifique sua caixa de entrada",
+							description: "Este endereço de email já foi utilizado em uma compra anterior. Para completar o seu registro, verifique a mensagem que acabamos de lhe enviar."
+						}
+          },
+			    shipping: {
+			      method: "Método de envio"
+			    },
       })
     });
   }, [])
