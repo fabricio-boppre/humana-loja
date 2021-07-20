@@ -24,6 +24,19 @@ async function discoverDocType(id) {
     });
   return result
 }
+
+async function discoverBookSlug(id) {
+  const slugQuery = '*[_id == "'+id+'"]{slug}.slug'
+  let result
+  await readCMS.fetch(slugQuery)
+    .then(function(response) {
+      result = response
+    })
+    .catch(function(err) {
+      result = err
+    });
+  return result
+}
   
 export default async function contentChange(req, res) {
 
@@ -56,40 +69,11 @@ export default async function contentChange(req, res) {
       if (docType == 'book') {
         
         // We have to regenerate the page of the book, sending a GET request to its URL:
-        var bookURL = frontPageURL + 'livro/' + docId
+				const bookSlug = await discoverBookSlug(docId)
+        var bookURL = frontPageURL + 'livro/' + bookSlug
         var getRequestResult = await sendGetRequest(bookURL)
-        // console.log('fetch do livro updated: ' + getRequestResult)
-        
-        // We also have to regenerate the front page, sending a GET request to its URL:
-				// - Disabled because we are now using Server-side Rendering for the front page.
-        // var getRequestResult = await sendGetRequest(frontPageURL)
-        // console.log('fetch da front page after update: ' + getRequestResult)
       }    
     
-    // If the action was a create:
-    // - Disabled because we are now using Server-side Rendering for the front page.
-		// } else if (req.body.ids.created.length > 0) {
-
-      // First, let's discover the type of the created document: 
-      // var docType = await discoverDocType(docId)
-      // console.log('created doc: '+docType)
-  
-      // If the document is a book (or it's null -- for the cases when Sanity weirdly gives me null...):
-      // if ((docType == 'book') || (docType === null)) {
-        
-        // We have to regenerate the front page, sending a GET request to its URL:
-        // var getRequestResult = await sendGetRequest(frontPageURL)
-        // console.log('fetch da front page after new book created: ' + getRequestResult)
-      // }    
-
-    // Finally, if the action was a delete:
-    // - Disabled because we are now using Server-side Rendering for the front page.
-		// } else if (req.body.ids.deleted.length > 0) {
-
-      // As we can't know the type of the document (because it doesn't exist anymore on the CMS), then, just to be sure, we regenerate the front page, sending a GET request to its URL:
-      // var getRequestResult = await sendGetRequest(frontPageURL)
-      // console.log('fetch da front page after some deletion: ' + getRequestResult)
-
     } 
 
     // A message explaining what was done:
