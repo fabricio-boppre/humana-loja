@@ -81,7 +81,7 @@ export default class Humana extends App {
 
         <script async src="https://cdn.snipcart.com/themes/v3.2.0/default/snipcart.js"></script>
 
-        <div hidden id="snipcart" data-api-key="OGEyNjNlZGYtZmYyNi00MGM0LWI2ZjktYjI0YWM0MTM0MDBjNjM3NTA4MDU0NTE2ODU3Njcz" data-config-modal-style="side">
+        <div hidden id="snipcart" data-api-key={process.env.SNIPCART_API_KEY} data-config-modal-style="side">
 
 					<billing section="top">
 						<fieldset>
