@@ -179,7 +179,7 @@ export default function Book(props) {
 							""
 						}
 						{((props.book.length !== undefined) && (props.book.width !== undefined) && (props.book.height !== undefined)) ?
-					  	<div className="info-item"><span className="title">dimensões</span> C: {props.book.length}cm / L: {props.book.width}cm / A: {props.book.height}cm</div> :
+					  	<div className="info-item"><span className="title">dimensões</span> {props.book.length}cm / {props.book.width}cm / {props.book.height}cm</div> :
 							""
 						}
 					</section>
