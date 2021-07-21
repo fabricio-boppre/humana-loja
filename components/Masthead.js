@@ -38,7 +38,7 @@ export default function Masthead() {
 						save_changes: "Salvar alterações",
           },
 					address_form: {
-						country: "País"
+						country: "País",
 					},
           cart: {
             view_detailed_cart: "Ver carrinho completo"
@@ -52,7 +52,7 @@ export default function Masthead() {
 							back_to_orders: "Voltar aos pedidos",
 			    },
 			    customer: {
-			      information: "Informações do cliente"
+			      information: "Informações do cliente",
 			    },
  				  customer_dashboard: {
 						my_account: "Sua conta",
@@ -61,16 +61,26 @@ export default function Masthead() {
 						view_invoice: "Ver nota fiscal",
 					},
 			    customer_details: {
-			        title: "Seu cadastro"
+			        title: "Seu cadastro",
 			    },
+			    default: {
+			        loading: "Carregando...",
+			        error: "Um erro aconteceu.",
+			        success: "Sucesso!",
+			    },
+					errors: {
+		        shippingRates: {
+		            "loading": "Carregando os valores de frete",
+		        },						
+					},
           register_form: {
             requires_action: {
 							title: "Verifique sua caixa de entrada",
-							description: "Este endereço de email já foi utilizado em uma compra anterior. Para completar o seu registro, verifique a mensagem que acabamos de lhe enviar."
-						}
+							description: "Este endereço de email já foi utilizado em uma compra anterior. Para completar o seu registro, verifique a mensagem que acabamos de lhe enviar.",
+						},
           },
 			    shipping: {
-			      method: "Método de envio"
+			      method: "Método de envio",
 			    },
       })
     });
