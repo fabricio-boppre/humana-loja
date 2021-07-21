@@ -122,7 +122,7 @@ export default function Book(props) {
 	} else if (props.book.stock_situation == "esgotado_visivel") {
 		var price_tag = null
 		var button = <div className="unavailable">esgotado</div>
-		var sectionUnavailable = <section id="book-unavailable">Infelizmente, não temos este livro no momento. Convidamos você a entrar em contato conosco para avaliarmos se conseguimos encomendá-lo. Nosso telefone/WhatsApp é: 49 3316-4566. Nosso email: <a href="mailto:humanasebolivraria@gmail.com">humanasebolivraria@gmail.com</a>.</section>
+		var sectionUnavailable = <section id="book-unavailable">No momento este item está em falta. Convidamos você a entrar em contato para avaliarmos a encomenda do que você deseja. Fone/WhatsApp: 49 3316-4566 / Instagram: <a href="https://www.instagram.com/humanasebolivraria/">@humanasebolivraria</a> / E-mail: <a href="mailto:humanasebolivraria@gmail.com">humanasebolivraria@gmail.com</a>.</section>
 	}
 	
 	// Parse Markdown code on description to HTML code:

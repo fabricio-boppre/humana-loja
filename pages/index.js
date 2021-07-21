@@ -407,7 +407,7 @@ export default function Index(props) {
 				</>
 		)
 	} else {
-		showcase = <p id="empty-showcase">Infelizmente, não temos o que você procura no momento. Convidamos você a entrar em contato conosco para avaliarmos se conseguimos encomendar o que você deseja. Nosso telefone/WhatsApp é: 49 3316-4566. Nosso email: <a href="mailto:humanasebolivraria@gmail.com">humanasebolivraria@gmail.com</a>.</p>
+		showcase = <p id="empty-showcase">Infelizmente, não temos o que você procura no momento. Convidamos você a entrar em contato conosco para avaliarmos a encomenda do que você deseja. Fone/WhatsApp: 49 3316-4566 / Instagram: <a href="https://www.instagram.com/humanasebolivraria/">@humanasebolivraria</a> / E-mail: <a href="mailto:humanasebolivraria@gmail.com">humanasebolivraria@gmail.com</a>.</p>
 	}
 	
   return (
