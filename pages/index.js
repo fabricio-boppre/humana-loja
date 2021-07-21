@@ -395,7 +395,9 @@ export default function Index(props) {
 		showcase = (
 	      <>
 					<ul id="showcase-books-list">
-	          {props.books.map(book => <ShowcaseBook book={book} key={book.id} />)}
+	          {props.books.map(book => <ShowcaseBook book={book} 
+																									 key={book.id} 
+																									 urlPath={router.asPath} />)}
 	        </ul>
 					<ShowcasePagination page={props.page}
 															pagesTotal={props.pagesTotal}
