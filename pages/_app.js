@@ -1,5 +1,6 @@
 import App from 'next/app'
 import Head from 'next/head'
+import Script from 'next/script'
 import Masthead from '../components/Masthead'
 import Footer from '../components/Footer'
 import SearchForm from '../components/SearchForm'
@@ -48,6 +49,8 @@ export default class Humana extends App {
         </Head>
 
         <Masthead />
+				
+				<div id="opening-sale">Promoção de abertura: <span className="highlight">frete grátis</span> para compras acima de R$ 150,00</div>
 
         <div id="incompatible-browser">
 					<p>Infelizmente o nosso site não funciona neste browser. Por favor, atualize-o para uma versão mais recente.</p>
@@ -79,7 +82,10 @@ export default class Humana extends App {
 				
 				<Footer />
 
-        <script async src="https://cdn.snipcart.com/themes/v3.2.0/default/snipcart.js"></script>
+				<Script
+				  src="https://cdn.snipcart.com/themes/v3.2.0/default/snipcart.js"
+				  strategy="beforeInteractive"
+				/>
         <div hidden id="snipcart" data-api-key={process.env.SNIPCART_API_KEY} data-config-modal-style="side"></div>
 
       </>

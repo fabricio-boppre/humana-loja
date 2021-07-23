@@ -41,6 +41,23 @@ body {
 			line-height: assets.$line-height-normal-size;
 			font-weight: 300;
 		}
+		
+		#opening-sale {
+			@include assets.align-self(center);
+			@include assets.border-radius(0 0 12px 12px);
+			padding: 8px 14px;
+			font-weight: 400;
+			color: white;
+			text-align: center;
+			background-color: assets.$orange-button;
+			font-size: assets.$typo-normal-size;
+			line-height: assets.$line-height-normal-size;
+			.highlight {
+				font-weight: 700;
+				text-decoration: underline;
+				
+			}
+		}
 
 		#principal {
 			@include assets.flex(1);
@@ -168,6 +185,14 @@ body {
 	// https://docs.snipcart.com/v3/setup/theming#links
 	--color-link: black;
 	--color-link-hover:  hsl(38, 100%, 47%);
+	
+	.snipcart-modal__container {
+		border-left: 1px solid #e3e6e8;
+	}
+
+	.snipcart-cart-summary-side .snipcart-item-line__container {
+		margin-bottom: 0;
+	}
 	
 	.snipcart-base-button__label {
 		font-weight: 700;
