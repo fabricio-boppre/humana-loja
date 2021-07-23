@@ -154,33 +154,39 @@ body {
 	--shadow-buttonPrimary-hover: none;
 	--bgColor-buttonPrimary: hsl(38, 100%, 47%);
 	--bgColor-buttonPrimary-hover: hsl(38, 100%, 53%);
-	--borderColor-buttonPrimary-hover: hsl(38, 100%, 53%);
 	--borderColor-buttonPrimary: hsl(38, 100%, 47%);
+	--borderColor-buttonPrimary-hover: hsl(38, 100%, 53%);
 	--color-buttonSecondary: white;
 	--color-buttonSecondary-hover: white;
 	--shadow-buttonSecondary-hover: none;
 	--bgColor-buttonSecondary: hsl(38, 100%, 47%);
 	--bgColor-buttonSecondary-hover: hsl(38, 100%, 53%);
-	--borderColor-buttonSecondary-hover: hsl(38, 100%, 53%);
 	--borderColor-buttonSecondary: hsl(38, 100%, 47%);
+	--borderColor-buttonSecondary-hover: hsl(38, 100%, 53%);
 	
 	// Links:
 	// https://docs.snipcart.com/v3/setup/theming#links
 	--color-link: black;
+	--color-link-hover:  hsl(38, 100%, 47%);
 	
 	.snipcart-base-button__label {
 		font-weight: 600;
 	}
 
 	figure.snipcart-item-line__media.snipcart-item-line__media--small {
-		height: 40px;
+		height: 50px;
 	}
 	h2.snipcart-item-line__title.snipcart__font--xlarge.snipcart__font--secondary.snipcart__font--black {
 		line-height: 20px;
-		padding-left: 12px;
+		padding: 0 12px;
 	}
 	div.snipcart-item-line__variants {
 		padding-top: 18px;
+	}
+	
+	.snipcart-summary-fees__notice {
+		line-height: 18px;
+		margin-bottom: 10px;
 	}
 	
 	#form-cpf {
