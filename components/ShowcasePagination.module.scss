@@ -19,7 +19,7 @@
 		margin: 0 10px;
 		color: assets.$orange-button;
 		text-align: center;	
-		font-weight: 400;
+		font-weight: 700;
 		font-size: assets.$typo-small-size;
 		line-height: assets.$line-height-small-size;
 	}
@@ -41,7 +41,7 @@
 			:global(.text) {
 				min-height: $button-height;
 				background-color: assets.$orange-button;
-				font-weight: 400;
+				font-weight: 700;
 				font-size: assets.$typo-small-size;
 			}	
 			:global(.arrow-left),
