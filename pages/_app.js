@@ -80,19 +80,8 @@ export default class Humana extends App {
 				<Footer />
 
         <script async src="https://cdn.snipcart.com/themes/v3.2.0/default/snipcart.js"></script>
+        <div hidden id="snipcart" data-api-key={process.env.SNIPCART_API_KEY} data-config-modal-style="side"></div>
 
-        <div hidden id="snipcart" data-api-key={process.env.SNIPCART_API_KEY} data-config-modal-style="side">
-
-					<billing section="top">
-						<fieldset>
-							<div>
-								<snipcart-label for="cpf">CPF</snipcart-label>
-								<snipcart-input name="cpf" required></snipcart-input>
-							</div>
-						</fieldset>
-					</billing>
-
-				</div>
       </>
    );
   }

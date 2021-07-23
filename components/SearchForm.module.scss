@@ -35,12 +35,12 @@
 		}
 		button {
 			border: none;
-			@include assets.border-top-right-radius(8px);
-			@include assets.border-bottom-right-radius(8px);
+			@include assets.border-top-right-radius(4px);
+			@include assets.border-bottom-right-radius(4px);
 			cursor: pointer;	
 			padding: 6px 20px;
 			color: white;
-			text-transform: uppercase;
+			text-transform: capitalize;
 			font-weight: 400;
 			font-size: assets.$typo-small-size;
 			line-height: assets.$line-height-small-size;
@@ -48,7 +48,7 @@
 			background-color: assets.$orange-button;
 			@include assets.transition(background-color 0.2s linear);
 		  &:hover {
-		    background-color: darken(assets.$orange-button,10%);
+		    background-color: assets.$orange-button-hover;
 		  }
 		}
 	}

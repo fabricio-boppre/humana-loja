@@ -52,7 +52,7 @@
 		}
 		:global(#previous-page-button) {
 			:global(.text) {
-				@include assets.border-radius(0 8px 8px 0);
+				@include assets.border-radius(0 4px 4px 0);
 				padding: 0 10px 0 5px;
 			}
 			:global(.arrow-left) {
@@ -63,7 +63,7 @@
 		}
 		:global(#next-page-button) {
 			:global(.text) {
-				@include assets.border-radius(8px 0 0 8px);
+				@include assets.border-radius(4px 0 0 4px);
 				padding: 0 5px 0 10px;
 			}
 			:global(.arrow-right) {

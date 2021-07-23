@@ -139,12 +139,121 @@ body {
 }
 
 /* ---------------------------------------------
-	SNIPCART OVERRIDES:
+	SNIPCART CUSTOMIZATION:
   ---------------------------------------------- */
 	
-.snipcart { 
+#snipcart { 
 	* {
-		font-family: 'Open Sans', sans-serif !important;
+		font-family: 'Open Sans', sans-serif;
+	}
+
+	// Buttons:
+	// https://docs.snipcart.com/v3/setup/theming#buttons
+	--color-buttonPrimary: white;
+	--color-buttonPrimary-hover: white;
+	--shadow-buttonPrimary-hover: none;
+	--bgColor-buttonPrimary: hsl(38, 100%, 47%);
+	--bgColor-buttonPrimary-hover: hsl(38, 100%, 53%);
+	--borderColor-buttonPrimary-hover: hsl(38, 100%, 53%);
+	--borderColor-buttonPrimary: hsl(38, 100%, 47%);
+	--color-buttonSecondary: white;
+	--color-buttonSecondary-hover: white;
+	--shadow-buttonSecondary-hover: none;
+	--bgColor-buttonSecondary: hsl(38, 100%, 47%);
+	--bgColor-buttonSecondary-hover: hsl(38, 100%, 53%);
+	--borderColor-buttonSecondary-hover: hsl(38, 100%, 53%);
+	--borderColor-buttonSecondary: hsl(38, 100%, 47%);
+	
+	// Links:
+	// https://docs.snipcart.com/v3/setup/theming#links
+	--color-link: black;
+	
+	.snipcart-base-button__label {
+		font-weight: 600;
+	}
+
+	figure.snipcart-item-line__media.snipcart-item-line__media--small {
+		height: 40px;
+	}
+	h2.snipcart-item-line__title.snipcart__font--xlarge.snipcart__font--secondary.snipcart__font--black {
+		line-height: 20px;
+		padding-left: 12px;
+	}
+	div.snipcart-item-line__variants {
+		padding-top: 18px;
+	}
+	
+	#form-cpf {
+		padding: 8px 0;
+	}
+	
+	form#snipcart-shipping-address-form.snipcart-form {
+		h3.snipcart-shipping-address__subtitle.snipcart__font--bold {
+			display: none;
+		}
+	}
+	
+	form#snipcart-billing-form.snipcart-form,
+	form#snipcart-shipping-address-form.snipcart-form {
+		div.snipcart__box {
+			div.snipcart__box--header div.snipcart__box--title h1.snipcart__font--subtitle {
+				padding-bottom: 20px;
+			}
+			div fieldset.snipcart-form__set div.snipcart-form__row {
+				div.snipcart-form__field.snipcart-form__cell--tidy {
+					width: 40%;
+				}
+				div.snipcart-form__field.snipcart-form__cell--large {
+					select {
+						border: 1px solid #e3e6e8;
+						height: 52px;
+						width: 100%;
+						font-weight: 500;
+						padding: 0 30px 0 16px;
+				    -moz-appearance:none; /* Firefox */
+				    -webkit-appearance:none; /* Safari and Chrome */
+				    appearance: none;
+						background-image: url("../public/img/layout/form-select-icon.svg");
+						background-repeat: no-repeat;
+						background-position: center right 5px;
+						@include assets.border-radius(0);
+					}
+				}
+			}	
+			div fieldset.snipcart-form__set div.snipcart-form__field div.snipcart-typeahead div.snipcart-typeahead__content div.snipcart-typeahead__select div.snipcart-typeahead__input div.snipcart-form__select-wrapper svg.snipcart__icon {
+				display: none;
+			}
+		}
+	}
+
+	div.snipcart-checkout-step__icon.snipcart-shipping-completed__step-icon,
+	div.snipcart-checkout-step__icon.snipcart-billing-completed__step-icon {
+		margin-right: 10px;
+	}
+	
+	span.snipcart-shipping-completed__information,
+	span.snipcart-cart-summary-item__name {
+		line-height: 18px;
+	}
+
+	span.snipcart-shipping-rates-list-item__label--highlight {
+		.snipcart-form-radio:checked + label::after {
+			content: none;
+		}
+	}
+
+	@media screen and (max-width: assets.$smartphone-width) {
+		form#snipcart-billing-form.snipcart-form,
+		form#snipcart-shipping-address-form.snipcart-form {
+			div.snipcart__box {
+				div fieldset.snipcart-form__set div.snipcart-form__row {
+					flex-direction: column;
+					div.snipcart-form__field.snipcart-form__cell--tidy {
+						width: 100%;
+					}
+				}
+			}
+		}
 	}
 }
 
