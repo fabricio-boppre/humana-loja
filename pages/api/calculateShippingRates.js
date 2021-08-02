@@ -46,6 +46,8 @@ async function getCorreiosShippingResponse(serviceCode, totalWeight, totalHeight
 }
 
 export default async function calculateShippingRates(req, res) {
+	
+	console.log('olá!')
 
   // This route receives an HTTP POST request sent by Snipcart. The request body will contain all the current order details, so we can calculate the shipping rates.
   // - req: An instance of http.IncomingMessage (https://nodejs.org/api/http.html#http_class_http_incomingmessage);
@@ -102,6 +104,8 @@ export default async function calculateShippingRates(req, res) {
 		]);	
 		// If there wasn't errors in the Correios responses, then we add them to our shipping methods array:
 		// - We have to convert the Brazilian decimal representation standard (1.000,00) to the Snipcart one (1,000.00, which will be readapted to the Brazilian standard in the frontend due to our settings in the Dashboard).
+		console.log(correiosSEDEXResponse)
+		console.log(correiosPACResponse)
 		if (typeof correiosSEDEXResponse.Servicos !== 'undefined') {
 			if (correiosSEDEXResponse.Servicos.cServico.Erro == '0') {
 				rates["rates"].push({
