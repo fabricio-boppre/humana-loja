@@ -1,5 +1,4 @@
 import { useEffect } from 'react'
-import Image from 'next/image'
 import styles from './Masthead.module.css'
 
 export default function Masthead() {
@@ -313,18 +312,18 @@ export default function Masthead() {
               <ul>
                 <li>
                   <a href="https://www.facebook.com/pages/category/Bookstore/Humana-Sebo-e-Livraria-436455317131153/">
-                    <Image
+                    <img
                       src="/img/layout/servico-facebook.svg"
                       alt="facebook"
                       title="facebook" 
-                      width="12.46px"
+                      width="12.46"
                       height="60"
                     />
                   </a>
                 </li>
                 <li>
                   <a href="https://www.instagram.com/humanasebolivraria/">
-                    <Image
+                    <img
                       src="/img/layout/servico-instagram.svg"
                       alt="instagram"
                       title="instagram"
@@ -335,7 +334,7 @@ export default function Masthead() {
                 </li>
                 <li>
                   <a href="https://www.youtube.com/channel/UC5bVFV4JYUDLPiJay49fM0w">
-                    <Image
+                    <img
                       src="/img/layout/servico-youtube.svg"
                       alt="youtube"
                       title="youtube"
