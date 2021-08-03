@@ -1,5 +1,3 @@
-import { readCMS } from '../../lib/sanity'
-
 // Timeout wrapper for promises:
 // - More info: https://stackoverflow.com/questions/46946380/fetch-api-request-timeout
 function timeout(ms, promise) {
@@ -28,8 +26,10 @@ async function getCorreiosShippingResponse(serviceCode, totalWeight, totalHeight
 	// Now let's create the URL to make the fetch:
 	const url = 'http://ws.correios.com.br/calculador/CalcPrecoPrazo.aspx?nCdEmpresa=&sDsSenha=&sCepOrigem='+postalCodeOrigin+'&sCepDestino='+postalCodeDestiny+'&nVlPeso='+totalWeightKg+'&nCdFormato=1&nVlComprimento='+largestLength+'&nVlAltura='+totalHeight+'&nVlLargura='+largestWidth+'&sCdMaoPropria=n&nVlValorDeclarado=0&sCdAvisoRecebimento=n&nCdServico='+serviceCode+'&nVlDiametro=0&StrRetorno=xml&nIndicaCalculo=3'
 	// Then we fetch the shipping data from Correios:
-	// - As a precaution, we use a timeout limit of 8 seconds:
-	const ShippingResponse = await timeout(8000, fetch(url))
+	// - As a precaution, we use a timeout limit of 9 seconds (on Netlify: 10 second execution limit for synchronous serverless functions);
+	// - The fetch API is not implemented in Node, so we need to use the external module node-fetch.
+	const fetch = require("node-fetch")
+	const ShippingResponse = await timeout(9000, fetch(url))
 	  .then(response => response.text())
 		// Our response come as XML; let's convert it to JSON: 
 		.then(response => {
@@ -45,25 +45,23 @@ async function getCorreiosShippingResponse(serviceCode, totalWeight, totalHeight
 	return ShippingResponse
 }
 
-export default async function calculateShippingRates(req, res) {
-	
-	console.log('olá!')
+exports.handler = async function(event, context) {
 
-  // This route receives an HTTP POST request sent by Snipcart. The request body will contain all the current order details, so we can calculate the shipping rates.
-  // - req: An instance of http.IncomingMessage (https://nodejs.org/api/http.html#http_class_http_incomingmessage);
-  // - res: An instance of http.ServerResponse (https://nodejs.org/api/http.html#http_class_http_serverresponse).
+  // This endpoint receives an HTTP POST request sent by Snipcart. The request body will contain all the current order details, so we can calculate the shipping rates.
+
+	const orderBody = JSON.parse(event.body)
 
   // The HTTP method that we expect is POST, so we check this before starting processing it:
-	// (We also check if there's at least one item in the cart — otherwise, there's nothing to do here.)
-  if (req.method === 'POST' && req.body.content.itemsCount > 0) {
-		
+	// - We also check if there's at least one item in the cart — otherwise, there's nothing to do here.
+  if (event.httpMethod === 'POST' && orderBody.content.itemsCount > 0) {
+
 		// Let's prepare the information that we need to calculate the shipping rates:
 		// - Books:
-    const books = req.body.content.items
+    const books = orderBody.content.items
 		// - Total weight [in grams] (we add an extra weight to take the packaging into account):
-		const totalWeight = (req.body.content.totalWeight + 100)
+		const totalWeight = (orderBody.content.totalWeight + 100)
 		// - Postal code of the buyer (excluding all non-numeric characters):
-		const postalCodeDestiny = req.body.content.shippingAddress.postalCode.replace(/\D/g,'')
+		const postalCodeDestiny = orderBody.content.shippingAddress.postalCode.replace(/\D/g,'')
 		// - Postal code of the store:
 		const postalCodeOrigin = '89801050'
 		// - Total height [in centimeters] (sum of all heights considering each item quantity):
@@ -104,8 +102,6 @@ export default async function calculateShippingRates(req, res) {
 		]);	
 		// If there wasn't errors in the Correios responses, then we add them to our shipping methods array:
 		// - We have to convert the Brazilian decimal representation standard (1.000,00) to the Snipcart one (1,000.00, which will be readapted to the Brazilian standard in the frontend due to our settings in the Dashboard).
-		console.log(correiosSEDEXResponse)
-		console.log(correiosPACResponse)
 		if (typeof correiosSEDEXResponse.Servicos !== 'undefined') {
 			if (correiosSEDEXResponse.Servicos.cServico.Erro == '0') {
 				rates["rates"].push({
@@ -181,21 +177,37 @@ export default async function calculateShippingRates(req, res) {
 				"cost": (registroModicoValor + registroModicoTaxa).toFixed(2)
 			})
 		}
-		
 		// If we have some rates, then we send them back to Snipcart:
 		if (rates["rates"].length > 0) {
-	    res.status(200).json(rates)
+			console.log(rates)
+		  return {
+		      statusCode: 200,
+			    headers: {
+			      'Content-Type': 'application/json',
+			    },
+		      body: JSON.stringify(rates)
+		  }
 		// If not, then we send a error message:
 		} else {
-	    res.status(200).json({"errors": [{
-			    "key": "no_rates",
-			    "message": "Aparentemente, não há nenhum método de envio disponível para o seu endereço. Confirme, por gentileza, se você digitou seu CEP corretamente e tente novamente. Se o erro persistir, entre em contato conosco."
+		  return {
+	      statusCode: 200,
+	      body: json.stringify({errors: [{
+			    key: "no_rates",
+			    headers: {
+			      'Content-Type': 'application/json',
+			    },
+			    message: "Aparentemente, não há nenhum método de envio disponível para o seu endereço. Confirme, por gentileza, se você digitou seu CEP corretamente e tente novamente. Se o erro persistir, entre em contato conosco."
 			    }]
-			})
+				})
+		  }
 		}
-		
-  } else {
-    res.status(200).json({message: 'There is nothing to do here.'})        
-  }
 
+  } else {
+
+	  return {
+	      statusCode: 200,
+	      body: JSON.stringify({message: "There is nothing to do here."})
+	  }
+
+  }	
 }
