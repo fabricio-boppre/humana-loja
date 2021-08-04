@@ -1,25 +1,4 @@
-// Timeout wrapper for promises:
-// - More info: https://stackoverflow.com/questions/46946380/fetch-api-request-timeout
-function timeout(ms, promise) {
-  return new Promise((resolve, reject) => {
-    const timer = setTimeout(() => {
-      reject(new Error('TIMEOUT'))
-    }, ms)
-    promise
-      .then(value => {
-        clearTimeout(timer)
-        resolve(value)
-      })
-      .catch(reason => {
-        clearTimeout(timer)
-        reject(reason)
-      })
-  })
-}
-
 // Function to calculate Correios (mail service in Brazil) shipping prices:
-// - We use the timeout function to prevent fetches taking longer than the "Serverless Function Execution Timeout" limit at our host (10 seconds);
-// - More info: https://vercel.com/docs/platform/limits#serverless-function-execution-timeout
 async function getCorreiosShippingResponse(serviceCode, totalWeight, totalHeight, largestWidth, largestLength, postalCodeDestiny, postalCodeOrigin) {
 	// First, we need to convert the weight to kilos (it comes in grams from Snipcart): 
 	const totalWeightKg = totalWeight/1000
@@ -29,20 +8,19 @@ async function getCorreiosShippingResponse(serviceCode, totalWeight, totalHeight
 	// - As a precaution, we use a timeout limit of 9 seconds (on Netlify: 10 second execution limit for synchronous serverless functions);
 	// - The fetch API is not implemented in Node, so we need to use the external module node-fetch.
 	const fetch = require("node-fetch")
-	const ShippingResponse = await timeout(9000, fetch(url))
-	  .then(response => response.text())
-		// Our response come as XML; let's convert it to JSON: 
-		.then(response => {
-			var x2js = require("x2js")
-			var converter = new x2js()
-			var ShippingJSONResponse = converter.xml2js(response)
-			return ShippingJSONResponse
-		})
-		// In case of time out, we just send a message back:
-	  .catch(error => {
-			return 'No response.'
-		})
-	return ShippingResponse
+  try {
+    const response = await fetch(url)
+    const xmlData = await response.text()
+		// The result from Correios comes in XML; we need to parse it to a JS object:
+		var parseString = require('xml2js').parseString
+		var jsData
+		parseString(xmlData, function (err, result) {
+				jsData = result
+		});
+  } catch (error) {
+    console.log(error);
+  }
+	return jsData
 }
 
 exports.handler = async function(event, context) {
@@ -99,22 +77,23 @@ exports.handler = async function(event, context) {
 		let [correiosSEDEXResponse, correiosPACResponse] = await Promise.all([
 			getCorreiosShippingResponse('04014', totalWeight, totalHeight, largestWidth, largestLength, postalCodeDestiny, postalCodeOrigin),
 			getCorreiosShippingResponse('04510', totalWeight, totalHeight, largestWidth, largestLength, postalCodeDestiny, postalCodeOrigin)			
-		]);	
+		]);
+
 		// If there wasn't errors in the Correios responses, then we add them to our shipping methods array:
 		// - We have to convert the Brazilian decimal representation standard (1.000,00) to the Snipcart one (1,000.00, which will be readapted to the Brazilian standard in the frontend due to our settings in the Dashboard).
 		if (typeof correiosSEDEXResponse.Servicos !== 'undefined') {
-			if (correiosSEDEXResponse.Servicos.cServico.Erro == '0') {
+			if (correiosSEDEXResponse.Servicos.cServico[0].Erro[0] == '0') {
 				rates["rates"].push({
-					"description": "SEDEX à vista (prazo de entrega: " + correiosSEDEXResponse.Servicos.cServico.PrazoEntrega + " dia(s))",
-					"cost": correiosSEDEXResponse.Servicos.cServico.Valor.replace('.', '').replace(',', '.')
+					"description": "SEDEX à vista (prazo de entrega: " + correiosSEDEXResponse.Servicos.cServico[0].PrazoEntrega[0] + " dia(s))",
+					"cost": correiosSEDEXResponse.Servicos.cServico[0].Valor[0].replace('.', '').replace(',', '.')
 				})
 			}
 		}
 		if (typeof correiosPACResponse.Servicos !== 'undefined') {
-			if (correiosPACResponse.Servicos.cServico.Erro == '0') {
+			if (correiosPACResponse.Servicos.cServico[0].Erro[0] == '0') {
 				rates["rates"].push({
-					"description": "PAC à vista (prazo de entrega: " + correiosPACResponse.Servicos.cServico.PrazoEntrega + " dia(s))",
-					"cost": correiosPACResponse.Servicos.cServico.Valor.replace('.', '').replace(',', '.')
+					"description": "PAC à vista (prazo de entrega: " + correiosPACResponse.Servicos.cServico[0].PrazoEntrega[0] + " dia(s))",
+					"cost": correiosPACResponse.Servicos.cServico[0].Valor[0].replace('.', '').replace(',', '.')
 				})
 			}
 		}
@@ -179,7 +158,6 @@ exports.handler = async function(event, context) {
 		}
 		// If we have some rates, then we send them back to Snipcart:
 		if (rates["rates"].length > 0) {
-			console.log(rates)
 		  return {
 		      statusCode: 200,
 			    headers: {
@@ -191,7 +169,7 @@ exports.handler = async function(event, context) {
 		} else {
 		  return {
 	      statusCode: 200,
-	      body: json.stringify({errors: [{
+	      body: JSON.stringify({errors: [{
 			    key: "no_rates",
 			    headers: {
 			      'Content-Type': 'application/json',
