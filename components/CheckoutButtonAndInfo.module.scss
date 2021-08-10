@@ -48,5 +48,9 @@
 	@media screen and (max-width: assets.$tablet-width) {
 		@include assets.order(2);
 	}
-
+	@media screen and (max-width: assets.$smartphone-width) {
+		:global(#snipcart-total-price) {
+			display: none !important;
+		}
+	}
 }
