@@ -43,8 +43,9 @@ export default function Index(props) {
 	const [priceRangesToFilter, setPriceRangeToFilter] = useState(props.priceRangesToFilterArray)
 	// - Order state:
 	const [order, setOrder] = useState(props.order)
-	// - Page state:
+	// - Page states:
 	const [page, setPage] = useState(props.page)
+	const [changingPage, setChangingPage] = useState(false)
 	// - This state is just to help us re-render the component after removing filters (see explanation below in clickFilter function):
 	const [removedFilter, forceUpdate] = useReducer(x => x + 1, 0)
 	// - Search string state:
@@ -155,10 +156,16 @@ export default function Index(props) {
 			if (page > 1) {
 				pageQueryString = (isFirstQuery ? "?" : "&") + 'page=' + page		
 			}
+			// If we are dealing with a page changing, then we need to scroll the page to the top:
+			var scroll = false				
+			if (changingPage) {
+				scroll = true
+				setChangingPage(false)
+			}
 			// Then we proceed the client-side transition with the requested queries:
 			// - We use replace to prevent adding a new URL entry into the history stack;
 			// - More info: https://nextjs.org/docs/api-reference/next/router#routerreplace
-			router.replace('/' + formatsQueryString + conditionsQueryString + categoriesQueryString + subcategoriesQueryString + priceRangesQueryString + orderQueryString + searchQueryString + pageQueryString)
+			router.replace('/' + formatsQueryString + conditionsQueryString + categoriesQueryString + subcategoriesQueryString + priceRangesQueryString + orderQueryString + searchQueryString + pageQueryString, null, {scroll: scroll})
 		// - If not, then it means we are in the first rendering of the page and we don't need to make any re-route (we only need to update the ref, so the next time the re-route will happen):
 		} else {
 	    didMountRef.current = true;
@@ -193,12 +200,15 @@ export default function Index(props) {
 
 	// Functions to handle the clicks on pagination:
 	// - The click calls the function that updates the page state;
+	// - We set the changingPage state just to help us with a layout issue in the routing;
 	// - After updating the state, the component is immediately re-rendered (the re-route happens in the Effect Hook).
 	const clickNextPage = () => {
 		setPage(parseInt(page)+1)
+		setChangingPage(true)
 	}
 	const clickPreviousPage = () => {
 		setPage(parseInt(page)-1)
+		setChangingPage(true)
 	}
 
 	// Function that check if there is at least one of a specific filter type active or (when dealing with categories) partial:
