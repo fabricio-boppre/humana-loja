@@ -207,14 +207,20 @@ body {
 	.snipcart-base-button__label {
 		font-weight: 700;
 	}
+	
+	.snipcart-button-icon:hover {
+		box-shadow: none;
+	}
 
 	figure.snipcart-item-line__media.snipcart-item-line__media--small {
 		height: 50px;
 	}
+	
 	h2.snipcart-item-line__title.snipcart__font--xlarge.snipcart__font--secondary.snipcart__font--black {
 		line-height: 20px;
 		padding: 0 12px;
 	}
+	
 	div.snipcart-item-line__variants {
 		padding-top: 18px;
 	}
