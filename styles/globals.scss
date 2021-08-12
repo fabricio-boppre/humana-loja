@@ -311,6 +311,7 @@ body {
 .no-flexbox {
 	div#__next {
 		header,
+		#opening-sale,
 		#principal,
 		footer {
 			display: none !important; // We hide the store for these extremely old browsers...

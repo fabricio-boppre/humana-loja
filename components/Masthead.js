@@ -1,8 +1,21 @@
+import { useRouter } from 'next/router'
+import Link from 'next/link'
 import { useEffect } from 'react'
 import styles from './Masthead.module.css'
 
-export default function Masthead() {
+export default function Masthead(props) {
 
+	// Router:
+	// - See the explanation of why we use Router Hook in the index.js page.
+  const router = useRouter()
+	
+	// isHome will decide if we should set homeClicked true or not:
+	// - If we are not on home, then we should set homeClicked true (we do this at the onClick of #masthead-logotipo), because it will help us avoid a second routing in the routing effect of the index page
+	var isHome = false
+	if (router.asPath == '/') {
+		isHome = true
+	}
+	
 	// Effects:
 	// - We use the Effect Hook (https://reactjs.org/docs/hooks-effect.html) to run some additional code after React has updated the DOM.
 	// - Snipcart offers a JavaScript SDK (https://docs.snipcart.com/v3/sdk/basics) that lets you configure, customize and manage the cart programmatically. After the snipcart.js file has loaded and its content is done executing, a "Snipcart" object is attached to the "window" object (https://developer.mozilla.org/en-US/docs/Web/API/Window); from there, you can directly interact with the SDK. But, because the "window" object is present only at client-side (available only after React has updated the DOM), to use the Snipcart JavaScript SDK we need to do it using the Effect Hook;
@@ -301,13 +314,15 @@ export default function Masthead() {
 			snipcart.appendChild(addressFields)
 		})
   }, [])
-
+	
   return <header id={styles.masthead}>
           
           <div id="masthead-nucleus">
-
-						<a id="masthead-logotipo" href="/"></a>
-            
+						
+			      <Link href="/">
+			        <a id="masthead-logotipo" onClick={isHome ? undefined : () => props.handleHomeClicked()}></a>
+			      </Link>
+			            
             <div id="masthead-services">
               <ul>
                 <li>

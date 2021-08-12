@@ -16,10 +16,12 @@ export default class Humana extends App {
 
   // States:
 	// - formSearchString is the content of the search form;
-	// - searchCount state helps us re-render the component, when the search button is clicked.
+	// - searchCount helps us re-render the component, when the search button is clicked;
+  // - homeClicked helps us to avoid a useless index re-render after a click on the logo, in some circumstances.
 	state = {formSearchString: '',
-					 searchCount: 0}
-
+					 searchCount: 0,
+					 homeClicked: false}
+						
 	// Methods:
 	// - Arrow functions make .bind method calls in the constructor unnecessary;
 	// - (Because they lexically bind their context so this actually refers to the originating context; that’s called Lexical Scoping.)
@@ -31,9 +33,12 @@ export default class Humana extends App {
   // - Methods that update our searchCount, which triggers a new search:
 	handleSearchButton = () => { this.setState({ searchCount: this.state.searchCount + 1 }) }
 	zeroSearchCount = () => { this.setState({ searchCount: 0 }) }
-
+	// - Methods that update our homeClicked:
+	setHomeClicked = () =>  { this.setState({ homeClicked: true }) }
+	unsetHomeClicked = () =>  { this.setState({ homeClicked: false }) }
+	
 	render() {
-
+		
     const { Component, pageProps } = this.props;
 
     return (
@@ -41,14 +46,12 @@ export default class Humana extends App {
         <Head>
           <link rel="icon" href="/favicon.ico" />
  	        <link rel="preconnect" href="https://fonts.gstatic.com" /> 
-					<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet" />
           <link rel="preconnect" href="https://app.snipcart.com" />
           <link rel="preconnect" href="https://cdn.snipcart.com" />
           <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.2.0/default/snipcart.css" />
-          <script src="/js/modernizr-custom.js"></script>
         </Head>
 
-        <Masthead />
+        <Masthead handleHomeClicked={this.setHomeClicked}/>
 				
 				<div id="opening-sale">Promoção de abertura: <span className="highlight">frete grátis</span> para compras acima de R$ 150,00</div>
 
@@ -74,7 +77,9 @@ export default class Humana extends App {
 											 formSearchString={this.state.formSearchString}
 											 setFormSearchStringWithValue={this.setFormSearchStringWithValue}
 											 zeroSearchCount={this.zeroSearchCount}
-											 searchCount={this.state.searchCount} />
+											 searchCount={this.state.searchCount}
+											 homeClicked={this.state.homeClicked}
+											 finishHomeClicked={this.unsetHomeClicked} />
 
 					</div>
 					
@@ -82,6 +87,7 @@ export default class Humana extends App {
 				
 				<Footer />
 
+        <Script src="/js/modernizr-custom.js"></Script>
 				<Script
 				  src="https://cdn.snipcart.com/themes/v3.2.0/default/snipcart.js"
 				  strategy="beforeInteractive"

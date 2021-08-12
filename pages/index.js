@@ -12,7 +12,7 @@ import ShowcasePagination from '../components/ShowcasePagination'
 import styles from '../styles/Index.module.css'
 	
 export default function Index(props) {
-	
+
 	// Let's add to our bookCategories constant the fetched categories:
 	bookCategories.categories = props.bookCategories
 	
@@ -112,9 +112,10 @@ export default function Index(props) {
 	  ,props.currentSearchString])
 	// - After updating the filters or order or page states, we have to re-route the app:
 	useEffect(() => {
-		// - But, before, we check if didMountRef is true:
-		// - If yes, it means we are not in the first rendering of the page and we indeed need to make the requested re-route:
-		if (didMountRef.current) {
+		// There are two conditions for this re-route to happen:
+		// - didMountRef must be true: it means we are not in the first rendering of the page and we indeed need to make the requested re-route;
+		// - homeClicked must be false: if is is true, it means the user clicked on the logo, which will already to a re-route because it is a Link component, and then we avoid a useless second re-route. 
+		if ((didMountRef.current) && (!props.homeClicked)) {
 			// First, we prepare the query strings based on our current states:
 			var formatsQueryString = ''
 			var conditionsQueryString = ''
@@ -166,9 +167,10 @@ export default function Index(props) {
 			// - We use replace to prevent adding a new URL entry into the history stack;
 			// - More info: https://nextjs.org/docs/api-reference/next/router#routerreplace
 			router.replace('/' + formatsQueryString + conditionsQueryString + categoriesQueryString + subcategoriesQueryString + priceRangesQueryString + orderQueryString + searchQueryString + pageQueryString, null, {scroll: scroll})
-		// - If not, then it means we are in the first rendering of the page and we don't need to make any re-route (we only need to update the ref, so the next time the re-route will happen):
+		// If any of the conditions fail, it means we are in the first rendering of the page or the visitor clicked on the logo and we are back to the home, and we don't need to make any re-route (we only need to update the ref, so the next time the re-route will happen, and to finish the process of coming back to home):
 		} else {
-	    didMountRef.current = true;
+	    didMountRef.current = true
+			props.finishHomeClicked()
 		}
 	}, [page
 		 ,order
@@ -178,6 +180,7 @@ export default function Index(props) {
 		 ,subcategoriesToFilter
 		 ,priceRangesToFilter
 		 ,removedFilter])
+
 	// - Visual effect on the showcase while route is on its way:
 	// - We listen to different events happening inside the Next.js Router to make changes on the styles;
 	// - More info: https://nextjs.org/docs/api-reference/next/router#routerevents
@@ -397,7 +400,7 @@ export default function Index(props) {
 	var HeadTitle
 	if (currentSearchString) {
 		showcaseTitle = <h1>Resultado da pesquisa pelo termo <strong>{currentSearchString}</strong>:</h1>
-		HeadTitle = <title>Humana | Livros com "{currentSearchString}"</title>
+		HeadTitle = <title>Humana | Livros com &#34;{currentSearchString}&#34;</title>
 	} else {
 		HeadTitle = <title>Humana | Livros</title>
 	}
