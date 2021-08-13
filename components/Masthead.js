@@ -89,8 +89,28 @@ export default function Masthead(props) {
 			        success: "Sucesso!",
 			    },
 					errors: {
+		        card: {
+		          invalid_number: "Número de cartão inválido.",
+		          invalid_date: "Data de expiração do cartão inválida.",
+		          invalid_year: "Ano de expiração do cartão inválido.",
+		          invalid_month: "Mês de expiração do cartão inválido.",
+		          invalid_cvv: "Código CVV inválido.",
+		          invalid_expiration: "Data de expiração do cartão inválida.",
+		          expired: "O cartão está expirado.",
+		          declined: "Seu cartão foi rejeitado. Entre em contato com o seu banco para mais informações.",
+		          invalid_address: "Endereço do cartão inválido.",
+		          insufficient_funds: "Sua conta não possui saldo suficiente.",
+		          card_not_supported: "Este cartão não é aceito nesta região.",
+		          currency_not_supported: "No momento não aceitamos esta moeda."
+		        },
+		        transaction: {
+		          declined: "Houe um erro no processamento do seu cartão. Por gentileza, tente novamente."
+		        },
+		        discounts: {
+		          conflict: "Alguns descontos não podem ser utilizados conjuntamente. Usar este desconto?"
+		        },
 		        shippingRates: {
-		            "loading": "Carregando os valores de frete",
+		          loading: "Carregando os valores de frete",
 		        },						
 					},
           register_form: {
