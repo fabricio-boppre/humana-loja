@@ -1,6 +1,5 @@
 import App from 'next/app'
 import Head from 'next/head'
-import Script from 'next/script'
 import Masthead from '../components/Masthead'
 import Footer from '../components/Footer'
 import SearchForm from '../components/SearchForm'
@@ -48,7 +47,7 @@ export default class Humana extends App {
  	        <link rel="preconnect" href="https://fonts.gstatic.com" /> 
           <link rel="preconnect" href="https://app.snipcart.com" />
           <link rel="preconnect" href="https://cdn.snipcart.com" />
-          <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.2.0/default/snipcart.css" />
+          <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.2.1/default/snipcart.css" />
         </Head>
 
         <Masthead handleHomeClicked={this.setHomeClicked}/>
@@ -87,11 +86,8 @@ export default class Humana extends App {
 				
 				<Footer />
 
-        <Script src="/js/modernizr-custom.js"></Script>
-				<Script
-				  src="https://cdn.snipcart.com/themes/v3.2.0/default/snipcart.js"
-				  strategy="beforeInteractive"
-				/>
+        <script src="/js/modernizr-custom.js"></script>
+				<script async src="https://cdn.snipcart.com/themes/v3.2.1/default/snipcart.js"></script>
         <div hidden id="snipcart" data-api-key={process.env.SNIPCART_API_KEY} data-config-modal-style="side"></div>
 
       </>
