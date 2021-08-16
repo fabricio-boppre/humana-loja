@@ -117,6 +117,35 @@
 			}
 		}
 		
+		:global(#previous-page) {
+			$button-height: 30px;
+			margin-top: 20px;
+			:global(#previous-page-button) {
+				@include assets.flexbox();
+				float: right;
+				text-decoration: none;
+				color: white;
+				cursor: pointer;
+				&:global(.inactive) {
+					display: none;
+				}
+				:global(.text) {
+					@include assets.border-radius(0 4px 4px 0);
+					padding: 0 10px 0 5px;
+					min-height: $button-height;
+					background-color: assets.$orange-button;
+					font-weight: 700;
+					font-size: assets.$typo-small-size;
+				}	
+				:global(.arrow-left) {
+				  width: 0; 
+				  height: 0;
+				  border-top: ($button-height/2) solid transparent;
+				  border-bottom: ($button-height/2) solid transparent; 
+				  border-right: ($button-height/2) solid assets.$orange-button; 
+				}
+			}
+		}			
 	}
 	
 	// Responsiveness rules:

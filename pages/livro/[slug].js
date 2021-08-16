@@ -186,7 +186,14 @@ export default function Book(props) {
 						</header>
 						<div className="formatted-text" dangerouslySetInnerHTML={{ __html: formattedDescription }}></div>
 					</section>
-				
+					
+          <div id="previous-page">
+						<div id="previous-page-button" onClick={() => router.back()} >
+							<div className="arrow-left"></div>
+							<div className="text">voltar à tela anterior</div>
+						</div>
+					</div>
+						
 				</article>
 								
       </main>
