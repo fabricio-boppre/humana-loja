@@ -1,5 +1,4 @@
 import { useEffect } from 'react'
-import Image from 'next/image'
 import styles from './Footer.module.css'
 
 export default function Footer() {
@@ -51,7 +50,7 @@ export default function Footer() {
 				</div>
 	
 				<div id="f-logotipo">
-          <Image
+          <img
             src="/img/layout/logo-branco-redondo.svg"
             alt="Humana"
             title="Humana" 
