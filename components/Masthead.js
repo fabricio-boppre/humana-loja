@@ -1,5 +1,6 @@
-import { useRouter } from 'next/router'
+import Image from 'next/image'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 import styles from './Masthead.module.css'
 
@@ -347,34 +348,34 @@ export default function Masthead(props) {
               <ul>
                 <li>
                   <a href="https://www.facebook.com/pages/category/Bookstore/Humana-Sebo-e-Livraria-436455317131153/">
-                    <img
+                    <Image
                       src="/img/layout/servico-facebook.svg"
                       alt="facebook"
                       title="facebook" 
-                      width="12.46"
-                      height="60"
+                      width={12.46}
+                      height={60}
                     />
                   </a>
                 </li>
                 <li>
                   <a href="https://www.instagram.com/humanasebolivraria/">
-                    <img
+                    <Image
                       src="/img/layout/servico-instagram.svg"
                       alt="instagram"
                       title="instagram"
-                      width="27"
-                      height="60"
+                      width={27}
+                      height={60}
                     />
                   </a>
                 </li>
                 <li>
                   <a href="https://www.youtube.com/channel/UC5bVFV4JYUDLPiJay49fM0w">
-                    <img
+                    <Image
                       src="/img/layout/servico-youtube.svg"
                       alt="youtube"
                       title="youtube"
-                      width="39"
-                      height="60"
+                      width={39}
+                      height={60}
                     />
                   </a>
                 </li>
