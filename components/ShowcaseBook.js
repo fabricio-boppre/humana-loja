@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import Link from 'next/link'
 import {priceFormat} from '../lib/utils'
 import BookAuthors from './BookAuthors'
@@ -59,14 +60,20 @@ export default function ShowcaseBook(props) {
 					  	humana_indica :
 							""
 						}
-				    <Link href={`/livro/${book.slug}`}>
-				      <a>
-				        <img src={book.mainImageUrl + '?w=' + width}
-				          	 alt={book.title}
-										 title={book.title}
-				        />
-				      </a>
-				    </Link>
+						<Link href={`/livro/${book.slug}`}>
+							<a>
+								<div className="showcase_book_image" >
+								  <Image
+	         			 		alt={book.title}
+		 								title={book.title}
+								    src={book.mainImageUrl + '?w=' + width}
+								    layout="fill"
+								    className="custom-img"
+										objectFit="contain"
+								  />
+								</div>
+							</a>
+						</Link>
 						<div className="showcase_book_text">
 		        	<div className={book.format == "livro" ? "showcase-book-text-format-livro" : "showcase-book-text-format-ebook"}>
 								{book.format}
