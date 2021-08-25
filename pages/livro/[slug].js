@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import Head from 'next/head'
 import Link from 'next/link'
 import { useEffect } from 'react'
@@ -55,7 +56,7 @@ export default function Book(props) {
 	}
 
 	// Book image width:
-	// - This value must be kept in accordance with the #book-image flex-basis (Book.module.scss).
+	// - This value must be kept in accordance with the #book-image $book-image-width (Book.module.scss).
 	const width = 260
 		
 	// Prepare the subcategories:
@@ -134,10 +135,14 @@ export default function Book(props) {
 					  	<div className="humana_indica">Humana indica</div> :
 							""
 						}
-		        <img src={props.book.mainImageUrl + '?w=' + width}
-		          	 alt={props.book.title}
-								 title={props.book.title}
-		        />
+					  <Image
+     			 		alt={props.book.title}
+							title={props.book.title}
+					    src={props.book.mainImageUrl + '?w=' + width}
+					    layout="fill"
+					    className="custom-img"
+							objectFit="contain"
+					  />
 					</section>
 					
 	        <section id="book-info">
