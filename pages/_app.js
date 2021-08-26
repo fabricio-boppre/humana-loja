@@ -44,6 +44,7 @@ export default class Humana extends App {
     return (
       <>
         <Head>
+					<meta name="description" content="Site da Humana Sebo e Livraria. Enviamos para todo o Brasil." />
           <link rel="icon" href="/favicon.ico" />
  	        <link rel="preconnect" href="https://fonts.gstatic.com" /> 
           <link rel="preconnect" href="https://app.snipcart.com" />
