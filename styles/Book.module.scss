@@ -11,7 +11,8 @@
 
 #book {
   opacity: 1;
-	:global(#inexistent-book) {
+	:global(#inexistent-book),
+	:global(#loading-book) {
 		text-align: center;
 	}
 	&:global(.loading) {

@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { useEffect } from 'react'
 import { useRouter } from 'next/router'
 import { priceFormat } from '../../lib/utils'
-import { getABook } from '../../lib/books'
+import { getBooksSlugs, getABook } from '../../lib/books'
 import styles from '../../styles/Book.module.css'
 
 export default function Book(props) {
@@ -38,6 +38,20 @@ export default function Book(props) {
       router.events.off('routeChangeComplete', handleRouteChangeComplete)
     }
   }, [])
+
+  // If the page is not yet generated, this will be displayed initially until getStaticProps() finishes running:
+  if (router.isFallback) {
+    return (
+				<>
+		      <Head>
+						<title>Humana</title>
+		      </Head>
+					<main className="content" id={styles.book}>
+						<p id="loading-book">Localizando o livro...</p>
+					</main>
+				</>
+		)
+  }
 	
   // If no book is found:
 	// - This includes setting the noindex header because static files always return a status 200 but the rendered not found page page should obviously not be indexed.
@@ -206,10 +220,22 @@ export default function Book(props) {
   )
 }
 
-// This gets called on every request, to provide the data:
-export async function getServerSideProps(context) {
-	const book = await getABook(context.params.slug)
+// Get the paths (the books slugs) we want to pre-render:
+export const getStaticPaths = async () => {
+ 	const booksSlugs = await getBooksSlugs()
+  const paths = booksSlugs.map(book => ({
+    params: { slug: book.slug }
+  }));
+  return { paths, fallback: true };
+};
+
+// This function gets called at build time on server-side and also after requests:
+export const getStaticProps = async ({ params }) => {
+	const book = await getABook(params.slug)
   return { 
-    props: { book }
+    props: { book },
+    // Next.js will attempt to re-generate the page:
+    // - When a request comes in at most once every second.
+    revalidate: 1,
   };
 };
