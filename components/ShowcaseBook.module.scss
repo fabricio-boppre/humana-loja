@@ -29,6 +29,7 @@ li.showcase_book {
 		color: white;
 		font-weight: 700;
 		position: absolute;
+		z-index: 2;
 	}
 	
 	:global(.showcase_book_image) {

@@ -32,6 +32,23 @@
 		:global(#book-image) {
 			$book-image-width: 260px; // This value must be kept in accordance with the crop value appended to the image base-url (Book page).
 			@include assets.flex(0 0 $book-image-width);
+
+			:global(.humana_indica) {
+				$label-height: 25px;
+				@include assets.border-top-right-radius(6px);
+				@include assets.border-top-left-radius(6px);
+				// @include assets.box-shadow(1px 1px 2px gray);
+				font-size: assets.$typo-small-size;
+				line-height: $label-height;
+				background-color: red;
+				margin: 0 65px;
+				height: $label-height;
+				width: 130px;
+				text-align: center;
+				color: white;
+				font-weight: 700;
+				position: absolute;
+			}
 			
 			// Trick to use next/image: https://dev.to/tanahmed/next-image-make-image-fill-available-space-272o
 			position: relative;
@@ -45,22 +62,6 @@
 				  position: relative !important;
 				  height: unset !important;
 				}
-			}
-
-			:global(.humana_indica) {
-				$label-height: 25px;
-				@include assets.border-radius(5px);
-				// @include assets.box-shadow(1px 1px 2px gray);
-				font-size: assets.$typo-small-size;
-				line-height: $label-height;
-				background-color: red;
-				margin: -$label-height/2 65px 0 65px;
-				height: $label-height;
-				width: 130px;
-				text-align: center;
-				color: white;
-				font-weight: 700;
-				position: absolute;
 			}
 		}
 
