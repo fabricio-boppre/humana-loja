@@ -224,6 +224,7 @@ body {
 	
 	.snipcart-base-button__label {
 		font-weight: 700;
+		@include assets.button-text-shadow;
 	}
 	
 	.snipcart-button-icon:hover {
