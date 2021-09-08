@@ -341,7 +341,9 @@ export default function Masthead(props) {
           <div id="masthead-nucleus">
 						
 			      <Link href="/">
-			        <a id="masthead-logotipo" onClick={isHome ? undefined : () => props.handleHomeClicked()}></a>
+			        <a id="masthead-logotipo" onClick={isHome ? undefined : () => props.handleHomeClicked()}>
+								<span hidden>Humana</span>
+							</a>
 			      </Link>
 			            
             <div id="masthead-services">
