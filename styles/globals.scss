@@ -47,6 +47,7 @@ body {
 			@include assets.border-radius(0 0 12px 12px);
 			padding: 8px 14px;
 			font-weight: 400;
+			text-shadow: 1px 1px 1px #4A4A4A;
 			color: white;
 			text-align: center;
 			background-color: assets.$orange-button;

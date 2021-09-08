@@ -450,7 +450,7 @@ $smartphone-width: 480px;
 
 $gray-bg: #f1f1f1;
 $gray-typo: #b7b7b7;
-$orange-button: hsl(38, 100%, 47%);
+$orange-button: #D67D00;
 $orange-button-hover: hsl(38, 100%, 53%);
 $box-border: 1px solid darken($gray-bg, 10%);
 
@@ -472,10 +472,15 @@ $line-height-large-size: 34px;
 $typo-enormous-size: 1.8rem;
 $line-height-enormous-size: 38px;
 
-/* --- BUY BUTTON / UNAVAILABLE SIGN: ---*/
+/* --- BUTTONS: ---*/
+
+@mixin button-text-shadow {
+	text-shadow: 1px 1px 1px #4A4A4A;
+}
 
 @mixin generic-button {
 	@include border-radius(4px);
+	@include button-text-shadow;
 	padding: 10px 20px;
 	color: white;
 	text-transform: capitalize;

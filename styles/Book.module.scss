@@ -146,6 +146,7 @@
 				}
 				:global(.text) {
 					@include assets.border-radius(0 4px 4px 0);
+					@include assets.button-text-shadow;
 					padding: 0 10px 0 5px;
 					min-height: $button-height;
 					background-color: assets.$orange-button;

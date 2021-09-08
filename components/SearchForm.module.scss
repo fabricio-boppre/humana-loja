@@ -37,6 +37,7 @@
 			border: none;
 			@include assets.border-top-right-radius(4px);
 			@include assets.border-bottom-right-radius(4px);
+			@include assets.button-text-shadow;
 			margin-left: 0;
 			cursor: pointer;	
 			padding: 6px 20px;

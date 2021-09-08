@@ -42,6 +42,7 @@
 				min-height: $button-height;
 				background-color: assets.$orange-button;
 				font-weight: 700;
+				@include assets.button-text-shadow;
 				font-size: assets.$typo-small-size;
 			}	
 			:global(.arrow-left),

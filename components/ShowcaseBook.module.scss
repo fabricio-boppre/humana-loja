@@ -19,6 +19,7 @@ li.showcase_book {
 	:global(.humana_indica) {
 		$label-height: 25px;
 		@include assets.border-radius(5px);
+		@include assets.button-text-shadow;
 		font-size: assets.$typo-small-size;
 		line-height: $label-height;
 		background-color: red;
