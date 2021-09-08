@@ -176,24 +176,38 @@ body {
 	
 	// Buttons:
 	// https://docs.snipcart.com/v3/setup/theming#buttons
+
 	--color-buttonPrimary: white;
 	--color-buttonPrimary-hover: white;
+	--color-buttonPrimary-active: white;
+	--color-buttonPrimary-focus: white;
 	--shadow-buttonPrimary-hover: none;
+
 	--bgColor-buttonPrimary: #D67D00;
 	--bgColor-buttonPrimary-hover: hsl(38, 100%, 53%);
   --bgColor-buttonPrimary-active: var(--bgColor-buttonPrimary-hover);
   --bgColor-buttonPrimary-focus: var(--bgColor-buttonPrimary-hover);
+
 	--borderColor-buttonPrimary: #D67D00;
 	--borderColor-buttonPrimary-hover: hsl(38, 100%, 53%);
   --borderColor-buttonPrimary-active: var(--borderColor-buttonPrimary-hover);
   --borderColor-buttonPrimary-focus: var(--borderColor-buttonPrimary-hover);
+
 	--color-buttonSecondary: white;
 	--color-buttonSecondary-hover: white;
+	--color-buttonSecondary-active: white;
+	--color-buttonSecondary-focus: white;
 	--shadow-buttonSecondary-hover: none;
+
 	--bgColor-buttonSecondary: #D67D00;
 	--bgColor-buttonSecondary-hover: hsl(38, 100%, 53%);
+  --bgColor-buttonSecondary-active: var(--bgColor-buttonSecondary-hover);
+  --bgColor-buttonSecondary-focus: var(--bgColor-buttonSecondary-hover);
+
 	--borderColor-buttonSecondary: #D67D00;
 	--borderColor-buttonSecondary-hover: hsl(38, 100%, 53%);
+  --borderColor-buttonSecondary-active: var(--borderColor-buttonSecondary-hover);
+  --borderColor-buttonSecondary-focus: var(--borderColor-buttonSecondary-hover);
 	
 	// Links:
 	// https://docs.snipcart.com/v3/setup/theming#links
