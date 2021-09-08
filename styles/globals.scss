@@ -173,22 +173,26 @@ body {
 	* {
 		font-family: 'Open Sans', sans-serif;
 	}
-
+	
 	// Buttons:
 	// https://docs.snipcart.com/v3/setup/theming#buttons
 	--color-buttonPrimary: white;
 	--color-buttonPrimary-hover: white;
 	--shadow-buttonPrimary-hover: none;
-	--bgColor-buttonPrimary: hsl(38, 100%, 47%);
+	--bgColor-buttonPrimary: #D67D00;
 	--bgColor-buttonPrimary-hover: hsl(38, 100%, 53%);
-	--borderColor-buttonPrimary: hsl(38, 100%, 47%);
+  --bgColor-buttonPrimary-active: var(--bgColor-buttonPrimary-hover);
+  --bgColor-buttonPrimary-focus: var(--bgColor-buttonPrimary-hover);
+	--borderColor-buttonPrimary: #D67D00;
 	--borderColor-buttonPrimary-hover: hsl(38, 100%, 53%);
+  --borderColor-buttonPrimary-active: var(--borderColor-buttonPrimary-hover);
+  --borderColor-buttonPrimary-focus: var(--borderColor-buttonPrimary-hover);
 	--color-buttonSecondary: white;
 	--color-buttonSecondary-hover: white;
 	--shadow-buttonSecondary-hover: none;
-	--bgColor-buttonSecondary: hsl(38, 100%, 47%);
+	--bgColor-buttonSecondary: #D67D00;
 	--bgColor-buttonSecondary-hover: hsl(38, 100%, 53%);
-	--borderColor-buttonSecondary: hsl(38, 100%, 47%);
+	--borderColor-buttonSecondary: #D67D00;
 	--borderColor-buttonSecondary-hover: hsl(38, 100%, 53%);
 	
 	// Links:
