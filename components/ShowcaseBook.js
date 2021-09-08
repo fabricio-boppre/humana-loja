@@ -79,7 +79,7 @@ export default function ShowcaseBook(props) {
 								{book.format}
 							</div>
 					    <div className="showcase_book_text_title">
-								<Link href={`/livro/${book.slug}`}><a>{book.title}</a></Link>
+								{book.title}
 							</div>
 							<BookAuthors authors={book.authors} />
 							{price_tag}
