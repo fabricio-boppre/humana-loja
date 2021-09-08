@@ -54,7 +54,6 @@ export default function Footer() {
           <Image
             src="/img/layout/logo-branco-redondo.svg"
             alt="Humana"
-            title="Humana" 
             width={150}
             height={150}
           />

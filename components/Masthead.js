@@ -353,7 +353,6 @@ export default function Masthead(props) {
                     <Image
                       src="/img/layout/servico-facebook.svg"
                       alt="facebook"
-                      title="facebook" 
                       width={12.46}
                       height={60}
                     />
@@ -364,7 +363,6 @@ export default function Masthead(props) {
                     <Image
                       src="/img/layout/servico-instagram.svg"
                       alt="instagram"
-                      title="instagram"
                       width={27}
                       height={60}
                     />
@@ -375,7 +373,6 @@ export default function Masthead(props) {
                     <Image
                       src="/img/layout/servico-youtube.svg"
                       alt="youtube"
-                      title="youtube"
                       width={39}
                       height={60}
                     />

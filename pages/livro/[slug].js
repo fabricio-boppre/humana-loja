@@ -151,7 +151,6 @@ export default function Book(props) {
 						}
 					  <Image
      			 		alt={props.book.title}
-							title={props.book.title}
 					    src={props.book.mainImageUrl + '?w=' + width}
 					    layout="fill"
 					    className="custom-img"

@@ -65,7 +65,6 @@ export default function ShowcaseBook(props) {
 								<div className="showcase_book_image" >
 								  <Image
 	         			 		alt={book.title}
-		 								title={book.title}
 								    src={book.mainImageUrl + '?w=' + width}
 								    layout="fill"
 								    className="custom-img"
