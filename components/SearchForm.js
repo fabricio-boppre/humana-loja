@@ -6,7 +6,12 @@ export default function SearchForm(props) {
   return (
 		<div id={styles.search_form}>
 			<form>
-				<input type="search" placeholder="título ou autor" value={props.formSearchString} onChange={props.setFormSearchString}/>
+			  <label hidden htmlFor="formSearchString">pesquisar:</label>
+				<input type="search" 
+							 id="formSearchString" 
+							 placeholder="título ou autor" 
+							 value={props.formSearchString} 
+							 onChange={props.setFormSearchString}/>
     		<Link href={`/?search=${encodeURIComponent(props.formSearchString)}`} passHref>
 					<button onClick={() => props.handleSearchButton()}>pesquisar</button>
 				</Link>
