@@ -37,7 +37,7 @@
 				$label-height: 25px;
 				@include assets.border-top-right-radius(6px);
 				@include assets.border-top-left-radius(6px);
-				// @include assets.box-shadow(1px 1px 2px gray);
+				@include assets.button-text-shadow;
 				font-size: assets.$typo-small-size;
 				line-height: $label-height;
 				background-color: red;
