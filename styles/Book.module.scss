@@ -132,8 +132,8 @@
 			}
 		}
 		
+		$button-height: 30px;
 		:global(#previous-page) {
-			$button-height: 30px;
 			margin-top: 20px;
 			:global(#previous-page-button) {
 				@include assets.flexbox();
@@ -150,6 +150,7 @@
 					padding: 0 10px 0 5px;
 					min-height: $button-height;
 					background-color: assets.$orange-button;
+					@include assets.transition(background-color 0.2s linear);
 					font-weight: 700;
 					font-size: assets.$typo-small-size;
 				}	
@@ -159,8 +160,19 @@
 				  border-top: ($button-height/2) solid transparent;
 				  border-bottom: ($button-height/2) solid transparent; 
 				  border-right: ($button-height/2) solid assets.$orange-button; 
+					@include assets.transition(border-right 0.2s linear);
 				}
 			}
+			&:hover {
+				:global(#previous-page-button) {
+					:global(.text) {
+			    	background-color: assets.$orange-button-hover;
+					}
+					:global(.arrow-left) {
+						border-right: ($button-height/2) solid assets.$orange-button-hover;
+					}
+				}
+		  }
 		}			
 	}
 	
