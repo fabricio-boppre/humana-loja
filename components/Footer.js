@@ -14,7 +14,7 @@ export default function Footer() {
 						<h1>Contato</h1>
 						<ul>
 							<li><a href="mailto:humanasebolivraria@gmail.com">humanasebolivraria@gmail.com</a></li>
-							<li>Telefone/WhatsApp: (49) 3316-4566 | (48) 9-9164-4879</li>
+							<li>Telefone/WhatsApp: (49) 3316-4566</li>
 						</ul>
 					</section>
 					<section>
