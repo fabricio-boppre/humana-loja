@@ -43,6 +43,7 @@
 				background-color: assets.$orange-button;
 				font-weight: 700;
 				@include assets.button-text-shadow;
+				@include assets.transition(background-color 0.2s linear);
 				font-size: assets.$typo-small-size;
 			}	
 			:global(.arrow-left),
@@ -60,6 +61,7 @@
 			  border-top: ($button-height/2) solid transparent;
 			  border-bottom: ($button-height/2) solid transparent; 
 			  border-right: ($button-height/2) solid assets.$orange-button; 
+				@include assets.transition(border-right 0.2s linear);
 			}
 		}
 		:global(#next-page-button) {
@@ -71,8 +73,27 @@
 			  border-top: ($button-height/2) solid transparent;
 			  border-bottom: ($button-height/2) solid transparent;
 			  border-left: ($button-height/2) solid assets.$orange-button;
+				@include assets.transition(border-left 0.2s linear);
 			}
 		}
+	  &:hover {
+			:global(#previous-page-button) {
+				:global(.text) {
+		    	background-color: assets.$orange-button-hover;
+				}
+				:global(.arrow-left) {
+					border-right: ($button-height/2) solid assets.$orange-button-hover;
+				}
+			}
+			:global(#next-page-button) {
+				:global(.text) {
+		    	background-color: assets.$orange-button-hover;
+				}
+				:global(.arrow-right) {
+					border-left: ($button-height/2) solid assets.$orange-button-hover;
+				}
+			}
+	  }
 	}	
 
 	// Responsiveness rules:
