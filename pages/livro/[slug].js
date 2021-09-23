@@ -166,6 +166,7 @@ export default function Book(props) {
 							</div>
 						</header>
 						<div className="info-item"><span className="title">tipo</span> {props.book.format}</div>
+						<div className="info-item"><span className="title">estado</span> {props.book.condition}</div>
 						{(props.book.cover_type !== undefined) ?
 					  	<div className="info-item"><span className="title">capa</span> {props.book.cover_type}</div> :
 							""
