@@ -52,14 +52,14 @@ export default class Humana extends App {
           <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.2.1/default/snipcart.css" />
         </Head>
 
+        <div id="incompatible-browser">
+					<p>Infelizmente o nosso site não funciona neste browser. Por favor, atualize-o para uma versão mais recente.</p>
+				</div>
+
         <Masthead handleHomeClicked={this.setHomeClicked}/>
 				
 				<div id="opening-sale">Promoção de abertura: <span className="highlight">frete grátis</span> para compras acima de R$ 150,00</div>
 
-        <div id="incompatible-browser">
-					<p>Infelizmente o nosso site não funciona neste browser. Por favor, atualize-o para uma versão mais recente.</p>
-				</div>
-				
 				<div id="principal">
 				
 					<div id="principal-nucleus">
