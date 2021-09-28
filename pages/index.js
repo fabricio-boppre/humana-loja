@@ -423,16 +423,17 @@ export default function Index(props) {
 	}
 	
   return (
+		<>
+      <Head>
+        {HeadTitle}
+				<link rel="preload" href="/img/layout/filter-button-clean.svg" as="image" />
+				<link rel="preload" href="/img/layout/checkbox-unchecked.svg" as="image" />
+				<link rel="preload" href="/img/layout/checkbox-checked.svg" as="image" />
+				<link rel="preload" href="/img/layout/checkbox-partial.svg" as="image" />
+      </Head>
+
 			<div className="content" id={styles.index}>
 			
-	      <Head>
-	        {HeadTitle}
-					<link rel="preload" href="/img/layout/filter-button-clean.svg" as="image" />
-					<link rel="preload" href="/img/layout/checkbox-unchecked.svg" as="image" />
-					<link rel="preload" href="/img/layout/checkbox-checked.svg" as="image" />
-					<link rel="preload" href="/img/layout/checkbox-partial.svg" as="image" />
-	      </Head>
-
 				<ShowcaseFiltersAndOrder clickFilterType={clickFilterType}
 												 				 clickFilter={clickFilter}
 																 clickOrder={clickOrder}
@@ -454,6 +455,7 @@ export default function Index(props) {
 				</main>
 							
 			</div>
+		</>
   )
 }
 
