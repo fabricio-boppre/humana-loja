@@ -128,8 +128,8 @@ export default function Book(props) {
 	
 	// Parse Markdown code on description to HTML code:
 	// - Then, on the front-end, we decode the HTML code using dangerouslySetInnerHTML (https://reactjs.org/docs/dom-elements.html#dangerouslysetinnerhtml).
-	var md = require('markdown-it')();
-	var formattedDescription = md.render(props.book.description);
+	var md = require('markdown-it')()
+	var formattedDescription = md.render(props.book.description)
 	
   return (
     <>

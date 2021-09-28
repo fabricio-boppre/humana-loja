@@ -10,8 +10,8 @@ export default function CheckoutButtonAndInfo() {
 	useEffect(() => {
 		document.addEventListener('snipcart.ready', function() {
 	  	var itensCount = 0
-			const divSnipcartItemsCount = document.getElementById('snipcart-items-count');
-	    const divSnipcartItemsPrice = document.getElementById('snipcart-total-price');
+			const divSnipcartItemsCount = document.getElementById('snipcart-items-count')
+	    const divSnipcartItemsPrice = document.getElementById('snipcart-total-price')
 			// The subscribe method triggers a callback every time an action is dispatched:
 			Snipcart.store.subscribe(() => {
 			  const itensCount = Snipcart.store.getState().cart.items.count
