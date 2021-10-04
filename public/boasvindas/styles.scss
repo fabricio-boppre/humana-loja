@@ -462,8 +462,8 @@ body {
 		display: none;
 	}
 
-	#welcome-1,
-	#welcome-2 {
+	#tela-1,
+	#tela-2 {
 		@include flexbox();
 		@include flex-direction(column);
 		@include justify-content(center);
@@ -506,7 +506,7 @@ body {
 		
 	}
 	
-	#welcome-1 {
+	#tela-1 {
 	  background: url(welcome-bg-1.jpg) no-repeat center center fixed; 
 
 		#text-1,
@@ -531,7 +531,7 @@ body {
 		}
 	}
 
-	#welcome-2 {
+	#tela-2 {
 		display: none;
 	  background: url(welcome-bg-2.jpg) no-repeat center center fixed; 
 	}
@@ -550,8 +550,8 @@ body {
 	  background-size: cover;
 		overflow: auto;
 
-		#welcome-1,
-		#welcome-2 {
+		#tela-1,
+		#tela-2 {
 			background: none;
 			min-height: auto;
 			
@@ -562,7 +562,7 @@ body {
 			}
 		}
 		
-		#welcome-1 {
+		#tela-1 {
 			#text-1 {
 				margin-top: 15px;
 				opacity: 1 !important;
@@ -574,7 +574,7 @@ body {
 			}
 		}
 
-		#welcome-2 {
+		#tela-2 {
 			#text-2 {
 				padding: 10px 20px 15px 20px;
 			}
@@ -595,8 +595,8 @@ body {
 			margin: 20px;
 			text-align: center;
 		}
-		#welcome-1,
-		#welcome-2 {
+		#tela-1,
+		#tela-2 {
 			display: none !important;
 		}
 	}
