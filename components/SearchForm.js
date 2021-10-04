@@ -9,7 +9,7 @@ export default function SearchForm(props) {
 			  <label hidden htmlFor="formSearchString">pesquisar:</label>
 				<input type="search" 
 							 id="formSearchString" 
-							 placeholder="título ou autor" 
+							 placeholder="título, autor ou editora" 
 							 value={props.formSearchString} 
 							 onChange={props.setFormSearchString}/>
     		<Link href={`/?search=${encodeURIComponent(props.formSearchString)}`} passHref>
