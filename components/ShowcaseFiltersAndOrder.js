@@ -43,47 +43,6 @@ export default function ShowcaseFiltersAndOrder(props) {
 	return (
 		<div id="showcase-filters-order">
 
-			<div className="order-header"
-			     onClick={() => {clickOrderOptionsVisibility()}}>
-				   {orderOptionsVisible ? orderClose: orderOpen }
-			</div>
-			<ul className={orderOptionsVisible ? "visible" : "invisible"} >
-				<li>
-					<div className="title">
-							 {props.bookPublicationYear.title}:
-					</div>
-					<ul>
-						<li className={props.isOrderActive(props.bookPublicationYear.publicationYearDescId) ? "active" : ""}>
-							<div onClick={() => {props.clickOrder(props.bookPublicationYear.publicationYearDescId)}}>
-								{props.bookPublicationYear.publicationYearDescTitle}
-							</div>
-						</li>
-						<li className={props.isOrderActive(props.bookPublicationYear.publicationYearAscId) ? "active" : ""}>
-							<div onClick={() => {props.clickOrder(props.bookPublicationYear.publicationYearAscId)}}>
-								{props.bookPublicationYear.publicationYearAscTitle}
-							</div>
-						</li>
-					</ul>
-				</li>
-				<li>
-					<div className="title">
-							 {props.bookPrices.title}:
-					</div>
-					<ul>
-						<li className={props.isOrderActive(props.bookPrices.priceAscId) ? "active" : ""}>
-							<div onClick={() => {props.clickOrder(props.bookPrices.priceAscId)}}>
-								{props.bookPrices.priceAscTitle}
-							</div>
-						</li>
-						<li className={props.isOrderActive(props.bookPrices.priceDescId) ? "active" : ""}>
-							<div onClick={() => {props.clickOrder(props.bookPrices.priceDescId)}}>
-								{props.bookPrices.priceDescTitle}
-							</div>
-						</li>
-					</ul>
-				</li>
-			</ul>
-
 			<div className="filter-header"
 			     onClick={() => {clickFilterOptionsVisibility()}}>
 					 {filterOptionsVisible ? filterClose: filterOpen }
@@ -181,6 +140,47 @@ export default function ShowcaseFiltersAndOrder(props) {
 								  </ul>
 							</li>
 						)}
+					</ul>
+				</li>
+			</ul>
+
+			<div className="order-header"
+			     onClick={() => {clickOrderOptionsVisibility()}}>
+				   {orderOptionsVisible ? orderClose: orderOpen }
+			</div>
+			<ul className={orderOptionsVisible ? "visible" : "invisible"} >
+				<li>
+					<div className="title">
+							 {props.bookPublicationYear.title}:
+					</div>
+					<ul>
+						<li className={props.isOrderActive(props.bookPublicationYear.publicationYearDescId) ? "active" : ""}>
+							<div onClick={() => {props.clickOrder(props.bookPublicationYear.publicationYearDescId)}}>
+								{props.bookPublicationYear.publicationYearDescTitle}
+							</div>
+						</li>
+						<li className={props.isOrderActive(props.bookPublicationYear.publicationYearAscId) ? "active" : ""}>
+							<div onClick={() => {props.clickOrder(props.bookPublicationYear.publicationYearAscId)}}>
+								{props.bookPublicationYear.publicationYearAscTitle}
+							</div>
+						</li>
+					</ul>
+				</li>
+				<li>
+					<div className="title">
+							 {props.bookPrices.title}:
+					</div>
+					<ul>
+						<li className={props.isOrderActive(props.bookPrices.priceAscId) ? "active" : ""}>
+							<div onClick={() => {props.clickOrder(props.bookPrices.priceAscId)}}>
+								{props.bookPrices.priceAscTitle}
+							</div>
+						</li>
+						<li className={props.isOrderActive(props.bookPrices.priceDescId) ? "active" : ""}>
+							<div onClick={() => {props.clickOrder(props.bookPrices.priceDescId)}}>
+								{props.bookPrices.priceDescTitle}
+							</div>
+						</li>
 					</ul>
 				</li>
 			</ul>
