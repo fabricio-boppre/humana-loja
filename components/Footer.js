@@ -51,10 +51,10 @@ export default function Footer() {
 	
 				<div id="f-logotipo">
           <Image
-            src="/img/layout/logo-branco-redondo.svg"
+            src="/img/layout/slogan-quadrado.jpg"
             alt="Humana"
-            width={150}
-            height={150}
+            width={180}
+            height={145}
           />
 				</div>
 			
