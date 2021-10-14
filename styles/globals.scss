@@ -212,7 +212,7 @@ body {
 	// Links:
 	// https://docs.snipcart.com/v3/setup/theming#links
 	--color-link: black;
-	--color-link-hover:  hsl(38, 100%, 47%);
+	--color-link-hover: hsl(38, 100%, 47%);
 	
 	.snipcart-modal__container {
 		border-left: 1px solid #e3e6e8;
@@ -225,6 +225,19 @@ body {
 	.snipcart-base-button__label {
 		font-weight: 700;
 		@include assets.button-text-shadow;
+	}
+	
+	.snipcart-discount-box__button {
+		@include assets.border-radius(4px);
+		@include assets.button-text-shadow;
+		@include assets.transition(background-color 0.2s linear);
+		border: none;
+		background-color: #D67D00;
+	  color: white;	
+		font-weight: 700;
+		&:hover {
+			background-color: hsl(38, 100%, 53%);
+		}
 	}
 	
 	.snipcart-button-icon:hover {
