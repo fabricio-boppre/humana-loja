@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+		"postbuild": "next-sitemap",
     "start": "next start",
     "lint": "next lint"
   },
@@ -12,6 +13,7 @@
     "@sanity/client": "^2.2.6",
     "markdown-it": "^12.1.0",
     "next": "^11.1.0",
+    "next-sitemap": "^1.6.184",
     "node-fetch": "^2.6.1",
     "react": "^17.0.2",
     "react-app-polyfill": "^2.0.0",
