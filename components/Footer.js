@@ -8,14 +8,7 @@ export default function Footer() {
 
 			<div id="footer-nucleus">
 				
-				<div id="f-contato">
-					<section>
-						<h1>Contato</h1>
-						<ul>
-							<li><a href="mailto:humanasebolivraria@gmail.com">humanasebolivraria@gmail.com</a></li>
-							<li>Telefone/WhatsApp: (49) 3316-4566</li>
-						</ul>
-					</section>
+				<div id="f-left">
 					<section>
 						<h1>Humana</h1>
 						<ul>
@@ -35,7 +28,14 @@ export default function Footer() {
 					</section>
 				</div>
 		
-				<div id="f-endereco">
+				<div id="f-right">
+					<section>
+						<h1>Contato</h1>
+						<ul>
+							<li><a href="mailto:humanasebolivraria@gmail.com">humanasebolivraria@gmail.com</a></li>
+							<li>Telefone/WhatsApp: <a href="https://api.whatsapp.com/send?phone=554933164566" target="_blank" rel="noreferrer" className="external-link">49 3316-4566</a></li>
+						</ul>
+					</section>
 					<section>
 						<h1>Endereço</h1>
 						<p>Rua Marechal Bormann, 82 D, Sala 13</p>
@@ -49,7 +49,7 @@ export default function Footer() {
 					</section>
 				</div>
 	
-				<div id="f-logotipo">
+				<div id="f-middle">
           <Image
             src="/img/layout/slogan-quadrado.jpg"
             alt="Humana"

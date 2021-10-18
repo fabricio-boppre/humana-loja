@@ -11,7 +11,7 @@
 
 #masthead {
 	background-color: white;
-	height: 60px; // It's the logo height.
+	height: 60px; // Logo height.
 	border-bottom: 1px solid darken(assets.$gray-bg, 10%);
 
 	:global(#masthead-nucleus) {
@@ -32,29 +32,39 @@
 			width: 320px;	// Logo [large version] width.		
 		}		
 		
-		// Services icons:
-		:global(#masthead-services) {
+		// Phone:
+		:global(#masthead-phone) {
 			height: inherit;
 			text-align: right;
-			ul {
+			a {
+				@include assets.flexbox();
+				@include assets.align-items(center);
+				color: inherit;
+				text-decoration: none;
 				height: inherit;
-				li {
-					height: inherit;
-					display: inline-block;
-					&:not(:first-child) {
-						padding-left: 25px;
-					}
-					a {
-						display: inline-block;
-						height: inherit;
-						text-decoration: none;
-					}
-				}
+				:global(#masthead-phone-text) {
+					padding-right: 10px;
+				}	
+				:global(#masthead-phone-number) {
+					padding-left: 10px;
+					font-weight: 700;
+				}	
 			}
 		}
 	}
 
 	// Responsiveness rules:
+	@media screen and (max-width: assets.$large-device-width) {
+		:global(#masthead-nucleus) {
+			
+			// Phone:
+			:global(#masthead-phone) {
+				:global(#masthead-phone-text) {
+					display: none;
+				}
+			}
+		}
+	}
 	@media screen and (max-width: assets.$tablet-width) {
 		:global(#masthead-nucleus) {
 			
@@ -66,18 +76,6 @@
 				background-position: left center;
 				width: 250px;	// Logo [small version] width.			
 			}		
-
-			// Services icons:
-			:global(#masthead-services) {
-				ul {
-					li {
-						&:not(:first-child) {
-							padding-left: 15px;
-						}
-					}
-				}
-			}
-
 		}
 	}
 	@media screen and (max-width: assets.$smartphone-width) {
@@ -89,11 +87,10 @@
 				background-position: center;		
 			}		
 
-			// Services icons:
-			:global(#masthead-services) {
+			// Phone:
+			:global(#masthead-phone) {
 				display: none;
 			}
-
 		}
 	}
 }

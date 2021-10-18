@@ -136,48 +136,25 @@ export default function Masthead(props) {
 								<span hidden>Humana</span>
 							</a>
 			      </Link>
-			            
-            <div id="masthead-services">
-              <ul>
-                <li>
-                  <a href="https://www.facebook.com/pages/category/Bookstore/Humana-Sebo-e-Livraria-436455317131153/" 
-										 target="_blank" 
-										 rel="noreferrer">
-                    <Image
-                      src="/img/layout/servico-facebook.svg"
-                      alt="facebook"
-                      width={12.46}
-                      height={60}
-                    />
-                  </a>
-                </li>
-                <li>
-                  <a href="https://www.instagram.com/humanasebolivraria/" 
-									   target="_blank"
-										 rel="noreferrer">
-                    <Image
-                      src="/img/layout/servico-instagram.svg"
-                      alt="instagram"
-                      width={27}
-                      height={60}
-                    />
-                  </a>
-                </li>
-                <li>
-                  <a href="https://www.youtube.com/channel/UC5bVFV4JYUDLPiJay49fM0w"
-									   target="_blank"
-										 rel="noreferrer">
-                    <Image
-                      src="/img/layout/servico-youtube.svg"
-                      alt="youtube"
-                      width={39}
-                      height={60}
-                    />
-                  </a>
-                </li>
-              </ul>
+			      
+            <div id="masthead-phone">
+							<a href="https://api.whatsapp.com/send?phone=554933164566" target="_blank" rel="noreferrer">
+								<span id="masthead-phone-text">
+									Quer conversar com o livreiro?
+								</span>
+	              <Image
+	                src="/img/layout/servico-whatsapp.svg"
+	                alt="telefone"
+	                width={24}
+	                height={24}
+									className="masthead-phone-icon"
+	              />
+								<span id="masthead-phone-number">
+									49 3316-4566
+								</span>
+							</a>
             </div>
-          
+						          
           </div>
             
          </header>

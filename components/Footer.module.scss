@@ -43,18 +43,19 @@
 				padding-right: 25px;
 			}
 		}
-		:global(#f-contato) {
-			:global(section#social-networks) {
-				display: none;
-			}
+		:global(#f-left) {
+			flex-basis: 35%;
 		}
-		:global(#f-logotipo) {
+		:global(#f-middle) {
 			@include assets.order(2); 
+			text-align: center;
+			flex-basis: 30%;
 			padding: 0 50px;
 		}
-		:global(#f-endereco) {
-			text-align: right;
+		:global(#f-right) {
 			@include assets.order(3); 
+			flex-basis: 35%;
+			text-align: right;
 		}
 	}
 	
@@ -70,27 +71,27 @@
 			p {
 				padding-bottom: 15px;
 			}
-			:global(#f-contato) {
+			:global(#f-left) {
 				text-align: center;
 			}
-			:global(#f-logotipo) {
+			:global(#f-middle) {
 				@include assets.order(3); 
 				text-align: center;
 				padding: 0;
 			}
-			:global(#f-endereco) {
+			:global(#f-right) {
 				text-align: center;
 				@include assets.order(2); 
 			}
 		}
 	}
-	@media screen and (max-width: assets.$smartphone-width) {
-		:global(#footer-nucleus) {
-			:global(#f-contato) {
-				:global(section#social-networks) {
-					display: block;
-				}
-			}
-		}
-	}
+	// @media screen and (max-width: assets.$smartphone-width) {
+	// 	:global(#footer-nucleus) {
+	// 		:global(#f-contato) {
+	// 			:global(section#social-networks) {
+	// 				display: block;
+	// 			}
+	// 		}
+	// 	}
+	// }
 }
