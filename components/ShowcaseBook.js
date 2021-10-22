@@ -52,7 +52,7 @@ export default function ShowcaseBook(props) {
 	// - If the book is not available, we show the the unavailable sign and no price tag: 
 	} else if (book.stock_situation == "esgotado_visivel") {
 		var price_tag = null
-		var button = <div className="showcase_book_text_unavailable">esgotado</div>
+		var button = <div className="showcase_book_text_unavailable">falta temporária</div>
 	}
 
 	return <li className={styles.showcase_book}>
