@@ -478,7 +478,7 @@ body {
 			@include border-radius(10px);
 			background-color: rgba(255, 255, 255, 0.95);
 			width: 50%;
-			padding: 20px;
+			padding: 30px;
 			text-align: center;
 			font-family: 'Open Sans', sans-serif;
 			font-color: black;
@@ -489,8 +489,12 @@ body {
 				}
 			}
 			h1 {
-				line-height: 30px;
+				line-height: 20px;
 				font-size: 1.6rem;
+				margin-bottom: 10px;
+			}
+			p {
+				font-size: 1.2rem;
 			}
 			a {
 				display: block;
