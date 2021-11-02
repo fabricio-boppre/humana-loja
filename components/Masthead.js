@@ -114,6 +114,16 @@ export default function Masthead(props) {
 		          loading: "Carregando os valores de frete",
 		        },						
 					},
+          payment: {
+						form: {
+            	deferred_payment_title: "Pagamento posterior",
+							deferred_payment_instructions: "Iremos lhe enviar por email um boleto para o pagamento do seu pedido.",
+							invalid_cvv: "CVV inválido",
+						},
+            methods: {
+							deferred_payment: "Pagar depois",
+						},
+          },					
           register_form: {
             requires_action: {
 							title: "Verifique sua caixa de entrada",
