@@ -35,13 +35,54 @@ export default function ShowcaseFiltersAndOrder(props) {
 	}
 	const iconOpen = <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M8.12 9.29L12 13.17l3.88-3.88a.996.996 0 1 1 1.41 1.41l-4.59 4.59a.996.996 0 0 1-1.41 0L6.7 10.7a.996.996 0 0 1 0-1.41c.39-.38 1.03-.39 1.42 0z"></path></svg>
 	const iconClose = <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="m15.842432 15.325157-3.844941-3.914745-3.914745 3.844942a.99702056.99702056 0 1 1 -1.3972596-1.422627l4.6311026-4.5485257a.996.996 0 0 1 1.409943.012683l4.548526 4.6311024a.996.996 0 0 1 -.01268 1.409943c-.393403.376477-1.033467.380719-1.419943-.01277z"/></svg> 
-	const orderOpen = <><span>exibir ordenação</span>{iconOpen}</>
-	const orderClose = <><span>ocultar ordenação</span>{iconClose}</>
-	const filterOpen = <><span>exibir filtros {props.filterCount > 0 ? filterCountLabel : ""}</span>{iconOpen}</>
-	const filterClose = <><span>ocultar filtros</span>{iconClose}</>
+	const orderOpen = <><span>ordenação</span>{iconOpen}</>
+	const orderClose = <><span>ordenação:</span>{iconClose}</>
+	const filterOpen = <><span>filtros {props.filterCount > 0 ? filterCountLabel : ""}</span>{iconOpen}</>
+	const filterClose = <><span>filtros:</span>{iconClose}</>
 		
 	return (
 		<div id="showcase-filters-order">
+
+			<div className="order-header"
+			     onClick={() => {clickOrderOptionsVisibility()}}>
+				   {orderOptionsVisible ? orderClose: orderOpen }
+			</div>
+			<ul className={orderOptionsVisible ? "visible" : "invisible"} >
+				<li>
+					<div className="title">
+							 {props.bookPublicationYear.title}:
+					</div>
+					<ul>
+						<li className={props.isOrderActive(props.bookPublicationYear.publicationYearDescId) ? "active" : ""}>
+							<div onClick={() => {props.clickOrder(props.bookPublicationYear.publicationYearDescId)}}>
+								{props.bookPublicationYear.publicationYearDescTitle}
+							</div>
+						</li>
+						<li className={props.isOrderActive(props.bookPublicationYear.publicationYearAscId) ? "active" : ""}>
+							<div onClick={() => {props.clickOrder(props.bookPublicationYear.publicationYearAscId)}}>
+								{props.bookPublicationYear.publicationYearAscTitle}
+							</div>
+						</li>
+					</ul>
+				</li>
+				<li>
+					<div className="title">
+							 {props.bookPrices.title}:
+					</div>
+					<ul>
+						<li className={props.isOrderActive(props.bookPrices.priceAscId) ? "active" : ""}>
+							<div onClick={() => {props.clickOrder(props.bookPrices.priceAscId)}}>
+								{props.bookPrices.priceAscTitle}
+							</div>
+						</li>
+						<li className={props.isOrderActive(props.bookPrices.priceDescId) ? "active" : ""}>
+							<div onClick={() => {props.clickOrder(props.bookPrices.priceDescId)}}>
+								{props.bookPrices.priceDescTitle}
+							</div>
+						</li>
+					</ul>
+				</li>
+			</ul>
 
 			<div className="filter-header"
 			     onClick={() => {clickFilterOptionsVisibility()}}>
@@ -143,48 +184,7 @@ export default function ShowcaseFiltersAndOrder(props) {
 					</ul>
 				</li>
 			</ul>
-
-			<div className="order-header"
-			     onClick={() => {clickOrderOptionsVisibility()}}>
-				   {orderOptionsVisible ? orderClose: orderOpen }
-			</div>
-			<ul className={orderOptionsVisible ? "visible" : "invisible"} >
-				<li>
-					<div className="title">
-							 {props.bookPublicationYear.title}:
-					</div>
-					<ul>
-						<li className={props.isOrderActive(props.bookPublicationYear.publicationYearDescId) ? "active" : ""}>
-							<div onClick={() => {props.clickOrder(props.bookPublicationYear.publicationYearDescId)}}>
-								{props.bookPublicationYear.publicationYearDescTitle}
-							</div>
-						</li>
-						<li className={props.isOrderActive(props.bookPublicationYear.publicationYearAscId) ? "active" : ""}>
-							<div onClick={() => {props.clickOrder(props.bookPublicationYear.publicationYearAscId)}}>
-								{props.bookPublicationYear.publicationYearAscTitle}
-							</div>
-						</li>
-					</ul>
-				</li>
-				<li>
-					<div className="title">
-							 {props.bookPrices.title}:
-					</div>
-					<ul>
-						<li className={props.isOrderActive(props.bookPrices.priceAscId) ? "active" : ""}>
-							<div onClick={() => {props.clickOrder(props.bookPrices.priceAscId)}}>
-								{props.bookPrices.priceAscTitle}
-							</div>
-						</li>
-						<li className={props.isOrderActive(props.bookPrices.priceDescId) ? "active" : ""}>
-							<div onClick={() => {props.clickOrder(props.bookPrices.priceDescId)}}>
-								{props.bookPrices.priceDescTitle}
-							</div>
-						</li>
-					</ul>
-				</li>
-			</ul>
-
+			
 	  </div>
 	)
 }
