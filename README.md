@@ -1,34 +1,79 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# (Em português)
 
-## Getting Started
+## Introdução
 
-First, run the development server:
+A [livraria virtual da Humana](https://loja.humanasebolivraria.com.br) foi construída com as seguintes ferramentas:
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+- Frontend: [Next.js](https://nextjs.org);
+- Gerenciamento de conteúdo: [Sanity](https://www.sanity.io);
+- Shopping cart: [Snipcart](https://snipcart.com);
+- Payment gateway: [Stripe](http://stripe.com);
+- Webhook para cálculo do frete: [AWS Lambda](https://aws.amazon.com/pt/lambda/);
+- Deployment: [Vercel](https://vercel.com/).
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+O site utiliza os modos de pré-renderização [Static Generation](https://nextjs.org/docs/basic-features/pages#static-generation-recommended) para as telas dos livros e [Server-side Rendering](https://nextjs.org/docs/basic-features/pages#server-side-rendering) para o mostruário dinâmico de livros.
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+A Humana é uma livraria, editora e galeria de arte localizada em Chapecó, no oeste de Santa Catarina, Brasil. Para mais informações, clique [aqui](http://www.humanasebolivraria.com.br).
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+## Configuração
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+Se você não possui nenhuma experiência com o Next.js, comece por [aqui](https://nextjs.org/docs/getting-started).
 
-## Learn More
+Após clonar o projeto (`git clone git@bitbucket.org:fabricioboppre/humana.git`), não esqueça de instalar suas dependências (`npm install`).
 
-To learn more about Next.js, take a look at the following resources:
+As seguintes [variáveis de ambiente](https://nextjs.org/docs/basic-features/environment-variables) precisam ser configuradas:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- FRONT\_PAGE\_URL: URL base da loja, utilizada em alguns webhooks;
+- SANITY\_PROJECT\_ID: ID do projeto no Sanity;
+- SANITY\_DATASET: Nome do dataset no Sanity;
+- SNIPCART\_API\_KEY: API key no Snipcart.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+Se você quiser consultar a estrutura de dados criada no Sanity, é só entrar em [contato](mailto:fabricio.boppre@gmail.com).
 
-## Deploy on Vercel
+## Tradução
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Os comentários ao longo do código-fonte estão em inglês. Se algum brasileiro interessado em consultá-lo encontrar alguma dificuldade, entre em [contato](mailto:fabricio.boppre@gmail.com).
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Licença
+
+O código-fonte deste site está compartilhado sob a licença MIT. Para mais informações, leia o arquivo [LICENSES](LICENSES.md).
+
+# (In English)
+
+## Introduction
+
+[Humana's virtual bookstore](https://loja.humanasebolivraria.com.br) was built with the following tools:
+
+- Frontend: [Next.js](https://nextjs.org);
+- Content management: [Sanity](https://www.sanity.io);
+- Shopping cart: [Snipcart](https://snipcart.com);
+- Payment gateway: [Stripe](http://stripe.com);
+- Shipping webhook: [AWS Lambda](https://aws.amazon.com/lambda/);
+- Deployment: [Vercel](https://vercel.com/).
+
+The site uses [Static Generation](https://nextjs.org/docs/basic-features/pages#static-generation-recommended) pre-rendering mode for book screens and [Server-side Rendering](https://nextjs.org/docs/basic-features/pages#server-side-rendering) for the dynamic book showcase.
+
+Humana is a bookstore, book publisher and art gallery located in Chapecó, Brazil. For more information, check [here](http://www.humanasebolivraria.com.br) (site in Portuguese).
+
+## Configuration
+
+If you have no experience with Next.js, start [here](https://nextjs.org/docs/getting-started).
+
+After cloning the project (`git clone git@bitbucket.org:fabricioboppre/humana.git`), don't forget to install its dependencies (`npm install`).
+
+These [environment variables](https://nextjs.org/docs/basic-features/environment-variables) must be set:
+
+- FRONT\_PAGE\_URL: Store Base URL, needed by some webhooks;
+- SANITY\_PROJECT\_ID: Project ID on Sanity;
+- SANITY\_DATASET: Dataset name on Sanity;
+- SNIPCART\_API\_KEY: API key on Snipcart.
+
+If you want to check the data structure created on Sanity, [send me an email](mailto:fabricio.boppre@gmail.com).
+
+## Translation
+
+The store was created to serve Brazilian readers and that's why its frontend is in Portuguese. If a non-Portuguese speaker needs some clarification, I'll be glad [to help](mailto:fabricio.boppre@gmail.com).
+
+## License
+
+The source code of this website is shared under the MIT license. For more information, see [LICENSES](LICENSES.md).

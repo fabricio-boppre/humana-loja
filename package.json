@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-		"postbuild": "next-sitemap",
+    "postbuild": "next-sitemap",
     "start": "next start",
     "lint": "next lint"
   },
@@ -22,5 +22,6 @@
   "devDependencies": {
     "eslint": "7.32.0",
     "eslint-config-next": "11.1.0"
-  }
+  },
+  "license": "MIT"
 }
