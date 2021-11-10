@@ -5,14 +5,21 @@
       <div id="snipcart-templates">
 
 				<!-- 
-					Adding CPF field in the billing component:
+					Adding CPF and phone field in the billing component:
 					- https://docs.snipcart.com/v3/themes/default/reference#component-billing 
+					- Allowed characters (https://www.w3schools.com/charsets/ref_utf_basic_latin.asp): 
+					  - CPF: numbers and backspace;
+					  - Phone: numbers, backspace and space.
 				-->
 				<billing section="top">
 					<fieldset>
 						<div id="form-cpf">
-							<snipcart-label for="cpf">CPF</snipcart-label>
+							<snipcart-label for="cpf" class="snipcart__font--tiny">CPF</snipcart-label>
 							<snipcart-input name="cpf" minlength="11" maxlength="11" type="text" onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))" required></snipcart-input>
+						</div>
+						<div id="form-phone">
+							<snipcart-label for="phone" class="snipcart__font--tiny">Telefone (DDD + número)</snipcart-label>
+							<snipcart-input name="phone" maxlength="15" type="tel" onkeypress="return (event.charCode !=8 && (event.charCode ==0 || event.charCode ==32) || (event.charCode >= 48 && event.charCode <= 57))" required></snipcart-input>
 						</div>
 					</fieldset>
 				</billing>
