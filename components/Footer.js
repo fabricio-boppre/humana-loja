@@ -43,9 +43,9 @@ export default function Footer() {
 						<p><a href="https://g.page/humanasebolivraria?share" target="_blank" rel="noreferrer" className="external-link">[como chegar]</a></p>
 					</section>
 					<section>
-						<h1>Horário de atendimento</h1>
-						<p>Segunda a sexta-feira, das 8h30 às 18h30</p>
-						<p>Sábados, das 9 às 12h</p>
+						<h1>Horário especial de verão (até 29/01/2022)</h1>
+						<p>Segunda a sexta das 10 às 18h</p>
+						<p>Sábados, das 9 às 18h</p>
 					</section>
 				</div>
 	
