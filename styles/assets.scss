@@ -483,7 +483,6 @@ $line-height-enormous-size: 38px;
 	@include button-text-shadow;
 	padding: 10px 20px;
 	color: white;
-	text-transform: capitalize;
 	font-weight: 700;
 	font-size: $typo-small-size;
 	line-height: $line-height-small-size;
