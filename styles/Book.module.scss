@@ -54,7 +54,7 @@
 			position: relative;
 			width: 100%;
 			max-width: $book-image-width;
-			> div {
+			> span {
 	  		position: unset !important;
 				max-width: 260px;
 				:global(.custom-img) {

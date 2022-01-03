@@ -37,7 +37,7 @@ li.showcase_book {
 		// Trick to use next/image: https://dev.to/tanahmed/next-image-make-image-fill-available-space-272o
 		position: relative;
 		width: 100%;
-		> div {
+		> span {
   		position: unset !important;
 			:global(.custom-img) {
 			  width: 100% !important;
