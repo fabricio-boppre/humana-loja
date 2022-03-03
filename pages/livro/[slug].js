@@ -230,12 +230,12 @@ export const getStaticPaths = async () => {
 };
 
 // This function gets called at build time on server-side and also after requests:
+// - Next.js will attempt to re-generate the page when a request comes in at most once every 60 seconds (Incremental Static Regeneration);
+// - Using ISR on Netlify: https://github.com/netlify/netlify-plugin-nextjs/blob/main/docs/isr.md
 export const getStaticProps = async ({ params }) => {
 	const book = await getABook(params.slug)
   return { 
     props: { book },
-    // Next.js will attempt to re-generate the page:
-    // - When a request comes in at most once every second.
-    revalidate: 1,
+    revalidate: 60,
   };
 };
