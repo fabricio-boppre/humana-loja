@@ -2,7 +2,7 @@
 	MIXINS, VARIABLES & EXTENDS
   ---------------------------------------------- */
 
-@use '../styles/assets';
+@import '../styles/assets';
 
 /* ------------------------------------------------------------------------------
 	SHOWCASE BOOK:
@@ -11,16 +11,16 @@
   ------------------------------------------------------------------------------- */
 
 li.showcase_book {
-	@include assets.flex-basis(180px); // This value must be kept in accordance with the crop value appended to the image base-url (ShowcaseBook component).
-	@include assets.box-shadow(1px 1px 2px gray);
+	@include flex-basis(180px); // This value must be kept in accordance with the crop value appended to the image base-url (ShowcaseBook component).
+	@include box-shadow(1px 1px 2px gray);
 	margin: 0 40px 60px 40px;
 	background-color: white;
 	
 	:global(.humana_indica) {
 		$label-height: 25px;
-		@include assets.border-radius(5px);
-		@include assets.button-text-shadow;
-		font-size: assets.$typo-small-size;
+		@include border-radius(5px);
+		@include button-text-shadow;
+		font-size: $typo-small-size;
 		line-height: $label-height;
 		background-color: red;
 		margin: -$label-height/2 25px 0 25px;
@@ -50,8 +50,8 @@ li.showcase_book {
 	:global(.showcase_book_text) {
 		text-align: center;
 		padding: 0 10px 12px 10px;
-		font-size: assets.$typo-small-size;
-		line-height: assets.$line-height-small-size;
+		font-size: $typo-small-size;
+		line-height: $line-height-small-size;
 		a {
 			text-decoration: none;
 			color: inherit;
@@ -65,18 +65,18 @@ li.showcase_book {
 		}
 		:global(button.snipcart-add-item),
 		:global(.showcase_book_text_unavailable) {
-			@include assets.generic-button;
+			@include generic-button;
 		}
 		:global(button.snipcart-add-item) {
-			@include assets.buy-button;
-			@include assets.buy-button-hover;
+			@include buy-button;
+			@include buy-button-hover;
 		}
 		:global(.showcase_book_text_unavailable) {
-			@include assets.unavailable-button;
+			@include unavailable-button;
 		}
 		:global(.showcase-book-text-format-ebook),
 		:global(.showcase-book-text-format-livro) {
-			@include assets.border-radius(0 0 8px 8px);
+			@include border-radius(0 0 8px 8px);
 			color: white;
 			display: inline-block;
 			padding: 1px 8px;
@@ -108,10 +108,10 @@ li.showcase_book {
 	}
 
 	// Responsiveness rules:
-	@media screen and (max-width: assets.$large-device-width) {
+	@media screen and (max-width: $large-device-width) {
 		margin: 0 25px 40px 25px;
 	}
-	@media screen and (max-width: assets.$tablet-width) {
+	@media screen and (max-width: $tablet-width) {
 		margin: 0 30px 40px 30px;
 	}
 

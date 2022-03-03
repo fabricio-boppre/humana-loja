@@ -2,7 +2,7 @@
 	MIXINS, VARIABLES & EXTENDS
   ---------------------------------------------- */
 
-@use 'assets';
+@import 'assets';
 
 /* ---------------------------------------------
 	BOOK:
@@ -23,22 +23,22 @@
 	}
 
 	article {
-		@include assets.flexbox();
-		@include assets.flex-wrap(wrap);
-		@include assets.align-items(center);
-		width: assets.$large-device-width - (assets.$lateral-margin*2);
+		@include flexbox();
+		@include flex-wrap(wrap);
+		@include align-items(center);
+		width: $large-device-width - ($lateral-margin*2);
 		margin: 0 auto;
 
 		:global(#book-image) {
 			$book-image-width: 260px; // This value must be kept in accordance with the crop value appended to the image base-url (Book page).
-			@include assets.flex(0 0 $book-image-width);
+			@include flex(0 0 $book-image-width);
 
 			:global(.humana_indica) {
 				$label-height: 25px;
-				@include assets.border-top-right-radius(6px);
-				@include assets.border-top-left-radius(6px);
-				@include assets.button-text-shadow;
-				font-size: assets.$typo-small-size;
+				@include border-top-right-radius(6px);
+				@include border-top-left-radius(6px);
+				@include button-text-shadow;
+				font-size: $typo-small-size;
 				line-height: $label-height;
 				background-color: red;
 				margin: 0 65px;
@@ -66,7 +66,7 @@
 		}
 
 	  :global(#book-info) {
-			@include assets.flex(1);
+			@include flex(1);
 			margin: 0 50px 0 30px;
 			header {
 				padding-bottom: 20px;
@@ -75,8 +75,8 @@
 				}
 			}
 			:global(.info-item) {
-				font-size: assets.$typo-small-size;
-				line-height: assets.$line-height-small-size;
+				font-size: $typo-small-size;
+				line-height: $line-height-small-size;
 				padding-bottom: 8px;
 				:global(.title) {
 					font-weight: 700;
@@ -85,39 +85,39 @@
 		}
 
 		:global(#book-price-and-button) {
-			@include assets.flex(0 0 220px);
+			@include flex(0 0 220px);
 			padding-left: 50px;
-			border-left: 2px solid assets.$gray-typo;
+			border-left: 2px solid $gray-typo;
 			:global(.original_price) {
 				color: lighten(black,65%);
 				text-decoration: line-through;
 			}
 			:global(.price) {
-				font-size: assets.$typo-large-size;
-				line-height: assets.$line-height-large-size;
+				font-size: $typo-large-size;
+				line-height: $line-height-large-size;
 				font-weight: 400;
 				padding-bottom: 10px;
 			}
 			:global(button.snipcart-add-item),
 			:global(.unavailable) {
-				@include assets.generic-button;
+				@include generic-button;
 			}
 			:global(button.snipcart-add-item) {
-				@include assets.buy-button;
-				@include assets.buy-button-hover;
+				@include buy-button;
+				@include buy-button-hover;
 			}
 			:global(.unavailable) {
-				@include assets.unavailable-button;
+				@include unavailable-button;
 			}
 		}
 
 		:global(#book-unavailable),
 		:global(#book-description) {
-			@include assets.flex(1 0 100%);
+			@include flex(1 0 100%);
 		}
 		
 		:global(#book-unavailable) {
-			@include assets.border-radius(8px);
+			@include border-radius(8px);
 			margin-top: 30px;
 			background-color: #fc6a67;
 			color: white;
@@ -136,7 +136,7 @@
 		:global(#previous-page) {
 			margin-top: 20px;
 			:global(#previous-page-button) {
-				@include assets.flexbox();
+				@include flexbox();
 				float: right;
 				text-decoration: none;
 				color: white;
@@ -145,31 +145,31 @@
 					display: none;
 				}
 				:global(.text) {
-					@include assets.border-radius(0 4px 4px 0);
-					@include assets.button-text-shadow;
+					@include border-radius(0 4px 4px 0);
+					@include button-text-shadow;
 					padding: 0 10px 0 5px;
 					min-height: $button-height;
-					background-color: assets.$orange-button;
-					@include assets.transition(background-color 0.2s linear);
+					background-color: $orange-button;
+					@include transition(background-color 0.2s linear);
 					font-weight: 700;
-					font-size: assets.$typo-small-size;
+					font-size: $typo-small-size;
 				}	
 				:global(.arrow-left) {
 				  width: 0; 
 				  height: 0;
 				  border-top: ($button-height/2) solid transparent;
 				  border-bottom: ($button-height/2) solid transparent; 
-				  border-right: ($button-height/2) solid assets.$orange-button; 
-					@include assets.transition(border-right 0.2s linear);
+				  border-right: ($button-height/2) solid $orange-button; 
+					@include transition(border-right 0.2s linear);
 				}
 			}
 			&:hover {
 				:global(#previous-page-button) {
 					:global(.text) {
-			    	background-color: assets.$orange-button-hover;
+			    	background-color: $orange-button-hover;
 					}
 					:global(.arrow-left) {
-						border-right: ($button-height/2) solid assets.$orange-button-hover;
+						border-right: ($button-height/2) solid $orange-button-hover;
 					}
 				}
 		  }
@@ -177,35 +177,35 @@
 	}
 	
 	// Responsiveness rules:
-	@media screen and (max-width: assets.$large-device-width) {
+	@media screen and (max-width: $large-device-width) {
 		article {
-			width: assets.$tablet-width - (assets.$lateral-margin*2);
+			width: $tablet-width - ($lateral-margin*2);
 		  :global(#book-info) {
 				margin: 0 0 0 30px;
 			}
 			:global(#book-price-and-button) {
-				@include assets.flex(1 0 100%);
+				@include flex(1 0 100%);
 				padding: 20px 0 0 0;
 				border-left: none;
 			}
 		}
 	}
-	@media screen and (max-width: assets.$tablet-width) {
+	@media screen and (max-width: $tablet-width) {
 		article {
 			width: 100%;
-			@include assets.flex-direction(column);
+			@include flex-direction(column);
 			:global(#book-image),
 		  :global(#book-info),
 			:global(#book-price-and-button) {
-				@include assets.flex(1 0 100%);
+				@include flex(1 0 100%);
 			}
 			:global(#book-info) {
 				margin: 30px 0 0 0;
 			}
 			:global(#book-price-and-button) {
-				@include assets.flexbox();
-				@include assets.flex-direction(column);
-				@include assets.align-items(center);
+				@include flexbox();
+				@include flex-direction(column);
+				@include align-items(center);
 			}
 		}
 	}

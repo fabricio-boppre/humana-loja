@@ -2,7 +2,7 @@
 	MIXINS, VARIABLES & EXTENDS
   ---------------------------------------------- */
 
-@use '../styles/assets';
+@import '../styles/assets';
 
 /* ------------------------------------------------------------------------------
 	MASTHEAD:
@@ -12,19 +12,19 @@
 #masthead {
 	background-color: white;
 	height: 60px; // Logo height.
-	border-bottom: 1px solid darken(assets.$gray-bg, 10%);
+	border-bottom: 1px solid darken($gray-bg, 10%);
 
 	:global(#masthead-nucleus) {
-		@include assets.flexbox();
-		@include assets.justify-content(space-between);
+		@include flexbox();
+		@include justify-content(space-between);
 		height: inherit;
-		max-width: assets.$principal-max-width;
-		padding: 0 assets.$lateral-margin;
+		max-width: $principal-max-width;
+		padding: 0 $lateral-margin;
 		margin: 0 auto;
 
 		// Logo:
 		:global(#masthead-logotipo) {
-			background: url("../public/img/layout/logo-preto-faixa-grande.svg"),
+			background-image: url("../public/img/layout/logo-preto-faixa-grande.svg"),
 									linear-gradient(transparent, transparent);
 			background-repeat: no-repeat;
 			background-position: left center;
@@ -37,8 +37,8 @@
 			height: inherit;
 			text-align: right;
 			a {
-				@include assets.flexbox();
-				@include assets.align-items(center);
+				@include flexbox();
+				@include align-items(center);
 				color: inherit;
 				text-decoration: none;
 				height: inherit;
@@ -54,7 +54,7 @@
 	}
 
 	// Responsiveness rules:
-	@media screen and (max-width: assets.$large-device-width) {
+	@media screen and (max-width: $large-device-width) {
 		:global(#masthead-nucleus) {
 			
 			// Phone:
@@ -65,12 +65,12 @@
 			}
 		}
 	}
-	@media screen and (max-width: assets.$tablet-width) {
+	@media screen and (max-width: $tablet-width) {
 		:global(#masthead-nucleus) {
 			
 			// Logo:
 			:global(#masthead-logotipo) {
-				background: url("../public/img/layout/logo-preto-faixa-pequena.svg"),
+				background-image: url("../public/img/layout/logo-preto-faixa-pequena.svg"),
 										linear-gradient(transparent, transparent);
 				background-repeat: no-repeat;
 				background-position: left center;
@@ -78,7 +78,7 @@
 			}		
 		}
 	}
-	@media screen and (max-width: assets.$smartphone-width) {
+	@media screen and (max-width: $smartphone-width) {
 		:global(#masthead-nucleus) {
 
 			// Logo:

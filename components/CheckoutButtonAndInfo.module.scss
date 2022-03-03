@@ -2,7 +2,7 @@
 	MIXINS, VARIABLES & EXTENDS
   ---------------------------------------------- */
 
-@use '../styles/assets';
+@import '../styles/assets';
 
 /* ------------------------------------------------------------------------------
 	CHECKOUT BUTTON & INFO:
@@ -10,11 +10,11 @@
   ------------------------------------------------------------------------------- */
 
 #checkout_button_and_info {
-	font-size: assets.$typo-small-size;
+	font-size: $typo-small-size;
 	text-align: right;
 	:global(button.snipcart-checkout) {
-		@include assets.flexbox();
-		@include assets.justify-content(flex-end);
+		@include flexbox();
+		@include justify-content(flex-end);
 		float: right;
 		font-family: inherit;
 		font-size: inherit;
@@ -30,14 +30,14 @@
 		height: 48px; // Same height of the shopping cart image.
 		
 		:global(.snipcart-items-count) {
-			@include assets.border-radius(50%);
+			@include border-radius(50%);
 			min-width: 15px;
 			height: 15px;
 			line-height: 15px;
 			padding: 5px;
 			font-family: inherit;
 			font-size: inherit;
-			background-color: assets.$orange-button;
+			background-color: $orange-button;
 		  color: white;
 			font-weight: 700;
 			display: inline-block;
@@ -45,10 +45,10 @@
 	}
 
 	// Responsiveness rules:
-	@media screen and (max-width: assets.$tablet-width) {
-		@include assets.order(2);
+	@media screen and (max-width: $tablet-width) {
+		@include order(2);
 	}
-	@media screen and (max-width: assets.$smartphone-width) {
+	@media screen and (max-width: $smartphone-width) {
 		:global(#snipcart-total-price) {
 			display: none !important;
 		}

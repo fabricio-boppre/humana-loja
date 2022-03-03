@@ -2,7 +2,7 @@
 	MIXINS, VARIABLES & EXTENDS
   ---------------------------------------------- */
 
-@use '../styles/assets';
+@import '../styles/assets';
 
 /* ------------------------------------------------------------------------------
 	ACCOUNT BUTTON:
@@ -17,9 +17,8 @@
 		cursor: pointer;
 
 		// Responsiveness rules:
-		@media screen and (max-width: assets.$tablet-width) {
-			@include assets.order(1);
+		@media screen and (max-width: $tablet-width) {
+			@include order(1);
 		}
 
 	}
-

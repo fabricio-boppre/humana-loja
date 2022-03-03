@@ -2,7 +2,7 @@
 	MIXINS, VARIABLES & EXTENDS
   ---------------------------------------------- */
 
-@use 'assets';
+@import 'assets';
 
 /* ---------------------------------------------
 	INDEX:
@@ -10,24 +10,24 @@
   ---------------------------------------------- */
 
 #index {
-	@include assets.justify-content(space-between);
-	@include assets.flexbox();
-	@include assets.flex-wrap(wrap);
-	@include assets.align-items(flex-start);
+	@include justify-content(space-between);
+	@include flexbox();
+	@include flex-wrap(wrap);
+	@include align-items(flex-start);
 	
 	// Showcase filters:
 	:global(#showcase-filters-order) {
 		$block-space: 10px;
 		$list-line-height: 17px;
-		@include assets.flex(0 0 250px);
-		border-bottom: assets.$box-border;
-		font-size: assets.$typo-small-size;
+		@include flex(0 0 250px);
+		border-bottom: $box-border;
+		font-size: $typo-small-size;
 		:global(.order-header),
 		:global(.filter-header) {
 			$icon-height: 24px;
-			@include assets.flexbox();
-			@include assets.justify-content(space-between);
-			border-top: assets.$box-border;
+			@include flexbox();
+			@include justify-content(space-between);
+			border-top: $box-border;
 			padding: 15px 0;
 			cursor: pointer;
 			font-weight: 700;
@@ -45,7 +45,7 @@
 			> li {
 				margin-bottom: $block-space;
 				:global(.title) {
-					color: assets.$gray-typo;
+					color: $gray-typo;
 					font-weight: 700;
 					padding-bottom: 10px;
 					min-height: $list-line-height;
@@ -134,14 +134,14 @@
 	
 	// Showcase:
 	:global(main#showcase) {
-		@include assets.flex(1);
+		@include flex(1);
 	  opacity: 1;
 		:global(ul#showcase-books-list) {
-			@include assets.flexbox();
-			@include assets.flex-wrap(wrap);
-			@include assets.justify-content(space-around);
+			@include flexbox();
+			@include flex-wrap(wrap);
+			@include justify-content(space-around);
 			-webkit-justify-content: space-evenly !important;
-			@include assets.align-items(flex-start)
+			@include align-items(flex-start)
 		}
 		:global(#empty-showcase),
 		h1 {
@@ -157,10 +157,10 @@
 	}
 
 	// Responsiveness rules:
-	@media screen and (max-width: assets.$tablet-width) {
+	@media screen and (max-width: $tablet-width) {
 		:global(#showcase-filters-order),
 		:global(main#showcase) {
-			@include assets.flex(0 0 100%);
+			@include flex(0 0 100%);
 		}
 		:global(main#showcase) {
 			padding-top: 30px;

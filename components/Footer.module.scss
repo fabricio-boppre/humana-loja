@@ -2,7 +2,7 @@
 	MIXINS, VARIABLES & EXTENDS
   ---------------------------------------------- */
 
-@use '../styles/assets';
+@import '../styles/assets';
 
 /* ------------------------------------------------------------------------------
 	FOOTER:
@@ -13,21 +13,21 @@
 	background-color: black;
 
 	:global(#footer-nucleus) {
-		@include assets.flexbox();
-		@include assets.justify-content(space-between);
-		max-width: assets.$principal-max-width;
-		padding: 50px assets.$lateral-margin;
+		@include flexbox();
+		@include justify-content(space-between);
+		max-width: $principal-max-width;
+		padding: 50px $lateral-margin;
 		margin: 0 auto;
-		font-size: assets.$typo-small-size;
-		line-height: assets.$line-height-small-size;
+		font-size: $typo-small-size;
+		line-height: $line-height-small-size;
 		color: white;
 		font-weight: 400;
 		section	{
 			padding-bottom: 15px;
 		}
 		h1 {
-			font-size: assets.$typo-normal-size;
-			line-height: assets.$line-height-normal-size;
+			font-size: $typo-normal-size;
+			line-height: $line-height-normal-size;
 			font-weight: 700;
 		}	
 		ul li,
@@ -47,22 +47,22 @@
 			flex-basis: 35%;
 		}
 		:global(#f-middle) {
-			@include assets.order(2); 
+			@include order(2); 
 			text-align: center;
 			flex-basis: 30%;
 			padding: 0 50px;
 		}
 		:global(#f-right) {
-			@include assets.order(3); 
+			@include order(3); 
 			flex-basis: 35%;
 			text-align: right;
 		}
 	}
 	
 	// Responsiveness rules:
-	@media screen and (max-width: assets.$tablet-width) {
+	@media screen and (max-width: $tablet-width) {
 		:global(#footer-nucleus) {
-			@include assets.flex-direction(column);
+			@include flex-direction(column);
 			section	{
 				padding-bottom: 25px;
 			}
@@ -75,23 +75,14 @@
 				text-align: center;
 			}
 			:global(#f-middle) {
-				@include assets.order(3); 
+				@include order(3); 
 				text-align: center;
 				padding: 0;
 			}
 			:global(#f-right) {
 				text-align: center;
-				@include assets.order(2); 
+				@include order(2); 
 			}
 		}
 	}
-	// @media screen and (max-width: assets.$smartphone-width) {
-	// 	:global(#footer-nucleus) {
-	// 		:global(#f-contato) {
-	// 			:global(section#social-networks) {
-	// 				display: block;
-	// 			}
-	// 		}
-	// 	}
-	// }
 }

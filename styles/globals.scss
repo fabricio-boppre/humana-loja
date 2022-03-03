@@ -2,7 +2,7 @@
 	MIXINS, VARIABLES & EXTENDS
   ---------------------------------------------- */
 
-@use 'assets';
+@import 'assets';
 
 /* ---------------------------------------------
 	BASIC LAYOUT & TYPOGRAPHY:
@@ -12,12 +12,12 @@ body {
 	-webkit-font-smoothing: antialiased;
 	font-family: 'Open Sans', sans-serif;
 	font-size: 16px;	
-	background-color: assets.$gray-bg;
-	min-width: assets.$body-min-width;
+	background-color: $gray-bg;
+	min-width: $body-min-width;
 	
 	div#__next {
-	  @include assets.flexbox();
-		@include assets.flex-direction(column);
+	  @include flexbox();
+		@include flex-direction(column);
 	  min-height: 100vh;
 
 		img {
@@ -35,58 +35,58 @@ body {
 		// Message for incompatible browser: it starts hidden and is shown if an effect in the Masthead component detects IE as the browser:
 		#incompatible-browser {
 			display: none;
-			padding: 50px assets.$lateral-margin;
+			padding: 50px $lateral-margin;
 			margin: 0 auto;
-			font-size: assets.$typo-normal-size;
-			line-height: assets.$line-height-normal-size;
+			font-size: $typo-normal-size;
+			line-height: $line-height-normal-size;
 			font-weight: 300;
 		}
 		
 		#opening-sale {
-			@include assets.align-self(center);
-			@include assets.border-radius(0 0 12px 12px);
+			@include align-self(center);
+			@include border-radius(0 0 12px 12px);
 			padding: 8px 14px;
 			font-weight: 400;
 			text-shadow: 1px 1px 1px #4A4A4A;
 			color: white;
 			text-align: center;
-			background-color: assets.$orange-button;
-			font-size: assets.$typo-normal-size;
-			line-height: assets.$line-height-normal-size;
+			background-color: $orange-button;
+			font-size: $typo-normal-size;
+			line-height: $line-height-normal-size;
 			.highlight {
 				font-weight: 700;
 			}
 		}
 
 		#principal {
-			@include assets.flex(1);
+			@include flex(1);
 
 			#principal-nucleus {
-				@include assets.flexbox();
-				@include assets.flex-wrap(wrap);
-				@include assets.justify-content(space-between);
-				@include assets.align-items(center);
-				max-width: assets.$principal-max-width;
-				padding: 50px assets.$lateral-margin;
+				@include flexbox();
+				@include flex-wrap(wrap);
+				@include justify-content(space-between);
+				@include align-items(center);
+				max-width: $principal-max-width;
+				padding: 50px $lateral-margin;
 				margin: 0 auto;
-				font-size: assets.$typo-normal-size;
-				line-height: assets.$line-height-normal-size;
+				font-size: $typo-normal-size;
+				line-height: $line-height-normal-size;
 				font-weight: 300;
 				
 				.content {
-					@include assets.flex-basis(100%);
+					@include flex-basis(100%);
 					margin-top: 60px;
 
 					#inexistent-page {
 						text-align: center;
 					}
 					h1 {
-						font-size: assets.$typo-large-size;
-						line-height: assets.$line-height-large-size;
+						font-size: $typo-large-size;
+						line-height: $line-height-large-size;
 						font-weight: 400;
 					}
 					h2 {
-						font-size: assets.$typo-big-size;
+						font-size: $typo-big-size;
 					}
 					a {
 						color: inherit;
@@ -99,7 +99,7 @@ body {
 						font-style: italic;
 					}
 					.orange-text {
-						color: assets.$orange-button;
+						color: $orange-button;
 					}
 					
 					.formatted-text {
@@ -127,30 +127,30 @@ body {
 	}
 
 	// Responsiveness rules:
-	@media screen and (max-width: assets.$tablet-width) {
+	@media screen and (max-width: $tablet-width) {
 		div#__next {
 			#opening-sale {
-				@include assets.align-self(stretch);
-				@include assets.border-radius(0 0 0 0);
+				@include align-self(stretch);
+				@include border-radius(0 0 0 0);
 			}
 			#principal {
 				#principal-nucleus {
-					@include assets.justify-content(center);
+					@include justify-content(center);
 					padding-top: 30px;
 
 					.content {
-						@include assets.order(3);
+						@include order(3);
 						margin-top: 50px;
 					}		
 				}
 			}
 		}
 	}
-	@media screen and (max-width: assets.$smartphone-width) {
+	@media screen and (max-width: $smartphone-width) {
 		div#__next {
 			#opening-sale {
-				font-size: assets.$typo-small-size;
-				line-height: assets.$line-height-small-size;
+				font-size: $typo-small-size;
+				line-height: $line-height-small-size;
 			}
 			#principal {
 				#principal-nucleus {
@@ -224,13 +224,13 @@ body {
 	
 	.snipcart-base-button__label {
 		font-weight: 700;
-		@include assets.button-text-shadow;
+		@include button-text-shadow;
 	}
 	
 	.snipcart-discount-box__button {
-		@include assets.border-radius(4px);
-		@include assets.button-text-shadow;
-		@include assets.transition(background-color 0.2s linear);
+		@include border-radius(4px);
+		@include button-text-shadow;
+		@include transition(background-color 0.2s linear);
 		border: none;
 		background-color: #D67D00;
 	  color: white;	
@@ -293,7 +293,7 @@ body {
 					background-image: url("../public/img/layout/form-select-icon.svg");
 					background-repeat: no-repeat;
 					background-position: center right 5px;
-					@include assets.border-radius(0);
+					@include border-radius(0);
 				}
 			}
 		}
@@ -327,7 +327,7 @@ body {
 		}
 	}
 
-	@media screen and (max-width: assets.$smartphone-width) {
+	@media screen and (max-width: $smartphone-width) {
 		form#snipcart-billing-form.snipcart-form,
 		form#snipcart-shipping-address-form.snipcart-form {
 			div.snipcart__box {

@@ -2,7 +2,7 @@
 	MIXINS, VARIABLES & EXTENDS
   ---------------------------------------------- */
 
-@use '../styles/assets';
+@import '../styles/assets';
 
 /* ------------------------------------------------------------------------------
 	SHOWCASE PAGINATION:
@@ -12,26 +12,26 @@
 
 .showcase_pagination {
 	$button-height: 30px;
-	@include assets.flexbox();
-	@include assets.align-items(center);
+	@include flexbox();
+	@include align-items(center);
 	:global(#information) {
-		@include assets.flex-basis(60%);
+		@include flex-basis(60%);
 		margin: 0 10px;
-		color: assets.$orange-button;
+		color: $orange-button;
 		text-align: center;	
 		font-weight: 600;
-		font-size: assets.$typo-small-size;
-		line-height: assets.$line-height-small-size;
+		font-size: $typo-small-size;
+		line-height: $line-height-small-size;
 	}
 	:global(#previous-page),
 	:global(#next-page) {
-		@include assets.flex-basis(40%);	
+		@include flex-basis(40%);	
 		:global(#previous-page-button) {
 			float: right;
 		}
 		:global(#previous-page-button),
 		:global(#next-page-button) {
-			@include assets.flexbox();
+			@include flexbox();
 			text-decoration: none;
 			color: white;
 			cursor: pointer;
@@ -40,11 +40,11 @@
 			}
 			:global(.text) {
 				min-height: $button-height;
-				background-color: assets.$orange-button;
+				background-color: $orange-button;
 				font-weight: 700;
-				@include assets.button-text-shadow;
-				@include assets.transition(background-color 0.2s linear);
-				font-size: assets.$typo-small-size;
+				@include button-text-shadow;
+				@include transition(background-color 0.2s linear);
+				font-size: $typo-small-size;
 			}	
 			:global(.arrow-left),
 			:global(.arrow-right) {
@@ -54,56 +54,56 @@
 		}
 		:global(#previous-page-button) {
 			:global(.text) {
-				@include assets.border-radius(0 4px 4px 0);
+				@include border-radius(0 4px 4px 0);
 				padding: 0 10px 0 5px;
 			}
 			:global(.arrow-left) {
 			  border-top: ($button-height/2) solid transparent;
 			  border-bottom: ($button-height/2) solid transparent; 
-			  border-right: ($button-height/2) solid assets.$orange-button; 
-				@include assets.transition(border-right 0.2s linear);
+			  border-right: ($button-height/2) solid $orange-button; 
+				@include transition(border-right 0.2s linear);
 			}
 		}
 		:global(#next-page-button) {
 			:global(.text) {
-				@include assets.border-radius(4px 0 0 4px);
+				@include border-radius(4px 0 0 4px);
 				padding: 0 5px 0 10px;
 			}
 			:global(.arrow-right) {
 			  border-top: ($button-height/2) solid transparent;
 			  border-bottom: ($button-height/2) solid transparent;
-			  border-left: ($button-height/2) solid assets.$orange-button;
-				@include assets.transition(border-left 0.2s linear);
+			  border-left: ($button-height/2) solid $orange-button;
+				@include transition(border-left 0.2s linear);
 			}
 		}
 	  &:hover {
 			:global(#previous-page-button) {
 				:global(.text) {
-		    	background-color: assets.$orange-button-hover;
+		    	background-color: $orange-button-hover;
 				}
 				:global(.arrow-left) {
-					border-right: ($button-height/2) solid assets.$orange-button-hover;
+					border-right: ($button-height/2) solid $orange-button-hover;
 				}
 			}
 			:global(#next-page-button) {
 				:global(.text) {
-		    	background-color: assets.$orange-button-hover;
+		    	background-color: $orange-button-hover;
 				}
 				:global(.arrow-right) {
-					border-left: ($button-height/2) solid assets.$orange-button-hover;
+					border-left: ($button-height/2) solid $orange-button-hover;
 				}
 			}
 	  }
 	}	
 
 	// Responsiveness rules:
-	@media screen and (max-width: assets.$large-device-width) {
+	@media screen and (max-width: $large-device-width) {
 		:global(#information) {
-			@include assets.flex-basis(90%);
+			@include flex-basis(90%);
 		}
 		:global(#previous-page),
 		:global(#next-page) {
-			@include assets.flex-basis(10%);
+			@include flex-basis(10%);
 			:global(#previous-page-button),
 			:global(#next-page-button) {
 				:global(.text) {
