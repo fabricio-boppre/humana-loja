@@ -1,5 +1,4 @@
 import App from 'next/app'
-import Head from 'next/head'
 import Script from 'next/script'
 import Masthead from '../components/Masthead'
 import Footer from '../components/Footer'
@@ -43,15 +42,6 @@ export default class Humana extends App {
 
     return (
       <>
-        <Head>
-					<meta name="description" content="Site da Humana Sebo e Livraria. Enviamos para todo o Brasil." />
-          <link rel="icon" href="/favicon.ico" />
- 	        <link rel="preconnect" href="https://fonts.gstatic.com" /> 
-          <link rel="preconnect" href="https://app.snipcart.com" />
-          <link rel="preconnect" href="https://cdn.snipcart.com" />
-          <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.2.1/default/snipcart.css" />
-        </Head>
-
         <div id="incompatible-browser">
 					<p>Infelizmente o nosso site não funciona neste browser. Por favor, atualize-o para uma versão mais recente.</p>
 				</div>
