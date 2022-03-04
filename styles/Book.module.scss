@@ -95,7 +95,7 @@
 			:global(.price) {
 				font-size: $typo-large-size;
 				line-height: $line-height-large-size;
-				font-weight: 400;
+				font-weight: 500;
 				padding-bottom: 10px;
 			}
 			:global(button.snipcart-add-item),
@@ -122,7 +122,7 @@
 			background-color: #fc6a67;
 			color: white;
 			padding: 10px 15px;
-			font-weight: 400;
+			font-weight: 500;
 		}
 
 		:global(#book-description) {
