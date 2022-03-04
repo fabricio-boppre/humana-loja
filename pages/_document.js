@@ -8,12 +8,11 @@ export default function Document() {
     <Html lang="pt-BR">
       <Head>
         <meta name="description" content="Site da Humana Sebo e Livraria. Enviamos para todo o Brasil." />
+        <link rel="icon" href="/favicon.ico" />
         <link rel="preconnect" href="https://fonts.googleapis.com" /> 
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true" /> 
-        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" 
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" 
               rel="stylesheet" />
-        <link rel="icon" href="/favicon.ico" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" /> 
         <link rel="preconnect" href="https://app.snipcart.com" />
         <link rel="preconnect" href="https://cdn.snipcart.com" />
         <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.2.1/default/snipcart.css" />
