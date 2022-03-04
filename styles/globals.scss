@@ -39,14 +39,12 @@ body {
 			margin: 0 auto;
 			font-size: $typo-normal-size;
 			line-height: $line-height-normal-size;
-			font-weight: normal;
 		}
 		
 		#opening-sale {
 			@include align-self(center);
 			@include border-radius(0 0 12px 12px);
 			padding: 8px 14px;
-			font-weight: normal;
 			text-shadow: 1px 1px 1px #4A4A4A;
 			color: white;
 			text-align: center;
@@ -71,7 +69,6 @@ body {
 				margin: 0 auto;
 				font-size: $typo-normal-size;
 				line-height: $line-height-normal-size;
-				font-weight: normal;
 				
 				.content {
 					@include flex-basis(100%);

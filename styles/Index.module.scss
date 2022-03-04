@@ -75,7 +75,6 @@
 							line-height: $list-line-height;
 							cursor: pointer !important;
 							text-transform: lowercase;
-							font-weight: normal;
 						}
 						> ul {
 							display: none;
@@ -112,7 +111,6 @@
 										line-height: $list-line-height;
 										cursor: pointer !important;
 										text-transform: lowercase;
-										font-weight: normal;
 									}
 
 									&:global(.active) {
