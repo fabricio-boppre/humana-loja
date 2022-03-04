@@ -20,6 +20,7 @@
 		margin: 0 auto;
 		font-size: $typo-small-size;
 		line-height: $line-height-small-size;
+		font-weight: bold;
 		color: white;
 		section	{
 			padding-bottom: 15px;
@@ -27,7 +28,6 @@
 		h1 {
 			font-size: $typo-normal-size;
 			line-height: $line-height-normal-size;
-			font-weight: bold;
 		}	
 		ul li,
 		p {
