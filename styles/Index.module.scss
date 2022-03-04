@@ -30,7 +30,7 @@
 			border-top: $box-border;
 			padding: 15px 0;
 			cursor: pointer;
-			font-weight: 700;
+			font-weight: bold;
 			min-height: $icon-height;
 			line-height: $icon-height;
 			span {
@@ -46,7 +46,7 @@
 				margin-bottom: $block-space;
 				:global(.title) {
 					color: $gray-typo;
-					font-weight: 700;
+					font-weight: bold;
 					padding-bottom: 10px;
 					min-height: $list-line-height;
 					line-height: $list-line-height;
@@ -75,7 +75,7 @@
 							line-height: $list-line-height;
 							cursor: pointer !important;
 							text-transform: lowercase;
-							font-weight: 300;
+							font-weight: normal;
 						}
 						> ul {
 							display: none;
@@ -95,7 +95,7 @@
 						&:global(.active),
 						&:global(.partial) {
 							> div {
-							  font-weight: 700;	
+							  font-weight: bold;	
 							}
 							> ul {
 								display: block;
@@ -112,14 +112,14 @@
 										line-height: $list-line-height;
 										cursor: pointer !important;
 										text-transform: lowercase;
-										font-weight: 300;
+										font-weight: normal;
 									}
 
 									&:global(.active) {
 										> div {
 											background-image: url("../public/img/layout/checkbox-checked.svg"),
 																	linear-gradient(transparent, transparent);
-										  font-weight: 700;	
+										  font-weight: bold;	
 										}
 									}
 

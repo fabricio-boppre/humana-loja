@@ -41,7 +41,7 @@
 			:global(.text) {
 				min-height: $button-height;
 				background-color: $orange-button;
-				font-weight: 700;
+				font-weight: bold;
 				@include button-text-shadow;
 				@include transition(background-color 0.2s linear);
 				font-size: $typo-small-size;

@@ -39,14 +39,14 @@ body {
 			margin: 0 auto;
 			font-size: $typo-normal-size;
 			line-height: $line-height-normal-size;
-			font-weight: 300;
+			font-weight: normal;
 		}
 		
 		#opening-sale {
 			@include align-self(center);
 			@include border-radius(0 0 12px 12px);
 			padding: 8px 14px;
-			font-weight: 500;
+			font-weight: normal;
 			text-shadow: 1px 1px 1px #4A4A4A;
 			color: white;
 			text-align: center;
@@ -54,7 +54,7 @@ body {
 			font-size: $typo-normal-size;
 			line-height: $line-height-normal-size;
 			.highlight {
-				font-weight: 700;
+				font-weight: bold;
 			}
 		}
 
@@ -71,7 +71,7 @@ body {
 				margin: 0 auto;
 				font-size: $typo-normal-size;
 				line-height: $line-height-normal-size;
-				font-weight: 300;
+				font-weight: normal;
 				
 				.content {
 					@include flex-basis(100%);
@@ -83,7 +83,7 @@ body {
 					h1 {
 						font-size: $typo-large-size;
 						line-height: $line-height-large-size;
-						font-weight: 500;
+						font-weight: normal;
 					}
 					h2 {
 						font-size: $typo-big-size;
@@ -92,7 +92,7 @@ body {
 						color: inherit;
 					}
 					strong {
-						font-weight: 700;
+						font-weight: bold;
 					}
 					em,
 					blockquote {
@@ -223,7 +223,7 @@ body {
 	}
 	
 	.snipcart-base-button__label {
-		font-weight: 700;
+		font-weight: bold;
 		@include button-text-shadow;
 	}
 	
@@ -234,7 +234,7 @@ body {
 		border: none;
 		background-color: #D67D00;
 	  color: white;	
-		font-weight: 700;
+		font-weight: bold;
 		&:hover {
 			background-color: hsl(38, 100%, 53%);
 		}
@@ -285,7 +285,7 @@ body {
 					border: 1px solid #e3e6e8;
 					height: 52px;
 					width: 100%;
-					font-weight: 500;
+					font-weight: bold;
 					padding: 0 30px 0 16px;
 			    -moz-appearance:none; /* Firefox */
 			    -webkit-appearance:none; /* Safari and Chrome */

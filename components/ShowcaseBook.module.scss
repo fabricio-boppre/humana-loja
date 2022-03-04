@@ -28,7 +28,7 @@ li.showcase_book {
 		width: 130px;
 		text-align: center;
 		color: white;
-		font-weight: 700;
+		font-weight: bold;
 		position: absolute;
 		z-index: 2;
 	}
@@ -83,7 +83,7 @@ li.showcase_book {
 		}
 		:global(.showcase-book-text-format-livro),
 		:global(.showcase-book-text-format-ebook) {
-			font-weight: 500;
+			font-weight: bold;
 		}
 		:global(.showcase-book-text-format-livro) {
 			background-color: #ebd697;
@@ -92,13 +92,13 @@ li.showcase_book {
 			background-color: #b5cceb;
 		}
 		:global(.showcase_book_text_title) {
-			font-weight: 500;
+			font-weight: bold;
 		}
 		:global(.showcase_book_text_author) {
-			font-weight: 300;
+			font-weight: normal;
 		}
 		:global(.showcase_book_text_price) {
-			font-weight: 700;
+			font-weight: bold;
 			:global(.showcase_book_text_original_price) {
 				padding-right: 5px;
 				color: lighten(black,70%);

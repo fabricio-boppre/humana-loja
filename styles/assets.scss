@@ -483,7 +483,7 @@ $line-height-enormous-size: 38px;
 	@include button-text-shadow;
 	padding: 10px 20px;
 	color: white;
-	font-weight: 700;
+	font-weight: bold;
 	font-size: $typo-small-size;
 	line-height: $line-height-small-size;
 	font-family: inherit;

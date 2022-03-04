@@ -46,7 +46,7 @@
 				width: 130px;
 				text-align: center;
 				color: white;
-				font-weight: 700;
+				font-weight: bold;
 				position: absolute;
 			}
 			
@@ -71,7 +71,7 @@
 			header {
 				padding-bottom: 20px;
 				h1 {
-					font-weight: 700;
+					font-weight: bold;
 				}
 			}
 			:global(.info-item) {
@@ -79,7 +79,7 @@
 				line-height: $line-height-small-size;
 				padding-bottom: 8px;
 				:global(.title) {
-					font-weight: 700;
+					font-weight: bold;
 				}
 			}
 		}
@@ -95,7 +95,7 @@
 			:global(.price) {
 				font-size: $typo-large-size;
 				line-height: $line-height-large-size;
-				font-weight: 500;
+				font-weight: bold;
 				padding-bottom: 10px;
 			}
 			:global(button.snipcart-add-item),
@@ -122,7 +122,7 @@
 			background-color: #fc6a67;
 			color: white;
 			padding: 10px 15px;
-			font-weight: 500;
+			font-weight: bold;
 		}
 
 		:global(#book-description) {
@@ -151,7 +151,7 @@
 					min-height: $button-height;
 					background-color: $orange-button;
 					@include transition(background-color 0.2s linear);
-					font-weight: 700;
+					font-weight: bold;
 					font-size: $typo-small-size;
 				}	
 				:global(.arrow-left) {
