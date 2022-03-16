@@ -79,7 +79,7 @@ export default class Humana extends App {
 				<Footer />
 
         <Script src="/js/modernizr-custom.js" />
-				<Script src="https://cdn.snipcart.com/themes/v3.2.1/default/snipcart.js" />
+				<Script src="https://cdn.snipcart.com/themes/v3.3.3/default/snipcart.js" />
         <div hidden 
 						 id="snipcart" 
 						 data-api-key={process.env.SNIPCART_API_KEY}
