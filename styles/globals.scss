@@ -51,8 +51,9 @@ body {
 			background-color: $orange-button;
 			font-size: $typo-normal-size;
 			line-height: $line-height-normal-size;
+			font-weight: bold;
 			.highlight {
-				font-weight: bold;
+				text-decoration: underline;
 			}
 		}
 
