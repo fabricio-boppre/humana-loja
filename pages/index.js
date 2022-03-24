@@ -468,21 +468,35 @@ export async function getServerSideProps(context) {
 	// The requested page (if none, then it's the first one):
 	var page = (context.query.page) ? parseInt(context.query.page) : 1
 
-	// The order (if none, then it's the publication year [desc]):
-	var order = (context.query.order) ? context.query.order : bookPublicationYear.publicationYearDescId
+	// The order (if none or impossible value, then it's the publication year [desc]):
+	var orderPossibleValues = [bookPublicationYear.publicationYearDescId,
+														 bookPublicationYear.publicationYearAscId,
+														 bookPrices.priceAscId,
+														 bookPrices.priceDescId]
+	var order = (context.query.order) ? 
+									(orderPossibleValues.indexOf(context.query.order) > -1 ? 
+										context.query.order
+										: bookPublicationYear.publicationYearDescId)
+									: bookPublicationYear.publicationYearDescId
 
-	// The requested formats:
+	// The requested formats (filtering just possible values):
 	var formatsToFilterArray = []
+	var formatPossibleValues = [bookFormats.formatEbookId,
+														  bookFormats.formatLivroId]
 	if (context.query.format) {
 		const formatsToFilterQueryString = (context.query.format)
 		formatsToFilterArray = formatsToFilterQueryString.split(",")
+		formatsToFilterArray = formatsToFilterArray.filter(format => formatPossibleValues.indexOf(format) > -1)
 	}
 
-	// The requested conditions:
+	// The requested conditions (filtering just possible values):
 	var conditionsToFilterArray = []
+	var conditionPossibleValues = [bookConditions.conditionNovoId,
+																 bookConditions.conditionUsadoId]
 	if (context.query.condition) {
 		const conditionsToFilterQueryString = (context.query.condition)
 		conditionsToFilterArray = conditionsToFilterQueryString.split(",")
+		conditionsToFilterArray = conditionsToFilterArray.filter(condition => conditionPossibleValues.indexOf(condition) > -1)
 	}
 
 	// The requested categories:
@@ -499,11 +513,16 @@ export async function getServerSideProps(context) {
 		subcategoriesToFilterArray = subcategoriesToFilterQueryString.split(",")
 	}
 
-	// The requested price ranges:
+	// The requested price ranges (filtering just possible values):
 	var priceRangesToFilterArray = []
+	var priceRangePossibleValues = [bookPriceRanges.priceRangeUpTo60Id,
+																  bookPriceRanges.priceRangeUpTo30Id,
+																	bookPriceRanges.priceRangeUpTo150Id,
+																	bookPriceRanges.priceRangeUpTo90Id]
 	if (context.query.priceRange) {
 		const priceRangesToFilterQueryString = (context.query.priceRange)
 		priceRangesToFilterArray = priceRangesToFilterQueryString.split(",")
+		priceRangesToFilterArray = priceRangesToFilterArray.filter(range => priceRangePossibleValues.indexOf(range) > -1)
 	}
 	
 	// The max number of itens per page:
@@ -515,7 +534,7 @@ export async function getServerSideProps(context) {
 
 	// Finally, we get the requested books and the number of pages needed to show them:
 	const {books, pagesTotal, booksTotal} = await getBooks(page, totalItensPerPage, formatsToFilterArray, conditionsToFilterArray, categoriesToFilterArray, subcategoriesToFilterArray, priceRangesToFilterArray, order, currentSearchString)
-	
+
   return {
     props: {
 			books,
