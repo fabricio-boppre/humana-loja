@@ -9,7 +9,7 @@ A [livraria virtual da Humana](https://loja.humanasebolivraria.com.br) foi const
 - Shopping cart: [Snipcart](https://snipcart.com);
 - Payment gateway: [Stripe](http://stripe.com);
 - Webhook para cálculo do frete: [AWS Lambda](https://aws.amazon.com/pt/lambda/);
-- Deployment: [Vercel](https://vercel.com/).
+- Deployment: [Netlify](https://www.netlify.com).
 
 O site utiliza os modos de pré-renderização [Static Generation](https://nextjs.org/docs/basic-features/pages#static-generation-recommended) para as telas dos livros e [Server-side Rendering](https://nextjs.org/docs/basic-features/pages#server-side-rendering) para o mostruário dinâmico de livros.
 
@@ -49,7 +49,7 @@ O código-fonte deste site está compartilhado sob a licença MIT. Para mais inf
 - Shopping cart: [Snipcart](https://snipcart.com);
 - Payment gateway: [Stripe](http://stripe.com);
 - Shipping webhook: [AWS Lambda](https://aws.amazon.com/lambda/);
-- Deployment: [Vercel](https://vercel.com/).
+- Deployment: [Netlify](https://www.netlify.com).
 
 The site uses [Static Generation](https://nextjs.org/docs/basic-features/pages#static-generation-recommended) pre-rendering mode for book screens and [Server-side Rendering](https://nextjs.org/docs/basic-features/pages#server-side-rendering) for the dynamic book showcase.
 
