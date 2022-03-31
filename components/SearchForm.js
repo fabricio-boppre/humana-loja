@@ -5,7 +5,7 @@ export default function SearchForm(props) {
 
   return (
 		<div id={styles.search_form}>
-			<div id="search"></div>
+			<div id="searchAlgolia"></div>
     </div>
 	)
 }
