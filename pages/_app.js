@@ -91,7 +91,7 @@ export default class Humana extends App {
 					onLoad={() => {
 						algoliasearchNetlify({
 							appId: '519SKT1U6K',
-							apiKey: process.env.NEXT_PUBLIC_ALGOLIA_API_KEY,
+							apiKey: 'd2573d3df1e2b3589328f740fbce7a02',
 							siteId: '63123b87-3b3b-4993-ac15-6b4b33392e6b',
 							branch: 'algolia',
 							selector: 'div#search',
