@@ -11,54 +11,17 @@
 
 #search_form {
 	@include flex(1);
-	form {
-		@include flexbox();
-		input {
-			-webkit-appearance: none;
-			-webkit-border-radius: 0px;
-		  border-radius: 0;
-		}
-		input[type=search] {
-			-webkit-appearance: none;
-			-webkit-border-radius: 0px;
-		  border-radius: 0;
-			border-left: $box-border;
-			border-top: $box-border;
-			border-bottom: $box-border;
-			border-right: none;
-			padding-left: 8px;
-			line-height: inherit;
-			font-family: inherit;
-			font-size: inherit;
-			font-weight: inherit;
-			width: 250px;
-		}
-		button {
-			border: none;
-			@include border-top-right-radius(4px);
-			@include border-bottom-right-radius(4px);
-			@include button-text-shadow;
-			margin-left: 0;
-			cursor: pointer;	
-			padding: 6px 20px;
-			color: white;
-			text-transform: capitalize;
-			font-weight: bold;
-			font-size: $typo-small-size;
-			line-height: $line-height-small-size;
-			font-family: inherit;
-			background-color: $orange-button;
-			@include transition(background-color 0.2s linear);
-		  &:hover {
-		    background-color: $orange-button-hover;
-		  }
-		}
+	:global(#search) {
+		max-width: 400px;
 	}
 
 	// Responsiveness rules:
 	@media screen and (max-width: $tablet-width) {
 		@include flex-basis(100%);
 		@include order(3);
+		:global(#search) {
+			max-width: 100%;
+		}	
 		margin-top: 20px;
 		form {
 			justify-content: center;
