@@ -135,7 +135,6 @@ export default function Book(props) {
 
 	// Preparing the data to put on <Head> title and description, to be used for search engines & SEO:
 	const headAuthors = props.book.authors.map((author) => author.name).flat().join(', ')
-	console.log(headAuthors)
 	
   return (
     <>
