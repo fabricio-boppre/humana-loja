@@ -426,6 +426,7 @@ export default function Index(props) {
 		<>
       <Head>
         {HeadTitle}
+				<meta name="description" content="Loja virtual da Humana Sebo e Livraria. Enviamos para todo o Brasil." />
 				<link rel="preload" href="/img/layout/filter-button-clean.svg" as="image" />
 				<link rel="preload" href="/img/layout/checkbox-unchecked.svg" as="image" />
 				<link rel="preload" href="/img/layout/checkbox-checked.svg" as="image" />
