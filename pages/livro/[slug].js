@@ -130,11 +130,15 @@ export default function Book(props) {
 	// - Then, on the front-end, we decode the HTML code using dangerouslySetInnerHTML (https://reactjs.org/docs/dom-elements.html#dangerouslysetinnerhtml).
 	var md = require('markdown-it')()
 	var formattedDescription = md.render(props.book.description)
+
+	// Preparing the data to put on <Head> title and description, to be used for search engines & SEO:
+	const headAuthors = props.book.authors.map((author) => author.name).flat().join(', ')
 	
   return (
     <>
       <Head>
-        <title>Humana | {props.book.title}</title>
+        <title>Humana | {headAuthors  + ': ' + props.book.title}</title>
+				<meta name="description" content={`${props.book.title}, de ${headAuthors}. Publicado pela editora ${props.book.publishing_company.name} em ${props.book.publication_year}. `} />
       </Head>
 
       <main className="content" id={styles.book}>
