@@ -149,6 +149,10 @@ export default function Book(props) {
 					  	<div className="humana_indica">Humana indica</div> :
 							""
 						}
+						{((props.book.special_category !== undefined) && (props.book.special_category.includes("pre_venda"))) ?
+					  	<div className="pre_venda">Pré-venda</div> :
+							""
+						}
 					  <Image
      			 		alt={props.book.title}
 					    src={props.book.mainImageUrl + '?w=' + width}

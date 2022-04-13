@@ -35,21 +35,38 @@
 
 			:global(.humana_indica) {
 				$label-height: 25px;
-				@include border-top-right-radius(6px);
-				@include border-top-left-radius(6px);
+				@include border-radius(6px);
 				@include button-text-shadow;
 				font-size: $typo-small-size;
 				line-height: $label-height;
 				background-color: red;
-				margin: 0 65px;
+				margin: -$label-height/2 65px 0 65px;
 				height: $label-height;
 				width: 130px;
 				text-align: center;
 				color: white;
 				font-weight: bold;
 				position: absolute;
+				z-index: 10;
 			}
-			
+
+			:global(.pre_venda) {
+				$label-height: 25px;
+				@include border-radius(6px);
+				@include button-text-shadow;
+				font-size: $typo-small-size;
+				line-height: $label-height;
+				background-color: rgb(13, 133, 11);
+				margin: -$label-height/2 65px 0 65px;
+				height: $label-height;
+				width: 130px;
+				text-align: center;
+				color: white;
+				font-weight: bold;
+				position: absolute;
+				z-index: 10;
+			}
+
 			// Trick to use next/image: https://dev.to/tanahmed/next-image-make-image-fill-available-space-272o
 			position: relative;
 			width: 100%;

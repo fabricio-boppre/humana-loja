@@ -32,7 +32,24 @@ li.showcase_book {
 		position: absolute;
 		z-index: 2;
 	}
-	
+
+	:global(.pre_venda) {
+		$label-height: 25px;
+		@include border-radius(5px);
+		@include button-text-shadow;
+		font-size: $typo-small-size;
+		line-height: $label-height;
+		background-color: rgb(13, 133, 11);
+		margin: -$label-height/2 25px 0 25px;
+		height: $label-height;
+		width: 130px;
+		text-align: center;
+		color: white;
+		font-weight: bold;
+		position: absolute;
+		z-index: 2;
+	}
+
 	:global(.showcase_book_image) {
 		// Trick to use next/image: https://dev.to/tanahmed/next-image-make-image-fill-available-space-272o
 		position: relative;
