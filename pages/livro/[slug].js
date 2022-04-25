@@ -139,7 +139,7 @@ export default function Book(props) {
   return (
     <>
       <Head>
-        <title>Humana | {headAuthors  + ': ' + props.book.title}</title>
+        <title>{headAuthors  + ': ' + props.book.title} | Humana</title>
 				<meta name="description" content={`${props.book.title}, de ${headAuthors}. Publicado pela editora ${props.book.publishing_company.name} em ${props.book.publication_year}. `} />
       </Head>
 
