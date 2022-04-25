@@ -95,6 +95,9 @@ export default class Humana extends App {
 							siteId: '63123b87-3b3b-4993-ac15-6b4b33392e6b',
 							branch: 'algolia',
 							selector: 'div#searchAlgolia',
+							placeholder: 'pesquisar',
+							detached: false,
+							debug: true,
 							hitsPerPage: 20,
 						})	
 					}}

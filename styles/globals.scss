@@ -164,6 +164,25 @@ body {
 }
 
 /* ---------------------------------------------
+	ALGOLIA CUSTOMIZATION:
+  ---------------------------------------------- */
+
+div.aa-Panel {
+	min-width: unset;
+	div.aa-PanelLayout {
+		padding: 10px 15px;
+		ul.aa-List {
+			li.aa-Item {
+				padding: 10px;
+				div.aa-ItemIcon {
+					display: none;
+				}
+			}
+		}
+	}
+}
+
+/* ---------------------------------------------
 	SNIPCART CUSTOMIZATION:
   ---------------------------------------------- */
 	

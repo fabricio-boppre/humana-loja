@@ -13,6 +13,12 @@
 	@include flex(1);
 	:global(#searchAlgolia) {
 		max-width: 400px;
+		:global(.aa-Form) {
+			border: $box-border;
+			:global(.aa-ClearButton) {
+				padding: 0 5px;
+			}
+		}
 	}
 
 	// Responsiveness rules:
