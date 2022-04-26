@@ -86,6 +86,22 @@ export default class Humana extends App {
 						 data-templates-url="/snipcart-templates.html"
 						 data-config-modal-style="side">
 				</div>
+				<Script 
+					src="https://cdn.jsdelivr.net/npm/@algolia/algoliasearch-netlify-frontend@1/dist/algoliasearchNetlify.js" 
+					onLoad={() => {
+						algoliasearchNetlify({
+							appId: '519SKT1U6K',
+							apiKey: 'd2573d3df1e2b3589328f740fbce7a02',
+							siteId: '63123b87-3b3b-4993-ac15-6b4b33392e6b',
+							branch: 'algolia',
+							selector: 'div#searchAlgolia',
+							placeholder: 'pesquisar',
+							detached: false,
+							debug: true,
+							hitsPerPage: 20,
+						})	
+					}}
+				/>
 
       </>
    );

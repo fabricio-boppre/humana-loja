@@ -45,6 +45,7 @@ export default function Book(props) {
 				<>
 		      <Head>
 						<title>Humana</title>
+						<meta name="description" content="Loja virtual da Humana Sebo e Livraria. Enviamos para todo o Brasil." />
 		      </Head>
 					<main className="content" id={styles.book}>
 						<p id="loading-book">Localizando o livro...</p>
@@ -61,6 +62,7 @@ export default function Book(props) {
 		      <Head>
 		        <meta name="robots" content="noindex" />
 						<title>Humana</title>
+						<meta name="description" content="Loja virtual da Humana Sebo e Livraria. Enviamos para todo o Brasil." />
 		      </Head>
 		      <main className="content" id={styles.book}>
 						<p id="inexistent-book">Este livro não consta em nosso catálogo. Convidamos você a entrar em contato conosco para avaliarmos se conseguimos encomendá-lo. Nosso telefone/WhatsApp é: 49 3316-4566. Nosso email: <a href="mailto:humanasebolivraria@gmail.com">humanasebolivraria@gmail.com</a>.</p>
@@ -137,7 +139,7 @@ export default function Book(props) {
   return (
     <>
       <Head>
-        <title>Humana | {headAuthors  + ': ' + props.book.title}</title>
+        <title>{headAuthors  + ': ' + props.book.title} | Humana</title>
 				<meta name="description" content={`${props.book.title}, de ${headAuthors}. Publicado pela editora ${props.book.publishing_company.name} em ${props.book.publication_year}. `} />
       </Head>
 
