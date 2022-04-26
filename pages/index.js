@@ -400,9 +400,9 @@ export default function Index(props) {
 	var HeadTitle
 	if (currentSearchString) {
 		showcaseTitle = <h1>Resultado da pesquisa pelo termo <strong>{currentSearchString}</strong>:</h1>
-		HeadTitle = <title>Humana | Livros com &#34;{currentSearchString}&#34;</title>
+		HeadTitle = <title>Livros com &#34;{currentSearchString}&#34; | Humana</title>
 	} else {
-		HeadTitle = <title>Humana | Livros</title>
+		HeadTitle = <title>Livros | Humana</title>
 	}
 	if (props.books) {
 		showcase = (
