@@ -9,9 +9,10 @@ A [livraria virtual da Humana](https://loja.humanasebolivraria.com.br) foi const
 - Shopping cart: [Snipcart](https://snipcart.com);
 - Payment gateway: [Stripe](http://stripe.com);
 - Webhook para cálculo do frete: [AWS Lambda](https://aws.amazon.com/pt/lambda/);
+- Sistema de pesquisa: [Algolia](https://www.algolia.com);
 - Deployment: [Netlify](https://www.netlify.com).
 
-O site utiliza os modos de pré-renderização [Static Generation](https://nextjs.org/docs/basic-features/pages#static-generation-recommended) para as telas dos livros e [Server-side Rendering](https://nextjs.org/docs/basic-features/pages#server-side-rendering) para o mostruário dinâmico de livros.
+O site utiliza os modos de pré-renderização [Incremental Static Regeneration](https://nextjs.org/docs/basic-features/data-fetching/incremental-static-regeneration) para as telas dos livros e [Server-side Rendering](https://nextjs.org/docs/basic-features/pages#server-side-rendering) para o mostruário dinâmico de livros.
 
 A Humana é uma livraria, editora e galeria de arte localizada em Chapecó, no oeste de Santa Catarina, Brasil. Para mais informações, clique [aqui](http://www.humanasebolivraria.com.br).
 
@@ -49,9 +50,10 @@ O código-fonte deste site está compartilhado sob a licença MIT. Para mais inf
 - Shopping cart: [Snipcart](https://snipcart.com);
 - Payment gateway: [Stripe](http://stripe.com);
 - Shipping webhook: [AWS Lambda](https://aws.amazon.com/lambda/);
+- Search feature: [Algolia](https://www.algolia.com);
 - Deployment: [Netlify](https://www.netlify.com).
 
-The site uses [Static Generation](https://nextjs.org/docs/basic-features/pages#static-generation-recommended) pre-rendering mode for book screens and [Server-side Rendering](https://nextjs.org/docs/basic-features/pages#server-side-rendering) for the dynamic book showcase.
+The site uses [Incremental Static Regeneration](https://nextjs.org/docs/basic-features/data-fetching/incremental-static-regeneration) pre-rendering mode for book screens and [Server-side Rendering](https://nextjs.org/docs/basic-features/pages#server-side-rendering) for the dynamic book showcase.
 
 Humana is a bookstore, book publisher and art gallery located in Chapecó, Brazil. For more information, check [here](http://www.humanasebolivraria.com.br) (site in Portuguese).
 
