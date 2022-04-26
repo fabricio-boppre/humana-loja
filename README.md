@@ -78,4 +78,4 @@ The store was created to serve Brazilian readers and that's why its frontend is 
 
 ## License
 
-The source code of this website is shared under the MIT license. For more information, see [LICENSES](LICENSES.md).
+The source code of this website is shared under the MIT license. For more information, see [LICENSES](LICENSES.md)
