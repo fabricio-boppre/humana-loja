@@ -20,7 +20,7 @@ export default function ShowcaseBook(props) {
 	// - If the book is available:
 	if (book.stock_situation == "disponivel") {
 		// Check if there is a discount and create the price tag:
-		if (book.price_old !== undefined) {
+		if (book.price_old !== null) {
 			var discount = true
 			var original_price_span = <span className='showcase_book_text_original_price'>{priceFormat(book.price_old)}</span>
 		} else {
@@ -57,11 +57,11 @@ export default function ShowcaseBook(props) {
 	}
 
 	return <li className={styles.showcase_book}>
-						{((book.special_category !== undefined) && (book.special_category.includes("humana_indica"))) ?
+						{((book.special_category !== null) && (book.special_category.includes("humana_indica"))) ?
 					  	humana_indica :
 							""
 						}
-						{((book.special_category !== undefined) && (book.special_category.includes("pre_venda"))) ?
+						{((book.special_category !== null) && (book.special_category.includes("pre_venda"))) ?
 					  	pre_venda :
 							""
 						}

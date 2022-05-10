@@ -90,7 +90,7 @@ export default function Book(props) {
 	// - If the book is available:
 	if (props.book.stock_situation == "disponivel") {
 		// Check if there is a discount and create the price tag:
-		if (props.book.price_old !== undefined) {
+		if (props.book.price_old !== null) {
 			var discount = true
 			var original_price = <div className='original_price'>{priceFormat(props.book.price_old)}</div>
 		} else {
@@ -151,11 +151,11 @@ export default function Book(props) {
 						<header hidden>
 							<h1>Capa</h1>
 						</header>
-						{((props.book.special_category !== undefined) && (props.book.special_category.includes("humana_indica"))) ?
+						{((props.book.special_category !== null) && (props.book.special_category.includes("humana_indica"))) ?
 					  	<div className="humana_indica">Humana indica</div> :
 							""
 						}
-						{((props.book.special_category !== undefined) && (props.book.special_category.includes("pre_venda"))) ?
+						{((props.book.special_category !== null) && (props.book.special_category.includes("pre_venda"))) ?
 					  	<div className="pre_venda">Pré-venda</div> :
 							""
 						}
@@ -177,7 +177,7 @@ export default function Book(props) {
 						</header>
 						<div className="info-item"><span className="title">tipo</span> {props.book.format}</div>
 						<div className="info-item"><span className="title">estado</span> {props.book.condition}</div>
-						{(props.book.cover_type !== undefined) ?
+						{(props.book.cover_type !== null) ?
 					  	<div className="info-item"><span className="title">capa</span> {props.book.cover_type}</div> :
 							""
 						}
@@ -189,11 +189,11 @@ export default function Book(props) {
 						</div>
 						{props.book.subcategories ? subcategories : ""}
 						<div className="info-item"><span className="title">número de páginas</span> {props.book.pages_number}</div>
-						{(props.book.weight !== undefined) ?
+						{(props.book.weight !== null) ?
 					  	<div className="info-item"><span className="title">peso</span> {props.book.weight}g</div> :
 							""
 						}
-						{((props.book.length !== undefined) && (props.book.width !== undefined) && (props.book.height !== undefined)) ?
+						{((props.book.length !== null) && (props.book.width !== null) && (props.book.height !== null)) ?
 					  	<div className="info-item"><span className="title">dimensões</span> {props.book.length}cm / {props.book.width}cm / {props.book.height}cm</div> :
 							""
 						}
