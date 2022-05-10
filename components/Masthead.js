@@ -116,12 +116,12 @@ export default function Masthead(props) {
 					},
           payment: {
 						form: {
-            	deferred_payment_title: "Pagamento posterior via boleto bancário ou Pix",
-							deferred_payment_instructions: "Iremos lhe enviar por email as informações para o pagamento do seu pedido.",
+            	deferred_payment_title: "Pagamento posterior via transação bancária ou Pix",
+							deferred_payment_instructions: "As instruções para o pagamento do seu pedido estarão no recibo que você receberá a seguir. Se tiver alguma dúvida, é só entrar em contato.",
 							invalid_cvv: "CVV inválido",
 						},
             methods: {
-							deferred_payment: "Pagar depois via boleto bancário ou Pix",
+							deferred_payment: "Pagar depois via transação bancária ou Pix",
 						},
           },					
           register_form: {
