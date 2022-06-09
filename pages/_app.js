@@ -48,7 +48,7 @@ export default class Humana extends App {
 
         <Masthead handleHomeClicked={this.setHomeClicked}/>
 				
-				<div id="opening-sale">Promoção de abertura: <span className="highlight">frete grátis</span> para compras acima de R$ 150,00</div>
+				<div id="opening-sale">A Humana oferece FRETE GRÁTIS nas compras acima de R$ 100,00</div>
 
 				<div id="principal">
 				
