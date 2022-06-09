@@ -10,7 +10,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@sanity/client": "^3.3.0",
+    "@sanity/client": "^3.3.2",
     "markdown-it": "^12.1.0",
     "next": "^12.1.6",
     "next-sitemap": "^1.6.184",
