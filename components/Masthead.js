@@ -43,11 +43,17 @@ export default function Masthead(props) {
 		}
   }, [])
 
-	// Let's change some Snipcart labels:
+	// Let's change some Snipcart labels and payment form styles:
 	// - English language file for the labels (it works as a baseline): https://github.com/snipcart/snipcart-l10n/blob/master/locales/en.json
+	// - To customize the payment form styles we can't use CSS because they are inside an iframe. We use customization.registerPaymentFormCustomization method: https://docs.snipcart.com/v3/sdk/api#customizationregisterpaymentformcustomization
   useEffect(() => {
     document.addEventListener('snipcart.ready', function() {
-      Snipcart.api.session.setLanguage('pt-BR', {
+      Snipcart.api.theme.customization.registerPaymentFormCustomization({
+				label: {
+					fontSize: '14px',
+				}				
+			});
+			Snipcart.api.session.setLanguage('pt-BR', {
           actions: {
             back_to_store: "Voltar à loja",
 						back_to_orders: "Voltar aos seus pedidos",
@@ -117,7 +123,7 @@ export default function Masthead(props) {
           payment: {
 						form: {
             	deferred_payment_title: "Pagamento posterior via transação bancária ou Pix",
-							deferred_payment_instructions: "As instruções para o pagamento do seu pedido estarão no recibo que você receberá a seguir. Se tiver alguma dúvida, é só entrar em contato.",
+							deferred_payment_instructions: "Você receberá em seu email as instruções para o pagamento via Pix ou transferência bancária com o recibo de seu pedido. Em caso de dúvidas, entre em contato pelo nosso WhatsApp: (49) 3316-4566.",
 							invalid_cvv: "CVV inválido",
 						},
             methods: {
