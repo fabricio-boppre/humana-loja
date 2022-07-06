@@ -7,6 +7,11 @@ module.exports = {
         destination: '/',
         permanent: true,
       },
+      {
+        source: '/boasvindas.html',
+        destination: '/',
+        permanent: true,
+      }
     ]
   },
   images: {
