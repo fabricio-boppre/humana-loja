@@ -60,7 +60,6 @@ export default function Masthead(props) {
 						save_changes: "Salvar alterações",
           },
 					address_form: {
-						country: "País",
 						address1: "Endereço (logradouro / número / bairro)",
 					},
           cart: {
