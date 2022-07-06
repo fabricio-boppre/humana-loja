@@ -61,6 +61,7 @@ export default function Masthead(props) {
           },
 					address_form: {
 						country: "País",
+						address1: "Endereço (logradouro / número / bairro)",
 					},
           cart: {
             view_detailed_cart: "Ver carrinho completo"

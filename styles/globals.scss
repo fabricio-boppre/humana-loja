@@ -322,8 +322,18 @@ div.aa-Panel {
 			div.snipcart__box--header div.snipcart__box--title h1.snipcart__font--subtitle {
 				padding-bottom: 20px;
 			}
-			div fieldset.snipcart-form__set div.snipcart-form__field div.snipcart-typeahead div.snipcart-typeahead__content div.snipcart-typeahead__select div.snipcart-typeahead__input div.snipcart-form__select-wrapper svg.snipcart__icon {
-				display: none;
+			div fieldset.snipcart-form__set {
+				div.snipcart-form__field div.snipcart-typeahead div.snipcart-typeahead__content div.snipcart-typeahead__select div.snipcart-typeahead__input div.snipcart-form__select-wrapper svg.snipcart__icon {
+					display: none;
+				}
+			}
+		}
+	}
+
+	form#snipcart-shipping-address-form.snipcart-form {
+		div.snipcart__box {
+			div fieldset.snipcart-form__set {
+				padding-top: 8px;
 			}
 		}
 	}
