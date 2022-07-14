@@ -201,16 +201,12 @@ export default function Index(props) {
     }
   }, [])
 
-	// Functions to handle the clicks on pagination:
+	// Function to handle the clicks on pagination:
 	// - The click calls the function that updates the page state;
 	// - We set the changingPage state just to help us with a layout issue in the routing;
 	// - After updating the state, the component is immediately re-rendered (the re-route happens in the Effect Hook).
-	const clickNextPage = () => {
-		setPage(parseInt(page)+1)
-		setChangingPage(true)
-	}
-	const clickPreviousPage = () => {
-		setPage(parseInt(page)-1)
+	const goToPage = (page) => {
+		setPage(page)
 		setChangingPage(true)
 	}
 
@@ -414,8 +410,7 @@ export default function Index(props) {
 					<ShowcasePagination page={props.page}
 															pagesTotal={props.pagesTotal}
 															booksTotal={props.booksTotal}
-															clickPreviousPage={clickPreviousPage}
-															clickNextPage={clickNextPage} />
+															goToPage={goToPage} />
 				</>
 		)
 	} else {
