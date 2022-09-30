@@ -10,18 +10,18 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@sanity/client": "^3.3.2",
+    "@sanity/client": "^3.4.1",
     "markdown-it": "^13.0.1",
-    "next": "^12.1.6",
-    "next-sitemap": "^1.6.184",
-    "node-fetch": "^2.6.1",
-    "react": "^17.0.2",
-    "react-app-polyfill": "^2.0.0",
-    "react-dom": "^17.0.2"
+    "next": "^12.3.1",
+    "next-sitemap": "^3.1.23",
+    "node-fetch": "^3.2.10",
+    "react": "^18.2.0",
+    "react-app-polyfill": "^3.0.0",
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "eslint": "7.32.0",
-    "eslint-config-next": "11.1.0"
+    "eslint": "8.24.0",
+    "eslint-config-next": "12.3.1"
   },
   "license": "MIT"
 }
