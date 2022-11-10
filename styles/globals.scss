@@ -249,6 +249,11 @@ div.aa-Panel {
 
   .snipcart-modal__container {
     border-left: 1px solid #e3e6e8;
+    .snipcart-cart__secondary-header {
+      button {
+        cursor: pointer;
+      }
+    }
   }
 
   .snipcart-item-line__container {
