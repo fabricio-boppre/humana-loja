@@ -2,7 +2,7 @@
 	MIXINS, VARIABLES & EXTENDS
   ---------------------------------------------- */
 
-@import '../styles/assets';
+@import "../styles/assets";
 
 /* ------------------------------------------------------------------------------
 	SHOWCASE BOOK:
@@ -11,123 +11,123 @@
   ------------------------------------------------------------------------------- */
 
 li.showcase_book {
-	@include flex-basis(180px); // This value must be kept in accordance with the crop value appended to the image base-url (ShowcaseBook component).
-	@include box-shadow(1px 1px 2px gray);
-	margin: 0 40px 60px 40px;
-	background-color: white;
-	
-	:global(.humana_indica) {
-		$label-height: 25px;
-		@include border-radius(5px);
-		@include button-text-shadow;
-		font-size: $typo-small-size;
-		line-height: $label-height;
-		background-color: red;
-		margin: -$label-height/2 25px 0 25px;
-		height: $label-height;
-		width: 130px;
-		text-align: center;
-		color: white;
-		font-weight: bold;
-		position: absolute;
-		z-index: 2;
-	}
+  @include flex-basis(
+    180px
+  ); // This value must be kept in accordance with the crop value appended to the image base-url (ShowcaseBook component).
+  @include box-shadow(1px 1px 2px gray);
+  margin: 0 40px 60px 40px;
+  background-color: white;
 
-	:global(.pre_venda) {
-		$label-height: 25px;
-		@include border-radius(5px);
-		@include button-text-shadow;
-		font-size: $typo-small-size;
-		line-height: $label-height;
-		background-color: rgb(13, 133, 11);
-		margin: -$label-height/2 25px 0 25px;
-		height: $label-height;
-		width: 130px;
-		text-align: center;
-		color: white;
-		font-weight: bold;
-		position: absolute;
-		z-index: 2;
-	}
+  :global(.humana_indica) {
+    $label-height: 25px;
+    @include border-radius(5px);
+    @include button-text-shadow;
+    font-size: $typo-small-size;
+    line-height: $label-height;
+    background-color: red;
+    margin: -$label-height/2 25px 0 25px;
+    height: $label-height;
+    width: 130px;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    position: absolute;
+    z-index: 2;
+  }
 
-	:global(.showcase_book_image) {
-		// Trick to use next/image: https://dev.to/tanahmed/next-image-make-image-fill-available-space-272o
-		position: relative;
-		width: 100%;
-		> span {
-  		position: unset !important;
-			:global(.custom-img) {
-			  width: 100% !important;
-			  position: relative !important;
-			  height: unset !important;
-			}
-		}
-	}
+  :global(.pre_venda) {
+    $label-height: 25px;
+    @include border-radius(5px);
+    @include button-text-shadow;
+    font-size: $typo-small-size;
+    line-height: $label-height;
+    background-color: rgb(13, 133, 11);
+    margin: -$label-height/2 25px 0 25px;
+    height: $label-height;
+    width: 130px;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    position: absolute;
+    z-index: 2;
+  }
 
-	:global(.showcase_book_text) {
-		text-align: center;
-		padding: 0 10px 12px 10px;
-		font-size: $typo-small-size;
-		line-height: $line-height-small-size;
-		a {
-			text-decoration: none;
-			color: inherit;
-		}
-		:global(.showcase-book-text-format-ebook),
-		:global(.showcase-book-text-format-livro),
-		:global(.showcase_book_text_title),
-		:global(.showcase_book_text_author),
-		:global(.showcase_book_text_price) {
-			margin-bottom: 10px;
-		}
-		:global(button.snipcart-add-item),
-		:global(.showcase_book_text_unavailable) {
-			@include generic-button;
-		}
-		:global(button.snipcart-add-item) {
-			@include buy-button;
-			@include buy-button-hover;
-		}
-		:global(.showcase_book_text_unavailable) {
-			@include unavailable-button;
-		}
-		:global(.showcase-book-text-format-ebook),
-		:global(.showcase-book-text-format-livro) {
-			@include border-radius(0 0 8px 8px);
-			color: white;
-			display: inline-block;
-			padding: 1px 8px;
-		}
-		:global(.showcase-book-text-format-livro),
-		:global(.showcase-book-text-format-ebook) {
-			font-weight: bold;
-		}
-		:global(.showcase-book-text-format-livro) {
-			background-color: #ebd697;
-		}
-		:global(.showcase-book-text-format-ebook) {
-			background-color: #b5cceb;
-		}
-		:global(.showcase_book_text_title) {
-			font-weight: bold;
-		}
-		:global(.showcase_book_text_price) {
-			font-weight: bold;
-			:global(.showcase_book_text_original_price) {
-				padding-right: 5px;
-				color: lighten(black,70%);
-				text-decoration: line-through;
-			}
-		}
-	}
+  :global(.showcase_book_image) {
+    // Trick to use next/image: https://dev.to/tanahmed/next-image-make-image-fill-available-space-272o
+    position: relative;
+    width: 100%;
+    > span {
+      position: unset !important;
+      :global(.custom-img) {
+        width: 100% !important;
+        position: relative !important;
+        height: unset !important;
+      }
+    }
+  }
 
-	// Responsiveness rules:
-	@media screen and (max-width: $large-device-width) {
-		margin: 0 25px 40px 25px;
-	}
-	@media screen and (max-width: $tablet-width) {
-		margin: 0 30px 40px 30px;
-	}
+  :global(.showcase_book_text) {
+    text-align: center;
+    padding: 0 10px 12px 10px;
+    font-size: $typo-small-size;
+    line-height: $line-height-small-size;
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+    :global(.showcase-book-text-format-ebook),
+    :global(.showcase-book-text-format-livro),
+    :global(.showcase_book_text_title),
+    :global(.showcase_book_text_author),
+    :global(.showcase_book_text_price) {
+      margin-bottom: 10px;
+    }
+    :global(button.snipcart-add-item),
+    :global(.showcase_book_text_unavailable) {
+      @include generic-button;
+    }
+    :global(button.snipcart-add-item) {
+      @include buy-button;
+      @include buy-button-hover;
+    }
+    :global(.showcase_book_text_unavailable) {
+      @include unavailable-button;
+    }
+    :global(.showcase-book-text-format-ebook),
+    :global(.showcase-book-text-format-livro) {
+      @include border-radius(0 0 8px 8px);
+      color: white;
+      display: inline-block;
+      padding: 1px 8px;
+    }
+    :global(.showcase-book-text-format-livro),
+    :global(.showcase-book-text-format-ebook) {
+      font-weight: bold;
+    }
+    :global(.showcase-book-text-format-livro) {
+      background-color: #ebd697;
+    }
+    :global(.showcase-book-text-format-ebook) {
+      background-color: #b5cceb;
+    }
+    :global(.showcase_book_text_title) {
+      font-weight: bold;
+    }
+    :global(.showcase_book_text_price) {
+      font-weight: bold;
+      :global(.showcase_book_text_original_price) {
+        padding-right: 5px;
+        color: lighten(black, 70%);
+        text-decoration: line-through;
+      }
+    }
+  }
 
+  // Responsiveness rules:
+  @media screen and (max-width: $large-device-width) {
+    margin: 0 25px 40px 25px;
+  }
+  @media screen and (max-width: $tablet-width) {
+    margin: 0 30px 40px 30px;
+  }
 }
-

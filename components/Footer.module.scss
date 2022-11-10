@@ -2,86 +2,86 @@
 	MIXINS, VARIABLES & EXTENDS
   ---------------------------------------------- */
 
-@import '../styles/assets';
+@import "../styles/assets";
 
 /* ------------------------------------------------------------------------------
 	FOOTER:
 	- ":global" wrapped around IDs prevents them from being changed by CSS Modules.
   ------------------------------------------------------------------------------- */
 
-#footer {	
-	background-color: black;
+#footer {
+  background-color: black;
 
-	:global(#footer-nucleus) {
-		@include flexbox();
-		@include justify-content(space-between);
-		max-width: $principal-max-width;
-		padding: 50px $lateral-margin;
-		margin: 0 auto;
-		font-size: $typo-small-size;
-		line-height: $line-height-small-size;
-		color: white;
-		font-weight: bold;
-		section	{
-			padding-bottom: 15px;
-		}
-		h1 {
-			font-size: $typo-normal-size;
-			line-height: $line-height-normal-size;
-		}	
-		ul li,
-		p {
-			padding-bottom: 5px;
-		}
-		a {
-			color: inherit;
-			&:global(.external-link) {
-				background-image: url("../public/img/layout/external-link.svg");
-				background-position: right;
-				background-repeat: no-repeat;
-				padding-right: 25px;
-			}
-		}
-		:global(#f-left) {
-			flex-basis: 35%;
-		}
-		:global(#f-middle) {
-			@include order(2); 
-			text-align: center;
-			flex-basis: 30%;
-			padding: 0 50px;
-		}
-		:global(#f-right) {
-			@include order(3); 
-			flex-basis: 35%;
-			text-align: right;
-		}
-	}
-	
-	// Responsiveness rules:
-	@media screen and (max-width: $tablet-width) {
-		:global(#footer-nucleus) {
-			@include flex-direction(column);
-			section	{
-				padding-bottom: 25px;
-			}
-			h1,
-			ul li,
-			p {
-				padding-bottom: 15px;
-			}
-			:global(#f-left) {
-				text-align: center;
-			}
-			:global(#f-middle) {
-				@include order(3); 
-				text-align: center;
-				padding: 0;
-			}
-			:global(#f-right) {
-				text-align: center;
-				@include order(2); 
-			}
-		}
-	}
+  :global(#footer-nucleus) {
+    @include flexbox();
+    @include justify-content(space-between);
+    max-width: $principal-max-width;
+    padding: 50px $lateral-margin;
+    margin: 0 auto;
+    font-size: $typo-small-size;
+    line-height: $line-height-small-size;
+    color: white;
+    font-weight: bold;
+    section {
+      padding-bottom: 15px;
+    }
+    h1 {
+      font-size: $typo-normal-size;
+      line-height: $line-height-normal-size;
+    }
+    ul li,
+    p {
+      padding-bottom: 5px;
+    }
+    a {
+      color: inherit;
+      &:global(.external-link) {
+        background-image: url("../public/img/layout/external-link.svg");
+        background-position: right;
+        background-repeat: no-repeat;
+        padding-right: 25px;
+      }
+    }
+    :global(#f-left) {
+      flex-basis: 35%;
+    }
+    :global(#f-middle) {
+      @include order(2);
+      text-align: center;
+      flex-basis: 30%;
+      padding: 0 50px;
+    }
+    :global(#f-right) {
+      @include order(3);
+      flex-basis: 35%;
+      text-align: right;
+    }
+  }
+
+  // Responsiveness rules:
+  @media screen and (max-width: $tablet-width) {
+    :global(#footer-nucleus) {
+      @include flex-direction(column);
+      section {
+        padding-bottom: 25px;
+      }
+      h1,
+      ul li,
+      p {
+        padding-bottom: 15px;
+      }
+      :global(#f-left) {
+        text-align: center;
+      }
+      :global(#f-middle) {
+        @include order(3);
+        text-align: center;
+        padding: 0;
+      }
+      :global(#f-right) {
+        text-align: center;
+        @include order(2);
+      }
+    }
+  }
 }

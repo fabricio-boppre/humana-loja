@@ -2,7 +2,7 @@
 	MIXINS, VARIABLES & EXTENDS
   ---------------------------------------------- */
 
-@import '../styles/assets';
+@import "../styles/assets";
 
 /* ------------------------------------------------------------------------------
 	MASTHEAD:
@@ -10,87 +10,84 @@
   ------------------------------------------------------------------------------- */
 
 #masthead {
-	background-color: white;
-	height: 60px; // Logo height.
-	border-bottom: 1px solid darken($gray-bg, 10%);
+  background-color: white;
+  height: 60px; // Logo height.
+  border-bottom: 1px solid darken($gray-bg, 10%);
 
-	:global(#masthead-nucleus) {
-		@include flexbox();
-		@include justify-content(space-between);
-		height: inherit;
-		max-width: $principal-max-width;
-		padding: 0 $lateral-margin;
-		margin: 0 auto;
+  :global(#masthead-nucleus) {
+    @include flexbox();
+    @include justify-content(space-between);
+    height: inherit;
+    max-width: $principal-max-width;
+    padding: 0 $lateral-margin;
+    margin: 0 auto;
 
-		// Logo:
-		:global(#masthead-logotipo) {
-			background-image: url("../public/img/layout/logo-preto-faixa-grande.svg"),
-									linear-gradient(transparent, transparent);
-			background-repeat: no-repeat;
-			background-position: left center;
-			height: inherit;
-			width: 320px;	// Logo [large version] width.		
-		}		
-		
-		// Phone:
-		:global(#masthead-phone) {
-			height: inherit;
-			text-align: right;
-			a {
-				@include flexbox();
-				@include align-items(center);
-				color: inherit;
-				text-decoration: none;
-				height: inherit;
-				:global(#masthead-phone-text) {
-					padding-right: 10px;
-				}	
-				:global(#masthead-phone-number) {
-					padding-left: 10px;
-					font-weight: bold;
-				}	
-			}
-		}
-	}
+    // Logo:
+    :global(#masthead-logotipo) {
+      background-image: url("../public/img/layout/logo-preto-faixa-grande.svg"),
+        linear-gradient(transparent, transparent);
+      background-repeat: no-repeat;
+      background-position: left center;
+      height: inherit;
+      width: 320px; // Logo [large version] width.
+    }
 
-	// Responsiveness rules:
-	@media screen and (max-width: $large-device-width) {
-		:global(#masthead-nucleus) {
-			
-			// Phone:
-			:global(#masthead-phone) {
-				:global(#masthead-phone-text) {
-					display: none;
-				}
-			}
-		}
-	}
-	@media screen and (max-width: $tablet-width) {
-		:global(#masthead-nucleus) {
-			
-			// Logo:
-			:global(#masthead-logotipo) {
-				background-image: url("../public/img/layout/logo-preto-faixa-pequena.svg"),
-										linear-gradient(transparent, transparent);
-				background-repeat: no-repeat;
-				background-position: left center;
-				width: 250px;	// Logo [small version] width.			
-			}		
-		}
-	}
-	@media screen and (max-width: $smartphone-width) {
-		:global(#masthead-nucleus) {
+    // Phone:
+    :global(#masthead-phone) {
+      height: inherit;
+      text-align: right;
+      a {
+        @include flexbox();
+        @include align-items(center);
+        color: inherit;
+        text-decoration: none;
+        height: inherit;
+        :global(#masthead-phone-text) {
+          padding-right: 10px;
+        }
+        :global(#masthead-phone-number) {
+          padding-left: 10px;
+          font-weight: bold;
+        }
+      }
+    }
+  }
 
-			// Logo:
-			:global(#masthead-logotipo) {
-				width: 100%;
-				background-position: center;		
-			}		
+  // Responsiveness rules:
+  @media screen and (max-width: $large-device-width) {
+    :global(#masthead-nucleus) {
+      // Phone:
+      :global(#masthead-phone) {
+        :global(#masthead-phone-text) {
+          display: none;
+        }
+      }
+    }
+  }
+  @media screen and (max-width: $tablet-width) {
+    :global(#masthead-nucleus) {
+      // Logo:
+      :global(#masthead-logotipo) {
+        background-image: url("../public/img/layout/logo-preto-faixa-pequena.svg"),
+          linear-gradient(transparent, transparent);
+        background-repeat: no-repeat;
+        background-position: left center;
+        width: 250px; // Logo [small version] width.
+      }
+    }
+  }
+  @media screen and (max-width: $smartphone-width) {
+    :global(#masthead-nucleus) {
+      // Logo:
+      :global(#masthead-logotipo) {
+        width: 100%;
+        background-position: center;
+      }
 
-			// Phone:
-			:global(#masthead-phone) {
-				display: none;
-			}
-		}
-	}
+      // Phone:
+      :global(#masthead-phone) {
+        display: none;
+      }
+    }
+  }
 }

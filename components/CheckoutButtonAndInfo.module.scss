@@ -2,7 +2,7 @@
 	MIXINS, VARIABLES & EXTENDS
   ---------------------------------------------- */
 
-@import '../styles/assets';
+@import "../styles/assets";
 
 /* ------------------------------------------------------------------------------
 	CHECKOUT BUTTON & INFO:
@@ -10,47 +10,47 @@
   ------------------------------------------------------------------------------- */
 
 #checkout_button_and_info {
-	font-size: $typo-small-size;
-	text-align: right;
-	:global(button.snipcart-checkout) {
-		@include flexbox();
-		@include justify-content(flex-end);
-		float: right;
-		font-family: inherit;
-		font-size: inherit;
-		line-height: inherit;
-		background-color: inherit;
-		background-image: url("../public/img/layout/shopping-cart.svg");
-		background-repeat: no-repeat;
-		border: none;
-		cursor: pointer;
-		margin: 0;
-		padding: 0;
-		width: 48px; // Same width of the shopping cart image.
-		height: 48px; // Same height of the shopping cart image.
-		
-		:global(.snipcart-items-count) {
-			@include border-radius(50%);
-			min-width: 15px;
-			height: 15px;
-			line-height: 15px;
-			padding: 5px;
-			font-family: inherit;
-			font-size: inherit;
-			background-color: $orange-button;
-		  color: white;
-			font-weight: bold;
-			display: inline-block;
-		}
-	}
+  font-size: $typo-small-size;
+  text-align: right;
+  :global(button.snipcart-checkout) {
+    @include flexbox();
+    @include justify-content(flex-end);
+    float: right;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    background-color: inherit;
+    background-image: url("../public/img/layout/shopping-cart.svg");
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+    margin: 0;
+    padding: 0;
+    width: 48px; // Same width of the shopping cart image.
+    height: 48px; // Same height of the shopping cart image.
 
-	// Responsiveness rules:
-	@media screen and (max-width: $tablet-width) {
-		@include order(2);
-	}
-	@media screen and (max-width: $smartphone-width) {
-		:global(#snipcart-total-price) {
-			display: none !important;
-		}
-	}
+    :global(.snipcart-items-count) {
+      @include border-radius(50%);
+      min-width: 15px;
+      height: 15px;
+      line-height: 15px;
+      padding: 5px;
+      font-family: inherit;
+      font-size: inherit;
+      background-color: $orange-button;
+      color: white;
+      font-weight: bold;
+      display: inline-block;
+    }
+  }
+
+  // Responsiveness rules:
+  @media screen and (max-width: $tablet-width) {
+    @include order(2);
+  }
+  @media screen and (max-width: $smartphone-width) {
+    :global(#snipcart-total-price) {
+      display: none !important;
+    }
+  }
 }

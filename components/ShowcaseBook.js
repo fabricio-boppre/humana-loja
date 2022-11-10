@@ -1,93 +1,106 @@
-import Image from 'next/image'
-import Link from 'next/link'
-import {priceFormat} from '../lib/utils'
-import BookAuthors from './BookAuthors'
-import styles from './ShowcaseBook.module.css'
+import Image from "next/image";
+import Link from "next/link";
+import { priceFormat } from "../lib/utils";
+import BookAuthors from "./BookAuthors";
+import styles from "./ShowcaseBook.module.css";
 
 export default function ShowcaseBook(props) {
+  const book = props.book;
 
-	const book = props.book
+  // Book component width:
+  // - This value must be kept in accordance with the li.showcase_book flex-basis (ShowcaseBook.module.scss).
+  const width = 180;
 
-	// Book component width:
-	// - This value must be kept in accordance with the li.showcase_book flex-basis (ShowcaseBook.module.scss).
-	const width = 180
+  // Create the "Humana indica" and "Pré-venda" labels:
+  const humana_indica = <div className="humana_indica">Humana indica</div>;
+  const pre_venda = <div className="pre_venda">Pré-venda</div>;
 
-	// Create the "Humana indica" and "Pré-venda" labels:
-	const humana_indica = <div className="humana_indica">Humana indica</div>
-	const pre_venda = <div className="pre_venda">Pré-venda</div>
-	
-	// Prepare the buy button (or the unavailable sign) and the price tag:
-	// - If the book is available:
-	if (book.stock_situation == "disponivel") {
-		// Check if there is a discount and create the price tag:
-		if (book.price_old !== null) {
-			var discount = true
-			var original_price_span = <span className='showcase_book_text_original_price'>{priceFormat(book.price_old)}</span>
-		} else {
-			var discount = false
-		}
-		var price_tag = (
-			<div className="showcase_book_text_price">
-				{discount ? original_price_span : ""}
-				{priceFormat(book.price)}
-			</div>
-		)
-		// ... and create the buy button:
-		var button = (
-      <button className="snipcart-add-item"
-          data-item-id={book.id}
-          data-item-name={book.title}
-          data-item-price={book.price}
-          data-item-url={`/livro/${book.slug}`}
-          data-item-description={book.description}
-          data-item-image={book.mainImageUrl}
-					data-item-file-guid={book.file_guid}
-					{...((book.format == 'ebook') ? {'data-item-max-quantity': '1'} : {})}
-          data-item-weight={book.weight}
-          data-item-width={book.width}
-          data-item-length={book.length}
-          data-item-height={book.height}>
-          comprar
+  // Prepare the buy button (or the unavailable sign) and the price tag:
+  // - If the book is available:
+  if (book.stock_situation == "disponivel") {
+    // Check if there is a discount and create the price tag:
+    if (book.price_old !== null) {
+      var discount = true;
+      var original_price_span = (
+        <span className="showcase_book_text_original_price">
+          {priceFormat(book.price_old)}
+        </span>
+      );
+    } else {
+      var discount = false;
+    }
+    var price_tag = (
+      <div className="showcase_book_text_price">
+        {discount ? original_price_span : ""}
+        {priceFormat(book.price)}
+      </div>
+    );
+    // ... and create the buy button:
+    var button = (
+      <button
+        className="snipcart-add-item"
+        data-item-id={book.id}
+        data-item-name={book.title}
+        data-item-price={book.price}
+        data-item-url={`/livro/${book.slug}`}
+        data-item-description={book.description}
+        data-item-image={book.mainImageUrl}
+        data-item-file-guid={book.file_guid}
+        {...(book.format == "ebook" ? { "data-item-max-quantity": "1" } : {})}
+        data-item-weight={book.weight}
+        data-item-width={book.width}
+        data-item-length={book.length}
+        data-item-height={book.height}
+      >
+        comprar
       </button>
-		)
-	// - If the book is not available, we show the the unavailable sign and no price tag: 
-	} else if (book.stock_situation == "esgotado_visivel") {
-		var price_tag = null
-		var button = <div className="showcase_book_text_unavailable">falta temporária</div>
-	}
+    );
+    // - If the book is not available, we show the the unavailable sign and no price tag:
+  } else if (book.stock_situation == "esgotado_visivel") {
+    var price_tag = null;
+    var button = (
+      <div className="showcase_book_text_unavailable">falta temporária</div>
+    );
+  }
 
-	return <li className={styles.showcase_book}>
-						{((book.special_category !== null) && (book.special_category.includes("humana_indica"))) ?
-					  	humana_indica :
-							""
-						}
-						{((book.special_category !== null) && (book.special_category.includes("pre_venda"))) ?
-					  	pre_venda :
-							""
-						}
-						<Link href={`/livro/${book.slug}`}>
-							<a>
-								<div className="showcase_book_image" >
-								  <Image
-	         			 		alt={book.title}
-								    src={book.mainImageUrl + '?w=' + width}
-								    layout="fill"
-								    className="custom-img"
-										objectFit="contain"
-								  />
-								</div>
-							</a>
-						</Link>
-						<div className="showcase_book_text">
-		        	<div className={book.format == "livro" ? "showcase-book-text-format-livro" : "showcase-book-text-format-ebook"}>
-								{book.format}
-							</div>
-					    <div className="showcase_book_text_title">
-								{book.title}
-							</div>
-							<BookAuthors authors={book.authors} />
-							{price_tag}
-							{button}
-						</div>
-  			 </li>
+  return (
+    <li className={styles.showcase_book}>
+      {book.special_category !== null &&
+      book.special_category.includes("humana_indica")
+        ? humana_indica
+        : ""}
+      {book.special_category !== null &&
+      book.special_category.includes("pre_venda")
+        ? pre_venda
+        : ""}
+      <Link href={`/livro/${book.slug}`}>
+        <a>
+          <div className="showcase_book_image">
+            <Image
+              alt={book.title}
+              src={book.mainImageUrl + "?w=" + width}
+              layout="fill"
+              className="custom-img"
+              objectFit="contain"
+            />
+          </div>
+        </a>
+      </Link>
+      <div className="showcase_book_text">
+        <div
+          className={
+            book.format == "livro"
+              ? "showcase-book-text-format-livro"
+              : "showcase-book-text-format-ebook"
+          }
+        >
+          {book.format}
+        </div>
+        <div className="showcase_book_text_title">{book.title}</div>
+        <BookAuthors authors={book.authors} />
+        {price_tag}
+        {button}
+      </div>
+    </li>
+  );
 }

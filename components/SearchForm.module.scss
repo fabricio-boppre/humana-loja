@@ -2,7 +2,7 @@
 	MIXINS, VARIABLES & EXTENDS
   ---------------------------------------------- */
 
-@import '../styles/assets';
+@import "../styles/assets";
 
 /* ------------------------------------------------------------------------------
 	SEARCH FORM:
@@ -10,39 +10,38 @@
   ------------------------------------------------------------------------------- */
 
 #search_form {
-	@include flex(1);
-	:global(#searchAlgolia) {
-		max-width: 400px;
-		:global(.aa-Form) {
-			border: $box-border;
-			:global(.aa-ClearButton) {
-				padding: 0 5px;
-			}
-		}
-	}
+  @include flex(1);
+  :global(#searchAlgolia) {
+    max-width: 400px;
+    :global(.aa-Form) {
+      border: $box-border;
+      :global(.aa-ClearButton) {
+        padding: 0 5px;
+      }
+    }
+  }
 
-	// Responsiveness rules:
-	@media screen and (max-width: $tablet-width) {
-		@include flex-basis(100%);
-		@include order(3);
-		:global(#searchAlgolia) {
-			max-width: 100%;
-		}	
-		margin-top: 20px;
-		form {
-			justify-content: center;
-		}
-	}
-	@media screen and (max-width: $smartphone-width) {
-		form {
-			input[type=search] {
-				width: 160px;
-				font-size: $typo-small-size;
-			}
-			button {
-				padding: 6px 10px;
-			}
-		}
-	}
-
+  // Responsiveness rules:
+  @media screen and (max-width: $tablet-width) {
+    @include flex-basis(100%);
+    @include order(3);
+    :global(#searchAlgolia) {
+      max-width: 100%;
+    }
+    margin-top: 20px;
+    form {
+      justify-content: center;
+    }
+  }
+  @media screen and (max-width: $smartphone-width) {
+    form {
+      input[type="search"] {
+        width: 160px;
+        font-size: $typo-small-size;
+      }
+      button {
+        padding: 6px 10px;
+      }
+    }
+  }
 }

@@ -2,165 +2,179 @@
 	MIXINS, VARIABLES & EXTENDS
   ---------------------------------------------- */
 
-@import 'assets';
+@import "assets";
 
 /* ---------------------------------------------
 	BASIC LAYOUT & TYPOGRAPHY:
   ---------------------------------------------- */
 
 body {
-	-webkit-font-smoothing: antialiased;
-	font-family: 'Open Sans', sans-serif;
-	font-size: 16px;	
-	background-color: $gray-bg;
-	min-width: $body-min-width;
-	
-	div#__next {
-	  @include flexbox();
-		@include flex-direction(column);
-	  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  font-family: "Open Sans", sans-serif;
+  font-size: 16px;
+  background-color: $gray-bg;
+  min-width: $body-min-width;
 
-		img {
-			max-width: 100%;
-			height: auto;						
-		}		
-	
-	  // Making sure that elements with the hidden attribute won't be shown:
-	  // - https://html.spec.whatwg.org/multipage/interaction.html#the-hidden-attribute
-	  [hidden], area, base, basefont, datalist, head, link, meta, noembed,
-	  noframes, param, rp, script, source, style, template, track, title {
-	    display: none;
-	  }
-	
-		// Message for incompatible browser: it starts hidden and is shown if an effect in the Masthead component detects IE as the browser:
-		#incompatible-browser {
-			display: none;
-			padding: 50px $lateral-margin;
-			margin: 0 auto;
-			font-size: $typo-normal-size;
-			line-height: $line-height-normal-size;
-		}
-		
-		#opening-sale {
-			@include align-self(center);
-			@include border-radius(0 0 12px 12px);
-			padding: 8px 14px;
-			text-shadow: 1px 1px 1px #4A4A4A;
-			color: white;
-			text-align: center;
-			background-color: $orange-button;
-			font-size: $typo-normal-size;
-			line-height: $line-height-normal-size;
-			font-weight: bold;
-			.highlight {
-				text-decoration: underline;
-			}
-		}
+  div#__next {
+    @include flexbox();
+    @include flex-direction(column);
+    min-height: 100vh;
 
-		#principal {
-			@include flex(1);
+    img {
+      max-width: 100%;
+      height: auto;
+    }
 
-			#principal-nucleus {
-				@include flexbox();
-				@include flex-wrap(wrap);
-				@include justify-content(space-between);
-				@include align-items(center);
-				max-width: $principal-max-width;
-				padding: 50px $lateral-margin;
-				margin: 0 auto;
-				font-size: $typo-normal-size;
-				line-height: $line-height-normal-size;
-				
-				.content {
-					@include flex-basis(100%);
-					margin-top: 60px;
+    // Making sure that elements with the hidden attribute won't be shown:
+    // - https://html.spec.whatwg.org/multipage/interaction.html#the-hidden-attribute
+    [hidden],
+    area,
+    base,
+    basefont,
+    datalist,
+    head,
+    link,
+    meta,
+    noembed,
+    noframes,
+    param,
+    rp,
+    script,
+    source,
+    style,
+    template,
+    track,
+    title {
+      display: none;
+    }
 
-					#inexistent-page {
-						text-align: center;
-					}
-					h1 {
-						font-size: $typo-large-size;
-						line-height: $line-height-large-size;
-						font-weight: normal;
-					}
-					h2 {
-						font-size: $typo-big-size;
-					}
-					a {
-						color: inherit;
-					}
-					strong {
-						font-weight: bold;
-					}
-					em,
-					blockquote {
-						font-style: italic;
-					}
-					.orange-text {
-						color: $orange-button;
-					}
-					
-					.formatted-text {
-						h2,	
-						p,
-						ul,
-						ol {
-							padding-bottom: 15px;
-						}	
-						ul,
-						ol {
-							list-style-position: inside;
-						}
-						ul {
-							list-style-type: disc;
-						}
-						ol {
-							list-style-type: decimal;
-						}
-					}
-				}
-			}		
+    // Message for incompatible browser: it starts hidden and is shown if an effect in the Masthead component detects IE as the browser:
+    #incompatible-browser {
+      display: none;
+      padding: 50px $lateral-margin;
+      margin: 0 auto;
+      font-size: $typo-normal-size;
+      line-height: $line-height-normal-size;
+    }
 
-		}		
-	}
+    #opening-sale {
+      @include align-self(center);
+      @include border-radius(0 0 12px 12px);
+      padding: 8px 14px;
+      text-shadow: 1px 1px 1px #4a4a4a;
+      color: white;
+      text-align: center;
+      background-color: $orange-button;
+      font-size: $typo-normal-size;
+      line-height: $line-height-normal-size;
+      font-weight: bold;
+      .highlight {
+        text-decoration: underline;
+      }
+    }
 
-	// Responsiveness rules:
-	@media screen and (max-width: $tablet-width) {
-		div#__next {
-			#opening-sale {
-				@include align-self(stretch);
-				@include border-radius(0 0 0 0);
-			}
-			#principal {
-				#principal-nucleus {
-					@include justify-content(center);
-					padding-top: 30px;
+    #principal {
+      @include flex(1);
 
-					.content {
-						@include order(3);
-						margin-top: 50px;
-					}		
-				}
-			}
-		}
-	}
-	@media screen and (max-width: $smartphone-width) {
-		div#__next {
-			#opening-sale {
-				font-size: $typo-small-size;
-				line-height: $line-height-small-size;
-			}
-			#principal {
-				#principal-nucleus {
-					padding-top: 20px;
-					.content {
-						margin-top: 30px;
-					}		
-				}
-			}
-		}
-	}
+      #principal-nucleus {
+        @include flexbox();
+        @include flex-wrap(wrap);
+        @include justify-content(space-between);
+        @include align-items(center);
+        max-width: $principal-max-width;
+        padding: 50px $lateral-margin;
+        margin: 0 auto;
+        font-size: $typo-normal-size;
+        line-height: $line-height-normal-size;
 
+        .content {
+          @include flex-basis(100%);
+          margin-top: 60px;
+
+          #inexistent-page {
+            text-align: center;
+          }
+          h1 {
+            font-size: $typo-large-size;
+            line-height: $line-height-large-size;
+            font-weight: normal;
+          }
+          h2 {
+            font-size: $typo-big-size;
+          }
+          a {
+            color: inherit;
+          }
+          strong {
+            font-weight: bold;
+          }
+          em,
+          blockquote {
+            font-style: italic;
+          }
+          .orange-text {
+            color: $orange-button;
+          }
+
+          .formatted-text {
+            h2,
+            p,
+            ul,
+            ol {
+              padding-bottom: 15px;
+            }
+            ul,
+            ol {
+              list-style-position: inside;
+            }
+            ul {
+              list-style-type: disc;
+            }
+            ol {
+              list-style-type: decimal;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  // Responsiveness rules:
+  @media screen and (max-width: $tablet-width) {
+    div#__next {
+      #opening-sale {
+        @include align-self(stretch);
+        @include border-radius(0 0 0 0);
+      }
+      #principal {
+        #principal-nucleus {
+          @include justify-content(center);
+          padding-top: 30px;
+
+          .content {
+            @include order(3);
+            margin-top: 50px;
+          }
+        }
+      }
+    }
+  }
+  @media screen and (max-width: $smartphone-width) {
+    div#__next {
+      #opening-sale {
+        font-size: $typo-small-size;
+        line-height: $line-height-small-size;
+      }
+      #principal {
+        #principal-nucleus {
+          padding-top: 20px;
+          .content {
+            margin-top: 30px;
+          }
+        }
+      }
+    }
+  }
 }
 
 /* ---------------------------------------------
@@ -168,205 +182,215 @@ body {
   ---------------------------------------------- */
 
 div.aa-Panel {
-	min-width: unset;
-	div.aa-PanelLayout {
-		padding: 10px 15px;
-		ul.aa-List {
-			li.aa-Item {
-				padding: 10px;
-				div.aa-ItemIcon {
-					display: none;
-				}
-			}
-		}
-	}
+  min-width: unset;
+  div.aa-PanelLayout {
+    padding: 10px 15px;
+    ul.aa-List {
+      li.aa-Item {
+        padding: 10px;
+        div.aa-ItemIcon {
+          display: none;
+        }
+      }
+    }
+  }
 }
 
 /* ---------------------------------------------
 	SNIPCART CUSTOMIZATION:
   ---------------------------------------------- */
-	
-#snipcart { 
-	* {
-		font-family: 'Open Sans', sans-serif;
-	}
-	
-	// Buttons:
-	// https://docs.snipcart.com/v3/setup/theming#buttons
 
-	--color-buttonPrimary: white;
-	--color-buttonPrimary-hover: white;
-	--color-buttonPrimary-active: white;
-	--color-buttonPrimary-focus: white;
-	--shadow-buttonPrimary-hover: none;
+#snipcart {
+  * {
+    font-family: "Open Sans", sans-serif;
+  }
 
-	--bgColor-buttonPrimary: #D67D00;
-	--bgColor-buttonPrimary-hover: hsl(38, 100%, 53%);
+  // Buttons:
+  // https://docs.snipcart.com/v3/setup/theming#buttons
+
+  --color-buttonPrimary: white;
+  --color-buttonPrimary-hover: white;
+  --color-buttonPrimary-active: white;
+  --color-buttonPrimary-focus: white;
+  --shadow-buttonPrimary-hover: none;
+
+  --bgColor-buttonPrimary: #d67d00;
+  --bgColor-buttonPrimary-hover: hsl(38, 100%, 53%);
   --bgColor-buttonPrimary-active: var(--bgColor-buttonPrimary-hover);
   --bgColor-buttonPrimary-focus: var(--bgColor-buttonPrimary-hover);
 
-	--borderColor-buttonPrimary: #D67D00;
-	--borderColor-buttonPrimary-hover: hsl(38, 100%, 53%);
+  --borderColor-buttonPrimary: #d67d00;
+  --borderColor-buttonPrimary-hover: hsl(38, 100%, 53%);
   --borderColor-buttonPrimary-active: var(--borderColor-buttonPrimary-hover);
   --borderColor-buttonPrimary-focus: var(--borderColor-buttonPrimary-hover);
 
-	--color-buttonSecondary: white;
-	--color-buttonSecondary-hover: white;
-	--color-buttonSecondary-active: white;
-	--color-buttonSecondary-focus: white;
-	--shadow-buttonSecondary-hover: none;
+  --color-buttonSecondary: white;
+  --color-buttonSecondary-hover: white;
+  --color-buttonSecondary-active: white;
+  --color-buttonSecondary-focus: white;
+  --shadow-buttonSecondary-hover: none;
 
-	--bgColor-buttonSecondary: #D67D00;
-	--bgColor-buttonSecondary-hover: hsl(38, 100%, 53%);
+  --bgColor-buttonSecondary: #d67d00;
+  --bgColor-buttonSecondary-hover: hsl(38, 100%, 53%);
   --bgColor-buttonSecondary-active: var(--bgColor-buttonSecondary-hover);
   --bgColor-buttonSecondary-focus: var(--bgColor-buttonSecondary-hover);
 
-	--borderColor-buttonSecondary: #D67D00;
-	--borderColor-buttonSecondary-hover: hsl(38, 100%, 53%);
-  --borderColor-buttonSecondary-active: var(--borderColor-buttonSecondary-hover);
+  --borderColor-buttonSecondary: #d67d00;
+  --borderColor-buttonSecondary-hover: hsl(38, 100%, 53%);
+  --borderColor-buttonSecondary-active: var(
+    --borderColor-buttonSecondary-hover
+  );
   --borderColor-buttonSecondary-focus: var(--borderColor-buttonSecondary-hover);
-	
-	// Links:
-	// https://docs.snipcart.com/v3/setup/theming#links
-	--color-link: black;
-	--color-link-hover: hsl(38, 100%, 47%);
-	
-	.snipcart-modal__container {
-		border-left: 1px solid #e3e6e8;
-	}
 
-	.snipcart-item-line__container {
-		margin-bottom: 0;
-	}
-	
-	.snipcart-base-button__label {
-		font-weight: bold;
-		@include button-text-shadow;
-	}
-	
-	.snipcart-discount-box__button {
-		@include border-radius(4px);
-		@include button-text-shadow;
-		@include transition(background-color 0.2s linear);
-		border: none;
-		background-color: #D67D00;
-	  color: white;	
-		font-weight: bold;
-		&:hover {
-			background-color: hsl(38, 100%, 53%);
-		}
-	}
-	
-	.snipcart-button-icon:hover {
-		box-shadow: none;
-	}
+  // Links:
+  // https://docs.snipcart.com/v3/setup/theming#links
+  --color-link: black;
+  --color-link-hover: hsl(38, 100%, 47%);
 
-	figure.snipcart-item-line__media.snipcart-item-line__media--small {
-		height: 50px;
-	}
-	
-	h2.snipcart-item-line__title.snipcart__font--xlarge.snipcart__font--secondary.snipcart__font--black {
-		line-height: 20px;
-		padding: 0 12px;
-	}
-	
-	div.snipcart-item-line__variants {
-		padding-top: 18px;
-	}
-	
-	.snipcart-summary-fees__notice {
-		line-height: 18px;
-		margin-bottom: 10px;
-	}
-	
-	#form-cpf,
-	#form-phone {
-		padding: 8px 0;
-	}
-	
-	form#snipcart-shipping-address-form.snipcart-form {
-		h3.snipcart-shipping-address__subtitle.snipcart__font--bold {
-			display: none;
-		}
-	}
-	
-	form#snipcart-billing-form.snipcart-form,
-	form#snipcart-shipping-address-form.snipcart-form,
-	form.snipcart-edit-customer-address__form {
-		.snipcart-form__row	{
-			div.snipcart-form__field.snipcart-form__cell--tidy {
-				width: 40%;
-			}
-			div.snipcart-form__field.snipcart-form__cell--large {
-				select {
-					border: 1px solid #e3e6e8;
-					height: 52px;
-					width: 100%;
-					font-weight: bold;
-					padding: 0 30px 0 16px;
-			    -moz-appearance:none; /* Firefox */
-			    -webkit-appearance:none; /* Safari and Chrome */
-			    appearance: none;
-					background-image: url("../public/img/layout/form-select-icon.svg");
-					background-repeat: no-repeat;
-					background-position: center right 5px;
-					@include border-radius(0);
-				}
-			}
-		}
-	}
-	
-	form#snipcart-billing-form.snipcart-form,
-	form#snipcart-shipping-address-form.snipcart-form {
-		div.snipcart__box {
-			div.snipcart__box--header div.snipcart__box--title h1.snipcart__font--subtitle {
-				padding-bottom: 20px;
-			}
-			div fieldset.snipcart-form__set {
-				div.snipcart-form__field div.snipcart-typeahead div.snipcart-typeahead__content div.snipcart-typeahead__select div.snipcart-typeahead__input div.snipcart-form__select-wrapper svg.snipcart__icon {
-					display: none;
-				}
-			}
-		}
-	}
+  .snipcart-modal__container {
+    border-left: 1px solid #e3e6e8;
+  }
 
-	form#snipcart-shipping-address-form.snipcart-form {
-		div.snipcart__box {
-			div fieldset.snipcart-form__set {
-				padding-top: 8px;
-			}
-		}
-	}
+  .snipcart-item-line__container {
+    margin-bottom: 0;
+  }
 
-	div.snipcart-checkout-step__icon.snipcart-shipping-completed__step-icon,
-	div.snipcart-checkout-step__icon.snipcart-billing-completed__step-icon {
-		margin-right: 10px;
-	}
-	
-	span.snipcart-shipping-completed__information,
-	span.snipcart-cart-summary-item__name {
-		line-height: 18px;
-	}
+  .snipcart-base-button__label {
+    font-weight: bold;
+    @include button-text-shadow;
+  }
 
-	span.snipcart-shipping-rates-list-item__label--highlight {
-		.snipcart-form-radio:checked + label::after {
-			content: none;
-		}
-	}
+  .snipcart-discount-box__button {
+    @include border-radius(4px);
+    @include button-text-shadow;
+    @include transition(background-color 0.2s linear);
+    border: none;
+    background-color: #d67d00;
+    color: white;
+    font-weight: bold;
+    &:hover {
+      background-color: hsl(38, 100%, 53%);
+    }
+  }
 
-	@media screen and (max-width: $smartphone-width) {
-		form#snipcart-billing-form.snipcart-form,
-		form#snipcart-shipping-address-form.snipcart-form {
-			div.snipcart__box {
-				div fieldset.snipcart-form__set div.snipcart-form__row {
-					flex-direction: column;
-					div.snipcart-form__field.snipcart-form__cell--tidy {
-						width: 100%;
-					}
-				}
-			}
-		}
-	}
+  .snipcart-button-icon:hover {
+    box-shadow: none;
+  }
+
+  figure.snipcart-item-line__media.snipcart-item-line__media--small {
+    height: 50px;
+  }
+
+  h2.snipcart-item-line__title.snipcart__font--xlarge.snipcart__font--secondary.snipcart__font--black {
+    line-height: 20px;
+    padding: 0 12px;
+  }
+
+  div.snipcart-item-line__variants {
+    padding-top: 18px;
+  }
+
+  .snipcart-summary-fees__notice {
+    line-height: 18px;
+    margin-bottom: 10px;
+  }
+
+  #form-cpf,
+  #form-phone {
+    padding: 8px 0;
+  }
+
+  form#snipcart-shipping-address-form.snipcart-form {
+    h3.snipcart-shipping-address__subtitle.snipcart__font--bold {
+      display: none;
+    }
+  }
+
+  form#snipcart-billing-form.snipcart-form,
+  form#snipcart-shipping-address-form.snipcart-form,
+  form.snipcart-edit-customer-address__form {
+    .snipcart-form__row {
+      div.snipcart-form__field.snipcart-form__cell--tidy {
+        width: 40%;
+      }
+      div.snipcart-form__field.snipcart-form__cell--large {
+        select {
+          border: 1px solid #e3e6e8;
+          height: 52px;
+          width: 100%;
+          font-weight: bold;
+          padding: 0 30px 0 16px;
+          -moz-appearance: none; /* Firefox */
+          -webkit-appearance: none; /* Safari and Chrome */
+          appearance: none;
+          background-image: url("../public/img/layout/form-select-icon.svg");
+          background-repeat: no-repeat;
+          background-position: center right 5px;
+          @include border-radius(0);
+        }
+      }
+    }
+  }
+
+  form#snipcart-billing-form.snipcart-form,
+  form#snipcart-shipping-address-form.snipcart-form {
+    div.snipcart__box {
+      div.snipcart__box--header
+        div.snipcart__box--title
+        h1.snipcart__font--subtitle {
+        padding-bottom: 20px;
+      }
+      div fieldset.snipcart-form__set {
+        div.snipcart-form__field
+          div.snipcart-typeahead
+          div.snipcart-typeahead__content
+          div.snipcart-typeahead__select
+          div.snipcart-typeahead__input
+          div.snipcart-form__select-wrapper
+          svg.snipcart__icon {
+          display: none;
+        }
+      }
+    }
+  }
+
+  form#snipcart-shipping-address-form.snipcart-form {
+    div.snipcart__box {
+      div fieldset.snipcart-form__set {
+        padding-top: 8px;
+      }
+    }
+  }
+
+  div.snipcart-checkout-step__icon.snipcart-shipping-completed__step-icon,
+  div.snipcart-checkout-step__icon.snipcart-billing-completed__step-icon {
+    margin-right: 10px;
+  }
+
+  span.snipcart-shipping-completed__information,
+  span.snipcart-cart-summary-item__name {
+    line-height: 18px;
+  }
+
+  span.snipcart-shipping-rates-list-item__label--highlight {
+    .snipcart-form-radio:checked + label::after {
+      content: none;
+    }
+  }
+
+  @media screen and (max-width: $smartphone-width) {
+    form#snipcart-billing-form.snipcart-form,
+    form#snipcart-shipping-address-form.snipcart-form {
+      div.snipcart__box {
+        div fieldset.snipcart-form__set div.snipcart-form__row {
+          flex-direction: column;
+          div.snipcart-form__field.snipcart-form__cell--tidy {
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
 }
 
 /* -------------------------------------------------
@@ -374,15 +398,15 @@ div.aa-Panel {
   -------------------------------------------------- */
 
 .no-flexbox {
-	div#__next {
-		header,
-		#opening-sale,
-		#principal,
-		footer {
-			display: none !important; // We hide the store for these extremely old browsers...
-		}
-		#incompatible-browser {
-			display: block !important; // ... and show the "Incompatible browser" message.
-		}
-	}
+  div#__next {
+    header,
+    #opening-sale,
+    #principal,
+    footer {
+      display: none !important; // We hide the store for these extremely old browsers...
+    }
+    #incompatible-browser {
+      display: block !important; // ... and show the "Incompatible browser" message.
+    }
+  }
 }

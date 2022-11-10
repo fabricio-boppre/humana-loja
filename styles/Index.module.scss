@@ -2,7 +2,7 @@
 	MIXINS, VARIABLES & EXTENDS
   ---------------------------------------------- */
 
-@import 'assets';
+@import "assets";
 
 /* ---------------------------------------------
 	INDEX:
@@ -10,188 +10,186 @@
   ---------------------------------------------- */
 
 #index {
-	@include justify-content(space-between);
-	@include flexbox();
-	@include flex-wrap(wrap);
-	@include align-items(flex-start);
-	
-	// Showcase filters:
-	:global(#showcase-filters-order) {
-		$block-space: 10px;
-		$list-line-height: 17px;
-		@include flex(0 0 250px);
-		border-bottom: $box-border;
-		font-size: $typo-small-size;
-		:global(.order-header),
-		:global(.filter-header) {
-			$icon-height: 24px;
-			@include flexbox();
-			@include justify-content(space-between);
-			border-top: $box-border;
-			padding: 15px 0;
-			cursor: pointer;
-			font-weight: bold;
-			min-height: $icon-height;
-			line-height: $icon-height;
-			span {
-				padding-right: 7px;		
-			}
-		}
-		> ul {
-			padding-left: 5px;
-			&:global(.invisible) {
-				display: none !important;
-			}
-			> li {
-				margin-bottom: $block-space;
-				:global(.title) {
-					color: $gray-typo;
-					font-weight: bold;
-					padding-bottom: 10px;
-					min-height: $list-line-height;
-					line-height: $list-line-height;
-					&:global(.active) {
-						background-image: url("../public/img/layout/filter-button-clean.svg"),
-												linear-gradient(transparent, transparent);
-					 padding-left: 20px;
-					 color: black;
-					 background-repeat: no-repeat;
-					 background-position-y: 1px; // 1px to a perfect alignment with the text.
-					 background-position-x: left;
-					 cursor: pointer !important;
-					}
-				}
-				> ul {
-					padding-left: 10px;
-					> li {
-						> div {
-							background-image: url("../public/img/layout/checkbox-unchecked.svg"),
-													linear-gradient(transparent, transparent);
-							background-repeat: no-repeat;
-							background-position-y: 1px; // 1px to a perfect alignment with the text.
-							background-position-x: left;
-							padding: 0 0 10px 20px;
-							min-height: $list-line-height;
-							line-height: $list-line-height;
-							cursor: pointer !important;
-							text-transform: lowercase;
-						}
-						> ul {
-							display: none;
-						}
-						&:global(.active) {
-							> div {
-								background-image: url("../public/img/layout/checkbox-checked.svg"),
-														linear-gradient(transparent, transparent);
-								}
-						}
-						&:global(.partial) {
-							> div {
-								background-image: url("../public/img/layout/checkbox-partial.svg"),
-														linear-gradient(transparent, transparent);
-								}
-						}
-						&:global(.active),
-						&:global(.partial) {
-							> div {
-							  font-weight: bold;	
-							}
-							> ul {
-								display: block;
-								padding-left: 12px;
-								> li {
-									> div {
-										background-image: url("../public/img/layout/checkbox-unchecked.svg"),
-																linear-gradient(transparent, transparent);
-										background-repeat: no-repeat;
-										background-position-y: 1px; // 1px to a perfect alignment with the text.
-										background-position-x: left;
-										padding: 0 0 10px 20px;
-										min-height: $list-line-height;
-										line-height: $list-line-height;
-										cursor: pointer !important;
-										text-transform: lowercase;
-									}
+  @include justify-content(space-between);
+  @include flexbox();
+  @include flex-wrap(wrap);
+  @include align-items(flex-start);
 
-									&:global(.active) {
-										> div {
-											background-image: url("../public/img/layout/checkbox-checked.svg"),
-																	linear-gradient(transparent, transparent);
-										  font-weight: bold;	
-										}
-									}
+  // Showcase filters:
+  :global(#showcase-filters-order) {
+    $block-space: 10px;
+    $list-line-height: 17px;
+    @include flex(0 0 250px);
+    border-bottom: $box-border;
+    font-size: $typo-small-size;
+    :global(.order-header),
+    :global(.filter-header) {
+      $icon-height: 24px;
+      @include flexbox();
+      @include justify-content(space-between);
+      border-top: $box-border;
+      padding: 15px 0;
+      cursor: pointer;
+      font-weight: bold;
+      min-height: $icon-height;
+      line-height: $icon-height;
+      span {
+        padding-right: 7px;
+      }
+    }
+    > ul {
+      padding-left: 5px;
+      &:global(.invisible) {
+        display: none !important;
+      }
+      > li {
+        margin-bottom: $block-space;
+        :global(.title) {
+          color: $gray-typo;
+          font-weight: bold;
+          padding-bottom: 10px;
+          min-height: $list-line-height;
+          line-height: $list-line-height;
+          &:global(.active) {
+            background-image: url("../public/img/layout/filter-button-clean.svg"),
+              linear-gradient(transparent, transparent);
+            padding-left: 20px;
+            color: black;
+            background-repeat: no-repeat;
+            background-position-y: 1px; // 1px to a perfect alignment with the text.
+            background-position-x: left;
+            cursor: pointer !important;
+          }
+        }
+        > ul {
+          padding-left: 10px;
+          > li {
+            > div {
+              background-image: url("../public/img/layout/checkbox-unchecked.svg"),
+                linear-gradient(transparent, transparent);
+              background-repeat: no-repeat;
+              background-position-y: 1px; // 1px to a perfect alignment with the text.
+              background-position-x: left;
+              padding: 0 0 10px 20px;
+              min-height: $list-line-height;
+              line-height: $list-line-height;
+              cursor: pointer !important;
+              text-transform: lowercase;
+            }
+            > ul {
+              display: none;
+            }
+            &:global(.active) {
+              > div {
+                background-image: url("../public/img/layout/checkbox-checked.svg"),
+                  linear-gradient(transparent, transparent);
+              }
+            }
+            &:global(.partial) {
+              > div {
+                background-image: url("../public/img/layout/checkbox-partial.svg"),
+                  linear-gradient(transparent, transparent);
+              }
+            }
+            &:global(.active),
+            &:global(.partial) {
+              > div {
+                font-weight: bold;
+              }
+              > ul {
+                display: block;
+                padding-left: 12px;
+                > li {
+                  > div {
+                    background-image: url("../public/img/layout/checkbox-unchecked.svg"),
+                      linear-gradient(transparent, transparent);
+                    background-repeat: no-repeat;
+                    background-position-y: 1px; // 1px to a perfect alignment with the text.
+                    background-position-x: left;
+                    padding: 0 0 10px 20px;
+                    min-height: $list-line-height;
+                    line-height: $list-line-height;
+                    cursor: pointer !important;
+                    text-transform: lowercase;
+                  }
 
-								}
-							}
-						}
-					}
-				}
-			}
-		}
-	}
-	
-	// Showcase:
-	:global(main#showcase) {
-		@include flex(1);
-	  opacity: 1;
-		:global(ul#showcase-books-list) {
-			@include flexbox();
-			@include flex-wrap(wrap);
-			@include justify-content(space-around);
-			-webkit-justify-content: space-evenly !important;
-			@include align-items(flex-start)
-		}
-		:global(#empty-showcase),
-		h1 {
-			padding: 0 20px 50px 20px;
-			text-align: center;
-		}
-		&:global(.loading) {
-			> * {	
-				transition: opacity 0.05s linear;
-				opacity: 0.3;
-			}
-		}
-	}
+                  &:global(.active) {
+                    > div {
+                      background-image: url("../public/img/layout/checkbox-checked.svg"),
+                        linear-gradient(transparent, transparent);
+                      font-weight: bold;
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
 
-	// Responsiveness rules:
-	@media screen and (max-width: $tablet-width) {
-		:global(#showcase-filters-order),
-		:global(main#showcase) {
-			@include flex(0 0 100%);
-		}
-		:global(main#showcase) {
-			padding-top: 30px;
-			h1 {
-				padding-bottom: 40px;
-			}
-		}
-		:global(#showcase-filters-order) {
-			> ul {
-				> li {
-					:global(.title) {
-						padding-bottom: 20px;
-					}
-					> ul {
-						> li {
-							> div {
-								padding-bottom: 20px;
-							}
-							&:global(.active),
-							&:global(.partial) {
-								> ul {
-									> li {
-										> div {
-											padding-bottom: 20px;
-										}
-									}
-								}
-							}
-						}
-					}
-				}
-			}
-		}
-	}	
+  // Showcase:
+  :global(main#showcase) {
+    @include flex(1);
+    opacity: 1;
+    :global(ul#showcase-books-list) {
+      @include flexbox();
+      @include flex-wrap(wrap);
+      @include justify-content(space-around);
+      -webkit-justify-content: space-evenly !important;
+      @include align-items(flex-start);
+    }
+    :global(#empty-showcase),
+    h1 {
+      padding: 0 20px 50px 20px;
+      text-align: center;
+    }
+    &:global(.loading) {
+      > * {
+        transition: opacity 0.05s linear;
+        opacity: 0.3;
+      }
+    }
+  }
 
+  // Responsiveness rules:
+  @media screen and (max-width: $tablet-width) {
+    :global(#showcase-filters-order),
+    :global(main#showcase) {
+      @include flex(0 0 100%);
+    }
+    :global(main#showcase) {
+      padding-top: 30px;
+      h1 {
+        padding-bottom: 40px;
+      }
+    }
+    :global(#showcase-filters-order) {
+      > ul {
+        > li {
+          :global(.title) {
+            padding-bottom: 20px;
+          }
+          > ul {
+            > li {
+              > div {
+                padding-bottom: 20px;
+              }
+              &:global(.active),
+              &:global(.partial) {
+                > ul {
+                  > li {
+                    > div {
+                      padding-bottom: 20px;
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
 }

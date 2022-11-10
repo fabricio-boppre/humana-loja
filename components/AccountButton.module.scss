@@ -2,23 +2,22 @@
 	MIXINS, VARIABLES & EXTENDS
   ---------------------------------------------- */
 
-@import '../styles/assets';
+@import "../styles/assets";
 
 /* ------------------------------------------------------------------------------
 	ACCOUNT BUTTON:
 	- ":global" wrapped around IDs prevents them from being changed by CSS Modules.
   ------------------------------------------------------------------------------- */
 
-	#account_button {
-		font-weight: bold;
-		border-right: 1px solid black;
-		margin-right: 20px;
-		padding-right: 20px;	
-		cursor: pointer;
+#account_button {
+  font-weight: bold;
+  border-right: 1px solid black;
+  margin-right: 20px;
+  padding-right: 20px;
+  cursor: pointer;
 
-		// Responsiveness rules:
-		@media screen and (max-width: $tablet-width) {
-			@include order(1);
-		}
-
-	}
+  // Responsiveness rules:
+  @media screen and (max-width: $tablet-width) {
+    @include order(1);
+  }
+}

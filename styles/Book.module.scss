@@ -2,7 +2,7 @@
 	MIXINS, VARIABLES & EXTENDS
   ---------------------------------------------- */
 
-@import 'assets';
+@import "assets";
 
 /* ---------------------------------------------
 	BOOK:
@@ -11,220 +11,219 @@
 
 #book {
   opacity: 1;
-	:global(#inexistent-book),
-	:global(#loading-book) {
-		text-align: center;
-	}
-	&:global(.loading) {
-		> * {	
-			transition: opacity 0.05s linear;
-			opacity: 0.3;
-		}
-	}
+  :global(#inexistent-book),
+  :global(#loading-book) {
+    text-align: center;
+  }
+  &:global(.loading) {
+    > * {
+      transition: opacity 0.05s linear;
+      opacity: 0.3;
+    }
+  }
 
-	article {
-		@include flexbox();
-		@include flex-wrap(wrap);
-		@include align-items(center);
-		width: $large-device-width - ($lateral-margin*2);
-		margin: 0 auto;
+  article {
+    @include flexbox();
+    @include flex-wrap(wrap);
+    @include align-items(center);
+    width: $large-device-width - ($lateral-margin * 2);
+    margin: 0 auto;
 
-		:global(#book-image) {
-			$book-image-width: 260px; // This value must be kept in accordance with the crop value appended to the image base-url (Book page).
-			@include flex(0 0 $book-image-width);
+    :global(#book-image) {
+      $book-image-width: 260px; // This value must be kept in accordance with the crop value appended to the image base-url (Book page).
+      @include flex(0 0 $book-image-width);
 
-			:global(.humana_indica) {
-				$label-height: 25px;
-				@include border-radius(6px);
-				@include button-text-shadow;
-				font-size: $typo-small-size;
-				line-height: $label-height;
-				background-color: red;
-				margin: -$label-height/2 65px 0 65px;
-				height: $label-height;
-				width: 130px;
-				text-align: center;
-				color: white;
-				font-weight: bold;
-				position: absolute;
-				z-index: 10;
-			}
+      :global(.humana_indica) {
+        $label-height: 25px;
+        @include border-radius(6px);
+        @include button-text-shadow;
+        font-size: $typo-small-size;
+        line-height: $label-height;
+        background-color: red;
+        margin: -$label-height/2 65px 0 65px;
+        height: $label-height;
+        width: 130px;
+        text-align: center;
+        color: white;
+        font-weight: bold;
+        position: absolute;
+        z-index: 10;
+      }
 
-			:global(.pre_venda) {
-				$label-height: 25px;
-				@include border-radius(6px);
-				@include button-text-shadow;
-				font-size: $typo-small-size;
-				line-height: $label-height;
-				background-color: rgb(13, 133, 11);
-				margin: -$label-height/2 65px 0 65px;
-				height: $label-height;
-				width: 130px;
-				text-align: center;
-				color: white;
-				font-weight: bold;
-				position: absolute;
-				z-index: 10;
-			}
+      :global(.pre_venda) {
+        $label-height: 25px;
+        @include border-radius(6px);
+        @include button-text-shadow;
+        font-size: $typo-small-size;
+        line-height: $label-height;
+        background-color: rgb(13, 133, 11);
+        margin: -$label-height/2 65px 0 65px;
+        height: $label-height;
+        width: 130px;
+        text-align: center;
+        color: white;
+        font-weight: bold;
+        position: absolute;
+        z-index: 10;
+      }
 
-			// Trick to use next/image: https://dev.to/tanahmed/next-image-make-image-fill-available-space-272o
-			position: relative;
-			width: 100%;
-			max-width: $book-image-width;
-			> span {
-	  		position: unset !important;
-				max-width: 260px;
-				:global(.custom-img) {
-				  width: 100% !important;
-				  position: relative !important;
-				  height: unset !important;
-				}
-			}
-		}
+      // Trick to use next/image: https://dev.to/tanahmed/next-image-make-image-fill-available-space-272o
+      position: relative;
+      width: 100%;
+      max-width: $book-image-width;
+      > span {
+        position: unset !important;
+        max-width: 260px;
+        :global(.custom-img) {
+          width: 100% !important;
+          position: relative !important;
+          height: unset !important;
+        }
+      }
+    }
 
-	  :global(#book-info) {
-			@include flex(1);
-			margin: 0 50px 0 30px;
-			header {
-				padding-bottom: 20px;
-				h1 {
-					font-weight: bold;
-				}
-			}
-			:global(.info-item) {
-				font-size: $typo-small-size;
-				line-height: $line-height-small-size;
-				padding-bottom: 8px;
-				:global(.title) {
-					font-weight: bold;
-				}
-			}
-		}
+    :global(#book-info) {
+      @include flex(1);
+      margin: 0 50px 0 30px;
+      header {
+        padding-bottom: 20px;
+        h1 {
+          font-weight: bold;
+        }
+      }
+      :global(.info-item) {
+        font-size: $typo-small-size;
+        line-height: $line-height-small-size;
+        padding-bottom: 8px;
+        :global(.title) {
+          font-weight: bold;
+        }
+      }
+    }
 
-		:global(#book-price-and-button) {
-			@include flex(0 0 220px);
-			padding-left: 50px;
-			border-left: 2px solid $gray-typo;
-			:global(.original_price) {
-				color: lighten(black,65%);
-				text-decoration: line-through;
-			}
-			:global(.price) {
-				font-size: $typo-large-size;
-				line-height: $line-height-large-size;
-				font-weight: bold;
-				padding-bottom: 10px;
-			}
-			:global(button.snipcart-add-item),
-			:global(.unavailable) {
-				@include generic-button;
-			}
-			:global(button.snipcart-add-item) {
-				@include buy-button;
-				@include buy-button-hover;
-			}
-			:global(.unavailable) {
-				@include unavailable-button;
-			}
-		}
+    :global(#book-price-and-button) {
+      @include flex(0 0 220px);
+      padding-left: 50px;
+      border-left: 2px solid $gray-typo;
+      :global(.original_price) {
+        color: lighten(black, 65%);
+        text-decoration: line-through;
+      }
+      :global(.price) {
+        font-size: $typo-large-size;
+        line-height: $line-height-large-size;
+        font-weight: bold;
+        padding-bottom: 10px;
+      }
+      :global(button.snipcart-add-item),
+      :global(.unavailable) {
+        @include generic-button;
+      }
+      :global(button.snipcart-add-item) {
+        @include buy-button;
+        @include buy-button-hover;
+      }
+      :global(.unavailable) {
+        @include unavailable-button;
+      }
+    }
 
-		:global(#book-unavailable),
-		:global(#book-description) {
-			@include flex(1 0 100%);
-		}
-		
-		:global(#book-unavailable) {
-			@include border-radius(8px);
-			margin-top: 30px;
-			background-color: #fc6a67;
-			color: white;
-			padding: 10px 15px;
-			font-weight: bold;
-		}
+    :global(#book-unavailable),
+    :global(#book-description) {
+      @include flex(1 0 100%);
+    }
 
-		:global(#book-description) {
-			margin-top: 25px;
-			h1 {
-				padding-bottom: 15px;
-			}
-		}
-		
-		$button-height: 30px;
-		:global(#previous-page) {
-			margin-top: 20px;
-			:global(#previous-page-button) {
-				@include flexbox();
-				float: right;
-				text-decoration: none;
-				color: white;
-				cursor: pointer;
-				&:global(.inactive) {
-					display: none;
-				}
-				:global(.text) {
-					@include border-radius(0 4px 4px 0);
-					@include button-text-shadow;
-					padding: 0 10px 0 5px;
-					min-height: $button-height;
-					background-color: $orange-button;
-					@include transition(background-color 0.2s linear);
-					font-weight: bold;
-					font-size: $typo-small-size;
-				}	
-				:global(.arrow-left) {
-				  width: 0; 
-				  height: 0;
-				  border-top: ($button-height/2) solid transparent;
-				  border-bottom: ($button-height/2) solid transparent; 
-				  border-right: ($button-height/2) solid $orange-button; 
-					@include transition(border-right 0.2s linear);
-				}
-			}
-			&:hover {
-				:global(#previous-page-button) {
-					:global(.text) {
-			    	background-color: $orange-button-hover;
-					}
-					:global(.arrow-left) {
-						border-right: ($button-height/2) solid $orange-button-hover;
-					}
-				}
-		  }
-		}			
-	}
-	
-	// Responsiveness rules:
-	@media screen and (max-width: $large-device-width) {
-		article {
-			width: $tablet-width - ($lateral-margin*2);
-		  :global(#book-info) {
-				margin: 0 0 0 30px;
-			}
-			:global(#book-price-and-button) {
-				@include flex(1 0 100%);
-				padding: 20px 0 0 0;
-				border-left: none;
-			}
-		}
-	}
-	@media screen and (max-width: $tablet-width) {
-		article {
-			width: 100%;
-			@include flex-direction(column);
-			:global(#book-image),
-		  :global(#book-info),
-			:global(#book-price-and-button) {
-				@include flex(1 0 100%);
-			}
-			:global(#book-info) {
-				margin: 30px 0 0 0;
-			}
-			:global(#book-price-and-button) {
-				@include flexbox();
-				@include flex-direction(column);
-				@include align-items(center);
-			}
-		}
-	}
+    :global(#book-unavailable) {
+      @include border-radius(8px);
+      margin-top: 30px;
+      background-color: #fc6a67;
+      color: white;
+      padding: 10px 15px;
+      font-weight: bold;
+    }
 
+    :global(#book-description) {
+      margin-top: 25px;
+      h1 {
+        padding-bottom: 15px;
+      }
+    }
+
+    $button-height: 30px;
+    :global(#previous-page) {
+      margin-top: 20px;
+      :global(#previous-page-button) {
+        @include flexbox();
+        float: right;
+        text-decoration: none;
+        color: white;
+        cursor: pointer;
+        &:global(.inactive) {
+          display: none;
+        }
+        :global(.text) {
+          @include border-radius(0 4px 4px 0);
+          @include button-text-shadow;
+          padding: 0 10px 0 5px;
+          min-height: $button-height;
+          background-color: $orange-button;
+          @include transition(background-color 0.2s linear);
+          font-weight: bold;
+          font-size: $typo-small-size;
+        }
+        :global(.arrow-left) {
+          width: 0;
+          height: 0;
+          border-top: ($button-height/2) solid transparent;
+          border-bottom: ($button-height/2) solid transparent;
+          border-right: ($button-height/2) solid $orange-button;
+          @include transition(border-right 0.2s linear);
+        }
+      }
+      &:hover {
+        :global(#previous-page-button) {
+          :global(.text) {
+            background-color: $orange-button-hover;
+          }
+          :global(.arrow-left) {
+            border-right: ($button-height/2) solid $orange-button-hover;
+          }
+        }
+      }
+    }
+  }
+
+  // Responsiveness rules:
+  @media screen and (max-width: $large-device-width) {
+    article {
+      width: $tablet-width - ($lateral-margin * 2);
+      :global(#book-info) {
+        margin: 0 0 0 30px;
+      }
+      :global(#book-price-and-button) {
+        @include flex(1 0 100%);
+        padding: 20px 0 0 0;
+        border-left: none;
+      }
+    }
+  }
+  @media screen and (max-width: $tablet-width) {
+    article {
+      width: 100%;
+      @include flex-direction(column);
+      :global(#book-image),
+      :global(#book-info),
+      :global(#book-price-and-button) {
+        @include flex(1 0 100%);
+      }
+      :global(#book-info) {
+        margin: 30px 0 0 0;
+      }
+      :global(#book-price-and-button) {
+        @include flexbox();
+        @include flex-direction(column);
+        @include align-items(center);
+      }
+    }
+  }
 }
