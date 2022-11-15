@@ -65,50 +65,11 @@ export default function Index(props) {
   const [changingPage, setChangingPage] = useState(false);
   // - This state is just to help us re-render the component after removing filters (see explanation below in clickFilter function):
   const [removedFilter, forceUpdate] = useReducer((x) => x + 1, 0);
-  // - Search string state:
-  const [currentSearchString, setCurrentSearchString] = useState(
-    props.currentSearchString
-  );
 
   // Effects:
   // - See the explanation of why we use Effect Hook in the Masthead.js component.
   // - To have the useEffect hook called only when certain states or props are updated, we include them in the dependency array (the second argument passed to useEffect).
-  // - If we have a currentSearchString but the formSearchString is empty, we set the form with it, it means the user is opening the website with a search query string already in its URI (instead of submitting it via search form);
-  // - Our index will take care of fetching the data for the search, but we have to manually put this string in the form search after the first render, for layout consistency. We do this by calling a method that updates the formSearchString state with the currentSearchString:
-  useEffect(() => {
-    if (props.formSearchString !== props.currentSearchString) {
-      props.setFormSearchStringWithValue(props.currentSearchString);
-    }
-  }, []);
-  // - If we have a new search (the search button increments our searchCount prop), we have to clear the page state, filters states and order states and set formSearchString as the new currentSearchString state;
-  // - But we only clean these states if in fact they have values; this check also helps to avoid useless re-renders if the search comes from another page than the index:
-  useEffect(() => {
-    if (props.searchCount > 0) {
-      setCurrentSearchString(props.formSearchString);
-      if (props.formatsToFilterArray.length > 0) {
-        setFormatToFilter([]);
-      }
-      if (props.conditionsToFilterArray.length > 0) {
-        setConditionToFilter([]);
-      }
-      if (props.categoriesToFilterArray.length > 0) {
-        setCategoryToFilter([]);
-      }
-      if (props.subcategoriesToFilterArray.length > 0) {
-        setSubcategoryToFilter([]);
-      }
-      if (props.priceRangesToFilterArray.length > 0) {
-        setPriceRangeToFilter([]);
-      }
-      if (props.order !== bookPublicationYear.publicationYearDescId) {
-        setOrder(bookPublicationYear.publicationYearDescId);
-      }
-      if (props.page !== 1) {
-        setPage(1);
-      }
-    }
-  }, [props.searchCount]);
-  // - This effect checks if there are inconsistencies between the props and the states from where they were originated;
+  // - This first effect checks if there are inconsistencies between the props and the states from where they were originated;
   // - If there are, it probably means the user is navigating through the browser's history, going from instance of the index direct to another; the inconsistencies can happen because, when navigating to the same page in Next.js, the page's state will not be reset by default, as the top-level React component is the same (while the props change because they come from the router query);
   // - When we find an inconsistency, we update the state with the value found on the router query; this forces a re-render, which then forces  a re-route (in the effect below):
   useEffect(() => {
@@ -124,8 +85,7 @@ export default function Index(props) {
       JSON.stringify(priceRangesToFilter) !==
         JSON.stringify(props.priceRangesToFilterArray) ||
       order !== props.order ||
-      page !== props.page ||
-      currentSearchString !== props.currentSearchString
+      page !== props.page
     ) {
       router.query.category
         ? setCategoryToFilter(router.query.category.split(","))
@@ -146,13 +106,6 @@ export default function Index(props) {
         ? setOrder(router.query.order)
         : setOrder(bookPublicationYear.publicationYearDescId);
       router.query.page ? setPage(parseInt(router.query.page)) : setPage(1);
-      if (router.query.search) {
-        setCurrentSearchString(router.query.search);
-        props.setFormSearchStringWithValue(router.query.search);
-      } else {
-        setCurrentSearchString("");
-        props.setFormSearchStringWithValue("");
-      }
     }
   }, [
     props.categoriesToFilterArray,
@@ -162,7 +115,6 @@ export default function Index(props) {
     props.priceRangesToFilterArray,
     props.order,
     props.page,
-    props.currentSearchString,
   ]);
   // - After updating the filters or order or page states, we have to re-route the app:
   useEffect(() => {
@@ -177,7 +129,6 @@ export default function Index(props) {
       var subcategoriesQueryString = "";
       var priceRangesQueryString = "";
       var orderQueryString = "";
-      var searchQueryString = "";
       var pageQueryString = "";
       var isFirstQuery = true;
       if (formatsToFilter.length > 0) {
@@ -221,11 +172,6 @@ export default function Index(props) {
         orderQueryString = (isFirstQuery ? "?" : "&") + "order=" + order;
         isFirstQuery = false;
       }
-      if (currentSearchString !== "") {
-        searchQueryString =
-          (isFirstQuery ? "?" : "&") + "search=" + currentSearchString;
-        isFirstQuery = false;
-      }
       if (page > 1) {
         pageQueryString = (isFirstQuery ? "?" : "&") + "page=" + page;
       }
@@ -246,7 +192,6 @@ export default function Index(props) {
           subcategoriesQueryString +
           priceRangesQueryString +
           orderQueryString +
-          searchQueryString +
           pageQueryString,
         null,
         { scroll: scroll }
@@ -503,20 +448,7 @@ export default function Index(props) {
 
   // Create the showcase with the books and the pagination component, or an error message in case of no books:
   var showcase;
-  var showcaseTitle;
-  var HeadTitle;
-  if (currentSearchString) {
-    showcaseTitle = (
-      <h1>
-        Resultado da pesquisa pelo termo <strong>{currentSearchString}</strong>:
-      </h1>
-    );
-    HeadTitle = (
-      <title>Livros com &#34;{currentSearchString}&#34; | Humana</title>
-    );
-  } else {
-    HeadTitle = <title>Livros | Humana</title>;
-  }
+  var HeadTitle = <title>Livros | Humana</title>;
   if (props.books) {
     showcase = (
       <>
@@ -600,10 +532,7 @@ export default function Index(props) {
           filterCount={filterCount}
         />
 
-        <main id="showcase">
-          {showcaseTitle ? showcaseTitle : ""}
-          {showcase}
-        </main>
+        <main id="showcase">{showcase}</main>
       </div>
     </>
   );
@@ -611,9 +540,6 @@ export default function Index(props) {
 
 // This gets called on every request, to provide the data:
 export async function getServerSideProps(context) {
-  // The requested search string (if none, then it's empty):
-  var currentSearchString = context.query.search ? context.query.search : "";
-
   // The requested page (if none, then it's the first one):
   var page = context.query.page ? parseInt(context.query.page) : 1;
 
@@ -704,8 +630,7 @@ export async function getServerSideProps(context) {
     categoriesToFilterArray,
     subcategoriesToFilterArray,
     priceRangesToFilterArray,
-    order,
-    currentSearchString
+    order
   );
 
   return {
@@ -722,7 +647,6 @@ export async function getServerSideProps(context) {
       subcategoriesToFilterArray,
       priceRangesToFilterArray,
       order,
-      currentSearchString,
     },
   };
 }

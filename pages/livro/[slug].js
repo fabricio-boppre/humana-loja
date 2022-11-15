@@ -14,11 +14,6 @@ export default function Book(props) {
 
   // Effects:
   // - See the explanation of why we use Effect Hook in the Masthead.js component;
-  // - We clean our search states, because we are in a new page.
-  useEffect(() => {
-    props.setFormSearchStringWithValue("");
-    props.zeroSearchCount();
-  }, []);
   // - Visual effect on the book while route is on its way:
   // - See the explanation of this Effect Hook in the index.js page.
   useEffect(() => {

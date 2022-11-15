@@ -13,31 +13,14 @@ import "../styles/globals.css"; // And then apply our globals.
 // - pageProps is an object with the initial props that were preloaded for your page by one of our data fetching methods, otherwise it's an empty object.
 export default class Humana extends App {
   // States:
-  // - formSearchString is the content of the search form;
-  // - searchCount helps us re-render the component, when the search button is clicked;
   // - homeClicked helps us to avoid a useless index re-render after a click on the logo, in some circumstances.
-  state = { formSearchString: "", searchCount: 0, homeClicked: false };
+  state = { homeClicked: false };
 
-  // Methods:
+  // Methods that update our homeClicked:
   // - Arrow functions make .bind method calls in the constructor unnecessary;
   // - (Because they lexically bind their context so this actually refers to the originating context; that’s called Lexical Scoping.)
   // - https://www.taniarascia.com/es6-syntax-and-feature-overview/#arrow-functions
   // - https://medium.com/@nikolalsvk/loosing-bind-this-in-react-8637ebf372cf
-  // - Methods that set a new search string on the form (via user typing or via user opening an URI with a search query string in it):
-  setFormSearchString = (e) => {
-    this.setState({ formSearchString: e.target.value });
-  };
-  setFormSearchStringWithValue = (value) => {
-    this.setState({ formSearchString: value });
-  };
-  // - Methods that update our searchCount, which triggers a new search:
-  handleSearchButton = () => {
-    this.setState({ searchCount: this.state.searchCount + 1 });
-  };
-  zeroSearchCount = () => {
-    this.setState({ searchCount: 0 });
-  };
-  // - Methods that update our homeClicked:
   setHomeClicked = () => {
     this.setState({ homeClicked: true });
   };
@@ -66,13 +49,7 @@ export default class Humana extends App {
 
         <div id="principal">
           <div id="principal-nucleus">
-            <SearchForm
-              formSearchString={this.state.formSearchString}
-              setFormSearchString={this.setFormSearchString}
-              setFormSearchStringWithValue={this.setFormSearchStringWithValue}
-              handleSearchButton={this.handleSearchButton}
-              searchCount={this.state.searchCount}
-            />
+            <SearchForm />
 
             <AccountButton />
 
@@ -80,10 +57,6 @@ export default class Humana extends App {
 
             <Component
               {...pageProps}
-              formSearchString={this.state.formSearchString}
-              setFormSearchStringWithValue={this.setFormSearchStringWithValue}
-              zeroSearchCount={this.zeroSearchCount}
-              searchCount={this.state.searchCount}
               homeClicked={this.state.homeClicked}
               finishHomeClicked={this.unsetHomeClicked}
             />
