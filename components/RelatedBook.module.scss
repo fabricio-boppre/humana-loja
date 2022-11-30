@@ -1,0 +1,110 @@
+/* ---------------------------------------------
+	MIXINS, VARIABLES & EXTENDS
+  ---------------------------------------------- */
+
+@import "../styles/assets";
+
+/* ------------------------------------------------------------------------------
+	RELATED BOOK:
+	- Books as seen in the related books;
+	- ":global" wrapped around IDs prevents them from being changed by CSS Modules.
+  ------------------------------------------------------------------------------- */
+
+li.related_book {
+  @include flex-basis(
+    180px
+  ); // This value must be kept in accordance with the crop value appended to the image base-url (RelatedBook component).
+  @include box-shadow(1px 1px 2px gray);
+  margin: 0 80px 40px 0;
+  background-color: white;
+
+  :global(.humana_indica) {
+    $label-height: 25px;
+    @include border-radius(5px);
+    @include button-text-shadow;
+    font-size: $typo-small-size;
+    line-height: $label-height;
+    background-color: red;
+    margin: -$label-height/2 25px 0 25px;
+    height: $label-height;
+    width: 130px;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    position: absolute;
+    z-index: 2;
+  }
+
+  :global(.pre_venda) {
+    $label-height: 25px;
+    @include border-radius(5px);
+    @include button-text-shadow;
+    font-size: $typo-small-size;
+    line-height: $label-height;
+    background-color: rgb(13, 133, 11);
+    margin: -$label-height/2 25px 0 25px;
+    height: $label-height;
+    width: 130px;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    position: absolute;
+    z-index: 2;
+  }
+
+  :global(.related_book_image) {
+    // Trick to use next/image: https://dev.to/tanahmed/next-image-make-image-fill-available-space-272o
+    position: relative;
+    width: 100%;
+    > span {
+      position: unset !important;
+      :global(.custom-img) {
+        width: 100% !important;
+        position: relative !important;
+        height: unset !important;
+      }
+    }
+  }
+
+  :global(.related_book_text) {
+    text-align: center;
+    padding: 0 10px 12px 10px;
+    font-size: $typo-small-size;
+    line-height: $line-height-small-size;
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+    :global(.related-book-text-format-ebook),
+    :global(.related-book-text-format-livro),
+    :global(.related_book_text_title),
+    :global(.related_book_text_author) {
+      margin-bottom: 10px;
+    }
+    :global(.related-book-text-format-ebook),
+    :global(.related-book-text-format-livro) {
+      @include border-radius(0 0 8px 8px);
+      color: white;
+      display: inline-block;
+      padding: 1px 8px;
+    }
+    :global(.related-book-text-format-livro),
+    :global(.related-book-text-format-ebook) {
+      font-weight: bold;
+    }
+    :global(.related-book-text-format-livro) {
+      background-color: #ebd697;
+    }
+    :global(.related-book-text-format-ebook) {
+      background-color: #b5cceb;
+    }
+    :global(.related_book_text_title) {
+      font-weight: bold;
+    }
+  }
+
+  // Responsiveness rules:
+  @media screen and (max-width: $large-device-width) {
+    margin: 0 30px 40px 30px;
+  }
+}

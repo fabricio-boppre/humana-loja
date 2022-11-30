@@ -129,8 +129,19 @@
     }
 
     :global(#book-unavailable),
-    :global(#book-description) {
+    :global(#book-description),
+    :global(#book-related) {
       @include flex(1 0 100%);
+    }
+
+    :global(#book-related) {
+      :global(ul#related-books-list) {
+        padding-top: 10px;
+        @include flexbox();
+        @include flex-wrap(wrap);
+        @include justify-content(flex-start);
+        @include align-items(flex-start);
+      }
     }
 
     :global(#book-unavailable) {
@@ -142,7 +153,8 @@
       font-weight: bold;
     }
 
-    :global(#book-description) {
+    :global(#book-description),
+    :global(#book-related) {
       margin-top: 25px;
       h1 {
         padding-bottom: 15px;
@@ -204,6 +216,12 @@
         @include flex(1 0 100%);
         padding: 20px 0 0 0;
         border-left: none;
+      }
+      :global(#book-related) {
+        :global(ul#related-books-list) {
+          @include justify-content(space-around);
+          -webkit-justify-content: space-evenly !important;
+        }
       }
     }
   }

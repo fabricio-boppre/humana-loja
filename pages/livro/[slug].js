@@ -5,9 +5,12 @@ import { useEffect } from "react";
 import { useRouter } from "next/router";
 import { priceFormat } from "../../lib/utils";
 import { getBooksSlugs, getABook } from "../../lib/books";
+import RelatedBook from "../../components/RelatedBook";
 import styles from "../../styles/Book.module.css";
 
 export default function Book(props) {
+  // console.log(props.book.related_books);
+
   // Router:
   // - See the explanation of why we use Router Hook in the index.js page.
   const router = useRouter();
@@ -169,6 +172,23 @@ export default function Book(props) {
   var md = require("markdown-it")();
   var formattedDescription = md.render(props.book.description);
 
+  // Prepare the related books:
+  var related_books;
+  if (props.book.related_books && props.book.related_books.length > 0) {
+    related_books = (
+      <section id="book-related">
+        <header>
+          <h1>livros que complementam sua leitura</h1>
+        </header>
+        <ul id="related-books-list">
+          {props.book.related_books.map((book, key) => (
+            <RelatedBook book={book} key={book.id} />
+          ))}
+        </ul>
+      </section>
+    );
+  }
+
   // Preparing the data to put on <Head> title and description, to be used for search engines & SEO:
   const headAuthors = props.book.authors
     .map((author) => author.name)
@@ -297,6 +317,8 @@ export default function Book(props) {
               dangerouslySetInnerHTML={{ __html: formattedDescription }}
             ></div>
           </section>
+
+          {related_books}
 
           <div id="previous-page">
             <div id="previous-page-button" onClick={() => router.back()}>
