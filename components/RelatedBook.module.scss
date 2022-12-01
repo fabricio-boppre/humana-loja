@@ -25,7 +25,7 @@ li.related_book {
     font-size: $typo-small-size;
     line-height: $label-height;
     background-color: red;
-    margin: -$label-height/2 25px 0 25px;
+    margin: calc(-#{$label-height} / 2) 25px 0 25px;
     height: $label-height;
     width: 130px;
     text-align: center;
@@ -42,7 +42,7 @@ li.related_book {
     font-size: $typo-small-size;
     line-height: $label-height;
     background-color: rgb(13, 133, 11);
-    margin: -$label-height/2 25px 0 25px;
+    margin: calc(-#{$label-height} / 2) 25px 0 25px;
     height: $label-height;
     width: 130px;
     text-align: center;

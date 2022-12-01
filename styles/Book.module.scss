@@ -40,7 +40,7 @@
         font-size: $typo-small-size;
         line-height: $label-height;
         background-color: red;
-        margin: -$label-height/2 65px 0 65px;
+        margin: calc(-#{$label-height} / 2) 65px 0 65px;
         height: $label-height;
         width: 130px;
         text-align: center;
@@ -57,7 +57,7 @@
         font-size: $typo-small-size;
         line-height: $label-height;
         background-color: rgb(13, 133, 11);
-        margin: -$label-height/2 65px 0 65px;
+        margin: calc(-#{$label-height} / 2) 65px 0 65px;
         height: $label-height;
         width: 130px;
         text-align: center;
@@ -186,9 +186,9 @@
         :global(.arrow-left) {
           width: 0;
           height: 0;
-          border-top: ($button-height/2) solid transparent;
-          border-bottom: ($button-height/2) solid transparent;
-          border-right: ($button-height/2) solid $orange-button;
+          border-top: calc(#{$button-height} / 2) solid transparent;
+          border-bottom: calc(#{$button-height} / 2) solid transparent;
+          border-right: calc(#{$button-height} / 2) solid $orange-button;
           @include transition(border-right 0.2s linear);
         }
       }
@@ -198,7 +198,7 @@
             background-color: $orange-button-hover;
           }
           :global(.arrow-left) {
-            border-right: ($button-height/2) solid $orange-button-hover;
+            border-right: calc(#{$button-height} / 2) solid $orange-button-hover;
           }
         }
       }
