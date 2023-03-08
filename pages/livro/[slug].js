@@ -9,10 +9,7 @@ import RelatedBook from "../../components/RelatedBook";
 import styles from "../../styles/Book.module.css";
 
 export default function Book(props) {
-  // console.log(props.book.related_books);
-
   // Router:
-  // - See the explanation of why we use Router Hook in the index.js page.
   const router = useRouter();
 
   // Effects:
