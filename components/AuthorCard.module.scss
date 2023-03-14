@@ -1,0 +1,55 @@
+/* ---------------------------------------------
+	MIXINS, VARIABLES & EXTENDS
+  ---------------------------------------------- */
+
+@import "../styles/assets";
+
+/* ------------------------------------------------------------------------------
+	RELATED BOOK:
+	- Books as seen in the related books;
+	- ":global" wrapped around IDs prevents them from being changed by CSS Modules.
+  ------------------------------------------------------------------------------- */
+
+li.author {
+  @include flex-basis(
+    180px
+  ); // This value must be kept in accordance with the crop value appended to the image base-url (AuthorCard component).
+  @include box-shadow(1px 1px 2px gray);
+  margin: 0 80px 40px 0;
+  background-color: white;
+  a {
+    text-decoration: none;
+    color: inherit;
+    :global(.author_image) {
+      // Trick to use next/image: https://dev.to/tanahmed/next-image-make-image-fill-available-space-272o
+      position: relative;
+      width: 100%;
+  
+      >span {
+        position: unset !important;
+  
+        :global(.custom-img) {
+          width: 100% !important;
+          position: relative !important;
+          height: unset !important;
+        }
+      }
+    }
+  
+    :global(.author_text) {
+      text-align: center;
+      padding: 0 10px 12px 10px;
+      font-size: $typo-small-size;
+      line-height: $line-height-small-size;
+  
+      :global(.author_text_name) {
+        margin-top: 10px;
+        font-weight: bold;
+      }
+    }
+  }
+  // Responsiveness rules:
+  @media screen and (max-width: $large-device-width) {
+    margin: 0 30px 40px 30px;
+  }
+}

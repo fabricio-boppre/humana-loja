@@ -1,0 +1,199 @@
+/* ---------------------------------------------
+	MIXINS, VARIABLES & EXTENDS
+  ---------------------------------------------- */
+
+@import "assets";
+
+/* ---------------------------------------------
+	AUTHOR:
+	- ":global" wrapped around IDs prevents them from being changed by CSS Modules.
+  ---------------------------------------------- */
+
+#author {
+  opacity: 1;
+  :global(#inexistent-author),
+  :global(#loading-author) {
+    text-align: center;
+  }
+  &:global(.loading) {
+    > * {
+      transition: opacity 0.05s linear;
+      opacity: 0.3;
+    }
+  }
+
+  article {
+    @include flexbox();
+    @include flex-wrap(wrap);
+    @include align-items(center);
+    width: $large-device-width - ($lateral-margin * 2);
+    margin: 0 auto;
+
+    :global(#author-image) {
+      $author-image-width: 260px; // This value must be kept in accordance with the crop value appended to the image base-url (Author page).
+      @include flex(0 0 $author-image-width);
+      margin-right: 30px;
+
+      // Trick to use next/image: https://dev.to/tanahmed/next-image-make-image-fill-available-space-272o
+      position: relative;
+      width: 100%;
+      max-width: $author-image-width;
+      > span {
+        position: unset !important;
+        max-width: 260px;
+        :global(.custom-img) {
+          width: 100% !important;
+          position: relative !important;
+          height: unset !important;
+        }
+      }
+    }
+
+    :global(#author-info) {
+      @include flex(1);
+      margin: 0 50px 0 0;
+      header {
+        padding-bottom: 20px;
+        h1 {
+          font-weight: bold;
+        }
+      }
+      :global(.info-item) {
+        padding-bottom: 8px;
+        :global(.title) {
+          font-weight: bold;
+        }
+      }
+    }
+
+    :global(#author-unavailable),
+    :global(#author-no-books),
+    :global(#author-description),
+    :global(#author-related-books),
+    :global(#author-related-authors) {
+      @include flex(1 0 100%);
+    }
+
+    :global(#author-related-books) {
+      :global(ul#related-books-list) {
+        padding-top: 10px;
+        @include flexbox();
+        @include flex-wrap(wrap);
+        @include justify-content(flex-start);
+        @include align-items(flex-start);
+      }
+    }
+
+    :global(#author-related-authors) {
+      :global(ul#related-authors-list) {
+        padding-top: 10px;
+        @include flexbox();
+        @include flex-wrap(wrap);
+        @include justify-content(flex-start);
+        @include align-items(flex-start);
+      }
+    }
+
+    :global(#author-unavailable) {
+      @include border-radius(8px);
+      margin-top: 30px;
+      background-color: #fc6a67;
+      color: white;
+      padding: 10px 15px;
+      font-weight: bold;
+    }
+
+    :global(#author-description),
+    :global(#author-no-books),
+    :global(#author-related-books) {
+      margin-top: 25px;
+    }
+
+    :global(#author-description),
+    :global(#author-no-books),
+    :global(#author-related-books),
+    :global(#author-related-authors) {
+      h1 {
+        padding-bottom: 15px;
+      }
+    }
+
+    $button-height: 30px;
+    :global(#previous-page) {
+      margin-top: 20px;
+      :global(#previous-page-button) {
+        @include flexbox();
+        float: right;
+        text-decoration: none;
+        color: white;
+        cursor: pointer;
+        &:global(.inactive) {
+          display: none;
+        }
+        :global(.text) {
+          @include border-radius(0 4px 4px 0);
+          @include button-text-shadow;
+          padding: 0 10px 0 5px;
+          min-height: $button-height;
+          background-color: $orange-button;
+          @include transition(background-color 0.2s linear);
+          font-weight: bold;
+          font-size: $typo-small-size;
+        }
+        :global(.arrow-left) {
+          width: 0;
+          height: 0;
+          border-top: calc(#{$button-height} / 2) solid transparent;
+          border-bottom: calc(#{$button-height} / 2) solid transparent;
+          border-right: calc(#{$button-height} / 2) solid $orange-button;
+          @include transition(border-right 0.2s linear);
+        }
+      }
+      &:hover {
+        :global(#previous-page-button) {
+          :global(.text) {
+            background-color: $orange-button-hover;
+          }
+          :global(.arrow-left) {
+            border-right: calc(#{$button-height} / 2) solid $orange-button-hover;
+          }
+        }
+      }
+    }
+  }
+
+  // Responsiveness rules:
+  @media screen and (max-width: $large-device-width) {
+    article {
+      width: $tablet-width - ($lateral-margin * 2);
+      :global(#author-related-books) {
+        :global(ul#related-books-list) {
+          @include justify-content(space-around);
+          -webkit-justify-content: space-evenly !important;
+        }
+      }
+      :global(#author-related-authors) {
+        :global(ul#related-authors-list) {
+          @include justify-content(space-around);
+          -webkit-justify-content: space-evenly !important;
+        }
+      }    
+    }
+  }
+  @media screen and (max-width: $tablet-width) {
+    article {
+      width: 100%;
+      @include flex-direction(column);
+      :global(#author-image),
+      :global(#author-info) {
+        @include flex(1 0 100%);
+      }
+      :global(#author-image) {
+        margin-right: 0;        
+      }
+      :global(#author-info) {
+        margin: 30px 0 0 0;
+      }
+    }
+  }
+}

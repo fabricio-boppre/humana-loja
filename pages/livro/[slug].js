@@ -234,7 +234,18 @@ export default function Book(props) {
               <h1>{props.book.title}</h1>
               <div id="author">
                 {props.book.authors
-                  .map((author, key) => <span key={key}>{author.name}</span>)
+                  .map(function (author, key) {
+                    if (author.slug !== null) {
+                      return (
+                        <span key={key}>
+                          <Link key={key} href={`/autor/${author.slug}`}>
+                            {author.name}
+                          </Link>
+                        </span>
+                      );
+                    }
+                    return <span key={key}>{author.name}</span>;
+                  })
                   .reduce((prev, curr) => [prev, ", ", curr])}
               </div>
             </header>

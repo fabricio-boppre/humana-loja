@@ -72,7 +72,6 @@ li.related_book {
     font-size: $typo-small-size;
     line-height: $line-height-small-size;
     a {
-      text-decoration: none;
       color: inherit;
     }
     :global(.related-book-text-format-ebook),
