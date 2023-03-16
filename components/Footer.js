@@ -127,8 +127,8 @@ export default function Footer() {
           </section>
           <section>
             <h1>Horário:</h1>
-            <p>Segunda a sexta-feira, das 8h30 às 18h30</p>
-            <p>Sábados, das 9h às 12h</p>
+            <p>Segunda a sexta-feira, das 9h às 19h</p>
+            <p>Sábados, das 9h às 17h</p>
           </section>
         </div>
 
