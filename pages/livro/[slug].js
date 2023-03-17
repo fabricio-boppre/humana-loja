@@ -12,8 +12,6 @@ export default function Book(props) {
   // Router:
   const router = useRouter();
 
-  console.log(props.book.related_books[1]);
-
   // Effects:
   // - See the explanation of why we use Effect Hook in the Masthead.js component;
   // - Visual effect on the book while route is on its way:
