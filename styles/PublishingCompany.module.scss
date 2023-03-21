@@ -1,0 +1,92 @@
+/* ---------------------------------------------
+	MIXINS, VARIABLES & EXTENDS
+  ---------------------------------------------- */
+
+@import "assets";
+
+/* ---------------------------------------------
+  Publishing company:
+	- ":global" wrapped around IDs prevents them from being changed by CSS Modules.
+  ---------------------------------------------- */
+
+#publishing_company {
+  opacity: 1;
+  :global(#inexistent_publishing_company),
+  :global(#loading_publishing_company) {
+    text-align: center;
+  }
+  &:global(.loading) {
+    > * {
+      transition: opacity 0.05s linear;
+      opacity: 0.3;
+    }
+  }
+
+  article {
+    @include flexbox();
+    @include flex-wrap(wrap);
+    @include align-items(center);
+    width: $large-device-width - ($lateral-margin * 2);
+    margin: 0 auto;
+
+    :global(#publishing_company_info) {
+      @include flex(1);
+      header {
+        h1 {
+          font-weight: bold;
+        }
+      }
+      :global(.info-item) {
+        padding: 25px 0 0 0;
+        :global(.title) {
+          font-weight: bold;
+        }
+      }
+    }
+    :global(#publishing_company_no_books) {
+      padding: 25px 0 0 0;
+    }
+    :global(#publishing_company_no_books),
+    :global(#publishing_company_description),
+    :global(#publishing_company_related_books) {
+      @include flex(1 0 100%);
+      h1 {
+        padding-bottom: 15px;
+      }
+    }
+
+    :global(#publishing_company_related_books) {
+      margin-top: 30px;
+      :global(ul#related-books-list) {
+        padding-top: 10px;
+        @include flexbox();
+        @include flex-wrap(wrap);
+        @include justify-content(flex-start);
+        @include align-items(flex-start);
+      }
+    }
+
+  }
+
+  // Responsiveness rules:
+  @media screen and (max-width: $large-device-width) {
+    article {
+      width: $tablet-width - ($lateral-margin * 2);
+      :global(#publishing_company_related_books) {
+        :global(ul#related-books-list) {
+          @include justify-content(space-around);
+          -webkit-justify-content: space-evenly !important;
+        }
+      }
+    }
+  }
+  @media screen and (max-width: $tablet-width) {
+    article {
+      width: 100%;
+      @include flex-direction(column);
+      :global(#publishing_company_info) {
+        @include flex(1 0 100%);
+      }
+    }
+  }
+}
