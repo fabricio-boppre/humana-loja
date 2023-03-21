@@ -3,7 +3,6 @@ import Head from "next/head";
 import Link from "next/link";
 import { useEffect } from "react";
 import { useRouter } from "next/router";
-import { priceFormat } from "../../lib/utils";
 import { getAuthorsSlugs, getAnAuthor } from "../../lib/people";
 import RelatedBook from "../../components/RelatedBook";
 import AuthorCard from "../../components/AuthorCard";
