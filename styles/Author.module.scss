@@ -51,24 +51,17 @@
 
     :global(#author-info) {
       @include flex(1);
-      margin: 0 50px 0 0;
       header {
-        padding-bottom: 20px;
         h1 {
           font-weight: bold;
         }
       }
       :global(.info-item) {
-        padding-bottom: 8px;
-        :global(.title) {
-          font-weight: bold;
-        }
+        padding: 25px 0 0 0;
       }
     }
 
-    :global(#author-unavailable),
     :global(#author-no-books),
-    :global(#author-description),
     :global(#author-related-books),
     :global(#author-related-authors) {
       @include flex(1 0 100%);
@@ -94,70 +87,20 @@
       }
     }
 
-    :global(#author-unavailable) {
-      @include border-radius(8px);
-      margin-top: 30px;
-      background-color: #fc6a67;
-      color: white;
-      padding: 10px 15px;
-      font-weight: bold;
-    }
-
-    :global(#author-description),
     :global(#author-no-books),
     :global(#author-related-books) {
       margin-top: 25px;
     }
 
-    :global(#author-description),
+    :global(#author-no-books) {
+      margin-bottom: 25px;
+    }
+
     :global(#author-no-books),
     :global(#author-related-books),
     :global(#author-related-authors) {
       h1 {
         padding-bottom: 15px;
-      }
-    }
-
-    $button-height: 30px;
-    :global(#previous-page) {
-      margin-top: 20px;
-      :global(#previous-page-button) {
-        @include flexbox();
-        float: right;
-        text-decoration: none;
-        color: white;
-        cursor: pointer;
-        &:global(.inactive) {
-          display: none;
-        }
-        :global(.text) {
-          @include border-radius(0 4px 4px 0);
-          @include button-text-shadow;
-          padding: 0 10px 0 5px;
-          min-height: $button-height;
-          background-color: $orange-button;
-          @include transition(background-color 0.2s linear);
-          font-weight: bold;
-          font-size: $typo-small-size;
-        }
-        :global(.arrow-left) {
-          width: 0;
-          height: 0;
-          border-top: calc(#{$button-height} / 2) solid transparent;
-          border-bottom: calc(#{$button-height} / 2) solid transparent;
-          border-right: calc(#{$button-height} / 2) solid $orange-button;
-          @include transition(border-right 0.2s linear);
-        }
-      }
-      &:hover {
-        :global(#previous-page-button) {
-          :global(.text) {
-            background-color: $orange-button-hover;
-          }
-          :global(.arrow-left) {
-            border-right: calc(#{$button-height} / 2) solid $orange-button-hover;
-          }
-        }
       }
     }
   }
@@ -191,9 +134,6 @@
       :global(#author-image) {
         margin-right: 0;
         margin-bottom: 30px;        
-      }
-      :global(#author-info) {
-        margin: 0;
       }
     }
   }
