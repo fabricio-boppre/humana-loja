@@ -264,7 +264,13 @@ export default function Book(props) {
             )}
             <div className="info-item">
               <span className="title">editora</span>{" "}
-              {props.book.publishing_company.name}
+              {props.book.publishing_company.slug ? (
+                <Link href={`/editora/${props.book.publishing_company.slug}`}>
+                  {props.book.publishing_company.name}
+                </Link>
+              ) : (
+                props.book.publishing_company.name
+              )}
             </div>
             <div className="info-item">
               <span className="title">ano de publicação</span>{" "}

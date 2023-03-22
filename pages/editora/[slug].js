@@ -13,7 +13,6 @@ import styles from "../../styles/PublishingCompany.module.css";
 export default function PublishingCompany(props) {
   // Router:
   const router = useRouter();
-  // console.log(props);
 
   // Effects:
   // - See the explanation of why we use Effect Hook in the Masthead.js component;
