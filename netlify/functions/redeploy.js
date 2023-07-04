@@ -1,4 +1,5 @@
-const fetch = require("node-fetch");
+const fetch = (...args) =>
+  import("node-fetch").then(({ default: fetch }) => fetch(...args));
 
 exports.handler = async function (event, context) {
   if (event.queryStringParameters.secret === process.env.BUILD_HOOK_SECRET) {
