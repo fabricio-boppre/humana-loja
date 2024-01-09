@@ -44,7 +44,7 @@ export default class Humana extends App {
 
         <div id="opening-sale">
           A Humana oferece FRETE GRÁTIS (via Correios - Registro Módico) nas
-          compras acima de R$ 100,00
+          compras acima de R$ 150,00
         </div>
 
         <div id="principal">
