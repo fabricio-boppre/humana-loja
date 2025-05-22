@@ -57,6 +57,27 @@ body {
       line-height: $line-height-normal-size;
     }
 
+    #fixedWhatsAppIcon {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: fixed;
+      right: 30px;
+      bottom: 20px;
+      width: 60px;
+      height: 60px;
+      background-color: #54b460;
+      @include transition(background-color 0.3s linear);
+      text-align: center;
+      color: #fff;
+      border-radius: 50%;
+      font-size: 24px;
+      z-index: 9999;
+      &:hover {
+        background-color: #339933;
+      }
+    }
+
     #opening-sale {
       @include align-self(center);
       @include border-radius(0 0 12px 12px);
@@ -405,6 +426,7 @@ div.aa-Panel {
 .no-flexbox {
   div#__next {
     header,
+    #fixedWhatsAppIcon,
     #opening-sale,
     #principal,
     footer {

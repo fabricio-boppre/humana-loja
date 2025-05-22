@@ -16,7 +16,7 @@
     @include flexbox();
     @include justify-content(space-between);
     max-width: $principal-max-width;
-    padding: 50px $lateral-margin;
+    padding: 50px $lateral-margin 80px $lateral-margin;
     margin: 0 auto;
     font-size: $typo-small-size;
     line-height: $line-height-small-size;
@@ -62,6 +62,7 @@
   @media screen and (max-width: $tablet-width) {
     :global(#footer-nucleus) {
       @include flex-direction(column);
+      padding-bottom: 50px;
       section {
         padding-bottom: 25px;
       }
