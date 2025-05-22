@@ -31,39 +31,8 @@
       height: inherit;
       width: 320px; // Logo [large version] width.
     }
-
-    // Phone:
-    :global(#masthead-phone) {
-      height: inherit;
-      text-align: right;
-      a {
-        @include flexbox();
-        @include align-items(center);
-        color: inherit;
-        text-decoration: none;
-        height: inherit;
-        :global(#masthead-phone-text) {
-          padding-right: 10px;
-        }
-        :global(#masthead-phone-number) {
-          padding-left: 10px;
-          font-weight: bold;
-        }
-      }
-    }
   }
 
-  // Responsiveness rules:
-  @media screen and (max-width: $large-device-width) {
-    :global(#masthead-nucleus) {
-      // Phone:
-      :global(#masthead-phone) {
-        :global(#masthead-phone-text) {
-          display: none;
-        }
-      }
-    }
-  }
   @media screen and (max-width: $tablet-width) {
     :global(#masthead-nucleus) {
       // Logo:
@@ -82,11 +51,6 @@
       :global(#masthead-logotipo) {
         width: 100%;
         background-position: center;
-      }
-
-      // Phone:
-      :global(#masthead-phone) {
-        display: none;
       }
     }
   }

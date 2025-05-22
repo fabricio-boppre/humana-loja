@@ -161,24 +161,6 @@ export default function Masthead(props) {
             <span hidden>Humana</span>
           </a>
         </Link>
-
-        <div id="masthead-phone">
-          <a
-            href="https://api.whatsapp.com/send?phone=554933164566"
-            target="_blank"
-            rel="noreferrer"
-          >
-            <span id="masthead-phone-text">Quer conversar com o livreiro?</span>
-            <Image
-              src="/img/layout/servico-whatsapp.svg"
-              alt="telefone"
-              width={24}
-              height={24}
-              className="masthead-phone-icon"
-            />
-            <span id="masthead-phone-number">49 3316-4566</span>
-          </a>
-        </div>
       </div>
     </header>
   );
