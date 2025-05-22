@@ -21,16 +21,6 @@ export default function Footer() {
               </li>
               <li>
                 <a
-                  href="http://www.humanasebolivraria.com.br/galeria/"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="external-link"
-                >
-                  Galeria
-                </a>
-              </li>
-              <li>
-                <a
                   href="http://www.humanasebolivraria.com.br/editora/"
                   target="_blank"
                   rel="noreferrer"
