@@ -33,20 +33,6 @@
       $author-image-width: 260px; // This value must be kept in accordance with the crop value appended to the image base-url (Author page).
       @include flex(0 0 $author-image-width);
       margin-right: 30px;
-
-      // Trick to use next/image: https://dev.to/tanahmed/next-image-make-image-fill-available-space-272o
-      position: relative;
-      width: 100%;
-      max-width: $author-image-width;
-      > span {
-        position: unset !important;
-        max-width: 260px;
-        :global(.custom-img) {
-          width: 100% !important;
-          position: relative !important;
-          height: unset !important;
-        }
-      }
     }
 
     :global(#author-info) {
@@ -120,7 +106,7 @@
           @include justify-content(space-around);
           -webkit-justify-content: space-evenly !important;
         }
-      }    
+      }
     }
   }
   @media screen and (max-width: $tablet-width) {
@@ -133,7 +119,7 @@
       }
       :global(#author-image) {
         margin-right: 0;
-        margin-bottom: 30px;        
+        margin-bottom: 30px;
       }
     }
   }

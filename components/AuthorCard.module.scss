@@ -20,28 +20,12 @@ li.author {
   a {
     text-decoration: none;
     color: inherit;
-    :global(.author_image) {
-      // Trick to use next/image: https://dev.to/tanahmed/next-image-make-image-fill-available-space-272o
-      position: relative;
-      width: 100%;
-  
-      >span {
-        position: unset !important;
-  
-        :global(.custom-img) {
-          width: 100% !important;
-          position: relative !important;
-          height: unset !important;
-        }
-      }
-    }
-  
     :global(.author_text) {
       text-align: center;
       padding: 0 10px 12px 10px;
       font-size: $typo-small-size;
       line-height: $line-height-small-size;
-  
+
       :global(.author_text_name) {
         margin-top: 10px;
         font-weight: bold;

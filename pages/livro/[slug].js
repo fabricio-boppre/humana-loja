@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Head from "next/head";
 import Link from "next/link";
 import { useEffect } from "react";
@@ -220,12 +219,9 @@ export default function Book(props) {
             ) : (
               ""
             )}
-            <Image
+            <img
               alt={props.book.title}
               src={props.book.mainImageUrl + "?w=" + width}
-              layout="fill"
-              className="custom-img"
-              objectFit="contain"
             />
           </section>
 

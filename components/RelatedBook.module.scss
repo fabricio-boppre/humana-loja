@@ -52,20 +52,6 @@ li.related_book {
     z-index: 2;
   }
 
-  :global(.related_book_image) {
-    // Trick to use next/image: https://dev.to/tanahmed/next-image-make-image-fill-available-space-272o
-    position: relative;
-    width: 100%;
-    > span {
-      position: unset !important;
-      :global(.custom-img) {
-        width: 100% !important;
-        position: relative !important;
-        height: unset !important;
-      }
-    }
-  }
-
   :global(.related_book_text) {
     text-align: center;
     padding: 0 10px 12px 10px;

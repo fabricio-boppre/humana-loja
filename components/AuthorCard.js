@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import styles from "./AuthorCard.module.css";
 
@@ -14,13 +13,7 @@ export default function AuthorCard(props) {
       <Link href={`/autor/${author.slug}`}>
         <a>
           <div className="author_image">
-            <Image
-              alt={author.name}
-              src={author.mainImageUrl + "?w=" + width}
-              layout="fill"
-              className="custom-img"
-              objectFit="contain"
-            />
+            <img alt={author.name} src={author.mainImageUrl + "?w=" + width} />
           </div>
           <div className="author_text">
             <div className="author_text_name">{author.name}</div>

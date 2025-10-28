@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import { priceFormat } from "../lib/utils";
 import BookAuthors from "./BookAuthors";
@@ -76,12 +75,10 @@ export default function ShowcaseBook(props) {
       <Link href={`/livro/${book.slug}`}>
         <a>
           <div className="showcase_book_image">
-            <Image
+            <img
               alt={book.title}
               src={book.mainImageUrl + "?w=" + width}
-              layout="fill"
               className="custom-img"
-              objectFit="contain"
             />
           </div>
         </a>

@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Head from "next/head";
 import Link from "next/link";
 import { useEffect } from "react";
@@ -154,12 +153,9 @@ export default function Author(props) {
               <header hidden>
                 <h1>Foto</h1>
               </header>
-              <Image
+              <img
                 alt={props.author.name}
                 src={props.author.mainImageUrl + "?w=" + width}
-                layout="fill"
-                className="custom-img"
-                objectFit="contain"
               />
             </section>
           )}

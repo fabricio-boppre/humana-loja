@@ -66,20 +66,6 @@
         position: absolute;
         z-index: 10;
       }
-
-      // Trick to use next/image: https://dev.to/tanahmed/next-image-make-image-fill-available-space-272o
-      position: relative;
-      width: 100%;
-      max-width: $book-image-width;
-      > span {
-        position: unset !important;
-        max-width: 260px;
-        :global(.custom-img) {
-          width: 100% !important;
-          position: relative !important;
-          height: unset !important;
-        }
-      }
     }
 
     :global(#book-info) {

@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import BookAuthors from "./BookAuthors";
 import styles from "./RelatedBook.module.css";
@@ -27,13 +26,7 @@ export default function RelatedBook(props) {
       <Link href={`/livro/${book.slug}`}>
         <a>
           <div className="related_book_image">
-            <Image
-              alt={book.title}
-              src={book.mainImageUrl + "?w=" + width}
-              layout="fill"
-              className="custom-img"
-              objectFit="contain"
-            />
+            <img alt={book.title} src={book.mainImageUrl + "?w=" + width} />
           </div>
         </a>
       </Link>
