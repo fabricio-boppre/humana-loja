@@ -123,7 +123,7 @@ export default function Footer() {
         </div>
 
         <div id="f-middle">
-          <Image
+          <img
             src="/img/layout/slogan-quadrado.jpg"
             alt="Humana"
             width={180}
