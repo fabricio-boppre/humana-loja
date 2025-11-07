@@ -20,7 +20,7 @@ A Humana é uma livraria, editora e galeria de arte localizada em Chapecó, no o
 
 Se você não possui nenhuma experiência com o Next.js, comece por [aqui](https://nextjs.org/docs/getting-started).
 
-Após clonar o projeto (`git clone git@bitbucket.org:fabricioboppre/humana.git`), não esqueça de instalar suas dependências (`npm install`).
+O repositório está localizado [aqui](https://github.com/fabricio-boppre/humana-loja).
 
 As seguintes [variáveis de ambiente](https://nextjs.org/docs/basic-features/environment-variables) precisam ser configuradas:
 
@@ -61,7 +61,7 @@ Humana is a bookstore, book publisher and art gallery located in Chapecó, Brazi
 
 If you have no experience with Next.js, start [here](https://nextjs.org/docs/getting-started).
 
-After cloning the project (`git clone git@bitbucket.org:fabricioboppre/humana.git`), don't forget to install its dependencies (`npm install`).
+The repository is located [here](https://github.com/fabricio-boppre/humana-loja).
 
 These [environment variables](https://nextjs.org/docs/basic-features/environment-variables) must be set:
 
