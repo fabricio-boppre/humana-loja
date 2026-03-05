@@ -101,7 +101,7 @@ export default function Footer() {
           </section>
           <section>
             <h1>Endereço</h1>
-            <p>Rua Marechal Bormann, 82 D, Sala 13</p>
+            <p>Rua Marechal Bormann, 82 D, Salas 13 e 14</p>
             <p>Centro, Chapecó-SC</p>
             <p>
               <a
@@ -117,7 +117,7 @@ export default function Footer() {
           <section>
             <h1>Horário:</h1>
             <p>Segunda a sexta-feira, das 9h às 19h</p>
-            <p>Sábados, das 9h às 17h</p>
+            <p>Sábados, das 9h às 18h</p>
           </section>
         </div>
 
